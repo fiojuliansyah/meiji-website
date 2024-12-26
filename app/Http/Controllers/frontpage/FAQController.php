@@ -10,7 +10,7 @@ class FAQController extends Controller
      public function index()
      {
 
-     return view('frontpage/faq_contact/contact');
+     return view('frontpage/faq_contact/faq');
      }
 
 

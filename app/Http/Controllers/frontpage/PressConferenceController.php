@@ -10,7 +10,7 @@ class PressConferenceController extends Controller
       public function index()
       {
 
-      return view('frontpage/news/press_confernce');
+return view('frontpage/news/press_conference');
       }
 
 

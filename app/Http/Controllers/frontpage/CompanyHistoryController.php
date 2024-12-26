@@ -10,7 +10,7 @@ class CompanyHistoryController extends Controller
       public function index()
       {
 
-      return view('frontpage/about_us/company_history');
+      return view('frontpage.about_us.company_history');
       }
 
 

@@ -5,13 +5,12 @@ namespace App\Http\Controllers\frontpage;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CompanyProfileController extends Controller
+class CSRListController extends Controller
 {
-
     public function index()
     {
-      
-        return view('frontpage/about_us/company_profile');
+
+    return view('frontpage/activities/csr_list');
     }
 
 
@@ -23,7 +22,7 @@ class CompanyProfileController extends Controller
 
     public function store(Request $request)
     {
-       
+
 
     }
     public function show(string $id)
@@ -40,12 +39,12 @@ class CompanyProfileController extends Controller
 
     public function update(Request $request, string $id)
     {
-      
+
     }
 
 
     public function destroy(string $id)
     {
- 
+
     }
 }

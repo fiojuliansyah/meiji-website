@@ -1,6 +1,6 @@
 @extends('layouts.front')
 
-@section('title', 'Vission Mission - Meiji Indonesia')
+@section('title', 'Vission Missi - Meiji Indonesia')
 
 @section('content')
 // ... existing code ...

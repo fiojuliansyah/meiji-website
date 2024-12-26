@@ -12,12 +12,18 @@
     <!--navigation-->
     <ul class="metismenu" id="menu">
         <li>
-            <a href="widgets.html">
+            <a href="{{ route('dashboard') }}">
                 <div class="parent-icon"><i class='bx bx-home'></i>
                 </div>
-                <div class="menu-title">Dashboard</div>
+                <div class="menu-title">{{ translate('Dashboard') }}</div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('languages.index') }}">
+                <div class="parent-icon"><i class='bx bx-home'></i>
+                </div>
+                <div class="menu-title">{{ translate('Language') }}</div>
             </a>
         </li>
     </ul>
-    <!--end navigation-->
 </div>

@@ -123,4 +123,10 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'aliases' => [
+        'Translation' => App\Facades\TranslationFacade::class,
+        'Transnow' => \App\Helpers\TranslationHelper::class,
+        'set.locale' => \App\Http\Middleware\SetLocale::class,
+    ],
+
 ];

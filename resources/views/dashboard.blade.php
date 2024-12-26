@@ -414,3 +414,18 @@
     </div>
 </div>
 @endsection
+
+@push('js')
+<script src="/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+<script src="/assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
+<script src="/assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script src="/assets/plugins/highcharts/js/highcharts.js"></script>
+<script src="/assets/plugins/highcharts/js/exporting.js"></script>
+<script src="/assets/plugins/highcharts/js/variable-pie.js"></script>
+<script src="/assets/plugins/highcharts/js/export-data.js"></script>
+<script src="/assets/plugins/highcharts/js/accessibility.js"></script>
+<script src="/assets/plugins/apexcharts-bundle/js/apexcharts.min.js"></script>
+<script>
+    new PerfectScrollbar('.dashboard-top-countries');
+</script>
+@endpush

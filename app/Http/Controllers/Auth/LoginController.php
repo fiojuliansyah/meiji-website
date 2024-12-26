@@ -25,7 +25,10 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected function redirectTo()
+    {
+        return route('dashboard', ['lang' => app()->getLocale()]);
+    }
 
     /**
      * Create a new controller instance.

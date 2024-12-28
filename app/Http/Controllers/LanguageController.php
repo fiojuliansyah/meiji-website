@@ -45,13 +45,13 @@ class LanguageController extends Controller
         return redirect()->route('languages.index');
     }
 
-    public function edit($id)
+    public function edit($lang, $id)
     {
         $language = Language::findOrFail($id);
         return view('languages.edit', compact('language'));
     }
 
-    public function update(Request $request, $id)
+    public function update($lang, Request $request, $id)
     {
         $language = Language::findOrFail($id);
 
@@ -64,19 +64,12 @@ class LanguageController extends Controller
         return redirect()->route('languages.index');
     }
 
-    public function destroy($id)
+    public function destroy($lang, $id)
     {
-        try {
-            $language = Language::findOrFail($id);
-            $language->delete();
-            
-            return redirect()
-                ->route('languages.index', ['lang' => app()->getLocale()])
-                ->with('success', 'Language deleted successfully');
-        } catch (\Exception $e) {
-            return redirect()
-                ->route('languages.index', ['lang' => app()->getLocale()])
-                ->with('error', 'Failed to delete language');
-        }
+        $language = Language::findOrFail($id);
+        $language->delete();
+        
+        return redirect()->route('languages.index')
+            ->with('success', 'Language deleted successfully');
     }
 }

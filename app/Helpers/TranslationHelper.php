@@ -6,16 +6,17 @@ use App\Models\Translation;
 
 class TranslationHelper
 {
-    public static function getTranslation($key, $language = null)
+    public static function getTranslation($key, $locale = null)
     {
-        $language = $language ?: app()->getLocale();
-        $translation = Translation::where('key', $key)
-                                  ->whereHas('language', function($query) use ($language) {
-                                      $query->where('code', $language);
-                                  })
-                                  ->first();
+        $locale = $locale ?? app()->getLocale();
 
-        return $translation ? $translation->translation : $key;
+        // Cari language_id berdasarkan locale
+        $languageId = \App\Models\Language::where('code', $locale)->value('id');
+
+        // Ambil terjemahan berdasarkan key dan language_id
+        return Translation::where('key', $key)
+            ->where('language_id', $languageId)
+            ->value('translation') ?? $key;
     }
 }
 

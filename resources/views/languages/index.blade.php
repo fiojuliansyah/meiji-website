@@ -29,7 +29,12 @@
                                 <tr>
                                     <td>{{ $language->name ?? '' }}</td>
                                     <td>{{ $language->code ?? '' }}</td>
-                                    <td><a href="{{ route('languages.translations', $language->id) }}" class="btn btn-primary btn-sm radius-30 px-4">{{ translate('View Translations') }}</a></td>
+                                    <td>
+                                        <a href="{{ route('languages.translations', ['lang' => app()->getLocale(), 'id' => $language->id]) }}" 
+                                            class="btn btn-primary btn-sm radius-30 px-4">
+                                             {{ translate('View Translations') }}
+                                         </a>
+                                    </td>
                                     <td>
                                         <div class="d-flex order-actions">
                                             <a href="{{ route('languages.edit', $language->id) }}" class=""><i class='bx bxs-edit'></i></a>

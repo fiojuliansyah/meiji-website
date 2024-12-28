@@ -1,173 +1,160 @@
-  <header class="d-none d-xl-block">
-      <div class="header__area tp-footer-2" id="header-sticky">
-          <div class="container-fluid">
-              <div class="row align-items-center">
-                  <div class="col-xxl-2 col-lg-3">
-                      <div class="logo">
-                          <a href="index.html"><img
-                                  src="{{ asset('frontpage_assets/img/logo-meiji-1.png') }}"
-                                  alt="logo"></a>
-                      </div>
-                  </div>
-                  <div class="col-xxl-10 col-lg-9">
-                      <div class="main-menu">
-                          <nav id="mobile-menu ">
-                              <ul>
-                                  <li class="has-dropdown ">
-                                      <a href="#"
-                                          class="{{ request()->routeIs('frontpage.company-profile') || request()->routeIs('frontpage.company-history') || request()->routeIs('frontpage.vision-mission') ? 'active' : '' }}">About
-                                          Us</a>
-                                      <ul class="sub-menu">
-                                          <li>
-                                              <a href="{{ route('frontpage.company-profile') }}"
-                                                  class="{{ request()->routeIs('frontpage.company-profile') ? 'active' : '' }}">Company
-                                                  Profile</a>
-                                          </li>
-                                          <li>
-                                              <a href="{{ route('frontpage.company-history') }} "
-                                                  class="{{ request()->routeIs('frontpage.company-history') ? 'active' : '' }}">Company
-                                                  History</a>
-                                          </li>
-                                          <li>
-                                              <a href="{{ route('frontpage.vision-mission') }}"
-                                                  class="{{ request()->routeIs('frontpage.vision-mission') ? 'active' : '' }}">Vision
-                                                  and Mission</a>
-                                          </li>
-                                      </ul>
-                                  </li>
-
-                                  <li>
-                                      <a href="#"
-                                          class="has-dropdown {{ request()->routeIs('frontpage.press-conference') || request()->routeIs('frontpage.product-launch') || request()->routeIs('frontpage.other-information') ? 'active' : '' }}">News</a>
-                                      <ul class="sub-menu">
-                                          <li>
-                                              <a href="{{ route('frontpage.press-conference') }}"
-                                                  class="{{ request()->routeIs('frontpage.press-conference') ? 'active' : '' }}">Press
-                                                  Conference</a>
-                                          </li>
-                                          <li
-                                              class="{{ request()->routeIs('frontpage.product-launch') ? 'active' : '' }}">
-                                              <a href="{{ route('frontpage.product-launch') }}">Product
-                                                  Launch</a>
-                                          </li>
-                                          <li
-                                              class="{{ request()->routeIs('frontpage.other-information') ? 'active' : '' }}">
-                                              <a href="{{ route('frontpage.other-information') }}">Other
-                                                  Information</a>
-                                          </li>
-                                      </ul>
-                                  </li>
-
-                                  <li>
-                                      <a href="#"
-                                          class="has-dropdown {{ request()->routeIs('frontpage.prescription-product') || request()->routeIs('frontpage.consumer-health') || request()->routeIs('frontpage.animal-health') ? 'active' : '' }}">Products</a>
-                                      <ul class="sub-menu">
-                                          <li
-                                              class="{{ request()->routeIs('frontpage.prescription-product') ? 'active' : '' }}">
-                                              <a href="{{ route('frontpage.prescription-product') }}">Prescription
-                                                  Product</a>
-                                          </li>
-                                          <li
-                                              class="{{ request()->routeIs('frontpage.consumer-health') ? 'active' : '' }}">
-                                              <a href="{{ route('frontpage.consumer-health') }}">Consumer
-                                                  Health</a>
-                                          </li>
-                                          <li
-                                              class="{{ request()->routeIs('frontpage.animal-health') ? 'active' : '' }}">
-                                              <a href="{{ route('frontpage.animal-health') }}">Animal
-                                                  Health</a>
-                                          </li>
-                                      </ul>
-                                  </li>
-
-                                  <li>
-                                      <a href="#"
-                                          class="has-dropdown {{ request()->routeIs('frontpage.r-and-d') ? 'active' : '' }}">R&D</a>
-                                      <ul class="sub-menu">
-                                          <li
-                                              class="{{ request()->routeIs('frontpage.r-and-d') ? 'active' : '' }}">
-                                              <a href="{{ route('frontpage.r-and-d') }}">R&D
-                                                  Activities</a>
-                                          </li>
-                                      </ul>
-                                  </li>
-
-                                  <li class="has-dropdown">
-                                      <a href="#"
-                                          class="has-dropdown
-                                          {{ request()->routeIs('frontpage.csr') || request()->routeIs('frontpage.pharmacovigilance')? 'active' : '' }}">Activities</a>
-                                      <ul class="sub-menu">
-                                          <li><a href="{{ route('frontpage.csr') }}">CSR List</a></li>
-                                          <li><a
-                                                  href="{{ route('frontpage.pharmacovigilance') }}">Pharmacovigilance</a>
-                                          </li>
-                                      </ul>
-                                  </li>
-
-                                  <li
-                                      class="has-dropdown {{ request()->routeIs('frontpage.career') ? 'active' : '' }}">
-                                      <a href="#">Career</a>
-                                      <ul class="sub-menu">
-                                          <li
-                                              class="{{ request()->routeIs('frontpage.career') ? 'active' : '' }}">
-                                              <a href="{{ route('frontpage.career') }}">Career and
-                                                  Vacancy List</a>
-                                          </li>
-                                      </ul>
-                                  </li>
-
-                                  <li>
-                                      <a href="{{ route('frontpage.faq') }}"
-                                          class="{{ request()->routeIs('frontpage.faq') ? 'active' : '' }}">FAQ</a>
-                                  </li>
-
-                                  <li>
-                                      <a href="{{ route('frontpage.contact') }}"
-                                          class="{{ request()->routeIs('frontpage.contact') ? 'active' : '' }}">Contact</a>
-                                  </li>
-                              </ul>
-                          </nav>
-                      </div>
-                  </div>
+<header class="header header-light header-topbar header-topbar6" id="navbar-spy">
+    <!-- Start .top-bar-->
+    <div class="top-bar top-bar-3">
+        <div class="container">
+            <div class="top-contact">
+                <div class="contact-infos"><i class="fas fa-phone-alt"></i>
+                    <div class="contact-body"> <a href="tel:123-456-7890">emergency line: 002 010612457410</a></div>
+                </div>
+                <div class="contact-infos"><i class="fas fa-map-marker-alt"></i>
+                    <div class="contact-body"> <a href="#">location: brooklyn, new york </a></div>
+                </div>
+                <div class="contact-infos"><i class="fas fa-clock"></i>
+                    <div class="contact-body">
+                        <p>Mon-Fri: 8am – 7pm </p>
+                    </div>
+                </div>
+            </div>
+            <div class="module module-language">
+              @php
+                  $currentLanguage = App\Models\Language::where('code', app()->getLocale())->first();
+              @endphp
+              <div class="selected">
+                  <img src="/front/assets/images/module-language/{{ app()->getLocale() }}.png" alt="{{ $currentLanguage->name }}" />
+                  <span style="color: #283b6a">{{ $currentLanguage->name }}</span>
+                  <i class="fas fa-chevron-down" style="color: #283b6a"></i>
+              </div>
+              <div class="lang-list">
+                  <ul>
+                    <form method="POST" action="{{ route('change-language', ['lang' => app()->getLocale()]) }}">
+                        @csrf
+                        <input type="hidden" name="route" value="{{ $currentRoute }}">
+                        <input type="hidden" name="parameters" value="{{ $routeParameters }}">
+                        @foreach(App\Models\Language::all() as $language)
+                        <li>
+                            <img src="/front/assets/images/module-language/{{ $language->code }}.png" alt="{{ $language->name }}" />
+                            <button type="submit" name="lang" value="{{ $language->code }}">{{ $language->name }}</button>
+                        </li>
+                        <br>
+                        @endforeach
+                    </form>
+                  </ul>
               </div>
           </div>
-      </div>
-  </header>
+        </div>
+    </div>
+    <!-- End .top-bar-->
+    <nav class="navbar navbar-expand-xl navbar-sticky" id="primary-menu">
+        <div class="container"><a class="navbar-brand" href="/"><img class="logo logo-dark"
+                    src="/front/assets/images/logo/logo.png" alt="Meiji Logo" /><img class="logo logo-mobile"
+                    src="/front/assets/images/logo/logo.png" alt="Meiji Logo" /></a>
+            <div class="module-holder module-holder-phone">
+                <!--  Start Module Search  -->
+                <div class="module module-search float-left">
+                    <div class="module-icon search-icon"><i class="icon-search" data-hover=""></i></div>
+                </div>
+                <!--  End .module-search-->
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false"
+                    aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ">
+                    <li class="nav-item has-dropdown" data-hover=""><a class="dropdown-toggle" href="#"
+                            data-toggle="dropdown"><span>{{ translate('about us') }}</span></a>
+                        <ul class="dropdown-menu">
+                            @foreach($abouts as $about)
+                                <li class="nav-item">
+                                    <a href="{{ route('frontpage.about.show', ['lang' => app()->getLocale(), 'slug' => $about->getTranslation('slug', app()->getLocale())]) }}">
+                                        <span>{{ $about->getTranslation('title', app()->getLocale()) }}</span>
+                                    </a>
+                                </li>
+                            @endforeach
+                            <li class="nav-item">
+                                <a href="{{ route('frontpage.timeline', ['lang' => app()->getLocale()]) }}">
+                                    <span>{{ translate('company history') }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-dropdown" data-hover=""><a class="dropdown-toggle" href="#"
+                            data-toggle="dropdown"><span>{{ translate('news') }}</span></a>
+                        <ul class="dropdown-menu">
+                            @foreach($news_categories as $nCategory)
+                            <li class="nav-item">
+                                <a href="{{ route('frontpage.news.category', [
+                                    'lang' => app()->getLocale(),
+                                    'slug' => $nCategory->getTranslation('slug', app()->getLocale())
+                                ]) }}">
+                                    <span>{{ $nCategory->getTranslation('name', app()->getLocale()) }}</span>
+                                </a>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                    <li class="nav-item has-dropdown" data-hover=""><a class="dropdown-toggle" href="#"
+                        data-toggle="dropdown"><span>{{ translate('Products') }}</span></a>
+                        <ul class="dropdown-menu">
+                            @foreach($categories as $category)
+                            <li class="nav-item">
+                                <a href="{{ route('frontpage.products.category', [
+                                    'lang' => app()->getLocale(),
+                                    'slug' => $category->getTranslation('slug', app()->getLocale())
+                                ]) }}">
+                                    <span>{{ $category->getTranslation('name', app()->getLocale()) }}</span>
+                                </a>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                    <li class="nav-item has-dropdown" data-hover=""><a class="dropdown-toggle" href="#"
+                        data-toggle="dropdown"><span>{{ translate('R&D') }}</span></a>
+                        <ul class="dropdown-menu">
+                            @foreach($randds as $randd)
+                                <li class="nav-item">
+                                    <a href="{{ route('frontpage.randd.show', ['lang' => app()->getLocale(), 'slug' => $randd->getTranslation('slug', app()->getLocale())]) }}">
+                                        <span>{{ $randd->getTranslation('title', app()->getLocale()) }}</span>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                    <li class="nav-item has-dropdown" data-hover=""><a class="dropdown-toggle" href="#"
+                        data-toggle="dropdown"><span>{{ translate('Activity') }}</span></a>
+                        <ul class="dropdown-menu">
+                            @foreach($activities as $activity)
+                                <li class="nav-item">
+                                    <a href="{{ route('frontpage.activity.show', ['lang' => app()->getLocale(), 'slug' => $activity->getTranslation('slug', app()->getLocale())]) }}">
+                                        <span>{{ $activity->getTranslation('title', app()->getLocale()) }}</span>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                    <li class="nav-item has-dropdown" data-hover=""><a class="dropdown-toggle" href="#"
+                        data-toggle="dropdown"><span>{{ translate('Career') }}</span></a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item">
+                                <a href="#">
+                                    <span>{{ translate('Job Portal') }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item" data-hover=""><a href="{{ route('frontpage.faq') }}"><span>{{ translate('FAQ') }}</span></a>
+                    </li>
+                </ul>
+                <div class="module-holder">
+                    <!-- Start .module-contact-->
+                    <div class="module-contact module-contact-2 module-contact-3"><a
+                            class="btn btn--primary btn-line btn-line-after" href="{{ route('frontpage.contact') }}">
+                            <span>{{ translate('contact') }}</span><span class="line"> <span></span></span></a></div>
 
-
-  <div id="header-mob-sticky" class="tp-mobile-header-area tp-home-lg-banner pt-15 pb-15 d-xl-none">
-      <div class="container">
-          <div class="row align-items-center">
-              <div class="col-4">
-                  <div class="tp-mob-logo">
-                      <a href="index.html"><img
-                              src="{{ asset('frontpage_assets/img/logo-meiji-1.png') }}"
-                              alt="logo"></a>
-                  </div>
-              </div>
-              <div class="col-8">
-                  <div class="tp-mobile-bar d-flex align-items-center justify-content-end">
-                      <div class="tp-bt-btn-banner d-none d-md-block d-xl-none mr-30">
-                          <a class="tp-bt-btn" href="tel:123456">
-                              <svg width="14" height="19" viewBox="0 0 14 19" fill="none"
-                                  xmlns="http://www.w3.org/2000/svg">
-                                  <circle cx="2" cy="2" r="2" fill="#0E63FF" />
-                                  <circle cx="7" cy="2" r="2" fill="#0E63FF" />
-                                  <circle cx="12" cy="2" r="2" fill="#0E63FF" />
-                                  <circle cx="12" cy="7" r="2" fill="#0E63FF" />
-                                  <circle cx="12" cy="12" r="2" fill="#0E63FF" />
-                                  <circle cx="7" cy="7" r="2" fill="#0E63FF" />
-                                  <circle cx="7" cy="12" r="2" fill="#0E63FF" />
-                                  <circle cx="7" cy="17" r="2" fill="#0E63FF" />
-                                  <circle cx="2" cy="7" r="2" fill="#0E63FF" />
-                                  <circle cx="2" cy="12" r="2" fill="#0E63FF" />
-                              </svg><span>Help Desk :</span>+91 590
-                              088 55
-                          </a>
-                      </div>
-                      <button class="tp-menu-toggle"><i class="far fa-bars"></i></button>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+                </div>
+                <!--  End .module-holder-->
+            </div>
+        </div>
+        <!--  End .container-->
+    </nav>
+    <!--  End .navbar-->
+</header>

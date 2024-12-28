@@ -5,7 +5,10 @@
 @section('content')
 <section class="accordion accordion-2">
     <div class="container"> 
-          <p>We help create a care plan that addresses your specific condition and we are here to answer all of your questions & acknowledge your concerns. Today the hospital is recognised as a world renowned institution, not only providing outstanding care and treatment, but improving the outcomes.</p>
+          <div style="text-align: center; margin-bottom: 50px;">
+              <h2 style="font-size: 2.5rem; color: #283b6a; margin-bottom: 20px;">{{ translate('FAQ') }}</h2>
+              <p style="color: #666; font-size: 1.1rem;">{{ translate('Journey of Excellence and Innovation') }}</p>
+          </div>
           <div class="accordion-holder" id="accordion03"> 
             @foreach ($faqs as $faq)  
               <div class="card">

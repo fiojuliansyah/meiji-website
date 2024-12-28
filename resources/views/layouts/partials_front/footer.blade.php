@@ -5,14 +5,15 @@
           <div class="col-sm-12 col-md-6 col-lg-3">
             <div class="footer-widget widget-contact">
               <div class="footer-widget-title">
-                <h5>quick contact</h5>
+                <img class="logo logo-mobile"
+                    src="{{ asset('storage/' . $general->logo_white) }}" alt="Meiji Logo" />
               </div>
               <div class="widget-content">
-                <p>If you have any questions or need help, feel free to contact with our team.</p>
+                <p>{!! $general->getTranslation('bio', app()->getLocale()) !!}</p>
                 <ul> 
-                  <li class="phone"><a href="tel:+01061245741"><i class="fas fa-phone-alt"></i> 01061245741</a></li>
-                  <li class="address"><a href="#">2307 Beverley Rd Brooklyn, New York 11226 United States.</a></li>
-                </ul><a class="directions" href="javascript:void(0)"><i class="icon-arrow-right"></i>get directions</a>
+                  <li class="phone"><a href="#"><i class="fas fa-phone-alt"></i> {{ $general->phone_1 }}</a></li>
+                  <li class="address"><a href="#">{{ $general->address }}</a></li>
+                </ul>
               </div>
             </div>
             <!--  End .col-lg-3-->
@@ -102,7 +103,7 @@
         <div class="row">
           <div class="col-12">
             <div class="footer-copyright">
-              <div class="copyright"><span>&copy; 2021 medisch by  <a href="https://1.envato.market/kP9BV"> Zytheme.com</a>. all rights reserved. </span>
+              <div class="copyright"><span>&copy; 2025 by  <a href="/"> {{ $general->name }}</a>. all rights reserved. </span>
                 <ul class="list-unstyled social-icons">
                   <li> <a class="share-facebook" href="#"><i class="fab fa-facebook-f"> </i></a></li>
                   <li> <a class="share-instagram" href="#"><i class="fab fa-instagram"></i></a></li>

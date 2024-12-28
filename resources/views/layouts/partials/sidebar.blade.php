@@ -105,7 +105,11 @@
                 <div class="menu-title">{{ translate('Settings') }}</div>
             </a>
             <ul>
-                <li> <a href="{{ localized_route('languages.index') }}"><i class="bx bx-right-arrow-alt"></i>{{ translate('Language') }}</a>
+                <li>
+                    <a href="{{ localized_route('generals.index') }}"><i class="bx bx-right-arrow-alt"></i>{{ translate('General') }}</a>
+                </li>
+                <li>
+                    <a href="{{ localized_route('languages.index') }}"><i class="bx bx-right-arrow-alt"></i>{{ translate('Language') }}</a>
                 </li>
             </ul>
         </li>

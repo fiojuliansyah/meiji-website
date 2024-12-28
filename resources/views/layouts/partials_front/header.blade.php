@@ -4,16 +4,16 @@
         <div class="container">
             <div class="top-contact">
                 <div class="contact-infos"><i class="fas fa-phone-alt"></i>
-                    <div class="contact-body"> <a href="tel:123-456-7890">emergency line: 002 010612457410</a></div>
+                    <div class="contact-body"> <a href="tel:123-456-7890">{{ translate('Phone') }}: {{ $general->phone_1 }}</a></div>
                 </div>
                 <div class="contact-infos"><i class="fas fa-map-marker-alt"></i>
-                    <div class="contact-body"> <a href="#">location: brooklyn, new york </a></div>
+                    <div class="contact-body"> <a href="#">{{ translate('Location') }}: {{ $general->short_address }} </a></div>
                 </div>
-                <div class="contact-infos"><i class="fas fa-clock"></i>
+                {{-- <div class="contact-infos"><i class="fas fa-clock"></i>
                     <div class="contact-body">
                         <p>Mon-Fri: 8am – 7pm </p>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="module module-language">
               @php
@@ -45,9 +45,11 @@
     </div>
     <!-- End .top-bar-->
     <nav class="navbar navbar-expand-xl navbar-sticky" id="primary-menu">
-        <div class="container"><a class="navbar-brand" href="/"><img class="logo logo-dark"
-                    src="/front/assets/images/logo/logo.png" alt="Meiji Logo" /><img class="logo logo-mobile"
-                    src="/front/assets/images/logo/logo.png" alt="Meiji Logo" /></a>
+        <div class="container"><a class="navbar-brand" href="/">
+            <img class="logo logo-dark"
+                    src="{{ asset('storage/' . $general->logo) }}" alt="Meiji Logo" />
+                    <img class="logo logo-mobile"
+                    src="{{ asset('storage/' . $general->logo) }}" alt="Meiji Logo" /></a>
             <div class="module-holder module-holder-phone">
                 <!--  Start Module Search  -->
                 <div class="module module-search float-left">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\frontpage;
 
 use App\Models\News;
+use App\Models\Slider;
 use App\Models\Timeline;
 use App\Models\NewsCategory;
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ class HomeController extends Controller
 {
      public function index()
      {
-     return view('frontpage.home');
+          $sliders = Slider::all();
+          return view('frontpage.home',compact('sliders'));
      }
 }

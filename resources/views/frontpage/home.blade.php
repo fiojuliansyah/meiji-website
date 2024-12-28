@@ -6,48 +6,26 @@
 <section class="slider" id="slider-1">
     <div class="container-fluid pr-0 pl-0">
       <div class="slider-carousel owl-carousel carousel-navs carousel-dots" data-slide="1" data-slide-rs="1" data-autoplay="true" data-nav="true" data-dots="true" data-space="0" data-loop="false" data-speed="800">
-        <!--  Start .slide-->
-        <div class="slide bg-overlay bg-overlay-dark-slider">
-          <div class="bg-section"><img src="/front/assets/images/sliders/5.jpg" alt="Background"/></div>
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-lg-7">
-                <div class="slide-content">
-                  <h1 class="slide-headline">true healthcare for your family</h1>
-                  <p class="slide-desc">The health and well-being of our patients and their health care team will always be our priority, so we follow the best practices for cleanliness. </p>
-                  <div class="slide-action"><a class="btn btn--primary btn-line btn-line-after" href="doctors-modern.html"> <span>find a doctor</span><span class="line"> <span></span></span></a><a class="btn btn--white btn-line btn-line-after btn-line-inversed" href="page-about.html"> <span>more about us</span><span class="line"> <span></span></span></a></div>
+        @foreach ($sliders as $slider)
+          <div class="slide bg-overlay bg-overlay-dark-slider">
+            <div class="bg-section"><img src="{{ asset('storage/' . $slider->image) }}" alt="Background"/></div>
+            <div class="container">
+              <div class="row">
+                <div class="col-12 col-lg-7">
+                  <div class="slide-content">
+                    <h1 class="slide-headline">{{ $slider->getTranslation('title', app()->getLocale()) }}</h1>
+                    <p class="slide-desc">{{ $slider->getTranslation('content', app()->getLocale()) }}</p>
+                  </div>
+                  <!-- End .slide-content -->
                 </div>
-                <!-- End .slide-content -->
               </div>
+              <!--  End .row-->
             </div>
-            <!--  End .row-->
-          </div>
-          <!-- End .container-->
-        </div>
-        <!-- End .slide-->
-        <!--  Start .slide-->
-        <div class="slide bg-overlay bg-overlay-dark-slider">
-          <div class="bg-section"><img src="/front/assets/images/sliders/6.jpg" alt="Background"/></div>
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-lg-7">
-                <div class="slide-content">
-                  <h1 class="slide-headline">delivering best medical care</h1>
-                  <p class="slide-desc">The health and well-being of our patients and their health care team will always be our priority, so we follow the best practices for cleanliness. </p>
-                  <div class="slide-action"><a class="btn btn--primary btn-line btn-line-after" href="doctors-modern.html"> <span>find a doctor</span><span class="line"> <span></span></span></a><a class="btn btn--white btn-line btn-line-after btn-line-inversed" href="page-about.html"> <span>more about us</span><span class="line"> <span></span></span></a></div>
-                </div>
-                <!-- End .slide-content -->
-              </div>
-            </div>
-            <!--  End .row-->
-          </div>
-          <!-- End .container-->
-        </div>
-        <!-- End .slide-->
+            <!-- End .container-->
+          </div>    
+        @endforeach
       </div>
-      <!-- End .slider-carousel-->
     </div>
-    <!--  End .container-fluid-->
   </section>
 
   <section class="about about-1" id="about-1">

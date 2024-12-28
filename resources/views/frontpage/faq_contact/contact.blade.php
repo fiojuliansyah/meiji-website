@@ -4,7 +4,7 @@
 
 @section('content')
 <section class="map map-2"> 
-  {!! $contact->map_url !!}
+  {!! $contact->map_url ?? '' !!}
 </section>
 <section class="contact-info"> 
     <div class="container"> 

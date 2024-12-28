@@ -10,6 +10,7 @@ use App\Http\Controllers\RanddController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\CategoryController;
@@ -87,6 +88,7 @@ Route::prefix('{lang}')
 
                 Route::resource('faqs', FaqController::class);
                 Route::resource('contacts', ContactController::class);
+                Route::resource('generals', GeneralController::class);
 
                 Route::resource('languages', LanguageController::class)->except(['destroy']);
                 

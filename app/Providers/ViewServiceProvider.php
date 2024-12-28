@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\About;
 use App\Models\Randd;
+use App\Models\General;
 use App\Models\Activity;
 use App\Models\Category;
 use App\Models\NewsCategory;
@@ -38,6 +39,7 @@ class ViewServiceProvider extends ServiceProvider
 
                 // Load models hanya jika dibutuhkan untuk view tertentu
                 if ($view->getName() === 'layouts.front' || str_starts_with($view->getName(), 'frontpage.')) {
+                    $data['general'] = General::first();
                     $data['abouts'] = About::all();
                     $data['news_categories'] = NewsCategory::all();
                     $data['categories'] = Category::all();

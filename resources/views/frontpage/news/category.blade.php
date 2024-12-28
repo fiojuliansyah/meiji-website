@@ -8,9 +8,9 @@
     <section class="blog blog-grid" id="blog">
         <div class="container">
             <div style="text-align: center; margin-bottom: 50px;">
-              <h2 style="font-size: 2.5rem; color: #283b6a; margin-bottom: 20px;">{{ translate('Our News') }}</h2>
-              <p style="color: #666; font-size: 1.1rem;">{{ translate('Journey of Excellence and Innovation') }}</p>
-          </div>
+                <h2 style="font-size: 2.5rem; color: #283b6a; margin-bottom: 20px;">{{ translate('Our News') }}</h2>
+                <p style="color: #666; font-size: 1.1rem;">{{ translate('Journey of Excellence and Innovation') }}</p>
+            </div>
             <div class="row">
                 @forelse($news as $item)
                     <div class="col-12 col-md-6 col-lg-4">

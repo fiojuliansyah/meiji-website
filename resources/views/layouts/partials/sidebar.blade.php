@@ -1,10 +1,7 @@
-<div class="sidebar-wrapper" data-simplebar="false">
+<div class="sidebar-wrapper" data-simplebar="true">
     <div class="sidebar-header">
         <div>
-            <img src="/assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
-        </div>
-        <div>
-            <h4 class="logo-text">Meiji</h4>
+            <img src="{{ asset('storage/' . $general->logo) ?? '' }}" class="logo-icon" alt="logo icon">
         </div>
         <div class="toggle-icon ms-auto"><i class='bx bx-first-page'></i>
         </div>
@@ -94,7 +91,7 @@
             <ul>
                 <li> <a href="{{ localized_route('contacts.index') }}"><i class="bx bx-right-arrow-alt"></i>{{ translate('Page') }}</a>
                 </li>
-                <li> <a href="{{ localized_route('products.index') }}"><i class="bx bx-right-arrow-alt"></i>{{ translate('Product') }}</a>
+                <li> <a href="{{ localized_route('products.index') }}"><i class="bx bx-right-arrow-alt"></i>{{ translate('Inbox') }}</a>
                 </li>
             </ul>
         </li>

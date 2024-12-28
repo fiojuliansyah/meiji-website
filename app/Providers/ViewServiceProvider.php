@@ -9,6 +9,7 @@ use App\Models\Activity;
 use App\Models\Category;
 use App\Models\NewsCategory;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -45,6 +46,11 @@ class ViewServiceProvider extends ServiceProvider
                     $data['categories'] = Category::all();
                     $data['randds'] = Randd::all();
                     $data['activities'] = Activity::all();
+                } elseif ($view->getName() === 'layouts.guest') {
+                    $data['general'] = General::first();
+                } elseif ($view->getName() === 'layouts.app') {
+                    $data['general'] = General::first();
+                    $data['auth'] = Auth::user();
                 }
 
                 $view->with($data);

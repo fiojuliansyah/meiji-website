@@ -14,6 +14,7 @@ class GeneralController extends Controller
             'favicon' => '',
             'logo' => '',
             'logo_white' => '',
+            'breadcrumb' => '',
             'name' => '',
             'phone_1' => '',
             'phone_2' => '',
@@ -29,12 +30,6 @@ class GeneralController extends Controller
 
     public function update(Request $request, $lang, General $general) 
     {
-        $request->validate([
-            'favicon' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'logo_white' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
         if ($request->hasFile('favicon')) {
             if ($general->favicon) {
                 Storage::delete($general->favicon);
@@ -54,6 +49,13 @@ class GeneralController extends Controller
                 Storage::delete($general->logo_white);
             }
             $general->logo_white = $request->file('logo_white')->store('public/generals');
+        }
+
+        if ($request->hasFile('breadcrumb')) {
+            if ($general->breadcrumb) {
+                Storage::delete($general->breadcrumb);
+            }
+            $general->breadcrumb = $request->file('breadcrumb')->store('public/generals');
         }
 
         foreach ($request->input('translations', []) as $locale => $data) {

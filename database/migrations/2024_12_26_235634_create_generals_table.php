@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('favicon')->nullable();
             $table->string('logo')->nullable();
             $table->string('logo_white')->nullable();
+            $table->string('breadcrumb')->nullable();
             $table->string('name')->nullable();
             $table->string('phone_1')->nullable();
             $table->string('phone_2')->nullable();

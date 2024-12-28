@@ -5,17 +5,32 @@
 @endsection
 
 @section('content')
+<section class="page-title bg-overlay bg-overlay-dark bg-parallax" id="page-title">
+    <div class="bg-section"><img src="{{ asset('storage/' . $general->breadcrumb) }}" alt="Background"/></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-6 offset-lg-3">
+          <div class="title">
+            <div class="title-heading">
+              <h1>{{ translate('Company History') }}</h1>
+            </div>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">{{ translate('Home') }}</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{ translate('Company History') }}</li>
+            </ol>
+          </div>
+          <!-- End .title -->
+        </div>
+        <!-- End .col-lg-6-->
+      </div>
+      <!-- End .row-->
+    </div>
+    <!-- End .container-->
+</section>
 <div class="about-section">
     <div class="container">
         <div class="about-content">
             <div class="timeline-container" style="width: 100%; padding: 40px 0;">
-                <!-- Timeline Header -->
-                <div style="text-align: center; margin-bottom: 50px;">
-                    <h2 style="font-size: 2.5rem; color: #283b6a; margin-bottom: 20px;">{{ translate('Our History') }}</h2>
-                    <p style="color: #666; font-size: 1.1rem;">{{ translate('Journey of Excellence and Innovation') }}</p>
-                </div>
-
-                <!-- Timeline Wrapper -->
                 <div class="timeline-wrapper" style="position: relative; overflow-x: auto; padding: 40px 0;">
                     <!-- Timeline Line -->
                     <div style="position: absolute; width: 100%; height: 4px; background: #e0e0e0; top: 50%; transform: translateY(-50%);"></div>

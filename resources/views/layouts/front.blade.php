@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <meta name="description" content="Medisch Responsive Bootstrap 4 Medical HTML5 Template"/>
     <title>@yield('title') - PT Meiji Indonesia</title>
-    <link href="/front/assets/images/favicon/favicon.png" rel="icon"/>
+    <link href="{{ asset('storage/' . $general->favicon ?? '') }}" rel="icon"/>
     <!--  Fonts ==
     -->
     <link rel="preconnect" href="https://fonts.gstatic.com"/>

@@ -13,6 +13,7 @@ class General extends Model
         'favicon', 
         'logo', 
         'logo_white',
+        'breadcrumb',
         'name',
         'phone_1',
         'phone_2',

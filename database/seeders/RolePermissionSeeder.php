@@ -114,7 +114,7 @@ class RolePermissionSeeder extends Seeder
                 'manage-translations',
             ],
             'visitors' => [
-                'list-visitors',
+                'view-visitors',
             ],
         ];
 

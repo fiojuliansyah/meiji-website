@@ -75,9 +75,8 @@
 <section class="news-section sec-pad">
   <div class="auto-container">
       <div class="sec-title">
-          <span class="sub-title">Blogs & News</span>
-          <h2>Explore our latest post</h2>
-          <div class="btn-box"><a href="blog.html" class="theme-btn">View All Post</a></div>
+          <span class="sub-title">{{ translate('News') }}</span>
+          <h2>{{ translate('Explore our latest post') }}</h2>
       </div>
       <div class="row clearfix">
         @foreach ($news as $item) 

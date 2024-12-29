@@ -1,21 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="page-wrapper">
-    <div class="page-content">
-        <!--breadcrumb-->
-        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">{{ translate('Sliders') }}</div>
-            <div class="ms-auto">
-                <div class="btn-group">
-                    <a href="{{ route('sliders.create', ['lang' => app()->getLocale()]) }}" class="btn btn-primary">{{ translate('Create Slider') }}</a>
+ <div class="nxl-content">
+             
+                <div class="page-header">
+                    <div class="page-header-left d-flex align-items-center">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Sliders</h5>
+                        </div>
+                    </div>
+                    <div class="page-header-right ms-auto">
+                        <div class="page-header-right-items">
+                            <div class="d-flex d-md-none">
+                                <a href="javascript:void(0)" class="page-header-right-close-toggle">
+                                    <i class="feather-arrow-left me-2"></i>
+                                    <span>Back</span>
+                                </a>
+                            </div>
+                           <div class="btn-group">
+                               <a href="{{ route('sliders.create', ['lang' => app()->getLocale()]) }}"
+                                   class="btn btn-primary">{{ translate('Create Slider') }}</a>
+                           </div>
+                        </div>
+                        <div class="d-md-none d-flex align-items-center">
+                            <a href="javascript:void(0)" class="page-header-right-open-toggle">
+                                <i class="feather-align-right fs-20"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+
+    <div class="main-content">
+    
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="example2" class="table table-striped table-bordered">
+                    <table id="example2" class="table">
                         <thead>
                             <tr>
                                 <th>{{ translate('Image') }}</th>
@@ -28,33 +48,31 @@
                             @foreach ($sliders as $slider)   
                                 <tr>
                                     <td>
-                                        <img src="{{ asset('storage/' . $slider->image) }}" alt="Slider Image" width="100">
+                                        <div class="hstack gap-3">
+                                            <div class="avatar-image avatar-lg rounded">
+                                                <img class="img-fluid" src="{{ asset('storage/' . $slider->image) }}" alt="Slider Image">
+                                            </div>
+                                            <div>
+                                                <a href="javascript:void(0);" class="d-block">{{ $slider->getTranslation('title', app()->getLocale()) }}</a>
+                                                <span class="fs-12 text-muted">{{ translate('Slider') }}</span>
+                                            </div>
+                                        </div>
                                     </td>
-                                    <td>{{ $slider->getTranslation('title', app()->getLocale()) }}</td>
                                     <td>{{ $slider->getTranslation('content', app()->getLocale()) }}</td>
-                                    <td>
+                                    <td class="text-end">
                                         <div class="d-flex order-actions">
-                                            <a href="{{ route('sliders.edit', ['lang' => app()->getLocale(), 'slider' => $slider->id]) }}" class=""><i class='bx bxs-edit'></i></a>
-                                            <a href="javascript:;" class="ms-3" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $slider->id }}"><i class='bx bxs-trash'></i></a>
+                                            <a href="{{ route('sliders.edit', ['lang' => app()->getLocale(), 'slider' => $slider->id]) }}" class="d-block"><i class='bx bxs-edit'></i></a>
+                                            <a href="javascript:;" class="ms-3 d-block" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $slider->id }}"><i class='bx bxs-trash'></i></a>
                                         </div>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>{{ translate('Image') }}</th>
-                                <th>{{ translate('Title') }}</th>
-                                <th>{{ translate('Content') }}</th>
-                                <th>{{ translate('Action') }}</th>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @foreach ($sliders as $slider)   
 <div class="modal fade" id="deleteModal{{ $slider->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -74,6 +92,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 @endforeach
 @endsection

@@ -60,6 +60,7 @@ Route::prefix('{lang}')
         Route::get('/products/category/{slug}', [PageProductController::class, 'category'])->name('frontpage.products.category');
         Route::get('/category/validate/{slug}', [PageProductController::class, 'validateCategory'])->name('frontpage.category.validate');
         Route::get('/products/{category_slug}/{products_slug}', [PageProductController::class, 'show'])->name('frontpage.products.show');
+        Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
 
         Route::get('/r&d/{slug}', [PageRanddController::class, 'show'])->name('frontpage.randd.show');
 
@@ -103,11 +104,11 @@ Route::prefix('{lang}')
                 Route::resource('roles', RoleController::class);
                 Route::resource('languages', LanguageController::class)->except(['destroy']);
                 
-=                Route::delete('languages/{id}', [LanguageController::class, 'destroy'])->name('languages.destroy');
+                Route::delete('languages/{id}', [LanguageController::class, 'destroy'])->name('languages.destroy');
                 Route::get('languages/{id}/translations', [TranslationController::class, 'index'])->name('languages.translations');
                 Route::put('translations/update-multiple', [TranslationController::class, 'updateMultiple'])
                     ->name('translations.update_multiple');
                 
-=                Route::post('ckeditor/upload', [UploadController::class, 'uploadImage'])->name('ckeditor.upload');
+                Route::post('ckeditor/upload', [UploadController::class, 'uploadImage'])->name('ckeditor.upload');
             });
     });

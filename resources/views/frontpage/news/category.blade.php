@@ -5,107 +5,79 @@
 @endsection
 
 @section('content')
-<section class="page-title bg-overlay bg-overlay-dark bg-parallax" id="page-title">
-    <div class="bg-section"><img src="{{ asset('storage/' . $general->breadcrumb) }}" alt="Background"/></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-lg-6 offset-lg-3">
-          <div class="title">
-            <div class="title-heading">
-              <h1>{{ $category->getTranslation('name', app()->getLocale()) }}</h1>
+    <section class="page-title">
+        <div class="bg-layer" style="background-image: url({{ asset('storage/' . $general->breadcrumb) }});"></div>
+        <div class="auto-container">
+            <div class="content-box">
+                <h1>{{ $category->getTranslation('name', app()->getLocale()) }}</h1>
+                <ul class="bread-crumb clearfix">
+                    <li><a href="/">Home</a></li>
+                    <li>{{ translate('News') }}</li>
+                    <li>{{ $category->getTranslation('name', app()->getLocale()) }}</li>
+                </ul>
             </div>
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/">{{ translate('Home') }}</a></li>
-              <li class="breadcrumb-item active" aria-current="page">{{ $category->getTranslation('name', app()->getLocale()) }}</li>
-            </ol>
-          </div>
-          <!-- End .title -->
         </div>
-        <!-- End .col-lg-6-->
-      </div>
-      <!-- End .row-->
-    </div>
-    <!-- End .container-->
-  </section>
-<section class="blog blog-grid" id="blog">
-    <div class="container">
-        <div class="row">
-            @forelse($news as $item)
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="blog-entry">
-                        <div class="entry-img">
-                            <div class="entry-date">
-                                <div class="entry-content">
-                                    <span class="day">{{ $item->created_at->format('d') }}</span>
-                                    <span class="month">{{ $item->created_at->format('M') }}</span>
-                                    <span class="year">{{ $item->created_at->format('Y') }}</span>
+    </section>
+    <section class="blog-grid sec-pad">
+        <div class="auto-container">
+            <div class="row clearfix">
+                @forelse($news as $item)
+                    <div class="col-lg-4 col-md-6 col-sm-12 news-block">
+                        <div class="news-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+                            <div class="inner-box">
+                                <div class="image-box">
+                                    <figure class="image"><img src="{{ asset('storage/' . $item->image) }}" alt="">
+                                    </figure>
+                                    <div class="link-btn"><a
+                                            href="{{ route('frontpage.news.show', [
+                                                'lang' => app()->getLocale(),
+                                                'category_slug' => $category->getTranslation('slug', app()->getLocale()),
+                                                'news_slug' => $item->getTranslation('slug', app()->getLocale()),
+                                            ]) }}"><i
+                                                class="flaticon-zoom-in"></i></a></div>
                                 </div>
-                            </div>
-                            <a href="{{ route('frontpage.news.show', [
-                                'lang' => app()->getLocale(),
-                                'category_slug' => $category->getTranslation('slug', app()->getLocale()),
-                                'news_slug' => $item->getTranslation('slug', app()->getLocale())
-                            ]) }}">
-                                <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->getTranslation('name', app()->getLocale()) }}"/>
-                            </a>
-                        </div>
-                        <div class="entry-content">
-                            <div class="entry-meta">
-                                <div class="entry-category">
-                                    <a href="{{ route('frontpage.news.category', [
-                                        'lang' => app()->getLocale(),
-                                        'slug' => $category->getTranslation('slug', app()->getLocale())
-                                    ]) }}">
-                                        {{ $category->getTranslation('name', app()->getLocale()) }}
-                                    </a>
+                                <div class="lower-content">
+                                    <div class="category"><a
+                                            href="{{ route('frontpage.news.show', [
+                                                'lang' => app()->getLocale(),
+                                                'category_slug' => $category->getTranslation('slug', app()->getLocale()),
+                                                'news_slug' => $item->getTranslation('slug', app()->getLocale()),
+                                            ]) }}">{{ $category->getTranslation('name', app()->getLocale()) }}</a>
+                                    </div>
+                                    <ul class="post-info clearfix">
+                                        <li>{{ $item->created_at->format('d M Y') }}</li>
+                                        <li><a
+                                                href="{{ route('frontpage.news.show', [
+                                                    'lang' => app()->getLocale(),
+                                                    'category_slug' => $category->getTranslation('slug', app()->getLocale()),
+                                                    'news_slug' => $item->getTranslation('slug', app()->getLocale()),
+                                                ]) }}">By
+                                                Admin</a></li>
+                                    </ul>
+                                    <h3><a
+                                            href="{{ route('frontpage.news.show', [
+                                                'lang' => app()->getLocale(),
+                                                'category_slug' => $category->getTranslation('slug', app()->getLocale()),
+                                                'news_slug' => $item->getTranslation('slug', app()->getLocale()),
+                                            ]) }}">{{ $item->getTranslation('name', app()->getLocale()) }}</a></h3>
+                                    <div class="lower-box">
+                                        <div class="link"><a
+                                                href="{{ route('frontpage.news.show', [
+                                                    'lang' => app()->getLocale(),
+                                                    'category_slug' => $category->getTranslation('slug', app()->getLocale()),
+                                                    'news_slug' => $item->getTranslation('slug', app()->getLocale()),
+                                                ]) }}">{{ translate('Read More') }}</a></div>
+                                    </div>
                                 </div>
-                                <div class="divider"></div>
-                                <div class="entry-author">
-                                    <p>Meiji Indonesia</p>
-                                </div>
-                            </div>
-                            <div class="entry-title">
-                                <h4>
-                                    <a href="{{ route('frontpage.news.show', [
-                                        'lang' => app()->getLocale(),
-                                        'category_slug' => $category->getTranslation('slug', app()->getLocale()),
-                                        'news_slug' => $item->getTranslation('slug', app()->getLocale())
-                                    ]) }}">
-                                        {{ $item->getTranslation('name', app()->getLocale()) }}
-                                    </a>
-                                </h4>
-                            </div>
-                            <div class="entry-bio">
-                                <p>{!! Illuminate\Support\Str::limit(strip_tags($item->getTranslation('content', app()->getLocale())), 150) !!}</p>
-                            </div>
-                            <div class="entry-more">
-                                <a class="btn btn--white btn-line btn-line-before btn-line-inversed"
-                                    href="{{ route('frontpage.news.show', [
-                                        'lang' => app()->getLocale(),
-                                        'category_slug' => $category->getTranslation('slug', app()->getLocale()),
-                                        'news_slug' => $item->getTranslation('slug', app()->getLocale())
-                                    ]) }}">
-                                    <div class="line"><span></span></div>
-                                    <span>{{ translate('Read More') }}</span>
-                                </a>
                             </div>
                         </div>
                     </div>
-                </div>
-            @empty
-                <div class="col-12 text-center">
-                    <p>{{ translate('No news found in this category.') }}</p>
-                </div>
-            @endforelse
-        </div>
-
-        @if($news->hasPages())
-            <div class="row">
-                <div class="col-12 clearfix text--center">
-                    {{ $news->links('vendor.pagination.custom') }}
-                </div>
+                @empty
+                    <div class="col-12 text-center">
+                        <p>{{ translate('No news found in this category.') }}</p>
+                    </div>
+                @endforelse
             </div>
-        @endif
-    </div>
-</section>
+        </div>
+    </section>
 @endsection

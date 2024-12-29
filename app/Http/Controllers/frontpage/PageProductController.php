@@ -13,21 +13,29 @@ class PageProductController extends Controller
     public function category($lang, $slug)
     {
         $category = Category::where('slug->'.$lang, $slug)->firstOrFail();
-
-        $products = null;
-    
-        if ($category->is_validate == 1) {
-            return view('frontpage.products.category', compact('category'))->with('show_modal', true);
-        }
     
         $products = Product::where('category_id', $category->id)
-                    ->latest()
-                    ->paginate(9);
-
-        visitor()->visit();
-
-        return view('frontpage.products.category', compact('products', 'category'));
-    }    
+                        ->latest()
+                        ->paginate(9);
+    
+        $categories = Category::all();
+    
+        return view('frontpage.products.category', compact('products', 'category', 'categories'));
+    }
+    
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        
+        $products = Product::where('name', 'like', '%' . $query . '%')
+                        ->orWhere('description', 'like', '%' . $query . '%')
+                        ->latest()
+                        ->paginate(9);
+    
+        $categories = Category::all();
+    
+        return view('frontpage.products.search', compact('products', 'categories', 'query'));
+    }   
 
     public function validateCategory($lang, $slug)
     {

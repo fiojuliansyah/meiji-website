@@ -103,11 +103,11 @@ Route::prefix('{lang}')
                 Route::resource('roles', RoleController::class);
                 Route::resource('languages', LanguageController::class)->except(['destroy']);
                 
-=                Route::delete('languages/{id}', [LanguageController::class, 'destroy'])->name('languages.destroy');
+                Route::delete('languages/{id}', [LanguageController::class, 'destroy'])->name('languages.destroy');
                 Route::get('languages/{id}/translations', [TranslationController::class, 'index'])->name('languages.translations');
                 Route::put('translations/update-multiple', [TranslationController::class, 'updateMultiple'])
                     ->name('translations.update_multiple');
                 
-=                Route::post('ckeditor/upload', [UploadController::class, 'uploadImage'])->name('ckeditor.upload');
+                Route::post('ckeditor/upload', [UploadController::class, 'uploadImage'])->name('ckeditor.upload');
             });
     });

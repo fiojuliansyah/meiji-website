@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="author" content="Ayman Fikry"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-    <meta name="description" content="Medisch Responsive Bootstrap 4 Medical HTML5 Template"/>
+    <meta name="description" content="{!! $general->getTranslation('bio', app()->getLocale()) !!}"/>
     <title>@yield('title') - PT Meiji Indonesia</title>
     @if ($general && $general->favicon)
       <link rel="icon" href="{{ asset('storage/' . $general->favicon) }}" type="image/png" />

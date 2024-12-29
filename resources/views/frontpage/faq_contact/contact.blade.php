@@ -3,48 +3,53 @@
 @section('title', 'Contact - Meiji Indonesia')
 
 @section('content')
-<section class="map map-2"> 
-  {!! $contact->map_url ?? '' !!}
-</section>
-<section class="contact-info"> 
-    <div class="container"> 
-      <div class="row">
-        <div class="contact-panel contact-panel-4">
-            <div class="contact-card">
-              <div class="contact-body">
-                <h5 class="card-heading">{{ $contact->getTranslation('title', app()->getLocale()) }}</h5>
-                <p class="card-desc">{!! $contact->getTranslation('content', app()->getLocale()) !!}</p>
-                <form class="contactForm" method="post" action="assets/php/contact.php">
-                  <div class="row">
-                    <div class="col-12 col-md-12 col-lg-6">
-                      <input class="form-control" type="text" name="contact-name" placeholder="Name" required=""/>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-6">
-                      <input class="form-control" type="text" name="contact-email" placeholder="Email" required=""/>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <input class="form-control" type="text" name="subject" placeholder="Subject" required=""/>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-6">
-                      <input class="form-control" type="text" name="contact-phone" placeholder="Phone" required=""/>
-                    </div>
-                    <div class="col-12"> 
-                      <textarea class="form-control" name="contact-message" cols="30" rows="2" placeholder="message" required=""></textarea>
-                    </div>
-                    <div class="col-12">
-                      <button class="btn btn--secondary btn-line btn-line-before btn--block"><span class="line"> <span> </span></span><span>submit request</span></button>
-                    </div>
-                    <div class="col-12">
-                      <div class="contact-result"></div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-              <!-- End .contact-body-->
-            </div>
-        </div>
-        <!-- End .contact-panel-->
+<section class="page-title">
+  <div class="bg-layer" style="background-image: url({{ asset('storage/' . $general->breadcrumb) }});"></div>
+  <div class="auto-container">
+      <div class="content-box">
+          <h1>{{ $contact->getTranslation('title', app()->getLocale()) }}</h1>
+          <ul class="bread-crumb clearfix">
+              <li><a href="index.html">{{ translate('Home') }}</a></li>
+              <li>{{ translate('Contact') }}</li>
+          </ul>
       </div>
-    </div>
-  </section>
+  </div>
+</section>
+<br>
+<br>
+<section class="location-style-two bg-color-1">
+  <div class="pattern-layer" style="background-image: url(/frontpage/assets/images/shape/shape-22.png);"></div>
+  <div class="google-map-inner">
+      {!! $contact->map_url ?? '' !!}
+      <div class="map-content">
+          <div class="image-box"><img src="{{ asset('storage/' . $general->breadcrumb) }}" alt=""></div>
+          <div class="inner-box">
+              <h6>Indonesia</h6>
+              <h3>{{ $general->short_address }}</h3>
+              <ul class="info clearfix">
+                  <li>{{ $general->address }}</li>
+                  <li><a href="">{{ $general->phone_1 }}</a></li>
+              </ul>
+          </div>
+      </div>
+  </div>
+  <div class="auto-container">
+      <div class="row clearfix">
+          <div class="col-lg-4 col-md-12 col-sm-12 content-column">
+              <div class="content-box">
+                  <div class="sec-title">
+                      <span class="sub-title">Locations</span>
+                      <h2>Find nearest branch</h2>
+                      <br>
+                      <br>
+                      <br>
+                      <br>
+                      <br>
+                      <br>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
 @endsection

@@ -3,4 +3,5 @@
 return [
     App\Providers\AppServiceProvider::class,
     App\Providers\ViewServiceProvider::class,
+    Stevebauman\Location\LocationServiceProvider::class,
 ];

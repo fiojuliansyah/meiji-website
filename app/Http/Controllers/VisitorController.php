@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use GeoIp2\Record\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Shetabit\Visitor\Models\Visit;
+use Stevebauman\Location\Facades\Location;
 
 class VisitorController extends Controller
 {

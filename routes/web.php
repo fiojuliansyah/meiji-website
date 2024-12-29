@@ -15,6 +15,7 @@ use App\Http\Controllers\UploadController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomePageController;
@@ -30,6 +31,14 @@ use App\Http\Controllers\frontpage\PageRanddController;
 use App\Http\Controllers\frontpage\PageProductController;
 use App\Http\Controllers\frontpage\PageActivityController;
 use App\Http\Controllers\frontpage\PageFaqContactController;
+
+
+Route::prefix('{lang}')
+    ->middleware(SetLocale::class)
+    ->group(function () {
+        Route::get('/install', [HomeController::class, 'install'])->name('installation.index');
+        Route::post('/install/complete', [HomeController::class, 'complete'])->name('installation.complete');
+});
 
 Route::get('/', function () {
     $defaultLocale = config('app.locale', 'en');
@@ -53,6 +62,7 @@ Route::prefix('{lang}')
 
         // Products Routes
         Route::get('/products/category/{slug}', [PageProductController::class, 'category'])->name('frontpage.products.category');
+        Route::get('/category/validate/{slug}', [PageProductController::class, 'validateCategory'])->name('frontpage.category.validate');
         Route::get('/products/{category_slug}/{products_slug}', [PageProductController::class, 'show'])->name('frontpage.products.show');
 
         Route::get('/r&d/{slug}', [PageRanddController::class, 'show'])->name('frontpage.randd.show');
@@ -75,6 +85,7 @@ Route::prefix('{lang}')
                 
                 // Resource Routes
                 Route::resource('sliders', SliderController::class);
+                Route::resource('visitors', VisitorController::class);
                 
                 //Abouts
                 Route::resource('abouts', AboutController::class);     

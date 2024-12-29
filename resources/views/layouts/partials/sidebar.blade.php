@@ -85,6 +85,31 @@
         </li>
         @endcanany
 
+        @canany(['list-categories', 'list-products'])
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-product'></i></div>
+                <div class="menu-title">{{ translate('Products') }}</div>
+            </a>
+            <ul>
+                @can('list-categories')
+                <li>
+                    <a href="{{ localized_route('categories.index') }}">
+                        <i class="bx bx-right-arrow-alt"></i>{{ translate('Categories') }}
+                    </a>
+                </li>
+                @endcan
+                @can('list-products')
+                <li>
+                    <a href="{{ localized_route('products.index') }}">
+                        <i class="bx bx-right-arrow-alt"></i>{{ translate('Products') }}
+                    </a>
+                </li>
+                @endcan
+            </ul>
+        </li>
+        @endcanany
+
         @can('list-randds')
         <li>
             <a href="{{ localized_route('randds.index') }}">

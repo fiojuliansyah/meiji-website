@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->json('slug');
             $table->json('name');
+            $table->string('is_Validate')->default(false);
             $table->timestamps();
         });
     }

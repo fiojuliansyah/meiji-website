@@ -75,7 +75,32 @@
             <div class="module-holder module-holder-phone">
                 <!--  Start Module Search  -->
                 <div class="module module-search float-left">
-                    <div class="module-icon search-icon"><i class="icon-search" data-hover=""></i></div>
+                    <div class="module module-language">
+                        @php
+                            $currentLanguage = App\Models\Language::where('code', app()->getLocale())->first();
+                        @endphp
+                        <div class="selected">
+                            <img src="/front/assets/images/module-language/{{ app()->getLocale() }}.png" alt="{{ $currentLanguage->name }}" />
+                            <span style="color: #283b6a">{{ $currentLanguage->name }}</span>
+                            <i class="fas fa-chevron-down" style="color: #283b6a"></i>
+                        </div>
+                        <div class="lang-list">
+                            <ul>
+                            <form method="POST" action="{{ route('change-language', ['lang' => app()->getLocale()]) }}">
+                                @csrf
+                                <input type="hidden" name="route" value="{{ $currentRoute }}">
+                                <input type="hidden" name="parameters" value="{{ $routeParameters }}">
+                                @foreach(App\Models\Language::all() as $language)
+                                <li>
+                                    <img src="/front/assets/images/module-language/{{ $language->code }}.png" alt="{{ $language->name }}" />
+                                    <button type="submit" name="lang" value="{{ $language->code }}">{{ $language->name }}</button>
+                                </li>
+                                <br>
+                                @endforeach
+                            </form>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <!--  End .module-search-->
                 <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"

@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\RanddController;
 use App\Http\Controllers\SliderController;
@@ -14,6 +17,7 @@ use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\DashboardController;
@@ -58,6 +62,8 @@ Route::prefix('{lang}')
         Route::get('/faq', [PageFaqContactController::class, 'faq'])->name('frontpage.faq');
         Route::get('/contact', [PageFaqContactController::class, 'contact'])->name('frontpage.contact');
         
+        Route::get('/{slug}', [HomeController::class, 'show'])->name('frontpage.page.show');
+
         // Language Switcher (moved outside admin group)
         Route::post('change-language', [DashboardController::class, 'changeLanguage'])->name('change-language');
 
@@ -88,8 +94,12 @@ Route::prefix('{lang}')
 
                 Route::resource('faqs', FaqController::class);
                 Route::resource('contacts', ContactController::class);
+                Route::resource('pages', PageController::class);
+                
                 Route::resource('generals', GeneralController::class);
-
+                Route::resource('homepages', HomePageController::class);
+                Route::resource('users', UserController::class);
+                Route::resource('roles', RoleController::class);
                 Route::resource('languages', LanguageController::class)->except(['destroy']);
                 
                 // Additional Language Routes

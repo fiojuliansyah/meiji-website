@@ -21,15 +21,16 @@
           <div class="col-sm-6 col-md-3 col-lg-2 offset-lg-0">
             <div class="footer-widget widget-links">
               <div class="footer-widget-title">
-                <h5>departments</h5>
+                <h5>{{ translate('News') }}</h5>
               </div>
               <div class="widget-content">
                 <ul>
-                  <li><a href="javascript:void(0)">neurology clinic</a></li>
-                  <li><a href="javascript:void(0)">pathology clinic</a></li>
-                  <li><a href="javascript:void(0)">laboratory analysis</a></li>
-                  <li><a href="javascript:void(0)">pediatric clinic</a></li>
-                  <li><a href="javascript:void(0)">cardiac clinic</a></li>
+                  @foreach($news_categories as $nCategory)
+                  <li><a href="{{ route('frontpage.news.category', [
+                    'lang' => app()->getLocale(),
+                    'slug' => $nCategory->getTranslation('slug', app()->getLocale())
+                ]) }}">{{ $nCategory->getTranslation('name', app()->getLocale()) }}</a></li>
+                  @endforeach
                 </ul>
               </div>
             </div>
@@ -38,15 +39,16 @@
           <div class="col-sm-6 col-md-3 col-lg-2">
             <div class="footer-widget widget-links">
               <div class="footer-widget-title">
-                <h5>links</h5>
+                <h5>{{ translate('Products') }}</h5>
               </div>
               <div class="widget-content">
                 <ul>
-                  <li><a href="javascript:void(0)">abouts us</a></li>
-                  <li><a href="javascript:void(0)">our clinic</a></li>
-                  <li><a href="javascript:void(0)">our doctors</a></li>
-                  <li><a href="javascript:void(0)">news &amp; media</a></li>
-                  <li><a href="javascript:void(0)">appointments</a></li>
+                  @foreach($categories as $category)
+                  <li><a href="{{ route('frontpage.products.category', [
+                    'lang' => app()->getLocale(),
+                    'slug' => $category->getTranslation('slug', app()->getLocale())
+                ]) }}">{{ $category->getTranslation('name', app()->getLocale()) }}</a></li>
+                  @endforeach
                 </ul>
               </div>
             </div>
@@ -55,14 +57,13 @@
           <div class="col-sm-6 col-md-4 col-lg-2 offset-lg-0">
             <div class="footer-widget widget-links">
               <div class="footer-widget-title">
-                <h5>help</h5>
+                <h5>{{ translate('Page') }}</h5>
               </div>
               <div class="widget-content">
                 <ul>
-                  <li><a href="javascript:void(0)">help &amp; FAQs</a></li>
-                  <li><a href="javascript:void(0)">contacts</a></li>
-                  <li><a href="javascript:void(0)">careers</a></li>
-                  <li><a href="javascript:void(0)">site map</a></li>
+                  @foreach ($pages_footer as $page) 
+                      <li><a href="{{ route('frontpage.page.show', ['lang' => app()->getLocale(), 'slug' => $page->getTranslation('slug', app()->getLocale())]) }}">{{ $page->getTranslation('title', app()->getLocale()) }}</a></li>
+                  @endforeach
                 </ul>
               </div>
             </div>

@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 
 class LanguageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:list-languages')->only('index');
+        $this->middleware('permission:create-languages')->only(['create', 'store']);
+        $this->middleware('permission:edit-languages')->only(['edit', 'update']);
+        $this->middleware('permission:delete-languages')->only('destroy');
+    }
+
     public function index()
     {
         $languages = Language::all();

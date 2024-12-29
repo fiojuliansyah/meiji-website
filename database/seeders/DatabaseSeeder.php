@@ -8,6 +8,7 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\LanguageSeeder;
 use Database\Seeders\TranslationSeeder;
+use Database\Seeders\RolePermissionSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,7 +19,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             // RolePermissionSeeder::class,
-            UserSeeder::class,
+            RolePermissionSeeder::class,
             LanguageSeeder::class,
             ]);
     }

@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\Storage;
 
 class TimelineController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:list-timelines')->only('index');
+        $this->middleware('permission:create-timelines')->only(['create', 'store']);
+        $this->middleware('permission:edit-timelines')->only(['edit', 'update']);
+        $this->middleware('permission:delete-timelines')->only('destroy');
+    }
+
     public function index()
     {
         $timelines = Timeline::all();

@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class FaqController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:list-faqs')->only('index');
+        $this->middleware('permission:create-faqs')->only(['create', 'store']);
+        $this->middleware('permission:edit-faqs')->only(['edit', 'update']);
+        $this->middleware('permission:delete-faqs')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      */

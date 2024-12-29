@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\Storage;
 
 class SliderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:list-sliders')->only('index');
+        $this->middleware('permission:create-sliders')->only(['create', 'store']);
+        $this->middleware('permission:edit-sliders')->only(['edit', 'update']);
+        $this->middleware('permission:delete-sliders')->only('destroy');
+    }
+
     public function index()
     {
         $sliders = Slider::all();

@@ -28,39 +28,135 @@
     </div>
   </section>
 
-  <section class="about about-1" id="about-1">
+  <section class="cta cta-3" id="cta-3">
     <div class="container">
-      <div class="row">
-        <div class="col-12 col-lg-6">
-          <div class="heading heading-2">
-            <div class="row"> 
-              <div class="col-12 col-lg-10">
-                <h2 class="heading-title">Caring For The Health And Well Being Of You And Your Family.</h2>
-              </div>
-              <div class="col-12 col-lg-10 offset-lg-2">
-                <p class="paragraph">We provide all aspects of medical practice for your family, including general check-ups or assisting with injuries.</p>
-                <p class="heading-desc">We will work with you to develop individualised care plans, including management of chronic diseases. If we cannot assist, we can provide referrals or advice about the type you require. We treat all enquiries in confidence.</p>
-                <div class="signature-block"><a class="btn btn--primary btn-line btn-line-after" href="#"><span>find a doctor</span><span class="line"> <span></span></span></a>
-                  <div class="signature-body"> 
-                    <h6>john winston</h6>
-                    <p>pediatrician</p><img class="signature-img" src="/front/assets/images/signature/1.png" alt="signature"/>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <div class="heading heading-6">
+        <div class="row">
+          <div class="col-12 col-lg-5">
+            <p class="heading-subtitle">{{ translate('About') }}</p>
           </div>
         </div>
-        <!-- End .col-lg-6-->
-        <div class="col-12 col-lg-5 offset-lg-1">
-          <div class="about-img"><img class="img-fluid" src="/front/assets/images/about/1.jpg" alt="about Image"/><a class="popup-video btn-video" href="https://www.youtube.com/watch?v=nrJtHemSPW4"> <i class="fas fa-play"></i><span>watch our presentation!</span></a></div>
+        <div class="row">
+          <div class="col-12 col-lg-5">
+            <h2 class="heading-title">{{ $page->getTranslation('about_title', app()->getLocale()) }}</h2>
+          </div>
+          <!--End .col-lg-5-->
+          <div class="col-12 col-lg-6 offset-lg-1">
+            <div class="prief-set">
+              <p>{!! $page->getTranslation('about_content', app()->getLocale()) !!}</p>
+            </div>
+            <div class="card-action"> 
+                  <a class="btn btn--primary btn-line btn-line-after" href="{{ $page->about_link ?? '' }}">
+                    <span>{{ translate('Company History') }}</span><span class="line"><span></span></span>
+                  </a>
+            </div>
+          </div>
+          <!--End .col-lg-6-->
         </div>
-        <!-- End .col-lg-5-->
-        <div class="col-12"> 
-          <div class="about-image-bottom"> <img src="/front/assets/images/about/2.jpg" alt="image"/></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about about-3" id="about-3">
+    <div class="bg-section"> <img src="/front/assets/images/background/pattern.png" alt="background"/></div>
+    <div class="container">
+      <div class="video-card">
+        <div class="row g-0">
+          <div class="col-12 col-lg-6">
+            <div class="card-left"> 
+              <p class="title">{{ $page->getTranslation('randd_title', app()->getLocale()) }}</p>
+              <p class="desc">{!! $page->getTranslation('randd_content', app()->getLocale()) !!}</p>
+            </div>
+          </div>
+          <div class="col-12 col-lg-6 about-img-holder">
+            <div class="about-img"><img class="img-fluid" src="{{ asset('storage/' . $general->breadcrumb) }}" alt="about Image"/></div>
+          </div>
+        </div>
+      </div>
+      <!-- End .video-card-->
+    </div>
+    <!-- End .container-->
+  </section>
+
+  <section class="team team-grid team-grid-2" id="teamGrid-1">
+    <div class="container">
+      <div class="heading heading-9">
+        <div class="row">
+          <div class="col-12 col-lg-5">
+            <h2 class="heading-title">{{ $page->getTranslation('doctor_title', app()->getLocale()) }}</h2>
+            <p class="heading-desc">{!! $page->getTranslation('doctor_content', app()->getLocale()) !!}</p>
+          </div>
+          <div class="col-12 col-lg-6 offset-lg-1">
+            <div class="doctor-action"><a class="btn btn--secondary btn-line btn-line-after" href="{{ $page->doctor_link }}"> <span>{{ translate('Read More') }}</span><span class="line"> <span></span></span></a>
+            </div>
+          </div>
         </div>
       </div>
       <!-- End .row-->
     </div>
+    @if ($page->news_section == 1)    
+      <div class="container">
+        <div class="row"> 
+          <div class="col-12 col-lg-6 offset-lg-3">
+            <div class="heading heading-7 text-center">
+              <h2 class="heading-title">{{ translate('Recent News') }}</h2>
+            </div>
+          </div>
+        </div>
+        <!-- End .row-->
+        <div class="carousel owl-carousel carousel-dots" data-slide="3" data-slide-rs="2" data-autoplay="true" data-nav="false" data-dots="true" data-space="30" data-loop="true" data-speed="200">
+          @foreach ($news as $item) 
+            <div>
+              <div class="blog-entry" data-hover="">
+                <div class="entry-img">
+                  <div class="entry-date">
+                    <div class="entry-content">
+                      <span class="day">{{ $item->created_at->format('d') }}</span>
+                      <span class="month">{{ $item->created_at->format('M') }}</span>
+                      <span class="year">{{ $item->created_at->format('Y') }}</span>
+                    </div>
+                  </div>
+                  <!-- End .entry-date--><a href="{{ route('frontpage.news.show', [
+                                      'lang' => app()->getLocale(),
+                                      'category_slug' => $item->category->getTranslation('slug', app()->getLocale()),
+                                      'news_slug' => $item->getTranslation('slug', app()->getLocale())
+                                  ]) }}"><img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->getTranslation('name', app()->getLocale()) }}"/></a>
+                </div>
+                <!-- End .entry-img-->
+                <div class="entry-content">
+                  <div class="entry-meta">
+                    <div class="entry-category">
+                      <a href="{{ route('frontpage.news.category', [
+                                      'lang' => app()->getLocale(),
+                                      'slug' => $item->category->getTranslation('slug', app()->getLocale())
+                                  ]) }}">{{ $item->category->getTranslation('name', app()->getLocale()) }}</a>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="entry-author"> 
+                      <p>Meiji Indonesia</p>
+                    </div>
+                  </div>
+                  <div class="entry-title">
+                    <h4><a href="blog-single-sidebar.html">{{ $item->getTranslation('name', app()->getLocale()) }}</a></h4>
+                  </div>
+                  <div class="entry-bio">
+                    <p>{!! Illuminate\Support\Str::limit(strip_tags($item->getTranslation('content', app()->getLocale())), 150) !!}</p>
+                  </div>
+                  <div class="entry-more"> <a class="btn btn--white btn-line btn-line-before btn-line-inversed" href="{{ route('frontpage.news.show', [
+                    'lang' => app()->getLocale(),
+                    'category_slug' => $item->category->getTranslation('slug', app()->getLocale()),
+                    'news_slug' => $item->getTranslation('slug', app()->getLocale())
+                ]) }}"> 
+                      <div class="line"> <span> </span></div><span>{{ translate('Read More') }}</span></a></div>
+                </div>
+              </div>
+              <!-- End .entry-content-->
+            </div>
+          @endforeach
+        </div>
+        <!-- End .carousel-->
+      </div>
+    @endif
     <!-- End .container-->
   </section>
 @endsection

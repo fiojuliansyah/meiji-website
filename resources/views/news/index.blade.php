@@ -27,7 +27,7 @@
                             @foreach ($news as $item)   
                                 <tr>
                                     <td>
-                                        <img src="{{ $item->image_url }}" alt="News Image" width="100">
+                                        <img src="{{ asset('storage/' . $item->image) }}" alt="News Image" width="100">
                                     </td>
                                     <td>{{ $item->category->getTranslation('name', app()->getLocale()) }}</td>
                                     <td>{{ $item->getTranslation('name', app()->getLocale()) }}</td>

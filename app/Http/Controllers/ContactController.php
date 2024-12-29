@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view-contacts')->only('index');
+        $this->middleware('permission:edit-contacts')->only(['edit', 'update']);
+    }
+
     public function index($lang)
     {
     $contact = Contact::firstOrCreate([],[

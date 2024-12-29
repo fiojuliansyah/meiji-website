@@ -10,6 +10,14 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:list-news')->only('index');
+        $this->middleware('permission:create-news')->only(['create', 'store']);
+        $this->middleware('permission:edit-news')->only(['edit', 'update']);
+        $this->middleware('permission:delete-news')->only('destroy');
+    }
+
     public function index()
     {
         $news = News::all();

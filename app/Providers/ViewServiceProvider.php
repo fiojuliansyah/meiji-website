@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Page;
 use App\Models\About;
 use App\Models\Randd;
 use App\Models\General;
@@ -46,6 +47,8 @@ class ViewServiceProvider extends ServiceProvider
                     $data['categories'] = Category::all();
                     $data['randds'] = Randd::all();
                     $data['activities'] = Activity::all();
+                    $data['pages_header'] = Page::where('is_header', 1)->get();
+                    $data['pages_footer'] = Page::where('is_footer', 1)->get();
                 } elseif ($view->getName() === 'layouts.guest') {
                     $data['general'] = General::first();
                 } elseif ($view->getName() === 'layouts.app') {

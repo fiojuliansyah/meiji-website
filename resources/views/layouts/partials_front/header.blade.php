@@ -66,10 +66,12 @@
     <!-- End .top-bar-->
     <nav class="navbar navbar-expand-xl navbar-sticky" id="primary-menu">
         <div class="container"><a class="navbar-brand" href="/">
-            <img class="logo logo-dark"
-                    src="{{ asset('storage/' . $general->logo) }}" alt="Meiji Logo" />
-                    <img class="logo logo-mobile"
-                    src="{{ asset('storage/' . $general->logo) }}" alt="Meiji Logo" /></a>
+            @if ($general && $general->logo)
+                <img class="logo logo-dark"
+                        src="{{ asset('storage/' . $general->logo) }}" alt="Meiji Logo" />
+                        <img class="logo logo-mobile"
+                        src="{{ asset('storage/' . $general->logo) }}" alt="Meiji Logo" /></a>
+            @endif
             <div class="module-holder module-holder-phone">
                 <!--  Start Module Search  -->
                 <div class="module module-search float-left">
@@ -165,6 +167,22 @@
                     </li>
                     <li class="nav-item" data-hover=""><a href="{{ route('frontpage.faq') }}"><span>{{ translate('FAQ') }}</span></a>
                     </li>
+                    @if ($pages_header->isNotEmpty())
+                        <li class="nav-item has-dropdown" data-hover="">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                                <span>{{ translate('Pages') }}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @foreach ($pages_header as $page)  
+                                    <li class="nav-item">
+                                        <a href="{{ route('frontpage.page.show', ['lang' => app()->getLocale(), 'slug' => $page->getTranslation('slug', app()->getLocale())]) }}">
+                                            <span>{{ $page->getTranslation('title', app()->getLocale()) }}</span>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endif
                 </ul>
                 <div class="module-holder">
                     <!-- Start .module-contact-->

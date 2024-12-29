@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\General;
 use App\Models\Language;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class GeneralController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view-generals')->only('index');
+        $this->middleware('permission:edit-generals')->only(['update']);
+    }
+
     public function index($lang)
     {
         $general = General::firstOrCreate([],[

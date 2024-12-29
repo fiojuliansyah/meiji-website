@@ -9,6 +9,14 @@ use Illuminate\Support\Str;
 
 class NewsCategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:list-news_categories')->only('index');
+        $this->middleware('permission:create-news_categories')->only(['create', 'store']);
+        $this->middleware('permission:edit-news_categories')->only(['edit', 'update']);
+        $this->middleware('permission:delete-news_categories')->only('destroy');
+    }
+
     public function index()
     {
         $categories = NewsCategory::all();

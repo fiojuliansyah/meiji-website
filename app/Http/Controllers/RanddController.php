@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class RanddController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:list-randds')->only('index');
+        $this->middleware('permission:create-randds')->only(['create', 'store']);
+        $this->middleware('permission:edit-randds')->only(['edit', 'update']);
+        $this->middleware('permission:delete-randds')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      */

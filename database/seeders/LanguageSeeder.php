@@ -42,9 +42,18 @@ class LanguageSeeder extends Seeder
             ['key' => 'Contacts', 'en' => 'Contacts', 'id' => 'Kontak', 'group' => 'sidebar'],
             ['key' => 'Page', 'en' => 'Page', 'id' => 'Halaman', 'group' => 'sidebar'],
             ['key' => 'Inbox', 'en' => 'Inbox', 'id' => 'Kotak Masuk', 'group' => 'sidebar'],
+            ['key' => 'Pages', 'en' => 'Pages', 'id' => 'Halaman', 'group' => 'sidebar'],
             ['key' => 'Settings', 'en' => 'Settings', 'id' => 'Pengaturan', 'group' => 'sidebar'],
             ['key' => 'General', 'en' => 'General', 'id' => 'Umum', 'group' => 'sidebar'],
             ['key' => 'Language', 'en' => 'Language', 'id' => 'Bahasa', 'group' => 'sidebar'],
+            ['key' => 'Users', 'en' => 'Users', 'id' => 'Pengguna', 'group' => 'sidebar'],
+            ['key' => 'Roles', 'en' => 'Roles', 'id' => 'Hak', 'group' => 'sidebar'],
+            ['key' => 'Role & Permission', 'en' => 'Role & Permission', 'id' => 'Hak & Akses', 'group' => 'sidebar'],
+            
+            ['key' => 'Cannot Access', 'en' => 'Cannot Access', 'id' => 'Tidak dapat di Akses', 'group' => 'sidebar'],
+            ['key' => 'Page Not Found', 'en' => 'Page Not Found', 'id' => 'Page Tidak Ditemukan', 'group' => 'sidebar'],
+
+            ['key' => 'Read More', 'en' => 'Read More', 'id' => 'Baca Selengkapnya', 'group' => 'front'],
         ];
 
         // Simpan terjemahan

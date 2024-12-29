@@ -9,10 +9,17 @@ use Illuminate\Http\Request;
 
 class AboutController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:list-abouts')->only('index');
+        $this->middleware('permission:create-abouts')->only(['create', 'store']);
+        $this->middleware('permission:edit-abouts')->only(['edit', 'update']);
+        $this->middleware('permission:delete-abouts')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($lang)
     {
         $abouts = About::all();
         return view('abouts.index', compact('abouts'));

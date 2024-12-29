@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class ActivityController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:list-activities')->only('index');
+        $this->middleware('permission:create-activities')->only(['create', 'store']);
+        $this->middleware('permission:edit-activities')->only(['edit', 'update']);
+        $this->middleware('permission:delete-activities')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      */

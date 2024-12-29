@@ -11,6 +11,14 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:list-products')->only('index');
+        $this->middleware('permission:create-products')->only(['create', 'store']);
+        $this->middleware('permission:edit-products')->only(['edit', 'update']);
+        $this->middleware('permission:delete-products')->only('destroy');
+    }
+
     public function index()
     {
         $product = Product::all();

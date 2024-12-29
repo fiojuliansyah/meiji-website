@@ -42,7 +42,7 @@ class CategoryController extends Controller
             $category->setTranslation('slug', $locale, Str::slug($data['name']));
         }
 
-        $category->is_validate = $request->is_validate;
+        $category->is_validate = $request->is_validate ?? null;
         $category->save();
 
         return redirect()->route('categories.index')->with('success', __('Category created successfully!'));

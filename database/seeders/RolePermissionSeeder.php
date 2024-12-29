@@ -113,6 +113,9 @@ class RolePermissionSeeder extends Seeder
                 'delete-languages',
                 'manage-translations',
             ],
+            'visitors' => [
+                'list-visitors',
+            ],
         ];
 
         // Create permissions

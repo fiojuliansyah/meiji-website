@@ -146,6 +146,15 @@
         </li>
         @endcan
 
+        @can('view-visitors')
+        <li>
+            <a href="{{ localized_route('visitors.index') }}">
+                <div class="parent-icon"><i class='bx bx-detail'></i></div>
+                <div class="menu-title">{{ translate('Visitor') }}</div>
+            </a>
+        </li>
+        @endcan
+
         @canany(['list-generals', 'list-languages', 'list-users', 'list-roles'])
         <li>
             <a href="javascript:;" class="has-arrow">

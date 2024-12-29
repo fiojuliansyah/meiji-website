@@ -17,11 +17,9 @@ class PageProductController extends Controller
         $products = null;
     
         if ($category->is_validate == 1) {
-            // Kategori memerlukan validasi, sembunyikan produk dan tampilkan modal
             return view('frontpage.products.category', compact('category'))->with('show_modal', true);
         }
     
-        // Kategori tidak memerlukan validasi, tampilkan produk
         $products = Product::where('category_id', $category->id)
                     ->latest()
                     ->paginate(9);

@@ -12,7 +12,8 @@
         "laravel/tinker": "^2.9",
         "laravel/ui": "^4.6",
         "shetabit/visitor": "^4.3",
-        "spatie/laravel-permission": "^6.10"
+        "spatie/laravel-permission": "^6.10",
+        "stevebauman/location": "^7.4"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

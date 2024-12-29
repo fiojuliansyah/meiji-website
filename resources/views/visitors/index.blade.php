@@ -5,27 +5,58 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">{{ translate('Abouts') }}</div>
+            <div class="breadcrumb-title pe-3">{{ translate('Visitors') }}</div>
         </div>
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
                     <table id="example2" class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>{{ translate('Title') }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($visitors as $visitor)   
+                        <table class="table">
+                            <thead>
                                 <tr>
-                                    <td>{{ $visitors->method }}</td>
+                                    <th>IP</th>
+                                    <th>URL</th>
+                                    <th>Location</th>
+                                    <th>Coordinates</th>
+                                    <th>Last Visit</th>
+                                    <th>Platform</th>
+                                    <th>Browser</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
+                            </thead>
+                            <tbody>
+                                @foreach($visitors as $visitor)
+                                <tr>
+                                    <td>{{ $visitor->ip }}</td>
+                                    <td>{{ $visitor->url }}</td>
+                                    <td>
+                                        @if(isset($visitor->location))
+                                            {{ $visitor->location['city'] }}, 
+                                            {{ $visitor->location['country'] }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if(isset($visitor->location))
+                                            {{ $visitor->location['latitude'] }}, 
+                                            {{ $visitor->location['longitude'] }}
+                                            <a href="https://www.google.com/maps?q={{ $visitor->location['latitude'] }},{{ $visitor->location['longitude'] }}" 
+                                               target="_blank">(Map)</a>
+                                        @endif
+                                    </td>
+                                    <td>{{ $visitor->created_at }}</td>
+                                    <td>{{ $visitor->platform }}</td>
+                                    <td>{{ $visitor->browser }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
                         <tfoot>
                             <tr>
-                                <th>{{ translate('Title') }}</th>
+                                <th>IP</th>
+                                <th>URL</th>
+                                <th>Location</th>
+                                <th>Coordinates</th>
+                                <th>Last Visit</th>
+                                <th>Platform</th>
+                                <th>Browser</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -34,27 +65,6 @@
         </div>
     </div>
 </div>
-@foreach ($abouts as $about)   
-<div class="modal fade" id="deleteModal{{ $about->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">{{ translate('Confirmation') }}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">{{ translate('Are you sure you want to delete this about?') }}</div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ translate('Close') }}</button>
-                <form method="POST" action="{{ route('abouts.destroy', ['lang' => app()->getLocale(), 'about' => $about->id]) }}">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">{{ translate('Delete') }}</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-@endforeach
 @endsection
 
 @push('js')

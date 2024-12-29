@@ -95,14 +95,11 @@ class PageController extends Controller
             $page->setTranslation('content', $locale, $data['content']);
             $page->setTranslation('slug', $locale, Str::slug($data['title']));
             
-            // Extract image URLs from content
             preg_match_all('/<img[^>]+src=([\'"])?((.*?)\1)/i', $data['content'], $matches);
             
             if (!empty($matches[2])) {
-                // Delete old images first
                 $page->images()->delete();
                 
-                // Create new images
                 foreach ($matches[2] as $imageUrl) {
                     $page->images()->create([
                         'url' => $imageUrl
@@ -121,7 +118,6 @@ class PageController extends Controller
     
     public function destroy($lang, Page $page)
     {
-        // Delete related images from storage
         foreach ($page->images as $image) {
             $path = str_replace(asset(''), public_path(), $image->url);
             if (file_exists($path)) {
@@ -129,7 +125,6 @@ class PageController extends Controller
             }
         }
         
-        // Delete images records and page
         $page->images()->delete();
         $page->delete();
     

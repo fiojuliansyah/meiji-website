@@ -50,17 +50,13 @@ Auth::routes();
 Route::prefix('{lang}')
     ->middleware(SetLocale::class)
     ->group(function () {
-        // Frontend Routes
         Route::get('/', [HomeController::class, 'index'])->name('frontpage.home');
-        // About Routes
         Route::get('/about/history', [PageAboutController::class, 'timeline'])->name('frontpage.timeline');
         Route::get('/about/{slug}', [PageAboutController::class, 'show'])->name('frontpage.about.show');
         
-        // News Routes
         Route::get('/news/category/{slug}', [PageNewsController::class, 'category'])->name('frontpage.news.category');
         Route::get('/news/{category_slug}/{news_slug}', [PageNewsController::class, 'show'])->name('frontpage.news.show');
 
-        // Products Routes
         Route::get('/products/category/{slug}', [PageProductController::class, 'category'])->name('frontpage.products.category');
         Route::get('/category/validate/{slug}', [PageProductController::class, 'validateCategory'])->name('frontpage.category.validate');
         Route::get('/products/{category_slug}/{products_slug}', [PageProductController::class, 'show'])->name('frontpage.products.show');
@@ -74,28 +70,22 @@ Route::prefix('{lang}')
         
         Route::get('/{slug}', [HomeController::class, 'show'])->name('frontpage.page.show');
 
-        // Language Switcher (moved outside admin group)
         Route::post('change-language', [DashboardController::class, 'changeLanguage'])->name('change-language');
 
-        // Admin Routes
         Route::prefix('manage')
             ->middleware('auth')
             ->group(function () {
                 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
                 
-                // Resource Routes
                 Route::resource('sliders', SliderController::class);
                 Route::resource('visitors', VisitorController::class);
                 
-                //Abouts
                 Route::resource('abouts', AboutController::class);     
                 Route::resource('timelines', TimelineController::class);
                 
-                //News
                 Route::resource('news_categories', NewsCategoryController::class);
                 Route::resource('news', NewsController::class);
 
-                //Products
                 Route::resource('categories', CategoryController::class);
                 Route::resource('products', ProductController::class);
 
@@ -113,13 +103,11 @@ Route::prefix('{lang}')
                 Route::resource('roles', RoleController::class);
                 Route::resource('languages', LanguageController::class)->except(['destroy']);
                 
-                // Additional Language Routes
-                Route::delete('languages/{id}', [LanguageController::class, 'destroy'])->name('languages.destroy');
+=                Route::delete('languages/{id}', [LanguageController::class, 'destroy'])->name('languages.destroy');
                 Route::get('languages/{id}/translations', [TranslationController::class, 'index'])->name('languages.translations');
                 Route::put('translations/update-multiple', [TranslationController::class, 'updateMultiple'])
                     ->name('translations.update_multiple');
                 
-                // CKEditor Upload Route
-                Route::post('ckeditor/upload', [UploadController::class, 'uploadImage'])->name('ckeditor.upload');
+=                Route::post('ckeditor/upload', [UploadController::class, 'uploadImage'])->name('ckeditor.upload');
             });
     });

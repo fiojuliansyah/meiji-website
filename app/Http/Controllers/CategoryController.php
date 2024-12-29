@@ -38,7 +38,6 @@ class CategoryController extends Controller
 
         foreach ($request->input('translations', []) as $locale => $data) {
             $category->setTranslation('name', $locale, $data['name']);
-            // Generate slug from name
             $category->setTranslation('slug', $locale, Str::slug($data['name']));
         }
 
@@ -58,7 +57,6 @@ class CategoryController extends Controller
     {
         foreach ($request->input('translations', []) as $locale => $data) {
             $category->setTranslation('name', $locale, $data['name']);
-            // Update slug based on new name
             $category->setTranslation('slug', $locale, Str::slug($data['name']));
         }
 

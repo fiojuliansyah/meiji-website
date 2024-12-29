@@ -26,7 +26,6 @@ class VisitorController extends Controller
             ->orderBy('v1.created_at', 'desc')
             ->paginate(10);
 
-        // Tambahkan informasi lokasi
         foreach($visitors as $visitor) {
             if($locationData = Location::get($visitor->ip)) {
                 $visitor->location = [

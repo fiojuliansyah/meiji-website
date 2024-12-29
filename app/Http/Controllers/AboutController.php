@@ -92,14 +92,11 @@ class AboutController extends Controller
             $about->setTranslation('content', $locale, $data['content']);
             $about->setTranslation('slug', $locale, Str::slug($data['title']));
             
-            // Extract image URLs from content
             preg_match_all('/<img[^>]+src=([\'"])?((.*?)\1)/i', $data['content'], $matches);
             
             if (!empty($matches[2])) {
-                // Delete old images first
                 $about->images()->delete();
                 
-                // Create new images
                 foreach ($matches[2] as $imageUrl) {
                     $about->images()->create([
                         'url' => $imageUrl
@@ -116,7 +113,6 @@ class AboutController extends Controller
     
     public function destroy($lang, About $about)
     {
-        // Delete related images from storage
         foreach ($about->images as $image) {
             $path = str_replace(asset(''), public_path(), $image->url);
             if (file_exists($path)) {
@@ -124,7 +120,6 @@ class AboutController extends Controller
             }
         }
         
-        // Delete images records and about
         $about->images()->delete();
         $about->delete();
     

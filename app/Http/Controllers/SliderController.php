@@ -35,10 +35,8 @@ class SliderController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Upload image
         $imagePath = $request->file('image')->store('public/sliders');
 
-        // Create slider
         $slider = Slider::create([
             'image' => $imagePath,
             'title' => [],

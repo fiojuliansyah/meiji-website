@@ -31,7 +31,6 @@ class PageProductController extends Controller
 
     public function validateCategory($lang, $slug)
     {
-        // Validasi kategori
         $category = Category::where('slug->' . $lang, $slug)->firstOrFail();
         
         

@@ -32,14 +32,12 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        // Mengambil data dari database
-        $userCount = User::count(); // Pastikan Anda memiliki model User
-        $sliderCount = Slider::count(); // Pastikan Anda memiliki model Slider
-        $newsCount = News::count(); // Pastikan Anda memiliki model News
-        $pageCount = Page::count(); // Pastikan Anda memiliki model Page
-        $productCount = Product::count(); // Pastikan Anda memiliki model Product
+        $userCount = User::count();
+        $sliderCount = Slider::count();
+        $newsCount = News::count();
+        $pageCount = Page::count();
+        $productCount = Product::count();
     
-        // Mengirim data ke view
         return view('dashboard', [
             'userCount' => $userCount,
             'sliderCount' => $sliderCount,
@@ -53,11 +51,9 @@ class DashboardController extends Controller
     {
         $newLang = $request->input('lang');
     
-        // Set locale baru
         app()->setLocale($newLang);
         session()->put('locale', $newLang);
     
-        // Redirect ke halaman home setelah ganti bahasa
-        return redirect()->route('frontpage.home', ['lang' => $newLang]);
+        return redirect()->back();
     }    
 }

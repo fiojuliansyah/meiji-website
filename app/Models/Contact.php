@@ -20,12 +20,10 @@ class Contact extends Model
     {
         $translations = $this->{$attribute};
         
-        // If translation exists for requested locale
         if (isset($translations[$locale])) {
             return $translations[$locale];
         }
         
-        // If fallback is enabled and default locale translation exists
         if ($fallback && isset($translations[config('app.fallback_locale')])) {
             return $translations[config('app.fallback_locale')];
         }

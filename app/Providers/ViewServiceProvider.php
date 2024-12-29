@@ -39,7 +39,6 @@ class ViewServiceProvider extends ServiceProvider
                     'routeParameters' => json_encode($routeParameters)
                 ];
 
-                // Load models hanya jika dibutuhkan untuk view tertentu
                 if ($view->getName() === 'layouts.front' || str_starts_with($view->getName(), 'frontpage.')) {
                     $data['general'] = General::first();
                     $data['abouts'] = About::all();

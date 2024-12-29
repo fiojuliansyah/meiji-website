@@ -39,7 +39,6 @@ class ProductController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Upload thumbnail image
         $imagePath = $request->file('image')->store('public/products');
         
 
@@ -88,11 +87,9 @@ class ProductController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            // Delete old image
             if ($product->image) {
                 Storage::delete($product->image);
             }
-            // Upload new image
             $product->image = $request->file('image')->store('public/products');
         }
 
@@ -103,14 +100,11 @@ class ProductController extends Controller
             $product->setTranslation('content', $locale, $data['content']);
             $product->setTranslation('slug', $locale, Str::slug($data['name']));
             
-            // Extract image URLs from content
             preg_match_all('/<img[^>]+src=([\'"])?((.*?)\1)/i', $data['content'], $matches);
             
             if (!empty($matches[2])) {
-                // Delete old images first
                 $product->images()->delete();
                 
-                // Create new images
                 foreach ($matches[2] as $imageUrl) {
                     $product->images()->create([
                         'url' => $imageUrl
@@ -127,7 +121,6 @@ class ProductController extends Controller
     
     public function destroy($lang, Product $product)
     {
-        // Delete related images from storage
         foreach ($product->images as $image) {
             $path = str_replace(asset(''), public_path(), $image->url);
             if (file_exists($path)) {
@@ -135,12 +128,10 @@ class ProductController extends Controller
             }
         }
         
-        // Delete thumbnail
         if ($product->image) {
             Storage::delete($product->image);
         }
         
-        // Delete images records and product
         $product->images()->delete();
         $product->delete();
     

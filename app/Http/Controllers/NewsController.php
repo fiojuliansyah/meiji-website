@@ -38,7 +38,6 @@ class NewsController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Upload thumbnail image
         $imagePath = $request->file('image')->store('public/news');
 
         $news = News::create([
@@ -86,11 +85,9 @@ class NewsController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            // Delete old image
             if ($news->image) {
                 Storage::delete($news->image);
             }
-            // Upload new image
             $news->image = $request->file('image')->store('public/news');
         }
 
@@ -101,14 +98,10 @@ class NewsController extends Controller
             $news->setTranslation('content', $locale, $data['content']);
             $news->setTranslation('slug', $locale, Str::slug($data['name']));
             
-            // Extract image URLs from content
             preg_match_all('/<img[^>]+src=([\'"])?((.*?)\1)/i', $data['content'], $matches);
             
             if (!empty($matches[2])) {
-                // Delete old images first
                 $news->images()->delete();
-                
-                // Create new images
                 foreach ($matches[2] as $imageUrl) {
                     $news->images()->create([
                         'url' => $imageUrl
@@ -125,7 +118,6 @@ class NewsController extends Controller
     
     public function destroy($lang, News $news)
     {
-        // Delete related images from storage
         foreach ($news->images as $image) {
             $path = str_replace(asset(''), public_path(), $image->url);
             if (file_exists($path)) {
@@ -133,12 +125,10 @@ class NewsController extends Controller
             }
         }
         
-        // Delete thumbnail
         if ($news->image) {
             Storage::delete($news->image);
         }
         
-        // Delete images records and news
         $news->images()->delete();
         $news->delete();
     

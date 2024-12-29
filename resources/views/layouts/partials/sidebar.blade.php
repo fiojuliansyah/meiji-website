@@ -137,6 +137,15 @@
         </li>
         @endcan
 
+        @can('view-contacts')
+        <li>
+            <a href="{{ localized_route('contacts.index') }}">
+                <div class="parent-icon"><i class='bx bx-detail'></i></div>
+                <div class="menu-title">{{ translate('Contact') }}</div>
+            </a>
+        </li>
+        @endcan
+
         @canany(['list-generals', 'list-languages', 'list-users', 'list-roles'])
         <li>
             <a href="javascript:;" class="has-arrow">

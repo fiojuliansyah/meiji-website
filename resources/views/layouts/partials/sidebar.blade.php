@@ -4,7 +4,7 @@
 <nav class="nxl-navigation">
     <div class="navbar-wrapper">
         <div class="m-header">
-            <a href="index.html" class="b-brand">
+            <a href="{{route('dashboard')}}" class="b-brand">
                 <!-- ========   change your logo here   ============ -->
                 <img src="/assets/images/logo-full.png" alt="" class="logo logo-lg" />
                 <img src="/assets/images/logo-abbr.png" alt="" class="logo logo-sm" />

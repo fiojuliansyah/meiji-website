@@ -128,7 +128,7 @@
                              role="tabpanel">
                             <div class="mb-3">
                                 <label class="form-label">{{ translate('Bio') }} ({{ $language->name }})</label>
-                                <textarea class="editor" 
+                                <textarea class="editor"  
                                           name="translations[{{ $language->code }}][bio]"
                                           >{{ $general->getTranslation('bio', $language->code, false) }}</textarea>
                             </div>

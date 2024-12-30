@@ -63,7 +63,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">{{ translate('About Content') }} ({{ $language->name }})</label>
-                                <textarea class="editor" 
+                                <textarea class="editor"  
                                           name="translations[{{ $language->code }}][about_content]">{{ $homepage->getTranslation('about_content', $language->code, false) }}</textarea>
                             </div>
                             <div class="mb-3">
@@ -74,7 +74,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">{{ translate('R&D Content') }} ({{ $language->name }})</label>
-                                <textarea class="editor" 
+                                <textarea class="editor"  
                                           name="translations[{{ $language->code }}][randd_content]">{{ $homepage->getTranslation('randd_content', $language->code, false) }}</textarea>
                             </div>
                             <div class="mb-3">
@@ -85,7 +85,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">{{ translate('Doctor Content') }} ({{ $language->name }})</label>
-                                <textarea class="editor" 
+                                <textarea class="editor"  
                                           name="translations[{{ $language->code }}][doctor_content]">{{ $homepage->getTranslation('doctor_content', $language->code, false) }}</textarea>
                             </div>
                         </div>
@@ -127,6 +127,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.editor').forEach(function(element) {
             CKEDITOR.replace(element, {
+                versionCheck: false,
                 height: 300,
                 filebrowserUploadUrl: "{{ route('ckeditor.upload', ['_token' => csrf_token()]) }}",
                 filebrowserUploadMethod: 'form',

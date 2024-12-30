@@ -6,8 +6,8 @@
         <div class="m-header">
             <a href="{{route('dashboard')}}" class="b-brand">
                 <!-- ========   change your logo here   ============ -->
-                <img src="/assets/images/logo-full.png" alt="" class="logo logo-lg" />
-                <img src="/assets/images/logo-abbr.png" alt="" class="logo logo-sm" />
+                <img src="{{ asset('storage/' . $general->logo) }}" alt="" class="logo logo-lg" />
+                <img src="{{ asset('storage/' . $general->logo) }}" alt="" class="logo logo-sm" />
             </a>
         </div>
         <div class="navbar-content">
@@ -51,7 +51,7 @@
                 @canany(['list-abouts', 'list-timelines'])
                 <li class="nxl-item nxl-hasmenu">
                     <a href="javascript:void(0);" class="nxl-link">
-                        <span class="nxl-micon"><i class="feather-buildings"></i></span>
+                        <span class="nxl-micon"><i class="feather-file-text"></i></span>
                         <span class="nxl-mtext">{{ translate('Abouts') }}</span>
                         <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                     </a>
@@ -142,7 +142,7 @@
                 @can('list-activities')
                 <li class="nxl-item">
                     <a href="{{ localized_route('activities.index') }}" class="nxl-link">
-                        <span class="nxl-micon"><i class="feather-rocket"></i></span>
+                        <span class="nxl-micon"><i class="feather-sunrise"></i></span>
                         <span class="nxl-mtext">{{ translate('Activities') }}</span>
                     </a>
                 </li>

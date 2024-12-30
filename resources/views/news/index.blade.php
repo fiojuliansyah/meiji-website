@@ -1,16 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="page-wrapper">
-    <div class="page-content">
-        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">{{ translate('News') }}</div>
-            <div class="ms-auto">
-                <div class="btn-group">
-                    <a href="{{ route('news.create', ['lang' => app()->getLocale()]) }}" class="btn btn-primary">{{ translate('Create News') }}</a>
-                </div>
+<div class="nxl-content">
+    <div class="page-header">
+        <div class="page-header-left d-flex align-items-center">
+            <div class="page-header-title">
+                <h5 class="m-b-10">{{ translate('News') }}</h5>
             </div>
         </div>
+        <div class="page-header-right ms-auto">
+            <div class="page-header-right-items">
+                <a href="{{ route('news.create', ['lang' => app()->getLocale()]) }}" class="btn btn-primary">
+                    <i class="feather-plus-circle me-2"></i>{{ translate('Create News') }}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
@@ -24,7 +31,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($news as $item)   
+                            @foreach ($news as $item)
                                 <tr>
                                     <td>
                                         <img src="{{ asset('storage/' . $item->image) }}" alt="News Image" width="100">
@@ -32,9 +39,23 @@
                                     <td>{{ $item->category->getTranslation('name', app()->getLocale()) }}</td>
                                     <td>{{ $item->getTranslation('name', app()->getLocale()) }}</td>
                                     <td>
-                                        <div class="d-flex order-actions">
-                                            <a href="{{ route('news.edit', ['lang' => app()->getLocale(), 'news' => $item->id]) }}" class=""><i class='bx bxs-edit'></i></a>
-                                            <a href="javascript:;" class="ms-3" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $item->id }}"><i class='bx bxs-trash'></i></a>
+                                        <!-- Dropdown for Edit and Delete Actions -->
+                                        <div class="dropdown">
+                                            <a href="javascript:void(0)" class="btn btn-sm btn-light" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="feather feather-more-horizontal"></i> <!-- More options icon -->
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="{{ route('news.edit', ['lang' => app()->getLocale(), 'news' => $item->id]) }}">
+                                                        <i class="feather feather-edit-3 me-2"></i> {{ translate('Edit') }}
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $item->id }}">
+                                                        <i class="feather feather-trash-2 me-2"></i> {{ translate('Delete') }}
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </td>
                                 </tr>
@@ -46,13 +67,16 @@
         </div>
     </div>
 </div>
+@endsection
 
-@foreach ($news as $item)   
-<div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1" aria-hidden="true">
+@section('modal')
+@foreach ($news as $item)
+<!-- Modal for Delete Confirmation -->
+<div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">{{ translate('Confirmation') }}</h5>
+                <h5 class="modal-title" id="deleteModalLabel">{{ translate('Confirmation') }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">{{ translate('Are you sure you want to delete this news?') }}</div>
@@ -68,10 +92,14 @@
     </div>
 </div>
 @endforeach
+@endsection
 
 @push('js')
-<script src="/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-<script src="/assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+<!-- jQuery and DataTables CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+
 <script>
     $(document).ready(function() {
         $('#example2').DataTable({
@@ -81,4 +109,3 @@
     });
 </script>
 @endpush
-@endsection

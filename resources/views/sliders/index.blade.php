@@ -1,46 +1,44 @@
 @extends('layouts.app')
 
 @section('content')
- <div class="nxl-content">
-             
-                <div class="page-header">
-                    <div class="page-header-left d-flex align-items-center">
-                        <div class="page-header-title">
-                            <h5 class="m-b-10">Sliders</h5>
-                        </div>
-                    </div>
-                    <div class="page-header-right ms-auto">
-                        <div class="page-header-right-items">
-                            <div class="d-flex d-md-none">
-                                <a href="javascript:void(0)" class="page-header-right-close-toggle">
-                                    <i class="feather-arrow-left me-2"></i>
-                                    <span>Back</span>
-                                </a>
-                            </div>
-                           <div class="btn-group">
-                               <a href="{{ route('sliders.create', ['lang' => app()->getLocale()]) }}"
-                                   class="btn btn-primary">{{ translate('Create Slider') }}</a>
-                           </div>
-                        </div>
-                        <div class="d-md-none d-flex align-items-center">
-                            <a href="javascript:void(0)" class="page-header-right-open-toggle">
-                                <i class="feather-align-right fs-20"></i>
-                            </a>
-                        </div>
-                    </div>
+<div class="nxl-content">
+    <div class="page-header">
+        <div class="page-header-left d-flex align-items-center">
+            <div class="page-header-title">
+                <h5 class="m-b-10">{{ translate('Sliders') }}</h5>
+            </div>
+        </div>
+        <div class="page-header-right ms-auto">
+            <div class="page-header-right-items">
+                <div class="d-flex d-md-none">
+                    <a href="javascript:void(0)" class="page-header-right-close-toggle">
+                        <i class="feather-arrow-left me-2"></i>
+                        <span>{{ translate('Back') }}</span>
+                    </a>
                 </div>
+                <div class="btn-group">
+                    <a href="{{ route('sliders.create', ['lang' => app()->getLocale()]) }}"
+                       class="btn btn-primary">{{ translate('Create Slider') }}</a>
+                </div>
+            </div>
+            <div class="d-md-none d-flex align-items-center">
+                <a href="javascript:void(0)" class="page-header-right-open-toggle">
+                    <i class="feather-align-right fs-20"></i>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <div class="main-content">
-    
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="example2" class="table">
+                    <table id="sliderTable" class="table table-striped table-bordered">
                         <thead>
                             <tr>
                                 <th>{{ translate('Image') }}</th>
                                 <th>{{ translate('Title') }}</th>
-                                <th>{{ translate('Content') }}</th>
+                                {{-- <th>{{ translate('Content') }}</th> --}}
                                 <th>{{ translate('Action') }}</th>
                             </tr>
                         </thead>
@@ -58,11 +56,29 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{{ $slider->getTranslation('content', app()->getLocale()) }}</td>
-                                    <td class="text-end">
-                                        <div class="d-flex order-actions">
-                                            <a href="{{ route('sliders.edit', ['lang' => app()->getLocale(), 'slider' => $slider->id]) }}" class="d-block"><i class='bx bxs-edit'></i></a>
-                                            <a href="javascript:;" class="ms-3 d-block" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $slider->id }}"><i class='bx bxs-trash'></i></a>
+                                    <td>{{ $slider->getTranslation('title', app()->getLocale()) }}</td>
+                                    {{-- <td>{{ $slider->getTranslation('content', app()->getLocale()) }}</td> --}}
+                                    <td>
+                                        <div class="hstack gap-2 justify-content-end">
+                                            <div class="dropdown">
+                                                <a href="javascript:void(0)" class="btn btn-sm btn-light" data-bs-toggle="dropdown" data-bs-offset="0,21">
+                                                    <i class="feather feather-more-horizontal"></i>
+                                                </a>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <a class="dropdown-item" href="{{ route('sliders.edit', ['lang' => app()->getLocale(), 'slider' => $slider->id]) }}">
+                                                            <i class="feather feather-edit-3 me-3"></i>
+                                                            <span>{{ translate('Edit') }}</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="javascript:void(0)" class="ms-3 d-block" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $slider->id }}">
+                                                            <i class="feather feather-trash-2 me-3"></i>
+                                                            <span>{{ translate('Delete') }}</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>
@@ -73,6 +89,8 @@
             </div>
         </div>
     </div>
+</div>
+
 @foreach ($sliders as $slider)   
 <div class="modal fade" id="deleteModal{{ $slider->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -93,23 +111,26 @@
         </div>
     </div>
 </div>
-</div>
 @endforeach
 @endsection
 
+@section('modal')  
+    <!-- Modal content here -->
+@endsection
+
 @push('js')
-<script src="/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
-<script src="/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-<script src="/assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+<!-- DataTables CDN -->
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 <script>
     $(document).ready(function() {
-        var table = $('#example2').DataTable( {
+        var table = $('#sliderTable').DataTable({
             lengthChange: false,
-            buttons: [ 'copy', 'excel', 'pdf', 'print']
-        } );
-     
+            buttons: ['copy', 'excel', 'pdf', 'print']
+        });
+
         table.buttons().container()
-            .appendTo( '#example2_wrapper .col-md-6:eq(0)' );
+            .appendTo('#sliderTable_wrapper .col-md-6:eq(0)');
     });
 </script>
 @endpush

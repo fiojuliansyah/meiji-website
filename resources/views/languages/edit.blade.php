@@ -1,27 +1,49 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="page-wrapper">
-    <div class="page-content">
-        <!--breadcrumb-->
-        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">{{ translate('Edit') }} {{ translate('Language') }}</div>
+<div class="nxl-content">
+    <div class="page-header">
+        <div class="page-header-left d-flex align-items-center">
+            <div class="page-header-title">
+                <h5 class="m-b-10">{{ translate('Edit') }} {{ translate('Language') }}</h5>
+            </div>
         </div>
-        <!--end breadcrumb-->
+        <div class="page-header-right ms-auto">
+            <div class="page-header-right-items">
+                <div class="d-flex d-md-none">
+                    <a href="javascript:void(0)" class="page-header-right-close-toggle">
+                        <i class="feather-arrow-left me-2"></i>
+                        <span>{{ translate('Back') }}</span>
+                    </a>
+                </div>
+            </div>
+            <div class="d-md-none d-flex align-items-center">
+                <a href="javascript:void(0)" class="page-header-right-open-toggle">
+                    <i class="feather-align-right fs-20"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
         <div class="card">
             <div class="card-body">
                 <form action="{{ route('languages.update', $language->id) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    <div class="row">
-                        <div class="col">
-                            <input class="form-control mb-3" type="text" name="name" value="{{ $language->name }}" placeholder="{{ translate('Name') }} {{ translate('Language') }}" aria-label="default input example">
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">{{ translate('Language') }} {{ translate('Name') }}</label>
+                            <input class="form-control" type="text" name="name" value="{{ $language->name }}" placeholder="{{ translate('Name') }} {{ translate('Language') }}" aria-label="default input example" required>
                         </div>
-                        <div class="col">
-                            <input class="form-control mb-3" type="text" name="code" value="{{ $language->code }}" placeholder="Code" aria-label="default input example">
+                        <div class="col-md-6">
+                            <label class="form-label">{{ translate('Code') }}</label>
+                            <input class="form-control" type="text" name="code" value="{{ $language->code }}" placeholder="{{ translate('Code') }}" aria-label="default input example" required>
                         </div>
                     </div>
-                    <div class="col-md-12">
+
+                    <div class="col-md-12 text-end">
                         <button type="submit" class="btn btn-primary">{{ translate('Update') }} {{ translate('Language') }}</button>
                     </div>
                 </form>

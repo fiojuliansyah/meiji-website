@@ -43,6 +43,8 @@
 
 		@include('layouts.partials.footer')
 	</main>
+    
+    @yield('modal')
 
     {{-- <div class="search-overlay"></div>
 		<div class="overlay toggle-icon"></div> --}}

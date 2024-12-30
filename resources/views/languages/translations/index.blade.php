@@ -8,7 +8,8 @@
                 <form action="{{ route('translations.update_multiple', ['lang' => app()->getLocale()]) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    
+
+                    <!-- Translations Table -->
                     <table class="table mb-0">
                         <thead>
                             <tr>
@@ -18,18 +19,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($translations as $key => $translation)
+                            @foreach($translations as $index => $translation)
                             <tr>
-                                <th scope="row">{{ $key + 1 }}</th>
+                                <th scope="row">{{ $index + 1 }}</th>
                                 <td>{{ $translation->key }}</td>
                                 <td>
-                                    <input type="text" name="translations[{{ $translation->id }}]" class="form-control" value="{{ $translation->translation }}">
+                                    <!-- Input field for updating translation -->
+                                    <input type="text" 
+                                           name="translations[{{ $translation->id }}]" 
+                                           class="form-control" 
+                                           value="{{ old('translations.' . $translation->id, $translation->translation) }}">
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
-    
+
+                    <!-- Submit Button -->
                     <div class="mt-3">
                         <button type="submit" class="btn btn-primary">Update Translations</button>
                     </div>

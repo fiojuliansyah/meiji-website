@@ -89,6 +89,6 @@ class HomeController extends Controller
          app()->setLocale($newLang);
          session()->put('locale', $newLang);
      
-         return redirect()->back();
+         return redirect()->route('frontpage.home', ['lang' => $newLang]);
      }  
 }

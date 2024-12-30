@@ -45,15 +45,5 @@ class DashboardController extends Controller
             'pageCount' => $pageCount,
             'productCount' => $productCount,
         ]);
-    }
-
-    public function changeLanguage(Request $request)
-    {
-        $newLang = $request->input('lang');
-    
-        app()->setLocale($newLang);
-        session()->put('locale', $newLang);
-    
-        return redirect()->back();
-    }    
+    }  
 }

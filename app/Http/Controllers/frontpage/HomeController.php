@@ -81,4 +81,14 @@ class HomeController extends Controller
          return redirect()->route('login')
              ->with('success', __('General updated successfully!'));
      }
+
+     public function changeLanguage(Request $request)
+     {
+         $newLang = $request->input('lang');
+     
+         app()->setLocale($newLang);
+         session()->put('locale', $newLang);
+     
+         return redirect()->back();
+     }  
 }

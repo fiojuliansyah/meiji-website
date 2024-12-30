@@ -71,7 +71,7 @@ Route::prefix('{lang}')
         
         Route::get('/{slug}', [HomeController::class, 'show'])->name('frontpage.page.show');
 
-        Route::post('change-language', [DashboardController::class, 'changeLanguage'])->name('change-language');
+        Route::post('change-language', [HomeController::class, 'changeLanguage'])->name('change-language');
 
         Route::prefix('manage')
             ->middleware('auth')

@@ -1,45 +1,24 @@
 @extends('layouts.front')
 
-@section('title', 'FAQ')
+@section('title', 'FAQ - Meiji Indonesia')
 
 @section('content')
-<section class="page-title">
-  <div class="bg-layer" style="background-image: url({{ asset('storage/' . $general->breadcrumb) }});"></div>
-  <div class="auto-container">
-      <div class="content-box">
-          <h1>{{ translate('Faqs') }}</h1>
-          <ul class="bread-crumb clearfix">
-              <li><a href="/">{{ translate('Home') }}</a></li>
-              <li>{{ translate('Faqs') }}</li>
-          </ul>
-      </div>
-  </div>
-</section>
-
-<section class="faq-section sec-pad">
-  <div class="auto-container">
-          <div class="faq-content">
-              <div class="upper-box">
-                  <div class="title">
-                      <h2>{{ translate('FAQ') }}</h2>
-                  </div>
-              </div>
-              <ul class="accordion-box">
-                  @foreach ($faqs as $faq) 
-                    <li class="accordion block">
-                        <div class="acc-btn active">
-                            <div class="icon-outer"><i class="flaticon-down-arrow"></i></div>
-                            <h4>{{ $faq->getTranslation('title', app()->getLocale()) }}</h4>
-                        </div>
-                        <div class="acc-content current">
-                            <div class="text">
-                                <p>{!! $faq->getTranslation('content', app()->getLocale()) !!}</p>
-                            </div>
-                        </div>
-                    </li>
-                  @endforeach
-              </ul>
+<section class="accordion accordion-2">
+    <div class="container"> 
+          <div style="text-align: center; margin-bottom: 50px;">
+              <h2 style="font-size: 2.5rem; color: #283b6a; margin-bottom: 20px;">{{ translate('FAQ') }}</h2>
+              <p style="color: #666; font-size: 1.1rem;">{{ translate('Journey of Excellence and Innovation') }}</p>
           </div>
-  </div>
-</section>
+          <div class="accordion-holder" id="accordion03"> 
+            @foreach ($faqs as $faq)  
+              <div class="card">
+                <div class="card-heading"><a class="card-link collapsed" data-hover="" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapse01-{{ $faq->id }}" href="#collapse01-{{ $faq->id }}">{{ $faq->getTranslation('title', app()->getLocale()) }}</a></div>
+                <div class="collapse" id="collapse01-{{ $faq->id }}" data-bs-parent="#accordion03">
+                  <div class="card-body">{!! $faq->getTranslation('content', app()->getLocale()) !!}</div>
+                </div>
+              </div>
+            @endforeach
+        </div>
+    </div>
+  </section>
 @endsection

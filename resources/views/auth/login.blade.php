@@ -111,6 +111,12 @@
                                             </div>
                                         </div>
                                     </form>
+                                    <br>
+
+                                    <a href="{{ route('auth.microsoft.redirect') }}" class="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/2048px-Microsoft_logo.svg.png" alt="Microsoft Logo" style="width: 20px; height: 20px; margin-right: 8px;">
+                                        {{ __('Login with Microsoft') }}
+                                    </a>
                                 </div>
                             </div>
                         </div>

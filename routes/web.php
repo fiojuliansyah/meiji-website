@@ -26,6 +26,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TranslationController;
 use App\Http\Controllers\ApprovalTypeController;
 use App\Http\Controllers\NewsCategoryController;
+use App\Http\Controllers\Auth\MicrosoftController;
 use App\Http\Controllers\frontpage\HomeController;
 use App\Http\Controllers\frontpage\PageNewsController;
 use App\Http\Controllers\frontpage\PageAboutController;
@@ -43,6 +44,9 @@ Route::get('/', function () {
     $defaultLocale = config('app.locale', 'en');
     return redirect()->to('/' . $defaultLocale);
 });
+
+Route::get('/auth/microsoft/redirect', [MicrosoftController::class, 'redirectToMicrosoft'])->name('auth.microsoft.redirect');
+Route::get('/auth/microsoft/callback', [MicrosoftController::class, 'handleMicrosoftCallback'])->name('auth.microsoft.callback');
 
 Auth::routes();
 

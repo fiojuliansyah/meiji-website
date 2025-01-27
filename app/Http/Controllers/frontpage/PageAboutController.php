@@ -17,7 +17,7 @@ class PageAboutController extends Controller
 
     public function timeline($lang)
     {
-        $timelines = Timeline::all();
+        $timelines = Timeline::where('is_published', true)->get();
         return view('frontpage.about.timeline', compact('timelines'));
     }
 }

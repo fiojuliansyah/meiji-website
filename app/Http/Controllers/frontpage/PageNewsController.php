@@ -11,7 +11,7 @@ class PageNewsController extends Controller
 {
     public function index($lang)
     {
-        $news = News::with('category')->latest()->paginate(9);
+        $news = News::News::where('is_published', true)->with('category')->latest()->paginate(9);
         return view('frontpage.news.index', compact('news'));
     }
 

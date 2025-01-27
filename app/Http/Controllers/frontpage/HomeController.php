@@ -18,8 +18,8 @@ class HomeController extends Controller
      public function index($lang)
      {
           $page = Homepage::first();
-          $news = News::all();
-          $sliders = Slider::all();
+          $news = News::where('is_published', true)->latest()->get();
+          $sliders = Slider::where('is_published', true)->latest()->get();
           return view('frontpage.home',compact('sliders','news','page'));
      }
 

@@ -14,7 +14,7 @@ class PageProductController extends Controller
     {
         $category = Category::where('slug->'.$lang, $slug)->firstOrFail();
     
-        $products = Product::where('category_id', $category->id)
+        $products = Product::where('is_published', true)->where('category_id', $category->id)
                         ->latest()
                         ->paginate(9);
     
@@ -27,7 +27,7 @@ class PageProductController extends Controller
     {
         $query = $request->input('query');
         
-        $products = Product::where('name', 'like', '%' . $query . '%')
+        $products = Product::where('is_published', true)->where('name', 'like', '%' . $query . '%')
                         ->orWhere('description', 'like', '%' . $query . '%')
                         ->latest()
                         ->paginate(9);
@@ -42,7 +42,7 @@ class PageProductController extends Controller
         $category = Category::where('slug->' . $lang, $slug)->firstOrFail();
         
         
-        $products = Product::where('category_id', $category->id)
+        $products = Product::where('is_published', true)->where('category_id', $category->id)
         ->latest()
         ->paginate(9);
         

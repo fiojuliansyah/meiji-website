@@ -18,6 +18,7 @@ return new class extends Migration
             $table->json('content');
             $table->string('is_header')->default(false);
             $table->string('is_footer')->default(false);
+            $table->boolean('is_published')->default(false); // Status publikasi
             $table->timestamps();
         });
     }

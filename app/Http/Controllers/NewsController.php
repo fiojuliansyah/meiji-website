@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use App\Models\Language;
-use App\Models\NewsCategory;
 use Illuminate\Support\Str;
+use App\Models\NewsCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
@@ -63,8 +65,14 @@ class NewsController extends Controller
                 }
             }
         }
-    
+        
+        $news->user_id = Auth::id();
         $news->save();
+
+        $approvalTypes = [1, 2, 3, 4, 5, 6];
+        foreach ($approvalTypes as $typeId) {
+            $news->requiredApprovals()->create(['approval_type_id' => $typeId]);
+        }
     
         return redirect()->route('news.index', ['lang' => $lang])
             ->with('success', __('News created successfully!'));
@@ -110,6 +118,14 @@ class NewsController extends Controller
             }
         }
     
+        $news->approvals()->delete();
+
+        $approvalTypes = [1, 2, 3, 4, 5, 6];
+        $news->requiredApprovals()->delete();
+        foreach ($approvalTypes as $typeId) {
+            $news->requiredApprovals()->create(['approval_type_id' => $typeId]);
+        }
+
         $news->save();
     
         return redirect()->route('news.index', ['lang' => $lang])
@@ -136,9 +152,9 @@ class NewsController extends Controller
             ->with('success', __('News deleted successfully!'));
     }
 
-    public function show($lang, $slug)
+    public function show($lang, News $news)
     {
-        $news = News::whereRaw("JSON_EXTRACT(slug, '$.\"{$lang}\"') = '\"$slug\"'")->firstOrFail();
-        return view('news.show', compact('news'));
+        $languages = Language::all();
+        return view('news.show', compact('news', 'languages'));
     }
 }

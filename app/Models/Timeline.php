@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Timeline extends Model
 {
-    protected $fillable = ['year', 'image', 'title', 'content'];
+    protected $fillable = ['year', 'image', 'title', 'content', 'is_published'];
 
     protected $casts = [
         'title' => 'array',
@@ -41,5 +41,23 @@ class Timeline extends Model
                 Storage::delete($timeline->image);
             }
         });
+    }
+
+    public function approvals()
+    {
+        return $this->morphMany(Approval::class, 'approvable');
+    }
+
+    public function requiredApprovals()
+    {
+        return $this->morphMany(ContentApprovalRequirement::class, 'approvable');
+    }
+
+    public function isFullyApproved(): bool
+    {
+        $requiredTypes = $this->requiredApprovals()->pluck('approval_type_id');
+        $approvedTypes = $this->approvals()->pluck('approval_type_id');
+
+        return $requiredTypes->diff($approvedTypes)->isEmpty();
     }
 }

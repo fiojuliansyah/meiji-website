@@ -25,6 +25,7 @@
                         <thead>
                             <tr>
                                 <th>{{ translate('Title') }}</th>
+                                <th>{{ translate('Approval') }}</th>
                                 <th>{{ translate('Action') }}</th>
                             </tr>
                         </thead>
@@ -32,6 +33,27 @@
                             @foreach ($activities as $activity)   
                                 <tr>
                                     <td>{{ $activity->getTranslation('title', app()->getLocale()) }}</td>
+                                    <td>
+                                        @foreach ($activity->requiredApprovals as $requirement)
+                                            <div>
+                                                {{ $requirement->approvalType->name }}
+                                                @php
+                                                    $approval = $activity->approvals->firstWhere('approval_type_id', $requirement->approval_type_id);
+                                                @endphp
+                                    
+                                                @if ($approval)
+                                                    @if ($approval->status === 'approved')
+                                                        <span class="badge bg-success">{{ translate('Approved') }}</span>
+                                                    @elseif ($approval->status === 'rejected')
+                                                        <span class="badge bg-danger">{{ translate('Rejected') }}</span>
+                                                        <p class="text-muted mt-1"><small>{{ $approval->rejection_description }}</small></p>
+                                                    @endif
+                                                @else
+                                                    <span class="badge bg-warning">{{ translate('Pending') }}</span>
+                                                @endif
+                                            </div>
+                                        @endforeach
+                                    </td>
                                     <td>
                                         <div class="d-flex order-actions">
                                             <a href="{{ route('activities.edit', ['lang' => app()->getLocale(), 'activity' => $activity->id]) }}" class=""><i class='bx bxs-edit'></i></a>

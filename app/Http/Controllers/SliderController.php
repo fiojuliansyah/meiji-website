@@ -49,8 +49,18 @@ class SliderController extends Controller
         }
 
         $slider->save();
+        $approvalTypes = [1, 2, 3, 4, 5, 6]; // ID jenis approval
+        foreach ($approvalTypes as $typeId) {
+            $slider->requiredApprovals()->create(['approval_type_id' => $typeId]);
+        }
 
         return redirect()->route('sliders.index')->with('success', __('Slider created successfully!'));
+    }
+
+    public function show($lang, Slider $slider)
+    {
+        $languages = Language::All();
+        return view('sliders.show', compact('slider','languages'));
     }
 
     public function edit($lang, Slider $slider)
@@ -75,6 +85,14 @@ class SliderController extends Controller
         foreach ($request->input('translations', []) as $locale => $data) {
             $slider->setTranslation('title', $locale, $data['title']);
             $slider->setTranslation('content', $locale, $data['content']);
+        }
+
+        $slider->approvals()->delete();
+
+        $approvalTypes = [1, 2, 3, 4, 5, 6];
+        $slider->requiredApprovals()->delete();
+        foreach ($approvalTypes as $typeId) {
+            $slider->requiredApprovals()->create(['approval_type_id' => $typeId]);
         }
 
         $slider->save();

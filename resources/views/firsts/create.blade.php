@@ -35,8 +35,8 @@
         </div>
 
         <div class="card">
-            <div class="card-body">
-                <form action="{{ route('installation.complete', ['lang' => app()->getLocale(), 'general' => $general->id]) }}" 
+            <div class="card-body">-
+                <form action="{{ route('installation.complete') }}" 
                       method="POST" 
                       enctype="multipart/form-data">
                     @csrf
@@ -44,28 +44,28 @@
                         <div class="col-md-3">
                             <label class="form-label">{{ translate('Favicon') }}</label>
                             <input type="file" name="favicon" class="form-control" accept="image/*">
-                            @if($general->favicon)
+                            @if($general && $general->favicon)
                                 <img src="{{ asset('storage/' . $general->favicon) }}" alt="Favicon" class="mt-2" height="50">
                             @endif
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">{{ translate('Logo') }}</label>
                             <input type="file" name="logo" class="form-control" accept="image/*">
-                            @if($general->logo)
+                            @if($general && $general->logo)
                                 <img src="{{ asset('storage/' . $general->logo) }}" alt="Logo" class="mt-2" height="50">
                             @endif
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">{{ translate('White Logo') }}</label>
                             <input type="file" name="logo_white" class="form-control" accept="image/*">
-                            @if($general->logo_white)
+                            @if($general && $general->logo_white)
                                 <img src="{{ asset('storage/' . $general->logo_white) }}" alt="White Logo" class="mt-2" height="50">
                             @endif
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">{{ translate('Breadcrumb') }}</label>
                             <input type="file" name="breadcrumb" class="form-control" accept="image/*">
-                            @if($general->breadcrumb)
+                            @if($general && $general->breadcrumb)
                                 <img src="{{ asset('storage/' . $general->breadcrumb) }}" alt="White Logo" class="mt-2" height="50">
                             @endif
                         </div>
@@ -74,37 +74,37 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label class="form-label">{{ translate('Company Name') }}</label>
-                            <input type="text" name="name" class="form-control" value="{{ $general->name }}">
+                            <input type="text" name="name" class="form-control">
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">{{ translate('Email') }}</label>
-                            <input type="email" name="email" class="form-control" value="{{ $general->email }}">
+                            <input type="email" name="email" class="form-control">
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <div class="col-md-4">
                             <label class="form-label">{{ translate('Phone 1') }}</label>
-                            <input type="text" name="phone_1" class="form-control" value="{{ $general->phone_1 }}">
+                            <input type="text" name="phone_1" class="form-control">
                         </div>
                         <div class="col-md-4">
                             <label class="form-label">{{ translate('Phone 2') }}</label>
-                            <input type="text" name="phone_2" class="form-control" value="{{ $general->phone_2 }}">
+                            <input type="text" name="phone_2" class="form-control">
                         </div>
                         <div class="col-md-4">
                             <label class="form-label">{{ translate('Fax') }}</label>
-                            <input type="text" name="fax" class="form-control" value="{{ $general->fax }}">
+                            <input type="text" name="fax" class="form-control">
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">{{ translate('Address') }}</label>
-                        <input type="text" name="address" class="form-control" value="{{ $general->address }}">
+                        <input type="text" name="address" class="form-control">
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">{{ translate('Short Address') }}</label>
-                        <input type="text" name="short_address" class="form-control" value="{{ $general->short_address }}">
+                        <input type="text" name="short_address" class="form-control">
                     </div>
 
                     <ul class="nav nav-tabs" id="languageTabs" role="tablist">
@@ -130,7 +130,7 @@
                                 <label class="form-label">{{ translate('Bio') }} ({{ $language->name }})</label>
                                 <textarea class="editor"  
                                           name="translations[{{ $language->code }}][bio]"
-                                          >{{ $general->getTranslation('bio', $language->code, false) }}</textarea>
+                                          ></textarea>
                             </div>
                         </div>
                         @endforeach

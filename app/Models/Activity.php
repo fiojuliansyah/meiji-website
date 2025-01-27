@@ -9,7 +9,7 @@ class Activity extends Model
 {
     use TranslatableSlug;
     
-    protected $fillable = ['slug', 'title', 'content'];
+    protected $fillable = ['slug', 'title', 'content', 'is_published'];
 
     protected $casts = [
         'slug' => 'array',
@@ -66,5 +66,23 @@ class Activity extends Model
     public function getTranslations($attribute)
     {
         return $this->{$attribute} ?? [];
+    }
+
+    public function approvals()
+    {
+        return $this->morphMany(Approval::class, 'approvable');
+    }
+
+    public function requiredApprovals()
+    {
+        return $this->morphMany(ContentApprovalRequirement::class, 'approvable');
+    }
+
+    public function isFullyApproved(): bool
+    {
+        $requiredTypes = $this->requiredApprovals()->pluck('approval_type_id');
+        $approvedTypes = $this->approvals()->pluck('approval_type_id');
+
+        return $requiredTypes->diff($approvedTypes)->isEmpty();
     }
 }

@@ -66,6 +66,11 @@ class PageController extends Controller
          $page->is_header = $request->is_header;
          $page->is_footer = $request->is_footer;
          $page->save();
+
+         $approvalTypes = [1, 2, 3, 4, 5, 6]; // ID jenis approval
+        foreach ($approvalTypes as $typeId) {
+            $page->requiredApprovals()->create(['approval_type_id' => $typeId]);
+        }
      
          return redirect()->route('pages.index', ['lang' => $lang])
              ->with('success', __('Page created successfully!'));
@@ -74,9 +79,10 @@ class PageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Page $page)
+    public function show($lang, Page $page)
     {
-        //
+        $languages = Language::all();
+        return view('pages.show', compact('page', 'languages'));
     }
 
     /**
@@ -110,6 +116,14 @@ class PageController extends Controller
         
         $page->is_header = $request->is_header;
         $page->is_footer = $request->is_footer;
+
+        $page->approvals()->delete();
+
+        $approvalTypes = [1, 2, 3, 4, 5, 6];
+        $page->requiredApprovals()->delete();
+        foreach ($approvalTypes as $typeId) {
+            $page->requiredApprovals()->create(['approval_type_id' => $typeId]);
+        }
         $page->save();
     
         return redirect()->route('pages.index', ['lang' => $lang])

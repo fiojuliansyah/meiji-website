@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Slider extends Model
 {
-    protected $fillable = ['image', 'title', 'content'];
+    protected $fillable = ['image', 'title', 'content', 'is_published'];
 
     protected $casts = [
         'title' => 'array',
@@ -41,5 +41,23 @@ class Slider extends Model
                 Storage::delete($slider->image);
             }
         });
+    }
+
+    public function approvals()
+    {
+        return $this->morphMany(Approval::class, 'approvable');
+    }
+
+    public function requiredApprovals()
+    {
+        return $this->morphMany(ContentApprovalRequirement::class, 'approvable');
+    }
+
+    public function isFullyApproved(): bool
+    {
+        $requiredTypes = $this->requiredApprovals()->pluck('approval_type_id');
+        $approvedTypes = $this->approvals()->pluck('approval_type_id');
+
+        return $requiredTypes->diff($approvedTypes)->isEmpty();
     }
 }

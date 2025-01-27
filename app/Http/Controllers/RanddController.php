@@ -63,6 +63,10 @@ class RanddController extends Controller
          }
      
          $randd->save();
+         $approvalTypes = [1, 2, 3, 4, 5, 6]; // ID jenis approval
+        foreach ($approvalTypes as $typeId) {
+            $randd->requiredApprovals()->create(['approval_type_id' => $typeId]);
+        }
      
          return redirect()->route('randds.index', ['lang' => $lang])
              ->with('success', __('Randd created successfully!'));
@@ -71,9 +75,10 @@ class RanddController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Randd $randd)
+    public function show($lang, Randd $randd)
     {
-        //
+        $languages = Language::all();
+        return view('randds.show', compact('randd', 'languages'));
     }
 
     /**
@@ -104,7 +109,15 @@ class RanddController extends Controller
                 }
             }
         }
-    
+        
+        $randd->approvals()->delete();
+
+        $approvalTypes = [1, 2, 3, 4, 5, 6];
+        $randd->requiredApprovals()->delete();
+        foreach ($approvalTypes as $typeId) {
+            $randd->requiredApprovals()->create(['approval_type_id' => $typeId]);
+        }
+
         $randd->save();
     
         return redirect()->route('randds.index', ['lang' => $lang])

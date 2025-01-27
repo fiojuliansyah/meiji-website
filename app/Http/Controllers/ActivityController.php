@@ -63,6 +63,11 @@ class ActivityController extends Controller
          }
      
          $about->save();
+
+         $approvalTypes = [1, 2, 3, 4, 5, 6]; // ID jenis approval
+        foreach ($approvalTypes as $typeId) {
+            $about->requiredApprovals()->create(['approval_type_id' => $typeId]);
+        }
      
          return redirect()->route('activities.index', ['lang' => $lang])
              ->with('success', __('Activity created successfully!'));
@@ -71,9 +76,10 @@ class ActivityController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Activity $about)
+    public function show($lang, Activity $about)
     {
-        //
+        $languages = Language::all();
+        return view('activities.show', compact('about', 'languages'));
     }
 
     /**
@@ -103,6 +109,14 @@ class ActivityController extends Controller
                     ]);
                 }
             }
+        }
+
+        $about->approvals()->delete();
+
+        $approvalTypes = [1, 2, 3, 4, 5, 6];
+        $about->requiredApprovals()->delete();
+        foreach ($approvalTypes as $typeId) {
+            $about->requiredApprovals()->create(['approval_type_id' => $typeId]);
         }
     
         $about->save();

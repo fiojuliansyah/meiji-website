@@ -52,7 +52,18 @@ class TimelineController extends Controller
 
         $timeline->save();
 
+        $approvalTypes = [1, 2, 3, 4, 5, 6]; // ID jenis approval
+        foreach ($approvalTypes as $typeId) {
+            $timeline->requiredApprovals()->create(['approval_type_id' => $typeId]);
+        }
+
         return redirect()->route('timelines.index')->with('success', __('Timeline created successfully!'));
+    }
+
+    public function show($lang, Timeline $timeline)
+    {
+        $languages = Language::All();
+        return view('timelines.show', compact('timeline', 'languages'));
     }
 
     public function edit($lang, Timeline $timeline)
@@ -80,6 +91,14 @@ class TimelineController extends Controller
         foreach ($request->input('translations', []) as $locale => $data) {
             $timeline->setTranslation('title', $locale, $data['title']);
             $timeline->setTranslation('content', $locale, $data['content']);
+        }
+
+        $timeline->approvals()->delete();
+
+        $approvalTypes = [1, 2, 3, 4, 5, 6];
+        $timeline->requiredApprovals()->delete();
+        foreach ($approvalTypes as $typeId) {
+            $timeline->requiredApprovals()->create(['approval_type_id' => $typeId]);
         }
 
         $timeline->save();

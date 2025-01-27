@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('image');
             $table->json('title');
             $table->json('content');
+            $table->boolean('is_published')->default(false); // Status publikasi
             $table->timestamps();
         });
     }

@@ -27,6 +27,15 @@
                 </li>
                 @endcan
 
+                {{-- @can('content-approval') --}}
+                <li class="nxl-item nxl-hasmenu">
+                    <a href="{{ localized_route('approvals.index') }}" class="nxl-link">
+                        <span class="nxl-micon"><i class="feather-airplay"></i></span>
+                        <span class="nxl-mtext">{{ translate('Approval Content') }}</span>
+                    </a>
+                </li>
+                {{-- @endcan --}}
+
                 <!-- Home Page Menu -->
                 @can('view-homepages')
                 <li class="nxl-item nxl-hasmenu">
@@ -215,6 +224,13 @@
                             </a>
                         </li>
                         @endcan
+                        {{-- @can('list-approvaltypes') --}}
+                        <li class="nxl-item">
+                            <a class="nxl-link" href="{{ localized_route('approval_types.index') }}">
+                                <i class="bx bx-right-arrow-alt"></i>{{ translate('Approval Types') }}
+                            </a>
+                        </li>
+                        {{-- @endcan --}}
                     </ul>
                 </li>
                 @endcanany

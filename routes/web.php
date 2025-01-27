@@ -17,12 +17,14 @@ use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\ApprovalController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TranslationController;
+use App\Http\Controllers\ApprovalTypeController;
 use App\Http\Controllers\NewsCategoryController;
 use App\Http\Controllers\frontpage\HomeController;
 use App\Http\Controllers\frontpage\PageNewsController;
@@ -33,12 +35,9 @@ use App\Http\Controllers\frontpage\PageActivityController;
 use App\Http\Controllers\frontpage\PageFaqContactController;
 
 
-Route::prefix('{lang}')
-    ->middleware(SetLocale::class)
-    ->group(function () {
-        Route::get('/install', [HomeController::class, 'install'])->name('installation.index');
-        Route::post('/install/complete', [HomeController::class, 'complete'])->name('installation.complete');
-});
+    
+Route::get('/install', [HomeController::class, 'install'])->name('installation.index');
+Route::post('/install/complete', [HomeController::class, 'complete'])->name('installation.complete');
 
 Route::get('/', function () {
     $defaultLocale = config('app.locale', 'en');
@@ -102,8 +101,14 @@ Route::prefix('{lang}')
                 Route::resource('homepages', HomePageController::class);
                 Route::resource('users', UserController::class);
                 Route::resource('roles', RoleController::class);
-               Route::resource('languages', LanguageController::class)->except(['destroy']);
-                
+                Route::resource('approval_types', ApprovalTypeController::class);
+                Route::resource('languages', LanguageController::class)->except(['destroy']);
+
+                Route::get('approvals', [ApprovalController::class, 'index'])->name('approvals.index');
+                Route::get('approvals/{approvableType}/{approvableId}', [ApprovalController::class, 'show'])->name('approvals.show');
+                Route::post('approve/{approvableType}/{approvableId}/{approvalTypeId}', [ApprovalController::class, 'approve'])->name('approve');
+                Route::post('/approvals/reject/{approvableType}/{approvableId}/{approvalTypeId}', [ApprovalController::class, 'reject'])->name('reject');
+                                
                 Route::delete('languages/{id}', [LanguageController::class, 'destroy'])->name('languages.destroy');
                 Route::get('languages/{id}/translations', [TranslationController::class, 'index'])->name('languages.translations');
                 Route::put('translations/update-multiple', [TranslationController::class, 'updateMultiple'])->name('translations.update_multiple');

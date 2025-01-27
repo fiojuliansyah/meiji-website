@@ -29,13 +29,14 @@ class HomeController extends Controller
          return view('frontpage.page.show', compact('page'));
      }
 
-     public function install($lang)
+     public function install()
      {
+           $general = General::first();
            $languages = Language::all();
-           return view('firsts.create', compact('languages'));
+           return view('firsts.create', compact('languages','general'));
      }
 
-     public function complete(Request $request, $lang, General $general) 
+     public function complete(Request $request, General $general) 
      {
          if ($request->hasFile('favicon')) {
              if ($general->favicon) {

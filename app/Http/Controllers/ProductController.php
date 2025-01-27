@@ -67,6 +67,11 @@ class ProductController extends Controller
         }
     
         $product->save();
+
+        $approvalTypes = [1, 2, 3, 4, 5, 6]; // ID jenis approval
+        foreach ($approvalTypes as $typeId) {
+            $product->requiredApprovals()->create(['approval_type_id' => $typeId]);
+        }
     
         return redirect()->route('products.index', ['lang' => $lang])
             ->with('success', __('Product created successfully!'));
@@ -112,6 +117,14 @@ class ProductController extends Controller
                 }
             }
         }
+
+        $product->approvals()->delete();
+
+        $approvalTypes = [1, 2, 3, 4, 5, 6];
+        $product->requiredApprovals()->delete();
+        foreach ($approvalTypes as $typeId) {
+            $product->requiredApprovals()->create(['approval_type_id' => $typeId]);
+        }
     
         $product->save();
     
@@ -139,9 +152,9 @@ class ProductController extends Controller
             ->with('success', __('Product deleted successfully!'));
     }
 
-    public function show($lang, $slug)
+    public function show($lang, Product $product)
     {
-        $product = Product::whereRaw("JSON_EXTRACT(slug, '$.\"{$lang}\"') = '\"$slug\"'")->firstOrFail();
-        return view('products.show', compact('product'));
+        $languages = Language::all();
+        return view('products.show', compact('product', 'languages'));
     }
 }

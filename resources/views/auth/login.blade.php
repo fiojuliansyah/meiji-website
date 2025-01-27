@@ -85,8 +85,6 @@
                             <div class="p-4 rounded">
                                 <div class="text-center">
                                     <h3 class="">Sign in</h3>
-                                    <p>Don't have an account yet? <a href="authentication-signup.html">Sign up here</a>
-                                    </p>
                                 </div>
                                 <div class="form-body">
                                     <form class="row g-3" method="POST" action="{{ route('login') }}">

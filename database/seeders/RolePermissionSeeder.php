@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 use App\Models\User;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
 
 class RolePermissionSeeder extends Seeder
 {
@@ -148,5 +150,50 @@ class RolePermissionSeeder extends Seeder
             ]
         );
         $admin->assignRole($adminRole);
+
+        DB::table('users')->insert([
+            [
+                'name' => 'John Doe',
+                'email' => 'john@example.com',
+                'password' => Hash::make('password'), // Password: password
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Jane Smith',
+                'email' => 'jane@example.com',
+                'password' => Hash::make('password'), // Password: password
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Mark Taylor',
+                'email' => 'mark@example.com',
+                'password' => Hash::make('password'), // Password: password
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Alice Brown',
+                'email' => 'alice@example.com',
+                'password' => Hash::make('password'), // Password: password
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Charlie Davis',
+                'email' => 'charlie@example.com',
+                'password' => Hash::make('password'), // Password: password
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Emma Wilson',
+                'email' => 'emma@example.com',
+                'password' => Hash::make('password'), // Password: password
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
     }
 }

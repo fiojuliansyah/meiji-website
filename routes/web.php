@@ -23,6 +23,7 @@ use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\TranslationController;
 use App\Http\Controllers\ApprovalTypeController;
 use App\Http\Controllers\NewsCategoryController;
@@ -45,10 +46,31 @@ Route::get('/', function () {
     return redirect()->to('/' . $defaultLocale);
 });
 
-Route::get('/auth/microsoft/redirect', [MicrosoftController::class, 'redirectToMicrosoft'])->name('auth.microsoft.redirect');
-Route::get('/auth/microsoft/callback', [MicrosoftController::class, 'handleMicrosoftCallback'])->name('auth.microsoft.callback');
+Route::prefix('workroom')->group(function () {
 
-Auth::routes();
+    Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('login', [LoginController::class, 'login']);
+    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+    Route::get('/auth/microsoft/redirect', [MicrosoftController::class, 'redirectToMicrosoft'])->name('auth.microsoft.redirect');
+    Route::get('/auth/microsoft/callback', [MicrosoftController::class, 'handleMicrosoftCallback'])->name('auth.microsoft.callback');
+});
+
+// Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+// Route::post('register', [RegisterController::class, 'register']);
+
+// Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+// Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+// Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+// Route::post('password/reset', [ResetPasswordController::class, 'reset']);
+
+// Route::get('password/confirm', [ConfirmPasswordController::class, 'showConfirmForm'])->name('password.confirm');
+// Route::post('password/confirm', [ConfirmPasswordController::class, 'confirm']);
+
+// Route::get('email/verify', [VerificationController::class, 'show'])->name('verification.notice');
+// Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
+
+Route::post('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 
 Route::prefix('{lang}')
     ->middleware(SetLocale::class)
@@ -76,7 +98,7 @@ Route::prefix('{lang}')
 
         Route::post('change-language', [HomeController::class, 'changeLanguage'])->name('change-language');
 
-        Route::prefix('manage')
+        Route::prefix('workroom')
             ->middleware('auth')
             ->group(function () {
                 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

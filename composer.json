@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.9",
         "laravel/ui": "^4.6",
         "shetabit/visitor": "^4.3",
+        "socialiteproviders/microsoft": "^4.6",
         "spatie/laravel-permission": "^6.10",
         "stevebauman/location": "^7.4"
     },

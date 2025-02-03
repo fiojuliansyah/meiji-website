@@ -6,7 +6,6 @@ use App\Helpers\TranslationHelper;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
-use SocialiteProviders\Microsoft\Provider;
 use SocialiteProviders\Manager\SocialiteWasCalled;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,7 +26,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         URL::defaults(['lang' => app()->getLocale()]);
-        SocialiteWasCalled::extendSocialite('microsoft', Provider::class);
+        $this->app['events']->listen(SocialiteWasCalled::class, function (SocialiteWasCalled $event) {
+            $event->extendSocialite('microsoft', \SocialiteProviders\Microsoft\Provider::class);
+        });
     }
     
 }

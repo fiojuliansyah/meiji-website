@@ -73,7 +73,7 @@
                                     </td>                                    
                                     <td>
                                         @foreach ($content->requiredApprovals as $requirement)
-                                            @if ($requirement->approvalType->user_id === auth()->id())
+                                            @if (!$content->approvals->contains('approval_type_id', $requirement->approval_type_id) && $requirement->approvalType->user_id === auth()->id())
                                                 <!-- Approve Button -->
                                                 <form action="{{ route('approve', ['approvableType' => get_class($content), 'approvableId' => $content->id, 'approvalTypeId' => $requirement->approval_type_id]) }}" method="POST" style="display:inline-block;">
                                                     @csrf

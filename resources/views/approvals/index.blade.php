@@ -73,14 +73,7 @@
                                     </td>                                    
                                     <td>
                                         @foreach ($content->requiredApprovals as $requirement)
-                                            @php
-                                                // Cari persetujuan untuk pengguna saat ini
-                                                $userApproval = $content->approvals->firstWhere('approval_type_id', $requirement->approval_type_id);
-                                                if ($userApproval) {
-                                                    $userApproval = $userApproval->firstWhere('user_id', auth()->id());
-                                                }
-                                            @endphp
-                                            @if (!$userApproval && $requirement->approvalType->user_id === auth()->id())
+                                            @if ($requirement->approvalType->user_id === auth()->id())
                                                 <!-- Approve Button -->
                                                 <form action="{{ route('approve', ['approvableType' => get_class($content), 'approvableId' => $content->id, 'approvalTypeId' => $requirement->approval_type_id]) }}" method="POST" style="display:inline-block;">
                                                     @csrf
@@ -100,14 +93,7 @@
 
                                 <!-- Modal Section -->
                                 @foreach ($content->requiredApprovals as $requirement)
-                                    @php
-                                        // Cari persetujuan untuk pengguna saat ini
-                                        $userApproval = $content->approvals->firstWhere('approval_type_id', $requirement->approval_type_id);
-                                        if ($userApproval) {
-                                            $userApproval = $userApproval->firstWhere('user_id', auth()->id());
-                                        }
-                                    @endphp
-                                    @if (!$userApproval && $requirement->approvalType->user_id === auth()->id())
+                                    @if (!$content->approvals->contains('approval_type_id', $requirement->approval_type_id) && $requirement->approvalType->user_id === auth()->id())
                                         <!-- Reject Modal -->
                                         <div class="modal fade" id="rejectModal-{{ $requirement->approval_type_id }}" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">

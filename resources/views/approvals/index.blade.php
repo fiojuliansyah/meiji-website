@@ -74,7 +74,11 @@
                                     <td>
                                         @foreach ($content->requiredApprovals as $requirement)
                                             @php
-                                                $userApproval = $content->approvals->firstWhere('approval_type_id', $requirement->approval_type_id)->firstWhere('user_id', auth()->id());
+                                                // Cari persetujuan untuk pengguna saat ini
+                                                $userApproval = $content->approvals->firstWhere('approval_type_id', $requirement->approval_type_id);
+                                                if ($userApproval) {
+                                                    $userApproval = $userApproval->firstWhere('user_id', auth()->id());
+                                                }
                                             @endphp
                                             @if (!$userApproval && $requirement->approvalType->user_id === auth()->id())
                                                 <!-- Approve Button -->
@@ -97,7 +101,11 @@
                                 <!-- Modal Section -->
                                 @foreach ($content->requiredApprovals as $requirement)
                                     @php
-                                        $userApproval = $content->approvals->firstWhere('approval_type_id', $requirement->approval_type_id)->firstWhere('user_id', auth()->id());
+                                        // Cari persetujuan untuk pengguna saat ini
+                                        $userApproval = $content->approvals->firstWhere('approval_type_id', $requirement->approval_type_id);
+                                        if ($userApproval) {
+                                            $userApproval = $userApproval->firstWhere('user_id', auth()->id());
+                                        }
                                     @endphp
                                     @if (!$userApproval && $requirement->approvalType->user_id === auth()->id())
                                         <!-- Reject Modal -->

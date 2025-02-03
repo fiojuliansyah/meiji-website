@@ -16,6 +16,7 @@ use App\Models\ContentApprovalRequirement;
 
 class ApprovalController extends Controller
 {
+
     public function index()
     {
         // Ambil semua data dari berbagai model
@@ -41,7 +42,7 @@ class ApprovalController extends Controller
         return view('approvals.index', compact('contents'));
     }
     
-    public function approve(Request $request, $approvableType, $approvableId, $approvalTypeId)
+    public function approve($lang, Request $request, $approvableType, $approvableId, $approvalTypeId)
     {
         $user = auth()->user();
 
@@ -54,7 +55,7 @@ class ApprovalController extends Controller
         // Cari konten berdasarkan approvable_type dan approvable_id
         $approvable = app($approvableType)->findOrFail($approvableId);
 
-        // Cek apakah approval sudah ada untuk pengguna ini
+        // Cek apakah approval sudah ada
         if ($approvable->approvals()->where('approval_type_id', $approvalTypeId)->where('user_id', $user->id)->exists()) {
             return redirect()->back()->with('error', 'You have already approved this.');
         }
@@ -63,7 +64,6 @@ class ApprovalController extends Controller
         $approvable->approvals()->create([
             'approval_type_id' => $approvalTypeId,
             'user_id' => $user->id,
-            'status' => 'approved',
         ]);
 
         // Cek jika semua approval selesai
@@ -75,7 +75,7 @@ class ApprovalController extends Controller
         return redirect()->back()->with('success', 'Approval added!');
     }
 
-    public function reject(Request $request, $approvableType, $approvableId, $approvalTypeId)
+    public function reject($lang, Request $request, $approvableType, $approvableId, $approvalTypeId)
     {
         $user = auth()->user();
 
@@ -93,8 +93,13 @@ class ApprovalController extends Controller
         // Cari konten berdasarkan approvable_type dan approvable_id
         $approvable = app($approvableType)->findOrFail($approvableId);
 
-        // Cek apakah approval sudah ada untuk pengguna ini
-        if ($approvable->approvals()->where('approval_type_id', $approvalTypeId)->where('user_id', $user->id)->exists()) {
+        // Cek apakah approval sudah ada
+        $existingApproval = $approvable->approvals()
+            ->where('approval_type_id', $approvalTypeId)
+            ->where('user_id', $user->id)
+            ->first();
+
+        if ($existingApproval) {
             return redirect()->back()->with('error', 'You have already processed this approval.');
         }
 
@@ -110,21 +115,18 @@ class ApprovalController extends Controller
     }
     
     // Cek apakah semua approval sudah selesai
-    private function isFullyApproved($approvable)
+    private function isFullyApproved($lang, $approvable)
     {
-        $requiredApprovalTypes = $approvable->requiredApprovals->pluck('approval_type_id');
+        $requiredApprovals = ContentApprovalRequirement::where('approvable_type', get_class($approvable))
+            ->where('approvable_id', $approvable->id)
+            ->pluck('approval_type_id');
 
-        foreach ($requiredApprovalTypes as $approvalTypeId) {
-            $approval = $approvable->approvals->firstWhere('approval_type_id', $approvalTypeId);
-            if (!$approval || $approval->status !== 'approved') {
-                return false;
-            }
-        }
+        $givenApprovals = $approvable->approvals()->pluck('approval_type_id');
 
-        return true;
+        return $requiredApprovals->diff($givenApprovals)->isEmpty();
     }
 
-    public function show($approvableType, $approvableId)
+    public function show($lang, $approvableType, $approvableId)
     {
         // Validasi tipe konten
         switch (strtolower($approvableType)) {

@@ -47,7 +47,7 @@ class ApprovalController extends Controller
             Timeline::all(),
         ];
 
-        return view('approval.index', compact('contents'));
+        return view('approvals.index', compact('contents'));
     }
 
     public function show($lang, $approvableType, $approvableId)
@@ -57,7 +57,7 @@ class ApprovalController extends Controller
             return redirect()->back()->with('error', 'Approvable not found.');
         }
 
-        return view('approval.show', compact('approvable'));
+        return view('approvals.show', compact('approvable'));
     }
 
     public function approve($lang, Request $request, $approvableType, $approvableId, $approvalTypeId)

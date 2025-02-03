@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 
 class ApprovalController extends Controller
 {
-    public function isFullyApproved($approvableId, $approvableType)
+    public function isFullyApproved($lang, $approvableId, $approvableType)
     {
         $approvable = $approvableType::find($approvableId);
         if (!$approvable) {
@@ -35,7 +35,7 @@ class ApprovalController extends Controller
         return true;
     }
 
-    public function index()
+    public function index($lang)
     {
         $contents = [
             News::all(),
@@ -50,7 +50,7 @@ class ApprovalController extends Controller
         return view('approval.index', compact('contents'));
     }
 
-    public function show($approvableType, $approvableId)
+    public function show($lang, $approvableType, $approvableId)
     {
         $approvable = $approvableType::find($approvableId);
         if (!$approvable) {
@@ -60,7 +60,7 @@ class ApprovalController extends Controller
         return view('approval.show', compact('approvable'));
     }
 
-    public function approve(Request $request, $approvableType, $approvableId, $approvalTypeId)
+    public function approve($lang, Request $request, $approvableType, $approvableId, $approvalTypeId)
     {
         $approvable = $approvableType::find($approvableId);
         if (!$approvable) {
@@ -82,7 +82,7 @@ class ApprovalController extends Controller
         return redirect()->back()->with('success', 'Approval successful.');
     }
 
-    public function reject(Request $request, $approvableType, $approvableId, $approvalTypeId)
+    public function reject($lang, Request $request, $approvableType, $approvableId, $approvalTypeId)
     {
         $approvable = $approvableType::find($approvableId);
         if (!$approvable) {

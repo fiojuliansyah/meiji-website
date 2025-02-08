@@ -28,7 +28,7 @@
     <div class="main-content">
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('products.update', ['lang' => app()->getLocale(), 'products' => $product->id]) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('products.update', ['lang' => app()->getLocale(), 'product' => $product->id]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -49,7 +49,7 @@
                     <div class="mb-3">
                         <label class="form-label">{{ translate('Current Image') }}</label>
                         <div>
-                            <img src="{{ $product->image }}" alt="Product Image" style="max-width: 200px;">
+                            <img src="{{ asset('storage/' . $product->image) }}" alt="Product Image" style="max-width: 200px;">
                         </div>
                     </div>
 

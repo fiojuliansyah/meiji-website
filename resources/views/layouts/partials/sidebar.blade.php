@@ -147,6 +147,15 @@
                 </li>
                 @endcan
 
+                @can('list-pages')
+                <li class="nxl-item">
+                    <a href="{{ localized_route('pages.index') }}" class="nxl-link">
+                        <span class="nxl-micon"><i class="feather-award"></i></span>
+                        <span class="nxl-mtext">{{ translate('Pages') }}</span>
+                    </a>
+                </li>
+                @endcan
+
                 <!-- Activities Menu -->
                 @can('list-activities')
                 <li class="nxl-item">

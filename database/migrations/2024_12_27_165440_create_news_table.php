@@ -18,7 +18,7 @@ return new class extends Migration
             $table->json('slug');
             $table->json('name');
             $table->json('content');
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->nullable();
+            $table->string('user_id')->nullable();
             $table->boolean('is_published')->default(false); // Status publikasi
             $table->timestamps();
         });

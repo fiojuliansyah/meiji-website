@@ -15,12 +15,21 @@ class ApprovalTypeSeeder extends Seeder
     public function run()
     {
         ApprovalType::insert([
-            ['name' => 'Finance Approval', 'user_id' => 1, 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'Legal Approval', 'user_id' => 2, 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'Marketing Approval', 'user_id' => 3, 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'CEO Approval', 'user_id' => 4, 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'HR Approval', 'user_id' => 5, 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'Quality Control Approval', 'user_id' => 6, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Material Approval', 'user_id' => 2, 'approval_module_id' => 1, 'is_edit' => 1, 'is_preview' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Material Approval', 'user_id' => 3, 'approval_module_id' => 1, 'is_edit' => 1, 'is_preview' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Material Approval', 'user_id' => 4, 'approval_module_id' => 1, 'is_edit' => 1, 'is_preview' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Material Approval', 'user_id' => 5, 'approval_module_id' => 1, 'is_edit' => 1, 'is_preview' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Material Approval', 'user_id' => 6, 'approval_module_id' => 1, 'is_edit' => 1, 'is_preview' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Material Approval', 'user_id' => 7, 'approval_module_id' => 1, 'is_edit' => 1, 'is_preview' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Legal Approval', 'user_id' => 8, 'approval_module_id' => 1, 'is_edit' => 1, 'is_preview' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Legal Approval', 'user_id' => 9, 'approval_module_id' => 1, 'is_edit' => 1, 'is_preview' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Language Approval', 'user_id' => 10, 'approval_module_id' => 1, 'is_edit' => 1, 'is_preview' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Layouts & Design Approval', 'user_id' => 11, 'approval_module_id' => 1, 'is_edit' => 1, 'is_preview' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Layouts & Design Approval', 'user_id' => 12, 'approval_module_id' => 1, 'is_edit' => 1, 'is_preview' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Layouts & Design Approval', 'user_id' => 13, 'approval_module_id' => 1, 'is_edit' => 1, 'is_preview' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Verification', 'user_id' => 14, 'approval_module_id' => 1, 'is_edit' => 1, 'is_preview' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Verification', 'user_id' => 15, 'approval_module_id' => 1, 'is_edit' => 1, 'is_preview' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Verification', 'user_id' => 16, 'approval_module_id' => 1, 'is_edit' => 1, 'is_preview' => 1, 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }

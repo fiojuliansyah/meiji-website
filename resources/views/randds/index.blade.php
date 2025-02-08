@@ -11,7 +11,7 @@
         <div class="page-header-right ms-auto">
             <div class="page-header-right-items">
                 <a href="{{ route('randds.create', ['lang' => app()->getLocale()]) }}" class="btn btn-primary">
-                    <i class="feather-plus-circle me-2"></i>{{ translate('Create About') }}
+                    <i class="feather-plus-circle me-2"></i>{{ translate('Create R&D') }}
                 </a>
             </div>
         </div>

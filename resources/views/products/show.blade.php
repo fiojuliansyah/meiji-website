@@ -1,71 +1,78 @@
-@extends('layouts.app')
+@extends('layouts.preview')
+
+@section('title')
+  {{ $product->getTranslation('name', app()->getLocale()) ?? 'News Detail' }}
+@endsection
 
 @section('content')
-<div class="nxl-content">
-    <div class="page-header">
-        <div class="page-header-left d-flex align-items-center">
-            <div class="page-header-title">
-                <h5 class="m-b-10">{{ translate('View') }} {{ translate('Product') }}</h5>
-            </div>
-        </div>
-    </div>
-
-    <div class="main-content">
-        <div class="card">
-            <div class="card-body">
-                <!-- Category -->
-                <div class="mb-3">
-                    <h6>{{ translate('Category') }}</h6>
-                    <p>{{ $product->category->getTranslation('name', app()->getLocale()) }}</p>
-                </div>
-
-                <!-- Current Image -->
-                <div class="mb-3">
-                    <h6>{{ translate('Image') }}</h6>
-                    @if($product->image)
-                        <img src="{{ asset('storage/' . $product->image) }}" alt="Product Image" width="100">
-                    @else
-                        <p>{{ translate('No image available') }}</p>
-                    @endif
-                </div>
-
-                <!-- Language Tabs -->
-                <ul class="nav nav-tabs" id="languageTabs" role="tablist">
-                    @foreach ($languages as $language)
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link {{ $loop->first ? 'active' : '' }}" 
-                                id="tab-{{ $language->code }}"
-                                data-bs-toggle="tab" 
-                                data-bs-target="#lang-{{ $language->code }}" 
-                                type="button" 
-                                role="tab">
-                                {{ $language->name }}
-                            </button>
+<section class="page-title page-title-blank bg-white" id="page-title">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="title">
+                    <ol class="breadcrumb breadcrumb-long">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item">
+                            <a href="#">
+                                {{ $product->category->getTranslation('name', app()->getLocale()) ?? 'Category' }}
+                            </a>
                         </li>
-                    @endforeach
-                </ul>
-                
-                <div class="tab-content mt-3" id="languageTabContent">
-                    @foreach ($languages as $language)
-                    <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" 
-                        id="lang-{{ $language->code }}" 
-                        role="tabpanel">
-                        <!-- Product Name -->
-                        <div class="mb-3">
-                            <h6>{{ translate('Name') }} ({{ $language->name }})</h6>
-                            <p>{{ $product->getTranslation('name', $language->code) }}</p>
-                        </div>
-                        
-                        <!-- Product Content -->
-                        <div class="mb-3">
-                            <h6>{{ translate('Content') }} ({{ $language->name }})</h6>
-                            <p>{!! $product->getTranslation('content', $language->code) !!}</p>
-                        </div>
-                    </div>
-                    @endforeach
+                        <li class="breadcrumb-item active" aria-current="page">{{ Illuminate\Support\Str::limit(strip_tags($product->getTranslation('name', app()->getLocale())), 20) }}</li>
+                    </ol>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
+<section class="single-product" id="single-product">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <div class="product-img"><img class="img-fluid" src="{{ asset('storage/' . $product->image) }}" alt="product image"/><a class="img-popup" href="{{ asset('storage/' . $product->image) }}" alt="product image"></a></div>
+          <!-- .product-img end-->
+        </div>
+        <div class="col-12 col-lg-6">
+          <div class="product-content">
+            <div class="product-title">
+              <h3>{{ $product->getTranslation('name', app()->getLocale()) ?? 'Product Name' }}</h3>
+            </div>
+            <div class="product-tabs">
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation"><a class="active" href="#description" data-bs-target="#description" aria-controls="description" role="tab" data-bs-toggle="tab" aria-selected="true">{{ translate('description') }}</a></li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane active" id="description" role="tabpanel">
+                    {!! $product->getTranslation('content', app()->getLocale()) ?? 'Product Content' !!}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="shop shop-2"> 
+    <div class="container"> 
+      <div class="row"> 
+        <div class="col-12"> 
+          <h5>{{ translate('related products') }}</h5>
+        </div>
+      </div>
+      <div class="row"> 
+        @foreach ($related_products as $related)    
+            <div class="col-12 col-md-6 col-lg-3">
+            <div class="product-item" data-hover="">
+                <div class="product-img"><img src="{{ asset('storage/' . $related->image) }}" alt="Product"/><a class="add-to-cart" href="#">{{ translate('read more') }}</a>
+                <div class="badge"></div>
+                </div>
+                <div class="product-content">
+                <div class="product-title"><a href="#">{{ $related->getTranslation('name', app()->getLocale()) ?? 'Product Name' }}</a></div>
+                </div>
+            </div>
+            <!-- .product end-->
+            </div>
+        @endforeach
+      </div>
+    </div>
+  </section>
 @endsection

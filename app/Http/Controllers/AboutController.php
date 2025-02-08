@@ -6,6 +6,7 @@ use App\Models\About;
 use App\Models\Language;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\ApprovalModule;
 
 class AboutController extends Controller
 {
@@ -63,22 +64,19 @@ class AboutController extends Controller
          }
      
          $about->save();
+
+         $approvalModule = ApprovalModule::find(2) ?? ApprovalModule::find(1);
+
+         $approvalTypes = $approvalModule->types->pluck('id');
+
+         foreach ($approvalTypes as $typeId) {
+             $about->requiredApprovals()->create(['approval_type_id' => $typeId]);
+         }
      
          return redirect()->route('abouts.index', ['lang' => $lang])
              ->with('success', __('About created successfully!'));
      }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(About $about)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($lang, About $about)
     {
         $languages = Language::all();
@@ -104,6 +102,17 @@ class AboutController extends Controller
                 }
             }
         }
+
+        $about->approvals()->delete();
+
+        $approvalModule = ApprovalModule::find(2) ?? ApprovalModule::find(1);
+
+        $approvalTypes = $approvalModule->types->pluck('id');
+        
+        $about->requiredApprovals()->delete();
+        foreach ($approvalTypes as $typeId) {
+            $about->requiredApprovals()->create(['approval_type_id' => $typeId]);
+        }
     
         $about->save();
     
@@ -125,5 +134,10 @@ class AboutController extends Controller
     
         return redirect()->route('abouts.index', ['lang' => $lang])
             ->with('success', __('About deleted successfully!'));
+    }
+
+    public function show($lang, About $about)
+    {
+        return view('abouts.show', compact('about'));
     }
 }

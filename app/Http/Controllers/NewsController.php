@@ -7,6 +7,7 @@ use App\Models\Language;
 use Illuminate\Support\Str;
 use App\Models\NewsCategory;
 use Illuminate\Http\Request;
+use App\Models\ApprovalModule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -40,6 +41,8 @@ class NewsController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
+        $user = Auth::user()->id;
+
         $imagePath = $request->file('image')->store('public/news');
 
         $news = News::create([
@@ -48,6 +51,7 @@ class NewsController extends Controller
             'slug' => [],
             'name' => [],
             'content' => [],
+            'user_id' => $user,
         ]);
     
         foreach ($request->input('translations', []) as $locale => $data) {
@@ -65,14 +69,16 @@ class NewsController extends Controller
                 }
             }
         }
-        
-        $news->user_id = Auth::id();
+
         $news->save();
 
-        $approvalTypes = [1, 2, 3, 4, 5, 6];
-        foreach ($approvalTypes as $typeId) {
-            $news->requiredApprovals()->create(['approval_type_id' => $typeId]);
-        }
+        $approvalModule = ApprovalModule::find(5) ?? ApprovalModule::find(1);
+
+         $approvalTypes = $approvalModule->types->pluck('id');
+
+         foreach ($approvalTypes as $typeId) {
+             $news->requiredApprovals()->create(['approval_type_id' => $typeId]);
+         }
     
         return redirect()->route('news.index', ['lang' => $lang])
             ->with('success', __('News created successfully!'));
@@ -120,7 +126,10 @@ class NewsController extends Controller
     
         $news->approvals()->delete();
 
-        $approvalTypes = [1, 2, 3, 4, 5, 6];
+        $approvalModule = ApprovalModule::find(5) ?? ApprovalModule::find(1);
+
+        $approvalTypes = $approvalModule->types->pluck('id');
+        
         $news->requiredApprovals()->delete();
         foreach ($approvalTypes as $typeId) {
             $news->requiredApprovals()->create(['approval_type_id' => $typeId]);
@@ -154,7 +163,8 @@ class NewsController extends Controller
 
     public function show($lang, News $news)
     {
-        $languages = Language::all();
-        return view('news.show', compact('news', 'languages'));
+        $recent_posts = News::latest()->take(5)->get();
+        $news_categories = NewsCategory::all();
+        return view('news.show', compact('news', 'recent_posts','news_categories'));
     }
 }

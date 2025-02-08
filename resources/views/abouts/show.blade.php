@@ -1,7 +1,7 @@
 @extends('layouts.preview')
 
 @section('title')
-{{ $page->getTranslation('title', app()->getLocale()) }} - Meiji Indonesia
+{{ $about->getTranslation('title', app()->getLocale()) }} - Meiji Indonesia
 @endsection
 
 @section('content')
@@ -12,11 +12,11 @@
       <div class="col-12 col-lg-6 offset-lg-3">
         <div class="title">
           <div class="title-heading">
-            <h1>{{ $page->getTranslation('title', app()->getLocale()) }}</h1>
+            <h1>{{ $about->getTranslation('title', app()->getLocale()) }}</h1>
           </div>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">{{ translate('Home') }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ $page->getTranslation('title', app()->getLocale()) }}</li>
+            <li class="breadcrumb-item"><a href="#">{{ translate('Home') }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ $about->getTranslation('title', app()->getLocale()) }}</li>
           </ol>
         </div>
         <!-- End .title -->
@@ -30,10 +30,10 @@
 <br>
 <br>
 <br>
-<div class="page-section">
+<div class="about-section">
     <div class="container">
-        <div class="page-content">
-            {!! $page->getTranslation('content', app()->getLocale()) !!}
+        <div class="about-content">
+            {!! $about->getTranslation('content', app()->getLocale()) !!}
         </div>
     </div>
 </div>

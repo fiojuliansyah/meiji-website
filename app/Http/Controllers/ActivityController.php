@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\Language;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\ApprovalModule;
 
 class ActivityController extends Controller
 {
@@ -64,27 +65,19 @@ class ActivityController extends Controller
      
          $about->save();
 
-         $approvalTypes = [1, 2, 3, 4, 5, 6]; // ID jenis approval
-        foreach ($approvalTypes as $typeId) {
-            $about->requiredApprovals()->create(['approval_type_id' => $typeId]);
-        }
+         $approvalModule = ApprovalModule::find(3) ?? ApprovalModule::find(1);
+
+         $approvalTypes = $approvalModule->types->pluck('id');
+
+         foreach ($approvalTypes as $typeId) {
+             $about->requiredApprovals()->create(['approval_type_id' => $typeId]);
+         }
      
          return redirect()->route('activities.index', ['lang' => $lang])
              ->with('success', __('Activity created successfully!'));
      }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show($lang, Activity $about)
-    {
-        $languages = Language::all();
-        return view('activities.show', compact('about', 'languages'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit($lang, Activity $about)
     {
         $languages = Language::all();
@@ -113,12 +106,15 @@ class ActivityController extends Controller
 
         $about->approvals()->delete();
 
-        $approvalTypes = [1, 2, 3, 4, 5, 6];
+        $approvalModule = ApprovalModule::find(3) ?? ApprovalModule::find(1);
+
+        $approvalTypes = $approvalModule->types->pluck('id');
+        
         $about->requiredApprovals()->delete();
         foreach ($approvalTypes as $typeId) {
             $about->requiredApprovals()->create(['approval_type_id' => $typeId]);
         }
-    
+
         $about->save();
     
         return redirect()->route('activities.index', ['lang' => $lang])
@@ -139,5 +135,10 @@ class ActivityController extends Controller
     
         return redirect()->route('activities.index', ['lang' => $lang])
             ->with('success', __('Activity deleted successfully!'));
+    }
+
+    public function show($lang, Activities $activity)
+    {
+        return view('activities.show', compact('activity'));
     }
 }

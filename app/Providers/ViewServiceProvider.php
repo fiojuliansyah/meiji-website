@@ -39,7 +39,7 @@ class ViewServiceProvider extends ServiceProvider
                     'routeParameters' => json_encode($routeParameters)
                 ];
 
-                if ($view->getName() === 'layouts.front' || str_starts_with($view->getName(), 'frontpage.')) {
+                if ($view->getName() === 'layouts.front' || str_starts_with($view->getName(), 'frontpage.') || 'layouts.preview') {
                     $data['general'] = General::first();
                     $data['abouts'] = About::all();
                     $data['news_categories'] = NewsCategory::all();
@@ -48,8 +48,10 @@ class ViewServiceProvider extends ServiceProvider
                     $data['activities'] = Activity::all();
                     $data['pages_header'] = Page::where('is_header', 1)->get();
                     $data['pages_footer'] = Page::where('is_footer', 1)->get();
+                    $data['auth'] = Auth::user();
                 } elseif ($view->getName() === 'layouts.guest') {
                     $data['general'] = General::first();
+                    $data['auth'] = Auth::user();
                 } elseif ($view->getName() === 'layouts.app') {
                     $data['general'] = General::first();
                     $data['auth'] = Auth::user();

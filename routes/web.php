@@ -4,6 +4,7 @@ use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\LogController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\RoleController;
@@ -131,7 +132,9 @@ Route::prefix('{lang}')
                 Route::resource('languages', LanguageController::class)->except(['destroy']);
 
                 Route::get('approvals', [ApprovalController::class, 'index'])->name('approvals.index');
-                Route::get('approvals/{approvableType}/{approvableId}', [ApprovalController::class, 'show'])->name('approvals.show');
+                Route::get('approvals/show/{approvableType}/{approvableId}', [ApprovalController::class, 'show'])->name('approvals.show');
+                Route::get('approvals/edit/{approvableType}/{approvableId}', [ApprovalController::class, 'edit'])->name('approvals.edit');
+                Route::post('/approvals/rollback/{approvableType}/{approvableId}/{approvalTypeId}', [ApprovalController::class, 'rollback'])->name('rollback');
                 Route::post('approve/{approvableType}/{approvableId}/{approvalTypeId}', [ApprovalController::class, 'approve'])->name('approve');
                 Route::post('/approvals/reject/{approvableType}/{approvableId}/{approvalTypeId}', [ApprovalController::class, 'reject'])->name('reject');
                                 
@@ -139,5 +142,7 @@ Route::prefix('{lang}')
                 Route::get('languages/{id}/translations', [TranslationController::class, 'index'])->name('languages.translations');
                 Route::put('translations/update-multiple', [TranslationController::class, 'updateMultiple'])->name('translations.update_multiple');
                 Route::post('ckeditor/upload', [UploadController::class, 'uploadImage'])->name('ckeditor.upload');
+
+                Route::get('logs', [LogController::class, 'index'])->name('logs.index');
             });
     });

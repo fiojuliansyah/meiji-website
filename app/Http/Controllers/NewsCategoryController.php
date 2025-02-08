@@ -19,8 +19,8 @@ class NewsCategoryController extends Controller
 
     public function index()
     {
-        $categories = NewsCategory::all();
-        return view('news_categories.index', compact('categories'));
+        $ncategories = NewsCategory::all();
+        return view('news_categories.index', compact('ncategories'));
     }
 
     public function create($lang)

@@ -68,10 +68,13 @@ class ProductController extends Controller
     
         $product->save();
 
-        $approvalTypes = [1, 2, 3, 4, 5, 6]; // ID jenis approval
-        foreach ($approvalTypes as $typeId) {
-            $product->requiredApprovals()->create(['approval_type_id' => $typeId]);
-        }
+        $approvalModule = ApprovalModule::find(7) ?? ApprovalModule::find(1);
+
+         $approvalTypes = $approvalModule->types->pluck('id');
+
+         foreach ($approvalTypes as $typeId) {
+             $product->requiredApprovals()->create(['approval_type_id' => $typeId]);
+         }
     
         return redirect()->route('products.index', ['lang' => $lang])
             ->with('success', __('Product created successfully!'));
@@ -120,7 +123,10 @@ class ProductController extends Controller
 
         $product->approvals()->delete();
 
-        $approvalTypes = [1, 2, 3, 4, 5, 6];
+        $approvalModule = ApprovalModule::find(7) ?? ApprovalModule::find(1);
+
+        $approvalTypes = $approvalModule->types->pluck('id');
+        
         $product->requiredApprovals()->delete();
         foreach ($approvalTypes as $typeId) {
             $product->requiredApprovals()->create(['approval_type_id' => $typeId]);
@@ -154,7 +160,10 @@ class ProductController extends Controller
 
     public function show($lang, Product $product)
     {
-        $languages = Language::all();
-        return view('products.show', compact('product', 'languages'));
+        $related_products = Product::where('category_id', $product->category_id)
+                           ->where('id', '!=', $product->id)
+                           ->take(5)
+                           ->get();
+        return view('products.show', compact('product', 'related_products'));
     }
 }

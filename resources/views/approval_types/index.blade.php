@@ -39,6 +39,7 @@
                             <tr>
                                 <th>{{ translate('Name') }}</th>
                                 <th>{{ translate('Assigned User') }}</th>
+                                <th>{{ translate('Assigned Module') }}</th>
                                 <th>{{ translate('Actions') }}</th>
                             </tr>
                         </thead>
@@ -47,6 +48,7 @@
                                 <tr>
                                     <td>{{ $type->name }}</td>
                                     <td>{{ $type->user->name ?? translate('Not Assigned') }}</td>
+                                    <td>{{ $type->module->name ?? translate('Not Assigned') }}</td>
                                     <td>
                                         <div class="hstack gap-2 justify-content-end">
                                             <div class="dropdown">

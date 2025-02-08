@@ -1,54 +1,42 @@
-@extends('layouts.app')
+@extends('layouts.preview')
+
+@section('title')
+{{ $randd->getTranslation('title', app()->getLocale()) }} - Meiji Indonesia
+@endsection
 
 @section('content')
-<div class="nxl-content">
-    <div class="page-header">
-        <div class="page-header-left d-flex align-items-center">
-            <div class="page-header-title">
-                <h5 class="m-b-10">{{ translate('View') }} {{ translate('RandD') }}</h5>
+<section class="page-title bg-overlay bg-overlay-dark bg-parallax" id="page-title">
+    <div class="bg-section"><img src="{{ asset('storage/' . $general->breadcrumb) }}" alt="Background"/></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-6 offset-lg-3">
+          <div class="title">
+            <div class="title-heading">
+              <h1>{{ $randd->getTranslation('title', app()->getLocale()) }}</h1>
             </div>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">{{ translate('Home') }}</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{ $randd->getTranslation('title', app()->getLocale()) }}</li>
+            </ol>
+          </div>
+          <!-- End .title -->
         </div>
+        <!-- End .col-lg-6-->
+      </div>
+      <!-- End .row-->
     </div>
-
-    <div class="main-content">
-        <div class="card">
-            <div class="card-body">
-                <!-- Language Tabs -->
-                <ul class="nav nav-tabs" id="languageTabs" role="tablist">
-                    @foreach ($languages as $language)
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link {{ $loop->first ? 'active' : '' }}" 
-                                    id="tab-{{ $language->code }}"
-                                    data-bs-toggle="tab" 
-                                    data-bs-target="#lang-{{ $language->code }}" 
-                                    type="button" 
-                                    role="tab">
-                                {{ $language->name }}
-                            </button>
-                        </li>
-                    @endforeach
-                </ul>
-                
-                <div class="tab-content mt-3" id="languageTabContent">
-                    @foreach ($languages as $language)
-                        <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" 
-                             id="lang-{{ $language->code }}" 
-                             role="tabpanel">
-                            <!-- Title -->
-                            <div class="mb-3">
-                                <h6>{{ translate('Title') }} ({{ $language->name }})</h6>
-                                <p>{{ $randd->getTranslation('title', $language->code, false) }}</p>
-                            </div>
-                            <!-- Content -->
-                            <div class="mb-3">
-                                <h6>{{ translate('Content') }} ({{ $language->name }})</h6>
-                                <p>{!! $randd->getTranslation('content', $language->code, false) !!}</p>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
+    <!-- End .container-->
+  </section>
+<br>
+<br>
+<br>
+<div class="randd-section">
+    <div class="container">
+        <div class="randd-content">
+            {!! $randd->getTranslation('content', app()->getLocale()) !!}
         </div>
     </div>
 </div>
+<br>
+<br>
 @endsection

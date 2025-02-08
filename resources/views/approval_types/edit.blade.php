@@ -33,8 +33,8 @@
                     @method('PUT')
 
                     <div class="mb-3">
-                        <label class="form-label">{{ translate('Assigned User') }}</label>
-                        <input type="text" name="name" class="form-control" value="{{ $approvalType->name }}" id="">
+                        <label class="form-label">{{ translate('Name') }}</label>
+                        <input type="text" name="name" class="form-control" value="{{ $approvalType->name }}" required>
                     </div>
 
                     <!-- Assigned User -->
@@ -48,6 +48,33 @@
                                 </option>
                             @endforeach
                         </select>
+                    </div>
+
+                    <!-- Assigned Module -->
+                    <div class="mb-3">
+                        <label class="form-label">{{ translate('Assigned Module') }}</label>
+                        <select name="approval_module_id" class="form-control" required>
+                            <option value="" disabled>{{ translate('Select Module') }}</option>
+                            @foreach ($modules as $module)
+                                <option value="{{ $module->id }}" {{ $approvalType->approval_module_id == $module->id ? 'selected' : '' }}>
+                                    {{ $module->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    
+                    <!-- Toggle is_edit -->
+                    <div class="mb-3 form-check">
+                        <input type="hidden" name="is_edit" value="">
+                        <input type="checkbox" name="is_edit" value="1" class="form-check-input" id="is_edit" {{ $approvalType->is_edit ? 'checked' : '' }}>
+                        <label class="form-check-label" for="is_edit">{{ translate('Is Editable') }}</label>
+                    </div>
+
+                    <!-- Toggle is_preview -->
+                    <div class="mb-3 form-check">
+                        <input type="hidden" name="is_preview" value="">
+                        <input type="checkbox" name="is_preview" value="1" class="form-check-input" id="is_preview" {{ $approvalType->is_preview ? 'checked' : '' }}>
+                        <label class="form-check-label" for="is_preview">{{ translate('Is Previewable') }}</label>
                     </div>
 
                     <!-- Submit Button -->

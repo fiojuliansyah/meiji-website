@@ -30,10 +30,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($categories as $category)
+                                @foreach ($ncategories as $ncategory)
                                     <tr>
-                                        <td>{{ $category->getTranslation('name', app()->getLocale()) }}</td>
-                                        <td>{{ $category->getTranslation('slug', app()->getLocale()) }}</td>
+                                        <td>{{ $ncategory->getTranslation('name', app()->getLocale()) }}</td>
+                                        <td>{{ $ncategory->getTranslation('slug', app()->getLocale()) }}</td>
                                         <td>
                                             <!-- Dropdown Action for Edit & Delete -->
                                             <div class="dropdown">
@@ -42,12 +42,12 @@
                                                 </a>
                                                 <ul class="dropdown-menu">
                                                     <li>
-                                                        <a class="dropdown-item" href="{{ route('news_categories.edit', ['lang' => app()->getLocale(), 'news_category' => $category->id]) }}">
+                                                        <a class="dropdown-item" href="{{ route('news_categories.edit', ['lang' => app()->getLocale(), 'news_category' => $ncategory->id]) }}">
                                                             <i class="feather feather-edit-3 me-2"></i> {{ translate('Edit') }}
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $category->id }}">
+                                                        <a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $ncategory->id }}">
                                                             <i class="feather feather-trash-2 me-2"></i> {{ translate('Delete') }}
                                                         </a>
                                                     </li>
@@ -73,9 +73,9 @@
     @endsection
 
     @section('modal')
-    @foreach ($categories as $category)
+    @foreach ($categories as $ncategory)
     <!-- Modal for Delete Confirmation -->
-    <div class="modal fade" id="deleteModal{{ $category->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteModal{{ $ncategory->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -85,7 +85,7 @@
                 <div class="modal-body">{{ translate('Are you sure you want to delete this category?') }}</div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ translate('Close') }}</button>
-                    <form method="POST" action="{{ route('news_categories.destroy', ['lang' => app()->getLocale(), 'news_category' => $category->id]) }}">
+                    <form method="POST" action="{{ route('news_categories.destroy', ['lang' => app()->getLocale(), 'news_category' => $ncategory->id]) }}">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">{{ translate('Delete') }}</button>

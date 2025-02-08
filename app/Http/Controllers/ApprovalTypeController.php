@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\ApprovalType;
 use Illuminate\Http\Request;
+use App\Models\ApprovalModule;
 
 class ApprovalTypeController extends Controller
 {
@@ -23,7 +24,8 @@ class ApprovalTypeController extends Controller
     public function create($lang)
     {
         $users = User::all();
-        return view('approval_types.create', compact('users'));
+        $modules = ApprovalModule::all();
+        return view('approval_types.create', compact('users','modules'));
     }
 
     /**
@@ -34,6 +36,9 @@ class ApprovalTypeController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'user_id' => 'required|exists:users,id',
+            'approval_module_id' => 'required|string|max:255',
+            'is_edit' => 'nullable|string|max:255',
+            'is_preview' => 'nullable|string|max:255',
         ]);
 
         ApprovalType::create($request->all());
@@ -47,7 +52,8 @@ class ApprovalTypeController extends Controller
     public function edit($lang, ApprovalType $approvalType)
     {
         $users = User::all();
-        return view('approval_types.edit', compact('approvalType', 'users'));
+        $modules = ApprovalModule::all();
+        return view('approval_types.edit', compact('approvalType', 'users', 'modules'));
     }
 
     /**
@@ -58,6 +64,9 @@ class ApprovalTypeController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'user_id' => 'required|exists:users,id',
+            'approval_module_id' => 'required|string|max:255',
+            'is_edit' => 'nullable|string|max:255',
+            'is_preview' => 'nullable|string|max:255',
         ]);
 
         $approvalType->update($request->all());

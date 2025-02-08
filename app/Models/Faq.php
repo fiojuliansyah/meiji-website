@@ -67,4 +67,22 @@ class Faq extends Model
     {
         return $this->{$attribute} ?? [];
     }
+
+    public function approvals()
+    {
+        return $this->morphMany(Approval::class, 'approvable');
+    }
+
+    public function requiredApprovals()
+    {
+        return $this->morphMany(ContentApprovalRequirement::class, 'approvable');
+    }
+
+    public function isFullyApproved(): bool
+    {
+        $requiredTypes = $this->requiredApprovals()->pluck('approval_type_id');
+        $approvedTypes = $this->approvals()->pluck('approval_type_id');
+
+        return $requiredTypes->diff($approvedTypes)->isEmpty();
+    }
 }

@@ -66,12 +66,10 @@
                     </div>
 
                     <!-- Validation Toggle -->
-                    <div class="mb-3">
-                        <label for="is_validate" class="form-label">{{ translate('Validate') }}</label>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="is_validate" name="is_validate" value="1">
-                            <label class="form-check-label" for="is_validate">{{ translate('Enable') }}</label>
-                        </div>
+                    <div class="mb-3 form-check">
+                        <input type="hidden" name="is_validate" value="">
+                        <input type="checkbox" name="is_validate" value="1" class="form-check-input" id="is_validate">
+                        <label class="form-check-label" for="is_validate">{{ translate('Is Validate') }}</label>
                     </div>
 
                     <!-- Submit Button -->

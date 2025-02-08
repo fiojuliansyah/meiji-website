@@ -49,11 +49,7 @@ class SliderController extends Controller
         }
 
         $slider->save();
-        $approvalTypes = [1, 2, 3, 4, 5, 6]; // ID jenis approval
-        foreach ($approvalTypes as $typeId) {
-            $slider->requiredApprovals()->create(['approval_type_id' => $typeId]);
-        }
-
+        
         return redirect()->route('sliders.index')->with('success', __('Slider created successfully!'));
     }
 

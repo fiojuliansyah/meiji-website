@@ -18,6 +18,9 @@ class RolePermissionSeeder extends Seeder
             'Dashboard' => [
                 'view-dashboard',
             ],
+            'Approvals' => [
+                'list-approvals',
+            ],
             'Homepages' => [
                 'view-homepages',
                 'edit-homepages',
@@ -153,44 +156,107 @@ class RolePermissionSeeder extends Seeder
 
         DB::table('users')->insert([
             [
-                'name' => 'John Doe',
-                'email' => 'john@example.com',
+                'name' => 'Dody Irawan',
+                'email' => 'dody.irawan@meiji.co.id',
                 'password' => Hash::make('password'), // Password: password
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Jane Smith',
-                'email' => 'jane@example.com',
-                'password' => Hash::make('password'), // Password: password
+                'name' => 'Maya Puspitasari',
+                'email' => 'maya.puspitasari@meiji.co.id',
+                'password' => Hash::make('password'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Mark Taylor',
-                'email' => 'mark@example.com',
-                'password' => Hash::make('password'), // Password: password
+                'name' => 'Adam Aulia Bhagaskara',
+                'email' => 'adam.aulia@meiji.co.id',
+                'password' => Hash::make('password'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Alice Brown',
-                'email' => 'alice@example.com',
-                'password' => Hash::make('password'), // Password: password
+                'name' => 'Muhammad Rifki Hariansyah',
+                'email' => 'rifki.hariansyah@meiji.co.id',
+                'password' => Hash::make('password'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Charlie Davis',
-                'email' => 'charlie@example.com',
-                'password' => Hash::make('password'), // Password: password
+                'name' => 'Galih Ario Seno',
+                'email' => 'galih.ario@meiji.co.id',
+                'password' => Hash::make('password'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Emma Wilson',
-                'email' => 'emma@example.com',
-                'password' => Hash::make('password'), // Password: password
+                'name' => 'Muhammad Faisal Arifin',
+                'email' => 'faisal.arifin@meiji.co.id',
+                'password' => Hash::make('password'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Nur Jihad Alhaq',
+                'email' => 'nj_alhaq@meiji.co.id',
+                'password' => Hash::make('password'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Yeni Pratiwi Puspitasari',
+                'email' => 'yeni.pratiwi@meiji.co.id',
+                'password' => Hash::make('password'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Gita Siwi Pribadi',
+                'email' => 'gita.siwi@meiji.co.id',
+                'password' => Hash::make('password'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Debbie Elsiandani Wirastika',
+                'email' => 'debbie.elsiandani@meiji.co.id',
+                'password' => Hash::make('password'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Agung Wibisono Wisnu Ajie',
+                'email' => 'agung@meiji.co.id',
+                'password' => Hash::make('password'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Wawan Fauzi',
+                'email' => 'wawan.fauzi@meiji.co.id',
+                'password' => Hash::make('password'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'mubarok',
+                'email' => 'mubarok@meiji.co.id',
+                'password' => Hash::make('password'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Firmansyah',
+                'email' => 'firmansyah@meiji.co.id',
+                'password' => Hash::make('password'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Budi Raharjo',
+                'email' => 'budi.rahardjo@meiji.co.id',
+                'password' => Hash::make('password'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

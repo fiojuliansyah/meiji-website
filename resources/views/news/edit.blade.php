@@ -49,7 +49,7 @@
                     <div class="mb-3">
                         <label class="form-label">{{ translate('Current Image') }}</label>
                         <div>
-                            <img src="{{ $news->image_url }}" alt="News Image" style="max-width: 200px;">
+                            <img src="{{ asset('storage/' . $news->image) }}" alt="News Image" style="max-width: 200px;">
                         </div>
                     </div>
 

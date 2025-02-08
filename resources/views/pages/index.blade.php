@@ -1,17 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="page-wrapper">
-    <div class="page-content">
-        <!--breadcrumb-->
-        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">{{ translate('Pages') }}</div>
-            <div class="ms-auto">
-                <div class="btn-group">
-                    <a href="{{ route('pages.create', ['lang' => app()->getLocale()]) }}" class="btn btn-primary">{{ translate('Create Page') }}</a>
-                </div>
+<div class="nxl-content">
+    <div class="page-header">
+        <div class="page-header-left d-flex align-items-center">
+            <div class="page-header-title">
+                <h5 class="m-b-10">{{ translate('page') }}</h5>
             </div>
         </div>
+        <div class="page-header-right ms-auto">
+            <div class="page-header-right-items">
+                <a href="{{ route('pages.create', ['lang' => app()->getLocale()]) }}" class="btn btn-primary">
+                    <i class="feather-plus-circle me-2"></i>{{ translate('Create Page') }}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
@@ -20,23 +26,13 @@
                             <tr>
                                 <th>{{ translate('Title') }}</th>
                                 <th>{{ translate('Approval') }}</th>
-                                {{-- <th>{{ translate('Content') }}</th> --}}
                                 <th>{{ translate('Action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($pages as $page)   
                                 <tr>
-                                    <td>
-                                        {{ $page->getTranslation('title', app()->getLocale()) }}
-                                        
-                                        @if ($page->is_header)
-                                            <span class="badge bg-success ms-2">{{ translate('Header') }}</span>
-                                        @endif
-                                        @if ($page->is_footer)
-                                            <span class="badge bg-info ms-2">{{ translate('Footer') }}</span>
-                                        @endif
-                                    </td>
+                                    <td>{{ $page->getTranslation('title', app()->getLocale()) }}</td>
                                     <td>
                                         @foreach ($page->requiredApprovals as $requirement)
                                             <div>
@@ -58,11 +54,24 @@
                                             </div>
                                         @endforeach
                                     </td>
-                                    {{-- <td>{!! $page->getTranslation('content', app()->getLocale()) !!}</td> --}}
                                     <td>
-                                        <div class="d-flex order-actions">
-                                            <a href="{{ route('pages.edit', ['lang' => app()->getLocale(), 'page' => $page->id]) }}" class=""><i class='bx bxs-edit'></i></a>
-                                            <a href="javascript:;" class="ms-3" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $page->id }}"><i class='bx bxs-trash'></i></a>
+                                        <!-- Dropdown for Actions -->
+                                        <div class="dropdown">
+                                            <a href="javascript:void(0)" class="btn btn-sm btn-light" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="feather feather-more-horizontal"></i> <!-- More Options Icon -->
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="{{ route('pages.edit', ['lang' => app()->getLocale(), 'page' => $page->id]) }}">
+                                                        <i class="feather feather-edit-3 me-2"></i> {{ translate('Edit') }}
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $page->id }}">
+                                                        <i class="feather feather-trash-2 me-2"></i> {{ translate('Delete') }}
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </td>
                                 </tr>
@@ -71,7 +80,6 @@
                         <tfoot>
                             <tr>
                                 <th>{{ translate('Title') }}</th>
-                                {{-- <th>{{ translate('Content') }}</th> --}}
                                 <th>{{ translate('Action') }}</th>
                             </tr>
                         </tfoot>
@@ -81,7 +89,11 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('modal')
 @foreach ($pages as $page)   
+<!-- Modal for Delete Confirmation -->
 <div class="modal fade" id="deleteModal{{ $page->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -105,18 +117,20 @@
 @endsection
 
 @push('js')
-<script src="/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
-<script src="/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-<script src="/assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+<!-- jQuery and DataTables CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+
 <script>
     $(document).ready(function() {
-        var table = $('#example2').DataTable( {
+        var table = $('#example2').DataTable({
             lengthChange: false,
-            buttons: [ 'copy', 'excel', 'pdf', 'print']
-        } );
-     
+            buttons: ['copy', 'excel', 'pdf', 'print']
+        });
+
         table.buttons().container()
-            .appendTo( '#example2_wrapper .col-md-6:eq(0)' );
+            .appendTo('#example2_wrapper .col-md-6:eq(0)');
     });
 </script>
 @endpush

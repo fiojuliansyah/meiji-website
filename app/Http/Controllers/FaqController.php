@@ -6,6 +6,7 @@ use App\Models\Faq;
 use App\Models\Language;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\ApprovalModule;
 
 class FaqController extends Controller
 {
@@ -63,6 +64,14 @@ class FaqController extends Controller
          }
      
          $faq->save();
+
+         $approvalModule = ApprovalModule::find(4) ?? ApprovalModule::find(1);
+
+         $approvalTypes = $approvalModule->types->pluck('id');
+
+         foreach ($approvalTypes as $typeId) {
+             $faq->requiredApprovals()->create(['approval_type_id' => $typeId]);
+         }
      
          return redirect()->route('faqs.index', ['lang' => $lang])
              ->with('success', __('Faq created successfully!'));
@@ -103,6 +112,17 @@ class FaqController extends Controller
                     ]);
                 }
             }
+        }
+
+        $faq->approvals()->delete();
+
+        $approvalModule = ApprovalModule::find(4) ?? ApprovalModule::find(1);
+
+        $approvalTypes = $approvalModule->types->pluck('id');
+        
+        $faq->requiredApprovals()->delete();
+        foreach ($approvalTypes as $typeId) {
+            $faq->requiredApprovals()->create(['approval_type_id' => $typeId]);
         }
     
         $faq->save();

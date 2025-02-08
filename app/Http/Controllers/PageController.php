@@ -6,6 +6,7 @@ use App\Models\Page;
 use App\Models\Language;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\ApprovalModule;
 
 class PageController extends Controller
 {
@@ -67,27 +68,19 @@ class PageController extends Controller
          $page->is_footer = $request->is_footer;
          $page->save();
 
-         $approvalTypes = [1, 2, 3, 4, 5, 6]; // ID jenis approval
-        foreach ($approvalTypes as $typeId) {
-            $page->requiredApprovals()->create(['approval_type_id' => $typeId]);
-        }
+         $approvalModule = ApprovalModule::find(6) ?? ApprovalModule::find(1);
+
+         $approvalTypes = $approvalModule->types->pluck('id');
+
+         foreach ($approvalTypes as $typeId) {
+             $page->requiredApprovals()->create(['approval_type_id' => $typeId]);
+         }
      
          return redirect()->route('pages.index', ['lang' => $lang])
              ->with('success', __('Page created successfully!'));
      }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show($lang, Page $page)
-    {
-        $languages = Language::all();
-        return view('pages.show', compact('page', 'languages'));
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($lang, Page $page)
     {
         $languages = Language::all();
@@ -119,11 +112,15 @@ class PageController extends Controller
 
         $page->approvals()->delete();
 
-        $approvalTypes = [1, 2, 3, 4, 5, 6];
+        $approvalModule = ApprovalModule::find(6) ?? ApprovalModule::find(1);
+
+        $approvalTypes = $approvalModule->types->pluck('id');
+        
         $page->requiredApprovals()->delete();
         foreach ($approvalTypes as $typeId) {
             $page->requiredApprovals()->create(['approval_type_id' => $typeId]);
         }
+
         $page->save();
     
         return redirect()->route('pages.index', ['lang' => $lang])
@@ -144,5 +141,10 @@ class PageController extends Controller
     
         return redirect()->route('pages.index', ['lang' => $lang])
             ->with('success', __('Page deleted successfully!'));
+    }
+
+    public function show($lang, Page $page)
+    {
+        return view('pages.show', compact('page'));
     }
 }

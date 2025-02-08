@@ -6,6 +6,7 @@ use App\Models\Randd;
 use App\Models\Language;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\ApprovalModule;
 
 class RanddController extends Controller
 {
@@ -63,27 +64,19 @@ class RanddController extends Controller
          }
      
          $randd->save();
-         $approvalTypes = [1, 2, 3, 4, 5, 6]; // ID jenis approval
-        foreach ($approvalTypes as $typeId) {
-            $randd->requiredApprovals()->create(['approval_type_id' => $typeId]);
-        }
+
+         $approvalModule = ApprovalModule::find(8) ?? ApprovalModule::find(1);
+
+         $approvalTypes = $approvalModule->types->pluck('id');
+
+         foreach ($approvalTypes as $typeId) {
+             $randd->requiredApprovals()->create(['approval_type_id' => $typeId]);
+         }
      
          return redirect()->route('randds.index', ['lang' => $lang])
              ->with('success', __('Randd created successfully!'));
      }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show($lang, Randd $randd)
-    {
-        $languages = Language::all();
-        return view('randds.show', compact('randd', 'languages'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($lang, Randd $randd)
     {
         $languages = Language::all();
@@ -112,7 +105,10 @@ class RanddController extends Controller
         
         $randd->approvals()->delete();
 
-        $approvalTypes = [1, 2, 3, 4, 5, 6];
+        $approvalModule = ApprovalModule::find(8) ?? ApprovalModule::find(1);
+
+        $approvalTypes = $approvalModule->types->pluck('id');
+        
         $randd->requiredApprovals()->delete();
         foreach ($approvalTypes as $typeId) {
             $randd->requiredApprovals()->create(['approval_type_id' => $typeId]);
@@ -138,5 +134,10 @@ class RanddController extends Controller
     
         return redirect()->route('randds.index', ['lang' => $lang])
             ->with('success', __('Randd deleted successfully!'));
+    }
+
+    public function show($lang, Randd $randd)
+    {
+        return view('randds.show', compact('randd'));
     }
 }

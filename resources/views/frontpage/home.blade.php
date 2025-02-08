@@ -14,7 +14,7 @@
                 <div class="col-12 col-lg-7">
                   <div class="slide-content">
                     <h1 class="slide-headline">{{ $slider->getTranslation('title', app()->getLocale()) }}</h1>
-                    <p class="slide-desc" style="color: white">{!! $slider->getTranslation('content', app()->getLocale()) !!}</p>
+                    <p class="slide-desc">{{ $slider->getTranslation('content', app()->getLocale()) }}</p>
                   </div>
                   <!-- End .slide-content -->
                 </div>

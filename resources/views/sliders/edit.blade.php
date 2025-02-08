@@ -95,28 +95,3 @@
     </div>
 </div>
 @endsection
-
-@push('js')
-<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.editor').forEach(function(element) {
-            CKEDITOR.replace(element, {
-                versionCheck: false,
-                height: 300,
-                filebrowserUploadUrl: "{{ route('ckeditor.upload', ['_token' => csrf_token()]) }}",
-                filebrowserUploadMethod: 'form',
-                removeButtons: 'PasteFromWord'
-            });
-        });
-
-        document.querySelectorAll('[data-bs-toggle="tab"]').forEach(function(button) {
-            button.addEventListener('shown.bs.tab', function() {
-                for (var instanceName in CKEDITOR.instances) {
-                    CKEDITOR.instances[instanceName].resize();
-                }
-            });
-        });
-    });
-</script>
-@endpush

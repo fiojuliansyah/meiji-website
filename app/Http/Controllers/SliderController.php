@@ -83,14 +83,6 @@ class SliderController extends Controller
             $slider->setTranslation('content', $locale, $data['content']);
         }
 
-        $slider->approvals()->delete();
-
-        $approvalTypes = [1, 2, 3, 4, 5, 6];
-        $slider->requiredApprovals()->delete();
-        foreach ($approvalTypes as $typeId) {
-            $slider->requiredApprovals()->create(['approval_type_id' => $typeId]);
-        }
-
         $slider->save();
 
         return redirect()->route('sliders.index')->with('success', __('Slider updated successfully!'));

@@ -19,7 +19,7 @@ class HomeController extends Controller
      {
           $page = Homepage::first();
           $news = News::where('is_published', true)->latest()->get();
-          $sliders = Slider::where('is_published', true)->latest()->get();
+          $sliders = Slider::all();
           return view('frontpage.home',compact('sliders','news','page'));
      }
 

@@ -38,8 +38,6 @@
                             <tr>
                                 <th>{{ translate('Image') }}</th>
                                 <th>{{ translate('Title') }}</th>
-                                <th>{{ translate('Approval') }}</th>
-                                {{-- <th>{{ translate('Content') }}</th> --}}
                                 <th>{{ translate('Action') }}</th>
                             </tr>
                         </thead>
@@ -58,27 +56,6 @@
                                         </div>
                                     </td>
                                     <td>{{ $slider->getTranslation('title', app()->getLocale()) }}</td>
-                                    <td>
-                                        @foreach ($slider->requiredApprovals as $requirement)
-                                            <div>
-                                                {{ $requirement->approvalType->name }}
-                                                @php
-                                                    $approval = $slider->approvals->firstWhere('approval_type_id', $requirement->approval_type_id);
-                                                @endphp
-                                    
-                                                @if ($approval)
-                                                    @if ($approval->status === 'approved')
-                                                        <span class="badge bg-success">{{ translate('Approved') }}</span>
-                                                    @elseif ($approval->status === 'rejected')
-                                                        <span class="badge bg-danger">{{ translate('Rejected') }}</span>
-                                                        <p class="text-muted mt-1"><small>{{ $approval->rejection_description }}</small></p>
-                                                    @endif
-                                                @else
-                                                    <span class="badge bg-warning">{{ translate('Pending') }}</span>
-                                                @endif
-                                            </div>
-                                        @endforeach
-                                    </td>
                                     {{-- <td>{{ $slider->getTranslation('content', app()->getLocale()) }}</td> --}}
                                     <td>
                                         <div class="hstack gap-2 justify-content-end">

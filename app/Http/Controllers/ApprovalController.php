@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use App\Models\Page;
+use App\Models\About;
 use App\Models\Randd;
 use App\Models\Slider;
 use App\Models\Product;
@@ -29,7 +30,7 @@ class ApprovalController extends Controller
         $pages = Page::with(['requiredApprovals.approvalType', 'approvals'])->get();
         $products = Product::with(['requiredApprovals.approvalType', 'approvals'])->get();
         $randds = Randd::with(['requiredApprovals.approvalType', 'approvals'])->get();
-        $sliders = Slider::with(['requiredApprovals.approvalType', 'approvals'])->get();
+        $abouts = About::with(['requiredApprovals.approvalType', 'approvals'])->get();
         $timelines = Timeline::with(['requiredApprovals.approvalType', 'approvals'])->get();
     
         // Gabungkan semua data menjadi satu koleksi
@@ -39,7 +40,7 @@ class ApprovalController extends Controller
             ->merge($pages)
             ->merge($products)
             ->merge($randds)
-            ->merge($sliders)
+            ->merge($abouts)
             ->merge($timelines);
     
         // Kirim data ke view

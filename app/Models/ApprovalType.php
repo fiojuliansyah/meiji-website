@@ -16,6 +16,6 @@ class ApprovalType extends Model
 
     public function module()
     {
-        return $this->belongsTo(ApprovalModule::class);
+        return $this->belongsTo(ApprovalModule::class, 'approval_module_id');
     }
 }

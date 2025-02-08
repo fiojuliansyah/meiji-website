@@ -77,7 +77,7 @@
                                     <label class="form-label">
                                         {{ translate('Content') }} ({{ $language->name }})
                                     </label>
-                                    <textarea class="editor"
+                                    <textarea class="form-control"
                                               name="translations[{{ $language->code }}][content]"
                                               required>{{ $slider->getTranslation('content', $language->code) }}</textarea>
                                 </div>

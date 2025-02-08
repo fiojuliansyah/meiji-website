@@ -72,7 +72,7 @@
                                     <label class="form-label">
                                         {{ translate('Content') }} ({{ $language->name }})
                                     </label>
-                                    <textarea class="editor"
+                                    <textarea class="form-control"
                                               name="translations[{{ $language->code }}][content]"
                                               placeholder="{{ translate('Enter content') }} {{ $language->name }}"
                                               required></textarea>

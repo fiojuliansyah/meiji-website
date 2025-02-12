@@ -136,7 +136,7 @@ Route::prefix('{lang}')
                 Route::get('approvals/edit/{approvableType}/{approvableId}', [ApprovalController::class, 'edit'])->name('approvals.edit');
                 Route::post('/approvals/rollback/{approvableType}/{approvableId}/{approvalTypeId}', [ApprovalController::class, 'rollback'])->name('rollback');
                 Route::post('approve/{approvableType}/{approvableId}/{approvalTypeId}', [ApprovalController::class, 'approve'])->name('approve');
-                Route::post('/approvals/reject/{approvableType}/{approvableId}/{approvalTypeId}', [ApprovalController::class, 'reject'])->name('reject');
+                Route::post('/approvals/reject/{approvableType}/{approvableId}/{approvalTypeId}', [ApprovalController::class, 'reject'])->name('approve.reject');
                                 
                 Route::delete('languages/{id}', [LanguageController::class, 'destroy'])->name('languages.destroy');
                 Route::get('languages/{id}/translations', [TranslationController::class, 'index'])->name('languages.translations');

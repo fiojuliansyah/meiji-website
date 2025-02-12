@@ -36,9 +36,9 @@
                         <label for="news_category_id" class="form-label">{{ translate('Category') }}</label>
                         <select class="form-control" name="news_category_id" required>
                             <option value="">{{ translate('Select Category') }}</option>
-                            @foreach($categories as $category)
-                                <option value="{{ $category->id }}">
-                                    {{ $category->getTranslation('name', app()->getLocale()) }}
+                            @foreach($news_categories as $news_category)
+                                <option value="{{ $news_category->id }}">
+                                    {{ $news_category->getTranslation('name', app()->getLocale()) }}
                                 </option>
                             @endforeach
                         </select>

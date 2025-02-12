@@ -30,8 +30,8 @@ class NewsController extends Controller
     public function create($lang)
     {
         $languages = Language::All();
-        $categories = NewsCategory::all();
-        return view('news.create', compact('languages', 'categories'));
+        $news_categories = NewsCategory::all();
+        return view('news.create', compact('languages', 'news_categories'));
     }
 
     public function store($lang, Request $request)
@@ -87,8 +87,8 @@ class NewsController extends Controller
     public function edit($lang, News $news)
     {
         $languages = Language::all();
-        $categories = NewsCategory::all();
-        return view('news.edit', compact('news', 'languages', 'categories'));
+        $news_categories = NewsCategory::all();
+        return view('news.edit', compact('news', 'languages', 'news_categories'));
     }
     
     public function update($lang, Request $request, News $news)

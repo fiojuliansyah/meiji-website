@@ -67,7 +67,7 @@ class FaqController extends Controller
 
          $approvalModule = ApprovalModule::find(4) ?? ApprovalModule::find(1);
 
-         $approvalTypes = $approvalModule->types->pluck('id');
+         $approvalTypes = $approvalModule->pluck('id');
 
          foreach ($approvalTypes as $typeId) {
              $faq->requiredApprovals()->create(['approval_type_id' => $typeId]);
@@ -118,7 +118,7 @@ class FaqController extends Controller
 
         $approvalModule = ApprovalModule::find(4) ?? ApprovalModule::find(1);
 
-        $approvalTypes = $approvalModule->types->pluck('id');
+        $approvalTypes = $approvalModule->pluck('id');
         
         $faq->requiredApprovals()->delete();
         foreach ($approvalTypes as $typeId) {

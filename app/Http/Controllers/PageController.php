@@ -70,7 +70,7 @@ class PageController extends Controller
 
          $approvalModule = ApprovalModule::find(6) ?? ApprovalModule::find(1);
 
-         $approvalTypes = $approvalModule->types->pluck('id');
+         $approvalTypes = $approvalModule->pluck('id');
 
          foreach ($approvalTypes as $typeId) {
              $page->requiredApprovals()->create(['approval_type_id' => $typeId]);
@@ -114,7 +114,7 @@ class PageController extends Controller
 
         $approvalModule = ApprovalModule::find(6) ?? ApprovalModule::find(1);
 
-        $approvalTypes = $approvalModule->types->pluck('id');
+        $approvalTypes = $approvalModule->pluck('id');
         
         $page->requiredApprovals()->delete();
         foreach ($approvalTypes as $typeId) {

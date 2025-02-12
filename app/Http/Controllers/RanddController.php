@@ -67,7 +67,7 @@ class RanddController extends Controller
 
          $approvalModule = ApprovalModule::find(8) ?? ApprovalModule::find(1);
 
-         $approvalTypes = $approvalModule->types->pluck('id');
+         $approvalTypes = $approvalModule->pluck('id');
 
          foreach ($approvalTypes as $typeId) {
              $randd->requiredApprovals()->create(['approval_type_id' => $typeId]);
@@ -107,7 +107,7 @@ class RanddController extends Controller
 
         $approvalModule = ApprovalModule::find(8) ?? ApprovalModule::find(1);
 
-        $approvalTypes = $approvalModule->types->pluck('id');
+        $approvalTypes = $approvalModule->pluck('id');
         
         $randd->requiredApprovals()->delete();
         foreach ($approvalTypes as $typeId) {

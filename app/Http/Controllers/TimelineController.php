@@ -54,7 +54,7 @@ class TimelineController extends Controller
         
         $approvalModule = ApprovalModule::find(9) ?? ApprovalModule::find(1);
 
-        $approvalTypes = $approvalModule->types->pluck('id');
+        $approvalTypes = $approvalModule->pluck('id');
 
         foreach ($approvalTypes as $typeId) {
             $timeline->requiredApprovals()->create(['approval_type_id' => $typeId]);
@@ -100,7 +100,7 @@ class TimelineController extends Controller
 
         $approvalModule = ApprovalModule::find(9) ?? ApprovalModule::find(1);
 
-        $approvalTypes = $approvalModule->types->pluck('id');
+        $approvalTypes = $approvalModule->pluck('id');
         
         $timeline->requiredApprovals()->delete();
         foreach ($approvalTypes as $typeId) {

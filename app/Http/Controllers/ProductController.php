@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Language;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\ApprovalModule;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller

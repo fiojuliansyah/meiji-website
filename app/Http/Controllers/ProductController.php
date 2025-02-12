@@ -102,7 +102,7 @@ class ProductController extends Controller
             $product->image = $request->file('image')->store('public/products');
         }
 
-        $product->product_category_id = $request->product_category_id;
+        $product->category_id = $request->category_id;
 
         foreach ($request->input('translations', []) as $locale => $data) {
             $product->setTranslation('name', $locale, $data['name']);

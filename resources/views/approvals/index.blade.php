@@ -138,7 +138,7 @@
                     {{ translate('Are you sure you want to rollback the approval for this content?') }}
                 </div>
                 <div class="modal-footer">
-                    <form action="{{ route('approvals.rollback', ['approvableType' => get_class($content), 'approvableId' => $content->id]) }}" method="POST">
+                    <form action="{{ route('rollback', ['approvableType' => get_class($content), 'approvableId' => $content->id]) }}" method="POST">
                         @csrf
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ translate('Cancel') }}</button>
                         <button type="submit" class="btn btn-danger">{{ translate('Rollback') }}</button>

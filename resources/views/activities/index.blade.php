@@ -55,9 +55,26 @@
                                         @endforeach
                                     </td>
                                     <td>
-                                        <div class="d-flex order-actions">
-                                            <a href="{{ route('activities.edit', ['lang' => app()->getLocale(), 'activity' => $activity->id]) }}" class=""><i class='bx bxs-edit'></i></a>
-                                            <a href="javascript:;" class="ms-3" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $activity->id }}"><i class='bx bxs-trash'></i></a>
+                                        <div class="hstack gap-2 justify-content-end">
+                                            <div class="dropdown">
+                                                <a href="javascript:void(0)" class="btn btn-sm btn-light" data-bs-toggle="dropdown" data-bs-offset="0,21">
+                                                    <i class="feather feather-more-horizontal"></i>
+                                                </a>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <a class="dropdown-item" href="{{ route('activities.edit', ['lang' => app()->getLocale(), 'activity' => $activity->id]) }}">
+                                                            <i class="feather feather-edit-3 me-3"></i>
+                                                            <span>{{ translate('Edit') }}</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $activity->id }}">
+                                                            <i class="feather feather-trash-2 me-3"></i>
+                                                            <span>{{ translate('Delete') }}</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>

@@ -51,6 +51,7 @@ class NewsController extends Controller
             'slug' => [],
             'name' => [],
             'content' => [],
+            'date_published' => $request->date_published,
             'user_id' => $user,
         ]);
     
@@ -106,6 +107,7 @@ class NewsController extends Controller
         }
 
         $news->news_category_id = $request->news_category_id;
+        $news->date_plubished = $request->date_plubished;
 
         foreach ($request->input('translations', []) as $locale => $data) {
             $news->setTranslation('name', $locale, $data['name']);

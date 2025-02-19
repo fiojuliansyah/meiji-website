@@ -1,21 +1,27 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="page-wrapper">
-    <div class="page-content">
-        <!--breadcrumb-->
-        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">{{ translate('Users') }}</div>
-            <div class="ms-auto">
+<div class="nxl-content">
+    <div class="page-header">
+        <div class="page-header-left d-flex align-items-center">
+            <div class="page-header-title">
+                <h5 class="m-b-10">{{ translate('Users') }}</h5>
+            </div>
+        </div>
+        <div class="page-header-right ms-auto">
+            <div class="page-header-right-items">
                 <a href="{{ route('users.create', ['lang' => app()->getLocale()]) }}" class="btn btn-primary">
-                    {{ translate('Create User') }}
+                    <i class="feather-plus-circle me-2"></i>{{ translate('Create User') }}
                 </a>
             </div>
         </div>
+    </div>
+
+    <div class="main-content">
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="usersTable" class="table table-striped table-bordered">
+                    <table id="example2" class="table table-striped table-bordered">
                         <thead>
                             <tr>
                                 <th>{{ translate('Name') }}</th>
@@ -31,22 +37,22 @@
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->roles->pluck('name')->join(', ') }}</td>
                                     <td>
-                                        <div class="d-flex">
-                                            <a href="{{ route('users.edit', ['lang' => app()->getLocale(), 'user' => $user->id]) }}" class="btn btn-sm btn-primary me-2">
-                                                {{ translate('Edit') }}
-                                            </a>
-                                            <form action="{{ route('users.destroy', ['lang' => app()->getLocale(), 'user' => $user->id]) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('{{ translate('Are you sure?') }}')">
-                                                    {{ translate('Delete') }}
-                                                </button>
-                                            </form>
+                                        <div class="d-flex order-actions">
+                                            <a href="{{ route('users.edit', ['lang' => app()->getLocale(), 'user' => $user->id]) }}" class=""><i class='bx bxs-edit'></i></a>
+                                            <a href="javascript:;" class="ms-3" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $user->id }}"><i class='bx bxs-trash'></i></a>
                                         </div>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>{{ translate('Name') }}</th>
+                                <th>{{ translate('Email') }}</th>
+                                <th>{{ translate('Roles') }}</th>
+                                <th>{{ translate('Action') }}</th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -54,3 +60,46 @@
     </div>
 </div>
 @endsection
+
+@section('modal')
+@foreach ($users as $user)
+<div class="modal fade" id="deleteModal{{ $user->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">{{ translate('Confirmation') }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">{{ translate('Are you sure you want to delete this user?') }}</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ translate('Close') }}</button>
+                <form method="POST" action="{{ route('users.destroy', ['lang' => app()->getLocale(), 'user' => $user->id]) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">{{ translate('Delete') }}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+@endsection
+
+@push('js')
+<!-- jQuery and DataTables CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        var table = $('#example2').DataTable({
+            lengthChange: false,
+            buttons: ['copy', 'excel', 'pdf', 'print']
+        });
+
+        table.buttons().container()
+            .appendTo('#example2_wrapper .col-md-6:eq(0)');
+    });
+</script>
+@endpush

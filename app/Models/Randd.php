@@ -9,7 +9,7 @@ class Randd extends Model
 {
     use TranslatableSlug;
     
-    protected $fillable = ['slug', 'title', 'content', 'is_published'];
+    protected $fillable = ['slug', 'title', 'content', 'is_published', 'date_published'];
 
     protected $casts = [
         'slug' => 'array',

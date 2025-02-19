@@ -47,7 +47,7 @@
                     <!-- Image Input -->
                     <div class="mb-3">
                         <label for="image" class="form-label">{{ translate('Image') }}</label>
-                        <input type="file" class="form-control" name="image" accept="image/*" required>
+                        <input type="file" class="form-control" name="image" accept="image/*">
                     </div>
 
                     <!-- Language Tabs -->
@@ -90,6 +90,12 @@
                                 </div>
                             </div>
                         @endforeach
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Date Published
+                        </label>
+                        <input class="form-control" type="date" name="date_published" >
                     </div>
 
                     <!-- Submit Button -->

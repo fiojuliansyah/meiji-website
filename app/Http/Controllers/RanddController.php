@@ -45,6 +45,7 @@ class RanddController extends Controller
              'slug' => [],
              'title' => [],
              'content' => [],
+             'date_published' => $request->date_punlished,
          ]);
      
          foreach ($request->input('translations', []) as $locale => $data) {
@@ -102,6 +103,8 @@ class RanddController extends Controller
                 }
             }
         }
+
+        $randd->date_published = $request->date_published;
         
         $randd->approvals()->delete();
 

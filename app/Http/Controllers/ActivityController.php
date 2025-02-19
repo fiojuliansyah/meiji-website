@@ -41,36 +41,37 @@ class ActivityController extends Controller
 
      public function store($lang, Request $request)
      {
-         $about = Activity::create([
+         $activity = Activity::create([
              'slug' => [],
              'title' => [],
              'content' => [],
+             'date_publsihed' => $request->date_published,
          ]);
      
          foreach ($request->input('translations', []) as $locale => $data) {
-             $about->setTranslation('title', $locale, $data['title']);
-             $about->setTranslation('content', $locale, $data['content']);
-             $about->setTranslation('slug', $locale, Str::slug($data['title']));
+             $activity->setTranslation('title', $locale, $data['title']);
+             $activity->setTranslation('content', $locale, $data['content']);
+             $activity->setTranslation('slug', $locale, Str::slug($data['title']));
              
              preg_match_all('/<img[^>]+src=([\'"])?((.*?)\1)/i', $data['content'], $matches);
              
              if (!empty($matches[2])) {
                  foreach ($matches[2] as $imageUrl) {
-                     $about->images()->create([
+                     $activity->images()->create([
                          'url' => $imageUrl
                      ]);
                  }
              }
          }
      
-         $about->save();
+         $activity->save();
 
          $approvalModule = ApprovalModule::find(3) ?? ApprovalModule::find(1);
 
          $approvalTypes = $approvalModule->pluck('id');
 
          foreach ($approvalTypes as $typeId) {
-             $about->requiredApprovals()->create(['approval_type_id' => $typeId]);
+             $activity->requiredApprovals()->create(['approval_type_id' => $typeId]);
          }
      
          return redirect()->route('activities.index', ['lang' => $lang])
@@ -78,60 +79,62 @@ class ActivityController extends Controller
      }
 
     
-    public function edit($lang, Activity $about)
+    public function edit($lang, Activity $activity)
     {
         $languages = Language::all();
-        return view('activities.edit', compact('about', 'languages'));
+        return view('activities.edit', compact('activity', 'languages'));
     }
     
-    public function update($lang, Request $request, Activity $about)
+    public function update($lang, Request $request, Activity $activity)
     {
         foreach ($request->input('translations', []) as $locale => $data) {
-            $about->setTranslation('title', $locale, $data['title']);
-            $about->setTranslation('content', $locale, $data['content']);
-            $about->setTranslation('slug', $locale, Str::slug($data['title']));
+            $activity->setTranslation('title', $locale, $data['title']);
+            $activity->setTranslation('content', $locale, $data['content']);
+            $activity->setTranslation('slug', $locale, Str::slug($data['title']));
             
             preg_match_all('/<img[^>]+src=([\'"])?((.*?)\1)/i', $data['content'], $matches);
             
             if (!empty($matches[2])) {
-                $about->images()->delete();
+                $activity->images()->delete();
                 
                 foreach ($matches[2] as $imageUrl) {
-                    $about->images()->create([
+                    $activity->images()->create([
                         'url' => $imageUrl
                     ]);
                 }
             }
         }
 
-        $about->approvals()->delete();
+        $activity->date_published = $request->date_published;
+
+        $activity->approvals()->delete();
 
         $approvalModule = ApprovalModule::find(3) ?? ApprovalModule::find(1);
 
         $approvalTypes = $approvalModule->pluck('id');
         
-        $about->requiredApprovals()->delete();
+        $activity->requiredApprovals()->delete();
         foreach ($approvalTypes as $typeId) {
-            $about->requiredApprovals()->create(['approval_type_id' => $typeId]);
+            $activity->requiredApprovals()->create(['approval_type_id' => $typeId]);
         }
 
-        $about->save();
+        $activity->save();
     
         return redirect()->route('activities.index', ['lang' => $lang])
             ->with('success', __('Activity updated successfully!'));
     }
     
-    public function destroy($lang, Activity $about)
+    public function destroy($lang, Activity $activity)
     {
-        foreach ($about->images as $image) {
+        foreach ($activity->images as $image) {
             $path = str_replace(asset(''), public_path(), $image->url);
             if (file_exists($path)) {
                 unlink($path);
             }
         }
         
-        $about->images()->delete();
-        $about->delete();
+        $activity->images()->delete();
+        $activity->delete();
     
         return redirect()->route('activities.index', ['lang' => $lang])
             ->with('success', __('Activity deleted successfully!'));

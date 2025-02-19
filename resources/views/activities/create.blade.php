@@ -68,6 +68,12 @@
                             </div>
                         @endforeach
                     </div>
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Date Published
+                        </label>
+                        <input class="form-control" type="date" name="date_published" >
+                    </div>
 
                     <!-- Submit Button -->
                     <div class="col-md-12 text-end">

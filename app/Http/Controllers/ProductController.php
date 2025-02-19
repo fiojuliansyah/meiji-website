@@ -49,6 +49,7 @@ class ProductController extends Controller
             'slug' => [],
             'name' => [],
             'content' => [],
+            'date_published' => $request->date_published,
         ]);
     
         foreach ($request->input('translations', []) as $locale => $data) {
@@ -103,6 +104,7 @@ class ProductController extends Controller
         }
 
         $product->category_id = $request->category_id;
+        $product->date_published = $request->date_published;
 
         foreach ($request->input('translations', []) as $locale => $data) {
             $product->setTranslation('name', $locale, $data['name']);

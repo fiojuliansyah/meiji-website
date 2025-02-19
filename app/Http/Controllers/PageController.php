@@ -46,6 +46,7 @@ class PageController extends Controller
              'slug' => [],
              'title' => [],
              'content' => [],
+             'date_published' => $request->date_published,
          ]);
      
          foreach ($request->input('translations', []) as $locale => $data) {
@@ -107,8 +108,9 @@ class PageController extends Controller
             }
         }
         
-        $page->is_header = $request->is_header;
-        $page->is_footer = $request->is_footer;
+        $page->is_header = $request->is_header ?? 'false';
+        $page->is_footer = $request->is_footer ?? 'false';
+        $page->date_published = $request->date_published;
 
         $page->approvals()->delete();
 

@@ -70,6 +70,13 @@
                         @endforeach
                     </div>
 
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Date Published
+                        </label>
+                        <input class="form-control" type="date" name="date_published">
+                    </div>
+
                     <!-- Submit Button -->
                     <div class="col-md-12 text-end">
                         <button type="submit" class="btn btn-primary">{{ translate('Update') }} {{ translate('Activity') }}</button>

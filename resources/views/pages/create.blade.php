@@ -66,23 +66,29 @@
                                         id="content_{{ $language->code }}" placeholder="{{ translate('Enter content') }} {{ $language->name }}" required></textarea>
                                 </div>
                                 
-                                <div class="mb-3">
-                                    <label for="is_header" class="form-label">{{ translate('Show in Header') }}</label>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="is_header" name="is_header" value="1">
-                                        <label class="form-check-label" for="is_header">{{ translate('Enable') }}</label>
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="is_footer" class="form-label">{{ translate('Show in Footer') }}</label>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="is_footer" name="is_footer" value="1">
-                                        <label class="form-check-label" for="is_footer">{{ translate('Enable') }}</label>
-                                    </div>
-                                </div>                        
                             </div>
-                        @endforeach
+                            @endforeach
+                        </div>
+                        <div class="mb-3">
+                            <label for="is_header" class="form-label">{{ translate('Show in Header') }}</label>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="is_header" name="is_header" value="1">
+                                <label class="form-check-label" for="is_header">{{ translate('Enable') }}</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="is_footer" class="form-label">{{ translate('Show in Footer') }}</label>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="is_footer" name="is_footer" value="1">
+                                <label class="form-check-label" for="is_footer">{{ translate('Enable') }}</label>
+                            </div>
+                        </div>                        
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Date Published
+                        </label>
+                        <input class="form-control" type="date" name="date_published" >
                     </div>
 
                     <!-- Submit Button -->

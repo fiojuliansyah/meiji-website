@@ -9,7 +9,7 @@ class Page extends Model
 {
     use TranslatableSlug;
     
-    protected $fillable = ['slug', 'title', 'content', 'is_header', 'is_footer', 'is_published'];
+    protected $fillable = ['slug', 'title', 'content', 'is_header', 'is_footer', 'is_published', 'date_published'];
 
     protected $casts = [
         'slug' => 'array',

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->json('slug');
             $table->json('name');
             $table->json('content');
+            $table->date('date_pulished')->nullable();
             $table->boolean('is_published')->default(false); // Status publikasi
             $table->timestamps();
         });

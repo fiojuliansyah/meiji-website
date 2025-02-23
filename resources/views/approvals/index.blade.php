@@ -23,7 +23,7 @@
                                 <th>{{ translate('Status') }}</th>
                                 <th>{{ translate('Detail Content') }}</th>
                                 <th>{{ translate('Approval') }}</th>
-                                <th>{{ translate('Action') }}</th> <!-- New column for rollback -->
+                                <th>{{ translate('Action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -112,6 +112,10 @@
                                         <a class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#rollbackModal-{{ $content->id }}">
                                             {{ translate('Rollback') }}
                                         </a>
+                                    </td>
+                                    @else
+                                    <td>
+                                        <p>Waiting For Rollback</p>
                                     </td>
                                     @endif                                    
                                 </tr>

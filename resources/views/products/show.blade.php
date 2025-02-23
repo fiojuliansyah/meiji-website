@@ -61,15 +61,16 @@
       <div class="row"> 
         @foreach ($related_products as $related)    
             <div class="col-12 col-md-6 col-lg-3">
-            <div class="product-item" data-hover="">
-                <div class="product-img"><img src="{{ asset('storage/' . $related->image) }}" alt="Product"/><a class="add-to-cart" href="#">{{ translate('read more') }}</a>
-                <div class="badge"></div>
+                <div class="product-item" data-hover="">
+                    <div class="product-img">
+                        <img src="{{ asset('storage/' . $related->image) }}" alt="Product" style="width: 200px; height: 200px; object-fit: cover;"/>
+                        <a class="add-to-cart" href="#">{{ translate('read more') }}</a>
+                        <div class="badge"></div>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-title"><a href="#">{{ $related->getTranslation('name', app()->getLocale()) ?? 'Product Name' }}</a></div>
+                    </div>
                 </div>
-                <div class="product-content">
-                <div class="product-title"><a href="#">{{ $related->getTranslation('name', app()->getLocale()) ?? 'Product Name' }}</a></div>
-                </div>
-            </div>
-            <!-- .product end-->
             </div>
         @endforeach
       </div>

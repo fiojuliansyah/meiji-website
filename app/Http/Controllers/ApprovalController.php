@@ -142,9 +142,6 @@ class ApprovalController extends Controller
 
             case 'activity':
                 return redirect()->route('activities.show', $approvableId);
-
-            case 'about':
-                return redirect()->route('abouts.show', $approvableId);
     
             default:
                 abort(404, 'Invalid content type.');
@@ -168,9 +165,6 @@ class ApprovalController extends Controller
 
             case 'activity':
                 return redirect()->route('activities.edit', $approvableId);
-
-            case 'about':
-                return redirect()->route('abouts.edit', $approvableId);
     
             default:
                 abort(404, 'Invalid content type.');

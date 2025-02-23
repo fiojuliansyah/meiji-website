@@ -34,6 +34,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        if (!Auth::user()->can('view-dashboard')) {
+            return redirect()->route('approvals.index');
+        }
+        
         $userCount = User::count();
         $sliderCount = Slider::count();
         $newsCount = News::count();

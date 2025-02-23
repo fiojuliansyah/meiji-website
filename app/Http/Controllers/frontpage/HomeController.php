@@ -17,10 +17,6 @@ class HomeController extends Controller
 {
      public function index($lang)
      {
-        if (!Auth::user()->can('view-dashboard')) {
-            return redirect()->route('approvals.index');
-        }
-
         $page = Homepage::first();
         $news = News::where('is_published', true)->latest()->get();
         $sliders = Slider::all();

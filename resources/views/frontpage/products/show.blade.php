@@ -62,7 +62,7 @@
         @foreach ($related_products as $related)    
             <div class="col-12 col-md-6 col-lg-3">
             <div class="product-item" data-hover="">
-                <div class="product-img"><img src="{{ asset('storage/' . $related->image) }}" alt="Product"/><a class="add-to-cart" href="{{ route('frontpage.products.show', [
+                <div class="product-img"><img src="{{ asset('storage/' . $related->image) }}" alt="Product" style="width: 200px; height: 200px; object-fit: cover;"/><a class="add-to-cart" href="{{ route('frontpage.products.show', [
                     'lang' => app()->getLocale(),
                     'category_slug' => $related->category->getTranslation('slug', app()->getLocale()),
                     'products_slug' => $related->getTranslation('slug', app()->getLocale())

@@ -36,7 +36,7 @@
                     @foreach ($products as $item)
                         <div class="col-12 col-md-6 col-lg-4 product-item" data-hover="">
                             <div class="product-img">
-                                <img src="{{ asset('storage/' . $item->image) }}" alt="Product"/>
+                                <img src="{{ asset('storage/' . $item->image) }}" alt="Product" style="width: 200px; height: 200px; object-fit: cover;"/>
                                 <a class="add-to-cart" href="{{ route('frontpage.products.show', [
                                     'lang' => app()->getLocale(),
                                     'category_slug' => $category->getTranslation('slug', app()->getLocale()),

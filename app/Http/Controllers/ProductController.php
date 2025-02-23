@@ -37,7 +37,7 @@ class ProductController extends Controller
     {
         $request->validate([
             'category_id' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $imagePath = $request->file('image')->store('public/products');
@@ -50,6 +50,7 @@ class ProductController extends Controller
             'name' => [],
             'content' => [],
             'date_published' => $request->date_published,
+            'end_date' => $request->end_date,
         ]);
     
         foreach ($request->input('translations', []) as $locale => $data) {
@@ -70,7 +71,7 @@ class ProductController extends Controller
     
         $product->save();
 
-        $approvalModule = ApprovalModule::find(7) ?? ApprovalModule::find(1);
+        $approvalModule = ApprovalModule::find(5) ?? ApprovalModule::find(1);
 
          $approvalTypes = $approvalModule->pluck('id');
 
@@ -105,6 +106,8 @@ class ProductController extends Controller
 
         $product->category_id = $request->category_id;
         $product->date_published = $request->date_published;
+        $product->end_date = $request->end_date;
+        $product->is_published = $request->is_published;
 
         foreach ($request->input('translations', []) as $locale => $data) {
             $product->setTranslation('name', $locale, $data['name']);
@@ -126,7 +129,7 @@ class ProductController extends Controller
 
         $product->approvals()->delete();
 
-        $approvalModule = ApprovalModule::find(7) ?? ApprovalModule::find(1);
+        $approvalModule = ApprovalModule::find(5) ?? ApprovalModule::find(1);
 
         $approvalTypes = $approvalModule->pluck('id');
         

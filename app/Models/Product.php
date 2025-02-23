@@ -10,7 +10,7 @@ class Product extends Model
 {
     use TranslatableSlug;
     
-    protected $fillable = ['category_id', 'image', 'slug', 'name', 'content', 'is_published', 'date_published'];
+    protected $fillable = ['category_id', 'image', 'slug', 'name', 'content', 'is_published', 'date_published', 'end_date'];
 
     protected $casts = [
         'slug' => 'array',

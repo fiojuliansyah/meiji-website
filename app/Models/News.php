@@ -11,7 +11,7 @@ class News extends Model
 {
     use TranslatableSlug;
     
-    protected $fillable = ['news_category_id', 'image', 'slug', 'name', 'content', 'is_published', 'date_published'];
+    protected $fillable = ['news_category_id', 'image', 'slug', 'name', 'content', 'is_published', 'date_published', 'end_date'];
 
     protected $casts = [
         'slug' => 'array',

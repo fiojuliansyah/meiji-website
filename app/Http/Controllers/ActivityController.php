@@ -46,6 +46,7 @@ class ActivityController extends Controller
              'title' => [],
              'content' => [],
              'date_publsihed' => $request->date_published,
+             'end_date' => $request->end_date,
          ]);
      
          foreach ($request->input('translations', []) as $locale => $data) {
@@ -66,7 +67,7 @@ class ActivityController extends Controller
      
          $activity->save();
 
-         $approvalModule = ApprovalModule::find(3) ?? ApprovalModule::find(1);
+         $approvalModule = ApprovalModule::find(2) ?? ApprovalModule::find(1);
 
          $approvalTypes = $approvalModule->pluck('id');
 
@@ -106,10 +107,12 @@ class ActivityController extends Controller
         }
 
         $activity->date_published = $request->date_published;
+        $activity->end_date = $request->end_date;
+        $activity->is_published = $request->is_published;
 
         $activity->approvals()->delete();
 
-        $approvalModule = ApprovalModule::find(3) ?? ApprovalModule::find(1);
+        $approvalModule = ApprovalModule::find(2) ?? ApprovalModule::find(1);
 
         $approvalTypes = $approvalModule->pluck('id');
         

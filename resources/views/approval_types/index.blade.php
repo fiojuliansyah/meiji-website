@@ -50,26 +50,24 @@
                                     <td>{{ $type->user->name ?? translate('Not Assigned') }}</td>
                                     <td>{{ $type->module->name ?? translate('Not Assigned') }}</td>
                                     <td>
-                                        <div class="hstack gap-2 justify-content-end">
-                                            <div class="dropdown">
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-light" data-bs-toggle="dropdown" data-bs-offset="0,21">
-                                                    <i class="feather feather-more-horizontal"></i>
-                                                </a>
-                                                <ul class="dropdown-menu">
-                                                    <li>
-                                                        <a class="dropdown-item" href="{{ route('approval_types.edit', $type->id) }}">
-                                                            <i class="feather feather-edit-3 me-3"></i>
-                                                            <span>{{ translate('Edit') }}</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $type->id }}">
-                                                            <i class="feather feather-trash-2 me-3"></i>
-                                                            <span>{{ translate('Delete') }}</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                        <div class="dropdown">
+                                            <a href="javascript:void(0)" class="btn btn-sm btn-light" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="feather feather-more-horizontal"></i>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="{{ route('approval_types.edit', $type->id) }}">
+                                                        <i class="feather feather-edit-3 me-3"></i>
+                                                        <span>{{ translate('Edit') }}</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $type->id }}">
+                                                        <i class="feather feather-trash-2 me-3"></i>
+                                                        <span>{{ translate('Delete') }}</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </td>
                                 </tr>

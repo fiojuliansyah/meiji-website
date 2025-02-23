@@ -26,6 +26,7 @@
                             <tr>
                                 <th>{{ translate('Title') }}</th>
                                 <th>{{ translate('Approval') }}</th>
+                                <th>{{ translate('Status Published') }}</th>
                                 <th>{{ translate('Action') }}</th>
                             </tr>
                         </thead>
@@ -36,23 +37,32 @@
                                     <td>
                                         @foreach ($randd->requiredApprovals as $requirement)
                                             <div>
-                                                {{ $requirement->approvalType->name }}
-                                                @php
-                                                    $approval = $randd->approvals->firstWhere('approval_type_id', $requirement->approval_type_id);
-                                                @endphp
-                                    
-                                                @if ($approval)
-                                                    @if ($approval->status === 'approved')
-                                                        <span class="badge bg-success">{{ translate('Approved') }}</span>
-                                                    @elseif ($approval->status === 'rejected')
-                                                        <span class="badge bg-danger">{{ translate('Rejected') }}</span>
-                                                        <p class="text-muted mt-1"><small>{{ $approval->rejection_description }}</small></p>
+                                                <p>{{ $requirement->approvalType->user->name }} 
+                                                    <small>({{ $requirement->approvalType->name }}) </small>
+                                                    @php
+                                                        $approval = $randd->approvals->firstWhere('approval_type_id', $requirement->approval_type_id);
+                                                    @endphp
+                                        
+                                                    @if ($approval)
+                                                        @if ($approval->status === 'approved')
+                                                            <span class="badge bg-success">{{ translate('Approved') }}</span>
+                                                        @elseif ($approval->status === 'rejected')
+                                                            <span class="badge bg-danger">{{ translate('Rejected') }}</span>
+                                                            <p class="text-muted mt-1"><small>{{ $approval->rejection_description }}</small></p>
+                                                        @endif
+                                                    @else
+                                                        <span class="badge bg-warning">{{ translate('Pending') }}</span>
                                                     @endif
-                                                @else
-                                                    <span class="badge bg-warning">{{ translate('Pending') }}</span>
-                                                @endif
+                                                </p>
                                             </div>
                                         @endforeach
+                                    </td>
+                                    <td>
+                                        @if ($randd->is_published === 1)
+                                            <span class="badge bg-success">{{ translate('Publish') }}</span>
+                                        @else
+                                            <span class="badge bg-warning">{{ translate('Unpublish') }}</span>
+                                        @endif
                                     </td>
                                     <td>
                                         <!-- Dropdown for Actions -->

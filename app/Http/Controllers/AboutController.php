@@ -45,6 +45,8 @@ class AboutController extends Controller
              'slug' => [],
              'title' => [],
              'content' => [],
+             'date_publsihed' => $request->date_published,
+             'end_date' => $request->end_date,
          ]);
      
          foreach ($request->input('translations', []) as $locale => $data) {
@@ -64,14 +66,6 @@ class AboutController extends Controller
          }
      
          $about->save();
-
-         $approvalModule = ApprovalModule::find(2) ?? ApprovalModule::find(1);
-
-         $approvalTypes = $approvalModule->pluck('id');
-
-         foreach ($approvalTypes as $typeId) {
-             $about->requiredApprovals()->create(['approval_type_id' => $typeId]);
-         }
      
          return redirect()->route('abouts.index', ['lang' => $lang])
              ->with('success', __('About created successfully!'));
@@ -103,17 +97,6 @@ class AboutController extends Controller
             }
         }
 
-        $about->approvals()->delete();
-
-        $approvalModule = ApprovalModule::find(2) ?? ApprovalModule::find(1);
-
-        $approvalTypes = $approvalModule->pluck('id');
-        
-        $about->requiredApprovals()->delete();
-        foreach ($approvalTypes as $typeId) {
-            $about->requiredApprovals()->create(['approval_type_id' => $typeId]);
-        }
-    
         $about->save();
     
         return redirect()->route('abouts.index', ['lang' => $lang])

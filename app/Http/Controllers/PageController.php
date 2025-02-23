@@ -47,6 +47,7 @@ class PageController extends Controller
              'title' => [],
              'content' => [],
              'date_published' => $request->date_published,
+             'end_date' => $request->end_date,
          ]);
      
          foreach ($request->input('translations', []) as $locale => $data) {
@@ -67,9 +68,10 @@ class PageController extends Controller
          
          $page->is_header = $request->is_header;
          $page->is_footer = $request->is_footer;
+        
          $page->save();
 
-         $approvalModule = ApprovalModule::find(6) ?? ApprovalModule::find(1);
+         $approvalModule = ApprovalModule::find(4) ?? ApprovalModule::find(1);
 
          $approvalTypes = $approvalModule->pluck('id');
 
@@ -108,13 +110,15 @@ class PageController extends Controller
             }
         }
         
-        $page->is_header = $request->is_header ?? 'false';
-        $page->is_footer = $request->is_footer ?? 'false';
+        $page->is_header = $request->is_header ?? null;
+        $page->is_footer = $request->is_footer ?? null;
         $page->date_published = $request->date_published;
+        $page->end_date = $request->end_date;
+        $page->is_published = $request->is_published;
 
         $page->approvals()->delete();
 
-        $approvalModule = ApprovalModule::find(6) ?? ApprovalModule::find(1);
+        $approvalModule = ApprovalModule::find(4) ?? ApprovalModule::find(1);
 
         $approvalTypes = $approvalModule->pluck('id');
         

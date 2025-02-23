@@ -45,7 +45,8 @@ class RanddController extends Controller
              'slug' => [],
              'title' => [],
              'content' => [],
-             'date_published' => $request->date_punlished,
+             'date_publsihed' => $request->date_published,
+             'end_date' => $request->end_date,
          ]);
      
          foreach ($request->input('translations', []) as $locale => $data) {
@@ -66,7 +67,7 @@ class RanddController extends Controller
      
          $randd->save();
 
-         $approvalModule = ApprovalModule::find(8) ?? ApprovalModule::find(1);
+         $approvalModule = ApprovalModule::find(6) ?? ApprovalModule::find(1);
 
          $approvalTypes = $approvalModule->pluck('id');
 
@@ -105,10 +106,12 @@ class RanddController extends Controller
         }
 
         $randd->date_published = $request->date_published;
+        $randd->end_date = $request->end_date;
+        $randd->is_published = $request->is_published;
         
         $randd->approvals()->delete();
 
-        $approvalModule = ApprovalModule::find(8) ?? ApprovalModule::find(1);
+        $approvalModule = ApprovalModule::find(6) ?? ApprovalModule::find(1);
 
         $approvalTypes = $approvalModule->pluck('id');
         

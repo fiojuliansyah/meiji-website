@@ -98,6 +98,13 @@
                         <input class="form-control" type="date" name="date_published" >
                     </div>
 
+                    <div class="mb-3">
+                        <label class="form-label">
+                            End Date
+                        </label>
+                        <input class="form-control" type="date" name="end_date" >
+                    </div>
+
                     <!-- Submit Button -->
                     <button type="submit" class="btn btn-primary">
                         {{ translate('Create') }} {{ translate('News') }}

@@ -33,7 +33,7 @@ class TimelineController extends Controller
     {
         $request->validate([
             'year' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $imagePath = $request->file('image')->store('public/timelines');
@@ -51,14 +51,6 @@ class TimelineController extends Controller
         }
 
         $timeline->save();
-        
-        $approvalModule = ApprovalModule::find(9) ?? ApprovalModule::find(1);
-
-        $approvalTypes = $approvalModule->pluck('id');
-
-        foreach ($approvalTypes as $typeId) {
-            $timeline->requiredApprovals()->create(['approval_type_id' => $typeId]);
-        }
 
         return redirect()->route('timelines.index')->with('success', __('Timeline created successfully!'));
     }
@@ -95,18 +87,7 @@ class TimelineController extends Controller
             $timeline->setTranslation('title', $locale, $data['title']);
             $timeline->setTranslation('content', $locale, $data['content']);
         }
-
-        $timeline->approvals()->delete();
-
-        $approvalModule = ApprovalModule::find(9) ?? ApprovalModule::find(1);
-
-        $approvalTypes = $approvalModule->pluck('id');
         
-        $timeline->requiredApprovals()->delete();
-        foreach ($approvalTypes as $typeId) {
-            $timeline->requiredApprovals()->create(['approval_type_id' => $typeId]);
-        }
-
         $timeline->save();
 
         return redirect()->route('timelines.index')->with('success', __('Timeline updated successfully!'));

@@ -38,7 +38,7 @@ class NewsController extends Controller
     {
         $request->validate([
             'news_category_id' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $user = Auth::user()->id;
@@ -51,7 +51,8 @@ class NewsController extends Controller
             'slug' => [],
             'name' => [],
             'content' => [],
-            'date_published' => $request->date_published,
+            'date_publsihed' => $request->date_published,
+            'end_date' => $request->end_date,
             'user_id' => $user,
         ]);
     
@@ -73,7 +74,7 @@ class NewsController extends Controller
 
         $news->save();
 
-        $approvalModule = ApprovalModule::find(5) ?? ApprovalModule::find(1);
+        $approvalModule = ApprovalModule::find(3) ?? ApprovalModule::find(1);
 
          $approvalTypes = $approvalModule->pluck('id');
 
@@ -108,6 +109,8 @@ class NewsController extends Controller
 
         $news->news_category_id = $request->news_category_id;
         $news->date_plubished = $request->date_plubished;
+        $activity->end_date = $request->end_date;
+        $activity->is_published = $request->is_published;
 
         foreach ($request->input('translations', []) as $locale => $data) {
             $news->setTranslation('name', $locale, $data['name']);
@@ -128,7 +131,7 @@ class NewsController extends Controller
     
         $news->approvals()->delete();
 
-        $approvalModule = ApprovalModule::find(5) ?? ApprovalModule::find(1);
+        $approvalModule = ApprovalModule::find(3) ?? ApprovalModule::find(1);
 
         $approvalTypes = $approvalModule->pluck('id');
         

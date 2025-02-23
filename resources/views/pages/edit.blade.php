@@ -77,6 +77,7 @@
                     <div class="mb-3">
                         <label for="is_header" class="form-label">{{ translate('Show in Header') }}</label>
                         <div class="form-check form-switch">
+                            <input type="hidden" name="is_header" value="">
                             <input class="form-check-input" type="checkbox" id="is_header" name="is_header" value="1"
                                 {{ $page->is_header ? 'checked' : '' }}>
                             <label class="form-check-label" for="is_header">{{ translate('Enable') }}</label>
@@ -86,6 +87,7 @@
                     <div class="mb-3">
                         <label for="is_footer" class="form-label">{{ translate('Show in Footer') }}</label>
                         <div class="form-check form-switch">
+                            <input type="hidden" name="is_footer" value="">
                             <input class="form-check-input" type="checkbox" id="is_footer" name="is_footer" value="1"
                                 {{ $page->is_footer ? 'checked' : '' }}>
                             <label class="form-check-label" for="is_footer">{{ translate('Enable') }}</label>
@@ -95,7 +97,24 @@
                         <label class="form-label">
                             Date Published
                         </label>
-                        <input class="form-control" type="date" name="date_published" >
+                        <input class="form-control" type="date" name="date_published"  value="{{ $page->date_published }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">
+                            End Date
+                        </label>
+                        <input class="form-control" type="date" name="end_date" value="{{ $page->end_date }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="is_published" class="form-label">{{ translate('Publish') }}</label>
+                        <div class="form-check form-switch">
+                            <input type="hidden" name="is_published" value="">
+                            <input class="form-check-input" type="checkbox" id="is_publish" name="is_published" value="1"
+                                {{ $page->is_published ? 'checked' : '' }}>
+                            <label class="form-check-label" for="is_published">{{ translate('Enable') }}</label>
+                        </div>
                     </div>
 
                     <!-- Submit Button -->

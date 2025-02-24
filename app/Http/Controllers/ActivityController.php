@@ -143,7 +143,7 @@ class ActivityController extends Controller
             ->with('success', __('Activity deleted successfully!'));
     }
 
-    public function show($lang, Activities $activity)
+    public function show($lang, Activity $activity)
     {
         return view('activities.show', compact('activity'));
     }

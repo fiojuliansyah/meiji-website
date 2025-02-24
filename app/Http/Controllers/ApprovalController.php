@@ -34,6 +34,52 @@ class ApprovalController extends Controller
     
         return view('approvals.index', compact('contents'));
     }
+
+    public function show($lang, $approvableType, $approvableId)
+    {
+        switch (strtolower($approvableType)) {
+            case 'product':
+                return redirect()->route('products.show', $approvableId);
+    
+            case 'news':
+                return redirect()->route('news.show', $approvableId);
+
+            case 'randd':
+                return redirect()->route('randds.show', $approvableId);
+
+            case 'page':
+                return redirect()->route('pages.show', $approvableId);
+
+            case 'activity':
+                return redirect()->route('activities.show', $approvableId);
+    
+            default:
+                abort(404, 'Invalid content type.');
+        }
+    }  
+    
+    public function edit($lang, $approvableType, $approvableId)
+    {
+        switch (strtolower($approvableType)) {
+            case 'product':
+                return redirect()->route('products.edit', $approvableId);
+    
+            case 'news':
+                return redirect()->route('news.edit', $approvableId);
+
+            case 'randd':
+                return redirect()->route('randds.edit', $approvableId);
+
+            case 'page':
+                return redirect()->route('pages.edit', $approvableId);
+
+            case 'activity':
+                return redirect()->route('activities.edit', $approvableId);
+    
+            default:
+                abort(404, 'Invalid content type.');
+        }
+    }  
     
     public function approve($lang, Request $request, $approvableType, $approvableId, $approvalTypeId)
     {
@@ -82,13 +128,9 @@ class ApprovalController extends Controller
         $approvable->approvals()->create([
             'approval_type_id' => $approvalTypeId,
             'user_id' => $user->id,
+            'status' => 'rejected',
             'rejection_description' => $request->rejection_description,
         ]);
-
-        if ($this->isFullyApproved($approvable)) {
-            $approvable->update(['is_published' => true]);
-            return redirect()->back()->with('success', 'Content approved and published!');
-        }
 
         return redirect()->back()->with('success', 'Approval added!');
     }
@@ -104,52 +146,6 @@ class ApprovalController extends Controller
         return $requiredApprovals->diff($givenApprovals)->isEmpty();
     }
 
-    public function show($lang, $approvableType, $approvableId)
-    {
-        switch (strtolower($approvableType)) {
-            case 'product':
-                return redirect()->route('products.show', $approvableId);
-    
-            case 'news':
-                return redirect()->route('news.show', $approvableId);
-
-            case 'randd':
-                return redirect()->route('randds.show', $approvableId);
-
-            case 'page':
-                return redirect()->route('pages.show', $approvableId);
-
-            case 'activity':
-                return redirect()->route('activities.show', $approvableId);
-    
-            default:
-                abort(404, 'Invalid content type.');
-        }
-    }  
-    
-    public function edit($lang, $approvableType, $approvableId)
-    {
-        switch (strtolower($approvableType)) {
-            case 'product':
-                return redirect()->route('products.edit', $approvableId);
-    
-            case 'news':
-                return redirect()->route('news.edit', $approvableId);
-
-            case 'randd':
-                return redirect()->route('randds.edit', $approvableId);
-
-            case 'page':
-                return redirect()->route('pages.edit', $approvableId);
-
-            case 'activity':
-                return redirect()->route('activities.edit', $approvableId);
-    
-            default:
-                abort(404, 'Invalid content type.');
-        }
-    }  
-    
     public function rollback($lang, Request $request, $approvableType, $approvableId, $approvalTypeId)
     {
         $user = auth()->user();

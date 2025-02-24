@@ -129,11 +129,8 @@
     </div>
 </div>
 
-@endsection
-
-
-@section('modal')
-    <!-- Modal for Rollback Confirmation -->
+<!-- Modal for Rollback Confirmation -->
+@section('modal')    
     @foreach ($contents as $content)
         @if ($content->approvals->contains('status', 'approved'))
         <div class="modal fade" id="rollbackModal-{{ $content->id }}" tabindex="-1" aria-labelledby="rollbackModalLabel" aria-hidden="true">
@@ -171,7 +168,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('approve.reject', ['approvableType' => class_basename($content), 'approvableId' => $content->id, 'approvalTypeId' => $requirement->approval_type_id]) }}" method="POST">
+                            <form action="{{ route('reject', ['approvableType' => get_class($content), 'approvableId' => $content->id, 'approvalTypeId' => $requirement->approval_type_id]) }}" method="POST">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="rejection_description" class="form-label">{{ translate('Rejection Reason') }}</label>
@@ -189,4 +186,6 @@
             @endif
         @endforeach
     @endforeach
+@endsection
+
 @endsection

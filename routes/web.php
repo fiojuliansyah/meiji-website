@@ -28,11 +28,16 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\TranslationController;
 use App\Http\Controllers\ApprovalTypeController;
 use App\Http\Controllers\NewsCategoryController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\MicrosoftController;
 use App\Http\Controllers\frontpage\HomeController;
+use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\frontpage\PageNewsController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\frontpage\PageAboutController;
 use App\Http\Controllers\frontpage\PageRanddController;
+use App\Http\Controllers\Auth\ConfirmPasswordController;
 use App\Http\Controllers\frontpage\PageProductController;
 use App\Http\Controllers\frontpage\PageActivityController;
 use App\Http\Controllers\frontpage\PageFaqContactController;
@@ -56,6 +61,20 @@ Route::prefix('workroom')->group(function () {
     Route::get('/auth/microsoft/redirect', [MicrosoftController::class, 'redirectToMicrosoft'])->name('auth.microsoft.redirect');
     Route::get('/auth/microsoft/callback', [MicrosoftController::class, 'handleMicrosoftCallback'])->name('auth.microsoft.callback');
 });
+
+Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('register', [RegisterController::class, 'register']);
+
+Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('password/reset', [ResetPasswordController::class, 'reset']);
+
+Route::get('password/confirm', [ConfirmPasswordController::class, 'showConfirmForm'])->name('password.confirm');
+Route::post('password/confirm', [ConfirmPasswordController::class, 'confirm']);
+
+Route::get('email/verify', [VerificationController::class, 'show'])->name('verification.notice');
+Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
 
 Route::post('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 
@@ -122,7 +141,7 @@ Route::prefix('{lang}')
                 Route::get('approvals/edit/{approvableType}/{approvableId}', [ApprovalController::class, 'edit'])->name('approvals.edit');
                 Route::post('/approvals/rollback/{approvableType}/{approvableId}/{approvalTypeId}', [ApprovalController::class, 'rollback'])->name('rollback');
                 Route::post('approve/{approvableType}/{approvableId}/{approvalTypeId}', [ApprovalController::class, 'approve'])->name('approve');
-                Route::post('/approvals/reject/{approvableType}/{approvableId}/{approvalTypeId}', [ApprovalController::class, 'reject'])->name('approve.reject');
+                Route::post('/approvals/reject/{approvableType}/{approvableId}/{approvalTypeId}', [ApprovalController::class, 'reject'])->name('reject');
                                 
                 Route::delete('languages/{id}', [LanguageController::class, 'destroy'])->name('languages.destroy');
                 Route::get('languages/{id}/translations', [TranslationController::class, 'index'])->name('languages.translations');

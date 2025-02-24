@@ -27,7 +27,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($contents as $content)
+                            @foreach ($mergedContents as $content)
                                 <tr>
                                     <td>{{ class_basename($content) }}</td>
                                     <td>
@@ -124,13 +124,14 @@
                         </tbody>
                     </table>
                 </div>
+                {{ $mergedContents->links() }}
             </div>
         </div>
     </div>
 </div>
 
 <!-- Modal for Rollback Confirmation -->
-@foreach ($contents as $content)
+@foreach ($mergedContents as $content)
     @if ($content->approvals->contains('status', 'approved'))
     <div class="modal fade" id="rollbackModal-{{ $content->id }}" tabindex="-1" aria-labelledby="rollbackModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -156,7 +157,7 @@
 @endforeach
 
 <!-- Modal for Reject Confirmation -->
-@foreach ($contents as $content)
+@foreach ($mergedContents as $content)
     @foreach ($content->requiredApprovals as $requirement)
         @if (!$content->approvals->contains('approval_type_id', $requirement->approval_type_id) && $requirement->approvalType->user_id === auth()->id())
         <div class="modal fade" id="rejectModal-{{ $requirement->approval_type_id }}" tabindex="-1" aria-labelledby="rejectModalLabel-{{ $requirement->approval_type_id }}" aria-hidden="true">

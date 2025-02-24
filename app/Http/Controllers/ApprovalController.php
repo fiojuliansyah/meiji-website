@@ -17,31 +17,35 @@ use App\Models\ContentApprovalRequirement;
 
 class ApprovalController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('permission:list-approvals')->only('index');
-    // }
-
     public function index()
     {
-        // Ambil semua data dari berbagai model
-        $activities = Activity::with(['requiredApprovals.approvalType', 'approvals'])->get();
-        $news = News::with(['requiredApprovals.approvalType', 'approvals'])->get();
-        $pages = Page::with(['requiredApprovals.approvalType', 'approvals'])->get();
-        $products = Product::with(['requiredApprovals.approvalType', 'approvals'])->get();
-        $randds = Randd::with(['requiredApprovals.approvalType', 'approvals'])->get();
+        $activities = Activity::with(['requiredApprovals.approvalType', 'approvals'])
+                                ->orderBy('created_at', 'desc') 
+                                ->paginate(10);
     
-        // Gabungkan semua data menjadi satu koleksi
-        $contents = collect()
-            ->merge($activities)
-            ->merge($news)
-            ->merge($pages)
-            ->merge($products)
-            ->merge($randds);
+        $news = News::with(['requiredApprovals.approvalType', 'approvals'])
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(10);
     
-        // Kirim data ke view
-        return view('approvals.index', compact('contents'));
+        $pages = Page::with(['requiredApprovals.approvalType', 'approvals'])
+                     ->orderBy('created_at', 'desc')
+                     ->paginate(10);
+    
+        $products = Product::with(['requiredApprovals.approvalType', 'approvals'])
+                           ->orderBy('created_at', 'desc')
+                           ->paginate(10);
+    
+        $randds = Randd::with(['requiredApprovals.approvalType', 'approvals'])
+                       ->orderBy('created_at', 'desc')
+                       ->paginate(10);
+    
+        $contents = $activities->merge($news)->merge($pages)->merge($products)->merge($randds);
+    
+        $mergedContents = $contents->paginate(10);
+    
+        return view('approvals.index', compact('mergedContents'));
     }
+    
     
     public function approve($lang, Request $request, $approvableType, $approvableId, $approvalTypeId)
     {

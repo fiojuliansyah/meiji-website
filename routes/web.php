@@ -90,7 +90,7 @@ Route::prefix('{lang}')
 
         Route::get('/r&d/{slug}', [PageRanddController::class, 'show'])->name('frontpage.randd.show');
 
-        Route::get('/activity/{slug}', [PageActivityController::class, 'show'])->name('frontpage.activity.show');
+        Route::get('/activities/{slug}', [PageActivityController::class, 'show'])->name('frontpage.activity.show');
 
         Route::get('/faq', [PageFaqContactController::class, 'faq'])->name('frontpage.faq');
         Route::get('/contact', [PageFaqContactController::class, 'contact'])->name('frontpage.contact');

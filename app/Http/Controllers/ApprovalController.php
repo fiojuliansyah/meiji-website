@@ -30,7 +30,6 @@ class ApprovalController extends Controller
         $pages = Page::with(['requiredApprovals.approvalType', 'approvals'])->get();
         $products = Product::with(['requiredApprovals.approvalType', 'approvals'])->get();
         $randds = Randd::with(['requiredApprovals.approvalType', 'approvals'])->get();
-        $abouts = About::with(['requiredApprovals.approvalType', 'approvals'])->get();
     
         // Gabungkan semua data menjadi satu koleksi
         $contents = collect()
@@ -38,8 +37,7 @@ class ApprovalController extends Controller
             ->merge($news)
             ->merge($pages)
             ->merge($products)
-            ->merge($randds)
-            ->merge($abouts);
+            ->merge($randds);
     
         // Kirim data ke view
         return view('approvals.index', compact('contents'));

@@ -68,35 +68,29 @@ class ApprovalController extends Controller
     {
         $user = auth()->user();
 
-        $request->validate([
-            'approval_type_id' => $approvalTypeId,
-            'rejection_description' => 'required|string|max:500',
-        ]);
-
         $approvalType = ApprovalType::findOrFail($approvalTypeId);
         if ($approvalType->user_id !== $user->id) {
-            return redirect()->back()->with('error', 'You are not authorized to reject this.');
+            return redirect()->back()->with('error', 'You are not authorized to approve this.');
         }
 
         $approvable = app($approvableType)->findOrFail($approvableId);
 
-        $existingApproval = $approvable->approvals()
-            ->where('approval_type_id', $approvalTypeId)
-            ->where('user_id', $user->id)
-            ->first();
-
-        if ($existingApproval) {
-            return redirect()->back()->with('error', 'You have already processed this approval.');
+        if ($approvable->approvals()->where('approval_type_id', $approvalTypeId)->where('user_id', $user->id)->exists()) {
+            return redirect()->back()->with('error', 'You have already approved this.');
         }
 
         $approvable->approvals()->create([
             'approval_type_id' => $approvalTypeId,
             'user_id' => $user->id,
-            'status' => 'rejected', 
-            'rejection_description' => $request->rejection_description, 
+            'rejection_description' => $request->rejection_description,
         ]);
 
-        return redirect()->back()->with('success', 'Approval rejected successfully!');
+        if ($this->isFullyApproved($approvable)) {
+            $approvable->update(['is_published' => true]);
+            return redirect()->back()->with('success', 'Content approved and published!');
+        }
+
+        return redirect()->back()->with('success', 'Approval added!');
     }
     
     private function isFullyApproved($approvable)

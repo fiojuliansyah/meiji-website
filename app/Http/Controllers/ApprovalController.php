@@ -19,33 +19,21 @@ class ApprovalController extends Controller
 {
     public function index()
     {
-        $activities = Activity::with(['requiredApprovals.approvalType', 'approvals'])
-                                ->orderBy('created_at', 'desc') 
-                                ->paginate(10);
+        $activities = Activity::with(['requiredApprovals.approvalType', 'approvals'])->get();
+        $news = News::with(['requiredApprovals.approvalType', 'approvals'])->get();
+        $pages = Page::with(['requiredApprovals.approvalType', 'approvals'])->get();
+        $products = Product::with(['requiredApprovals.approvalType', 'approvals'])->get();
+        $randds = Randd::with(['requiredApprovals.approvalType', 'approvals'])->get();
     
-        $news = News::with(['requiredApprovals.approvalType', 'approvals'])
-                    ->orderBy('created_at', 'desc')
-                    ->paginate(10);
+        $contents = collect()
+            ->merge($activities)
+            ->merge($news)
+            ->merge($pages)
+            ->merge($products)
+            ->merge($randds);
     
-        $pages = Page::with(['requiredApprovals.approvalType', 'approvals'])
-                     ->orderBy('created_at', 'desc')
-                     ->paginate(10);
-    
-        $products = Product::with(['requiredApprovals.approvalType', 'approvals'])
-                           ->orderBy('created_at', 'desc')
-                           ->paginate(10);
-    
-        $randds = Randd::with(['requiredApprovals.approvalType', 'approvals'])
-                       ->orderBy('created_at', 'desc')
-                       ->paginate(10);
-    
-        $contents = $activities->merge($news)->merge($pages)->merge($products)->merge($randds);
-    
-        $mergedContents = $contents->paginate(10);
-    
-        return view('approvals.index', compact('mergedContents'));
+        return view('approvals.index', compact('contents'));
     }
-    
     
     public function approve($lang, Request $request, $approvableType, $approvableId, $approvalTypeId)
     {

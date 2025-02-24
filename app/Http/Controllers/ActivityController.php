@@ -145,6 +145,6 @@ class ActivityController extends Controller
 
     public function show($lang, Activities $activity)
     {
-        return view('activities.show', compact('activity', ['lang' => $lang]));
+        return view('activities.show', compact('activity'));
     }
 }

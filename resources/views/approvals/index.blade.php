@@ -129,54 +129,28 @@
     </div>
 </div>
 
-<!-- Modal for Rollback Confirmation -->
-@foreach ($contents as $content)
-    @if ($content->approvals->contains('status', 'approved'))
-    <div class="modal fade" id="rollbackModal-{{ $content->id }}" tabindex="-1" aria-labelledby="rollbackModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="rollbackModalLabel">{{ translate('Rollback Approval') }}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    {{ translate('Are you sure you want to rollback the approval for this content?') }}
-                </div>
-                <div class="modal-footer">
-                    <form action="{{ route('rollback', ['approvableType' => get_class($content), 'approvableId' => $content->id, 'approvalTypeId' => $requirement->approval_type_id]) }}" method="POST">
-                        @csrf
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ translate('Cancel') }}</button>
-                        <button type="submit" class="btn btn-danger">{{ translate('Rollback') }}</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endif
-@endforeach
+@endsection
 
-<!-- Modal for Reject Confirmation -->
-@foreach ($contents as $content)
-    @foreach ($content->requiredApprovals as $requirement)
-        @if (!$content->approvals->contains('approval_type_id', $requirement->approval_type_id) && $requirement->approvalType->user_id === auth()->id())
-        <div class="modal fade" id="rejectModal-{{ $requirement->approval_type_id }}" tabindex="-1" aria-labelledby="rejectModalLabel-{{ $requirement->approval_type_id }}" aria-hidden="true">
+
+@section('modal')
+    <!-- Modal for Rollback Confirmation -->
+    @foreach ($contents as $content)
+        @if ($content->approvals->contains('status', 'approved'))
+        <div class="modal fade" id="rollbackModal-{{ $content->id }}" tabindex="-1" aria-labelledby="rollbackModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="rejectModalLabel-{{ $requirement->approval_type_id }}">{{ translate('Reject Approval') }}</h5>
+                        <h5 class="modal-title" id="rollbackModalLabel">{{ translate('Rollback Approval') }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('approve.reject', ['approvableType' => class_basename($content), 'approvableId' => $content->id, 'approvalTypeId' => $requirement->approval_type_id]) }}" method="POST">
+                        {{ translate('Are you sure you want to rollback the approval for this content?') }}
+                    </div>
+                    <div class="modal-footer">
+                        <form action="{{ route('rollback', ['approvableType' => get_class($content), 'approvableId' => $content->id, 'approvalTypeId' => $requirement->approval_type_id]) }}" method="POST">
                             @csrf
-                            <div class="mb-3">
-                                <label for="rejection_description" class="form-label">{{ translate('Rejection Reason') }}</label>
-                                <textarea class="form-control" id="rejection_description" name="rejection_description" rows="3" required></textarea>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ translate('Cancel') }}</button>
-                                <button type="submit" class="btn btn-danger">{{ translate('Reject') }}</button>
-                            </div>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ translate('Cancel') }}</button>
+                            <button type="submit" class="btn btn-danger">{{ translate('Rollback') }}</button>
                         </form>
                     </div>
                 </div>
@@ -184,6 +158,35 @@
         </div>
         @endif
     @endforeach
-@endforeach
 
+    <!-- Modal for Reject Confirmation -->
+    @foreach ($contents as $content)
+        @foreach ($content->requiredApprovals as $requirement)
+            @if (!$content->approvals->contains('approval_type_id', $requirement->approval_type_id) && $requirement->approvalType->user_id === auth()->id())
+            <div class="modal fade" id="rejectModal-{{ $requirement->approval_type_id }}" tabindex="-1" aria-labelledby="rejectModalLabel-{{ $requirement->approval_type_id }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="rejectModalLabel-{{ $requirement->approval_type_id }}">{{ translate('Reject Approval') }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ route('approve.reject', ['approvableType' => class_basename($content), 'approvableId' => $content->id, 'approvalTypeId' => $requirement->approval_type_id]) }}" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="rejection_description" class="form-label">{{ translate('Rejection Reason') }}</label>
+                                    <textarea class="form-control" id="rejection_description" name="rejection_description" rows="3" required></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ translate('Cancel') }}</button>
+                                    <button type="submit" class="btn btn-danger">{{ translate('Reject') }}</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+        @endforeach
+    @endforeach
 @endsection

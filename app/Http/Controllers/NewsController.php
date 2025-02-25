@@ -108,7 +108,7 @@ class NewsController extends Controller
         }
 
         $news->news_category_id = $request->news_category_id;
-        $news->date_plubished = $request->date_plubished;
+        $news->date_published = $request->date_published;
         $news->end_date = $request->end_date;
         $news->is_published = $request->is_published;
 

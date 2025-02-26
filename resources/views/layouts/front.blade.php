@@ -36,6 +36,8 @@
       @include('layouts.partials_front.header')
      
       @yield('content')
+
+      @yield('modal')
       
       @include('layouts.partials_front.footer')
       <div class="backtop" id="back-to-top" data-hover="">

@@ -63,13 +63,13 @@
                         <a href="{{ route('frontpage.products.category', [
                               'lang' => app()->getLocale(),
                               'slug' => $category->getTranslation('slug', app()->getLocale())
-                          ]) }}" class="btn btn--primary">Validate</a>
+                          ]) }}" class="btn btn--primary">Klik Disini</a>
                         <br>
                         <strong>{{ translate('Apakah Anda seorang Apoteker?') }}</strong>
                         <a href="{{ route('frontpage.products.category', [
                               'lang' => app()->getLocale(),
                               'slug' => $category->getTranslation('slug', app()->getLocale())
-                          ]) }}" class="btn btn--primary">Validate</a>
+                          ]) }}" class="btn btn--primary">Klik Disini</a>
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn--secondary" data-bs-dismiss="modal">{{ translate('Close') }}</button>

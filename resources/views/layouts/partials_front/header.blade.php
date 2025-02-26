@@ -11,7 +11,7 @@
                     'lang' => app()->getLocale(),
                     'slug' => $category->getTranslation('slug', app()->getLocale())
                 ]) }}" style="color: red">
-                {!! Illuminate\Support\Str::limit(strip_tags($category->getTranslation('name', app()->getLocale())), 30) !!}
+                {!! Illuminate\Support\Str::limit(strip_tags($category->getTranslation('name', app()->getLocale())), 24) !!}
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 8" width="11" height="8" style="color: red">
                     <g>
                     <g>

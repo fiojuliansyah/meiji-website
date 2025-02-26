@@ -131,38 +131,14 @@
                             data-toggle="dropdown"><span>{{ translate('News') }}</span></a>
                         <ul class="dropdown-menu">
                             @foreach($news_categories as $nCategory)
-                                @if ($nCategory->is_validate == 1)
-                                    <li class="nav-item">
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#validateModal{{ $nCategory->id }}">
-                                            <span>{{ $nCategory->getTranslation('name', app()->getLocale()) }}</span>
-                                        </a>
-                                    </li>
-                                    <div class="modal fade" id="validateModal{{ $nCategory->id }}" tabindex="-1" aria-labelledby="validateModalLabel{{ $nCategory->id }}" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="validateModalLabel{{ $nCategory->id }}">{{ $nCategory->getTranslation('name', app()->getLocale()) }}</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>{{ translate('This content requires validation or is currently unavailable.') }}</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn--primary" data-bs-dismiss="modal">{{ translate('Close') }}</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @else
-                                    <li class="nav-item">
-                                        <a href="{{ route('frontpage.news.category', [
-                                            'lang' => app()->getLocale(),
-                                            'slug' => $nCategory->getTranslation('slug', app()->getLocale())
-                                        ]) }}">
-                                            <span>{{ $nCategory->getTranslation('name', app()->getLocale()) }}</span>
-                                        </a>
-                                    </li>
-                                @endif
+                                <li class="nav-item">
+                                    <a href="{{ route('frontpage.news.category', [
+                                        'lang' => app()->getLocale(),
+                                        'slug' => $nCategory->getTranslation('slug', app()->getLocale())
+                                    ]) }}">
+                                        <span>{{ $nCategory->getTranslation('name', app()->getLocale()) }}</span>
+                                    </a>
+                                </li>
                             @endforeach
                         </ul>
                     </li>
@@ -170,14 +146,38 @@
                         data-toggle="dropdown"><span>{{ translate('Products') }}</span></a>
                         <ul class="dropdown-menu">
                             @foreach($categories as $category)
-                            <li class="nav-item">
-                                <a href="{{ route('frontpage.products.category', [
-                                    'lang' => app()->getLocale(),
-                                    'slug' => $category->getTranslation('slug', app()->getLocale())
-                                ]) }}">
-                                    <span>{{ $category->getTranslation('name', app()->getLocale()) }}</span>
-                                </a>
-                            </li>
+                            @if ($category->is_validate == 1)
+                                <li class="nav-item">
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#validateModal{{ $category->id }}">
+                                        <span>{{ $category->getTranslation('name', app()->getLocale()) }}</span>
+                                    </a>
+                                </li>
+                                <div class="modal fade" id="validateModal{{ $category->id }}" tabindex="-1" aria-labelledby="validateModalLabel{{ $category->id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="validateModalLabel{{ $category->id }}">{{ $category->getTranslation('name', app()->getLocale()) }}</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>{{ translate('This content requires validation or is currently unavailable.') }}</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn--primary" data-bs-dismiss="modal">{{ translate('Close') }}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @else   
+                                <li class="nav-item">
+                                    <a href="{{ route('frontpage.products.category', [
+                                        'lang' => app()->getLocale(),
+                                        'slug' => $category->getTranslation('slug', app()->getLocale())
+                                    ]) }}">
+                                        <span>{{ $category->getTranslation('name', app()->getLocale()) }}</span>
+                                    </a>
+                                </li>
+                            @endif
                             @endforeach
                         </ul>
                     </li>

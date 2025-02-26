@@ -47,9 +47,9 @@
                             <!-- Content Box -->
                             <div style="background: white; border-radius: 8px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-top: 20px;">
                                 <!-- Image -->
-                                <div style="width: 100%; height: 150px; margin-bottom: 15px; overflow: hidden; border-radius: 4px;">
+                                <div style="width: 100%; height: 150px; margin-bottom: 15px; overflow: hidden; border-radius: 4px; display: flex; align-items: center; justify-content: center; background-color: #f5f5f5;">
                                     <img src="{{ asset('storage/' . $timeline->image) }}" alt="{{ $timeline->getTranslation('title', app()->getLocale()) }}" 
-                                         style="width: 100%; height: 100%; object-fit: cover;">
+                                         style="width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain;">
                                 </div>
                                 
                                 <!-- Text Content -->

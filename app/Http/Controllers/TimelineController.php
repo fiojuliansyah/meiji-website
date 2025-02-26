@@ -75,6 +75,7 @@ class TimelineController extends Controller
         ]);
 
         $timeline->year = $request->year;
+        $timeline->is_published = $request->is_published;
 
         if ($request->hasFile('image')) {
             if ($timeline->image) {

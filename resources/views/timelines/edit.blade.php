@@ -42,7 +42,7 @@
                     <div class="mb-3">
                         <label class="form-label">{{ translate('Current Image') }}</label>
                         <div>
-                            <img src="{{ $timeline->image_url }}" alt="Timeline Image" width="200">
+                            <img src="{{ asset('storage/' . $timeline->image) }}" alt="Timeline Image" width="200">
                         </div>
                     </div>
 
@@ -97,6 +97,16 @@
                                 </div>
                             </div>
                         @endforeach
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="is_published" class="form-label">{{ translate('Publish') }}</label>
+                        <div class="form-check form-switch">
+                            <input type="hidden" name="is_published" value="">
+                            <input class="form-check-input" type="checkbox" id="is_publish" name="is_published" value="1"
+                                {{ $timeline->is_published ? 'checked' : '' }}>
+                            <label class="form-check-label" for="is_published">{{ translate('Enable') }}</label>
+                        </div>
                     </div>
 
                     <!-- Submit Button -->

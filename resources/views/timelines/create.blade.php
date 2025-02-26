@@ -40,7 +40,7 @@
                     <!-- Image Input -->
                     <div class="mb-3">
                         <label for="image" class="form-label">{{ translate('Timeline') }} {{ translate('Image') }}</label>
-                        <input type="file" name="image" id="image" class="form-control" required>
+                        <input type="file" name="image" id="image" class="form-control">
                     </div>
 
                     <!-- Language Tabs -->

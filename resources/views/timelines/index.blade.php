@@ -28,7 +28,6 @@
                                 <th>{{ translate('Image') }}</th>
                                 <th>{{ translate('Title') }}</th>
                                 <th>{{ translate('Content') }}</th>
-                                <th>{{ translate('Approval') }}</th>
                                 <th>{{ translate('Action') }}</th>
                             </tr>
                         </thead>

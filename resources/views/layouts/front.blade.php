@@ -46,13 +46,25 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p>{{ translate('This content requires validation or is currently unavailable.') }}</p>
+                        <p>{{ translate('Selamat datang di Website PT Meiji Indonesia.
+
+                          Dalam Website ini menampilkan  semua produk yang dipasarkan oleh PT Meiji Indonesia, baik produk yang dikategorikan sebagai obat bebas (Produk Kesehatan), obat yang harus diresepkan oleh dokter (Produk dengan Resep Dokter) dan obat untuk hewan (Kesehatan Hewan).
+
+                          Untuk mengetahui lebih lanjut, mohon membuka sesuai latar belakang yang Anda miliki:') }}</p>
+                          <br>
+                          <strong>{{ translate('Apakah Anda seorang Dokter?') }}</strong>
+                          <a href="{{ route('frontpage.products.category', [
+                                'lang' => app()->getLocale(),
+                                'slug' => $category->getTranslation('slug', app()->getLocale())
+                            ]) }}" class="btn btn--primary">Validate</a>
+                          <br>
+                          <strong>{{ translate('Apakah Anda seorang Apoteker?') }}</strong>
+                          <a href="{{ route('frontpage.products.category', [
+                                'lang' => app()->getLocale(),
+                                'slug' => $category->getTranslation('slug', app()->getLocale())
+                            ]) }}" class="btn btn--primary">Validate</a>
                     </div>
                     <div class="modal-footer">
-                        <a href="{{ route('frontpage.products.category', [
-                          'lang' => app()->getLocale(),
-                          'slug' => $category->getTranslation('slug', app()->getLocale())
-                      ]) }}" class="btn btn--info">Validate</a>
                         <button type="button" class="btn btn--secondary" data-bs-dismiss="modal">{{ translate('Close') }}</button>
                     </div>
                 </div>

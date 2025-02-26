@@ -99,13 +99,7 @@
             @endforelse
         </div>
 
-        @if($news->hasPages())
-            <div class="row">
-                <div class="col-12 clearfix text--center">
-                    {{ $news->links('vendor.pagination.custom') }}
-                </div>
-            </div>
-        @endif
+        {{ $news->links() }}
     </div>
 </section>
 @endsection

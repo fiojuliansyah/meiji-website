@@ -42,27 +42,6 @@
                                     <td>{{ $timeline->getTranslation('title', app()->getLocale()) }}</td>
                                     <td>{{ $timeline->getTranslation('content', app()->getLocale()) }}</td>
                                     <td>
-                                        @foreach ($timeline->requiredApprovals as $requirement)
-                                            <div>
-                                                {{ $requirement->approvalType->name }}
-                                                @php
-                                                    $approval = $timeline->approvals->firstWhere('approval_type_id', $requirement->approval_type_id);
-                                                @endphp
-                                    
-                                                @if ($approval)
-                                                    @if ($approval->status === 'approved')
-                                                        <span class="badge bg-success">{{ translate('Approved') }}</span>
-                                                    @elseif ($approval->status === 'rejected')
-                                                        <span class="badge bg-danger">{{ translate('Rejected') }}</span>
-                                                        <p class="text-muted mt-1"><small>{{ $approval->rejection_description }}</small></p>
-                                                    @endif
-                                                @else
-                                                    <span class="badge bg-warning">{{ translate('Pending') }}</span>
-                                                @endif
-                                            </div>
-                                        @endforeach
-                                    </td>
-                                    <td>
                                         <!-- Dropdown for Edit and Delete Actions -->
                                         <div class="dropdown">
                                             <a href="javascript:void(0)" class="btn btn-sm btn-light" data-bs-toggle="dropdown" aria-expanded="false">

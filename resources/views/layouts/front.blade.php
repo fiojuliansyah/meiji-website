@@ -39,7 +39,7 @@
 
       @foreach($categories as $category)
         <div class="modal fade" id="validateModal{{ $category->id }}" tabindex="-1" aria-labelledby="validateModalLabel{{ $category->id }}" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="validateModalLabel{{ $category->id }}">{{ $category->getTranslation('name', app()->getLocale()) }}</h5>
@@ -49,7 +49,11 @@
                         <p>{{ translate('This content requires validation or is currently unavailable.') }}</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn--primary" data-bs-dismiss="modal">{{ translate('Close') }}</button>
+                        <a href="{{ route('frontpage.products.category', [
+                          'lang' => app()->getLocale(),
+                          'slug' => $category->getTranslation('slug', app()->getLocale())
+                      ]) }}" class="btn btn--info">Validate</a>
+                        <button type="button" class="btn btn--secondary" data-bs-dismiss="modal">{{ translate('Close') }}</button>
                     </div>
                 </div>
             </div>

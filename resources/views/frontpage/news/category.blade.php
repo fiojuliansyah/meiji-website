@@ -33,20 +33,20 @@
             @forelse($news as $item)
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="blog-entry">
-                        <div class="entry-img">
-                            <div class="entry-date">
-                                <div class="entry-content">
-                                    <span class="day">{{ $item->created_at->format('d') }}</span>
-                                    <span class="month">{{ $item->created_at->format('M') }}</span>
-                                    <span class="year">{{ $item->created_at->format('Y') }}</span>
+                        <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; overflow: hidden; margin-bottom: 20px;">
+                            <div style="position: absolute; top: 15px; left: 15px; z-index: 10; background-color: rgba(255, 255, 255, 0.9); border-radius: 4px; padding: 8px 12px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+                                <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                                    <span style="font-size: 1.5rem; font-weight: bold; line-height: 1;">{{ $item->created_at->format('d') }}</span>
+                                    <span style="font-size: 0.9rem; text-transform: uppercase; margin: 2px 0;">{{ $item->created_at->format('M') }}</span>
+                                    <span style="font-size: 0.8rem; color: #666;">{{ $item->created_at->format('Y') }}</span>
                                 </div>
                             </div>
                             <a href="{{ route('frontpage.news.show', [
                                 'lang' => app()->getLocale(),
                                 'category_slug' => $category->getTranslation('slug', app()->getLocale()),
                                 'news_slug' => $item->getTranslation('slug', app()->getLocale())
-                            ]) }}">
-                                <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->getTranslation('name', app()->getLocale()) }}"/>
+                            ]) }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block;">
+                                <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->getTranslation('name', app()->getLocale()) }}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;"/>
                             </a>
                         </div>
                         <div class="entry-content">

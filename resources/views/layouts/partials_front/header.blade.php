@@ -24,7 +24,7 @@
                 @endforeach
                </div>
             </div>
-            <div class="block-right" style="margin-left: 450px;"> 
+            <div class="block-right" style="margin-left: 300px;"> 
               <div class="top-contact">
                 <div class="contact-infos"><i class="fas fa-phone-alt"></i>
                     <div class="contact-body"> <a href="tel:123-456-7890">{{ translate('Phone') }}: {{ $general->phone_1 }}</a></div>

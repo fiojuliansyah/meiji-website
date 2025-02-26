@@ -45,39 +45,39 @@
       </div>
     </div>
       @foreach($categories as $category)
-      <div class="modal fade" id="validateModal{{ $category->id }}" tabindex="-1" aria-labelledby="validateModalLabel{{ $category->id }}" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="validateModalLabel{{ $category->id }}">{{ $category->getTranslation('name', app()->getLocale()) }}</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                      <p>{{ translate('Selamat datang di Website PT Meiji Indonesia.
+        <div class="modal fade" id="validateModal{{ $category->id }}" tabindex="-1" aria-labelledby="validateModalLabel{{ $category->id }}" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="validateModalLabel{{ $category->id }}">{{ $category->getTranslation('name', app()->getLocale()) }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{ translate('Selamat datang di Website PT Meiji Indonesia.
 
-                        Dalam Website ini menampilkan  semua produk yang dipasarkan oleh PT Meiji Indonesia, baik produk yang dikategorikan sebagai obat bebas (Produk Kesehatan), obat yang harus diresepkan oleh dokter (Produk dengan Resep Dokter) dan obat untuk hewan (Kesehatan Hewan).
+                          Dalam Website ini menampilkan  semua produk yang dipasarkan oleh PT Meiji Indonesia, baik produk yang dikategorikan sebagai obat bebas (Produk Kesehatan), obat yang harus diresepkan oleh dokter (Produk dengan Resep Dokter) dan obat untuk hewan (Kesehatan Hewan).
 
-                        Untuk mengetahui lebih lanjut, mohon membuka sesuai latar belakang yang Anda miliki:') }}</p>
-                        <br>
-                        <strong>{{ translate('Apakah Anda seorang Dokter?') }}</strong>
-                        <a href="{{ route('frontpage.products.category', [
-                              'lang' => app()->getLocale(),
-                              'slug' => $category->getTranslation('slug', app()->getLocale())
-                          ]) }}" class="btn btn--primary">Klik Disini</a>
-                        <br>
-                        <strong>{{ translate('Apakah Anda seorang Apoteker?') }}</strong>
-                        <a href="{{ route('frontpage.products.category', [
-                              'lang' => app()->getLocale(),
-                              'slug' => $category->getTranslation('slug', app()->getLocale())
-                          ]) }}" class="btn btn--primary">Klik Disini</a>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn--secondary" data-bs-dismiss="modal">{{ translate('Close') }}</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-    @endforeach
+                          Untuk mengetahui lebih lanjut, mohon membuka sesuai latar belakang yang Anda miliki:') }}</p>
+                          <br>
+                          <strong>{{ translate('Apakah Anda seorang Dokter?') }}</strong>
+                          <a href="{{ route('frontpage.products.category', [
+                                'lang' => app()->getLocale(),
+                                'slug' => $category->getTranslation('slug', app()->getLocale())
+                            ]) }}" class="btn btn--primary">Klik Disini</a>
+                          <br>
+                          <strong>{{ translate('Apakah Anda seorang Apoteker?') }}</strong>
+                          <a href="{{ route('frontpage.products.category', [
+                                'lang' => app()->getLocale(),
+                                'slug' => $category->getTranslation('slug', app()->getLocale())
+                            ]) }}" class="btn btn--primary">Klik Disini</a>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn--secondary" data-bs-dismiss="modal">{{ translate('Close') }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      @endforeach
     <!--  Footer Scripts==
     -->
     <script src="/front/assets/js/vendor/jquery-3.6.0.min.js"></script>

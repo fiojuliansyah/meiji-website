@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                             <div class="entry-title">
-                                <h4>
+                                <h5>
                                     <a href="{{ route('frontpage.news.show', [
                                         'lang' => app()->getLocale(),
                                         'category_slug' => $category->getTranslation('slug', app()->getLocale()),
@@ -73,10 +73,10 @@
                                     ]) }}">
                                         {{ $item->getTranslation('name', app()->getLocale()) }}
                                     </a>
-                                </h4>
+                                </h5>
                             </div>
                             <div class="entry-bio">
-                                <p>{!! Illuminate\Support\Str::limit(strip_tags($item->getTranslation('content', app()->getLocale())), 150) !!}</p>
+                                <p>{!! Illuminate\Support\Str::limit(strip_tags($item->getTranslation('content', app()->getLocale())), 100) !!}</p>
                             </div>
                             <div class="entry-more">
                                 <a class="btn btn--white btn-line btn-line-before btn-line-inversed"

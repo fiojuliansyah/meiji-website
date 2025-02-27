@@ -43,7 +43,7 @@
         </div>
     </div>
 </section>
-<section class="single-product bg-blur" id="single-product">
+<section class="single-product {{ isset($product->category->{'is-validate'}) ? 'bg-blur' : '' }}" id="single-product">
     <div class="container">
       <div class="row">
         <div class="col-12 col-lg-6">
@@ -101,54 +101,56 @@
 @endsection
 
 @section('modal')
-<div class="modal fade" id="disclaimerModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="disclaimerModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="disclaimerModalLabel">{{ translate('Important Disclaimer') }}</h5>
-              <!-- Tombol close dihapus karena tidak boleh menutup modal tanpa pilihan -->
-          </div>
-          <div class="modal-body p-0">
-              <div class="card border-0 m-0">
-                  <div class="row g-0">
-                      <div class="col-md-4">
-                          <img src="https://static.vecteezy.com/system/resources/previews/005/316/380/non_2x/red-disclaimer-sign-illustration-vector.jpg" 
-                              alt="Disclaimer Image"
-                              class="img-fluid rounded-start h-100" 
-                              style="object-fit: cover;">
-                      </div>
-                      <div class="col-md-8">
-                          <div class="card-body p-4">
-                              @if ($general && $general->logo)
-                                  <img class="logo logo-dark" src="{{ asset('storage/' . $general->logo) }}" alt="Meiji Logo" width="120px" />
-                              @endif
-                              <br>
-                              <br>
-                              <div class="card-text">
-                                  <p>
-                                      Semua materi yang tertera di list produk PT Meiji Indonesia adalah untuk memberikan informasi yang benar dan tepat pada pengunjung website sesuai dengan latar belakang masing-masing.
+@if(isset($product->category->{'is-validate'}))    
+  <div class="modal fade" id="disclaimerModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="disclaimerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="disclaimerModalLabel">{{ translate('Important Disclaimer') }}</h5>
+                <!-- Tombol close dihapus karena tidak boleh menutup modal tanpa pilihan -->
+            </div>
+            <div class="modal-body p-0">
+                <div class="card border-0 m-0">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="https://static.vecteezy.com/system/resources/previews/005/316/380/non_2x/red-disclaimer-sign-illustration-vector.jpg" 
+                                alt="Disclaimer Image"
+                                class="img-fluid rounded-start h-100" 
+                                style="object-fit: cover;">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body p-4">
+                                @if ($general && $general->logo)
+                                    <img class="logo logo-dark" src="{{ asset('storage/' . $general->logo) }}" alt="Meiji Logo" width="120px" />
+                                @endif
+                                <br>
+                                <br>
+                                <div class="card-text">
+                                    <p>
+                                        Semua materi yang tertera di list produk PT Meiji Indonesia adalah untuk memberikan informasi yang benar dan tepat pada pengunjung website sesuai dengan latar belakang masing-masing.
 
-                                      Penyalahgunaan kegiatan dari materi yang tertera di Website ini merupakan tanggung jawab pribadi masing-masing dari pengunjung. Dengan ini pengunjung menyatakan bersedia dimintakan keterangan oleh pihak yang berwajib bila diperlukan dan siap diproses sesuai Hukum dan Peraturan Perundang-Undangan yang berlaku di Indonesia.
+                                        Penyalahgunaan kegiatan dari materi yang tertera di Website ini merupakan tanggung jawab pribadi masing-masing dari pengunjung. Dengan ini pengunjung menyatakan bersedia dimintakan keterangan oleh pihak yang berwajib bila diperlukan dan siap diproses sesuai Hukum dan Peraturan Perundang-Undangan yang berlaku di Indonesia.
 
-                                      Apabila ada pihak yang memberikan keterangan yang tidak sesuai dengan hal yang dimaksud diatas, maka PT Meiji Indonesia tidak bertanggungjawab atas dampak yang ditimbulkan baik terhadap diri sendiri maupun kepada masyarakat luas.
-                                  </p>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="modal-footer justify-content-center">
-              <button type="button" class="btn btn--primary me-2" id="agreeButton" data-bs-dismiss="modal">
-                  {{ translate('Agree') }}
-              </button>
-              <a href="{{ route('frontpage.products.category', ['lang' => app()->getLocale(), 'slug' => $product->category->getTranslation('slug', app()->getLocale())]) }}" class="btn btn-secondary">
-                  {{ translate('Not Agree') }}
-              </a>
-          </div>
-      </div>
+                                        Apabila ada pihak yang memberikan keterangan yang tidak sesuai dengan hal yang dimaksud diatas, maka PT Meiji Indonesia tidak bertanggungjawab atas dampak yang ditimbulkan baik terhadap diri sendiri maupun kepada masyarakat luas.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn--primary me-2" id="agreeButton" data-bs-dismiss="modal">
+                    {{ translate('Agree') }}
+                </button>
+                <a href="{{ route('frontpage.products.category', ['lang' => app()->getLocale(), 'slug' => $product->category->getTranslation('slug', app()->getLocale())]) }}" class="btn btn-secondary">
+                    {{ translate('Not Agree') }}
+                </a>
+            </div>
+        </div>
+    </div>
   </div>
-</div>
+@endif
 @endsection
 
 @push('js')

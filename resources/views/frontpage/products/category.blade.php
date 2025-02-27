@@ -101,6 +101,7 @@
                                     <span>{{ $category->getTranslation('name', app()->getLocale()) }}</span>
                                 </a>
                             </li>
+                            <br>
                         @else   
                             <li class="nav-item">
                                 <a href="{{ route('frontpage.products.category', [
@@ -110,6 +111,7 @@
                                     <span>{{ $category->getTranslation('name', app()->getLocale()) }}</span>
                                 </a>
                             </li>
+                            <br>
                         @endif
                       @endforeach
                     </ul>

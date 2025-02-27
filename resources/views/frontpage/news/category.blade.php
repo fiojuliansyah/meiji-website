@@ -52,7 +52,7 @@
                                     'category_slug' => $category->getTranslation('slug', app()->getLocale()),
                                     'news_slug' => $item->getTranslation('slug', app()->getLocale())
                                 ]) }}">
-                                    {!! Illuminate\Support\Str::limit(strip_tags($item->getTranslation('name', app()->getLocale())), 40) !!}
+                                    {!! Illuminate\Support\Str::limit(strip_tags($item->getTranslation('name', app()->getLocale())), 20) !!}
                                 </a>
                             </h4>
                         </div>

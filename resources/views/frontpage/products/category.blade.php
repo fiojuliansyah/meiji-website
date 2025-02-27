@@ -56,35 +56,3 @@
         </div>
     </section>
 @endsection
-
-@push('js')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var modal = document.getElementById('validateModal');
-            var productList = document.getElementById('productList');
-            var categoryValidationMessage = document.getElementById('categoryValidationMessage');
-
-            // Menyembunyikan produk dan menampilkan modal
-            modal.style.display = 'block';
-            productList.style.display = 'none';  // Sembunyikan produk
-
-            // Menutup modal dan menampilkan kembali produk
-            document.getElementById('closeModal').addEventListener('click', function() {
-                modal.style.display = 'none';  // Menyembunyikan modal
-                productList.style.display = 'block';  // Menampilkan produk
-            });
-
-            // Ketika tombol Doctor ditekan
-            document.getElementById('doctorBtn').addEventListener('click', function() {
-                categoryValidationMessage.style.display = 'block';  // Tampilkan pesan validasi
-                productList.style.display = 'none';  // Sembunyikan produk
-            });
-
-            // Ketika tombol Apoteker ditekan
-            document.getElementById('apotekerBtn').addEventListener('click', function() {
-                categoryValidationMessage.style.display = 'block';  // Tampilkan pesan validasi
-                productList.style.display = 'none';  // Sembunyikan produk
-            });
-        });
-    </script>
-@endpush

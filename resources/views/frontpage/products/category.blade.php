@@ -170,14 +170,7 @@
           </div>
           <!-- End .row-->
           <div class="row">
-            <div class="col-12 clearfix text--center">
-              <ul class="pagination">
-                <li><a class="current" href="javascript:void(0)">1</a></li>
-                <li><a href="javascript:void(0)">2</a></li>
-                <li><a href="#" aria-label="Next"><i class="icon-arrow-right"></i></a></li>
-              </ul>
-            </div>
-            <!-- End .col-lg-12-->
+            {{ $products->links() }}
           </div>
           <!-- End .row-->
         </div>

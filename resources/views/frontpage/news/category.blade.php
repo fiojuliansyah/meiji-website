@@ -26,7 +26,7 @@
                             ]) }}">
                                 <img src="{{ asset('storage/' . $item->image) }}" 
                                      alt="{{ $item->getTranslation('name', app()->getLocale()) }}"
-                                     style="width: 300px; height: 200px; object-fit: cover;" />
+                                     style="width: 600px; height: auto; object-fit: cover;" />
                         </a>
                     </div>
                     <!-- End .entry-img-->

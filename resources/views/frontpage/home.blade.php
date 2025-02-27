@@ -106,67 +106,61 @@
         <!-- End .row-->
         <div class="carousel owl-carousel carousel-dots" data-slide="3" data-slide-rs="2" data-autoplay="true" data-nav="false" data-dots="true" data-space="30" data-loop="true" data-speed="200">
           @foreach ($news as $item) 
-              <div class="col-md-6 col-lg-4 mb-4">
-                  <div class="blog-entry" data-hover="" style="height: 100%; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden;">
-                      <div class="entry-img">
-                          <div class="entry-date">
-                              <div class="entry-content">
-                                  <span class="day">{{ $item->created_at->format('d') }}</span>
-                                  <span class="month">{{ $item->created_at->format('M') }}</span>
-                                  <span class="year">{{ $item->created_at->format('Y') }}</span>
-                              </div>
-                          </div>
-                          <!-- End .entry-date-->
-                          <a href="{{ route('frontpage.news.show', [
-                              'lang' => app()->getLocale(),
-                              'category_slug' => $item->category->getTranslation('slug', app()->getLocale()),
-                              'news_slug' => $item->getTranslation('slug', app()->getLocale())
-                          ]) }}" style="display: block; width: 100%; height: 220px; overflow: hidden;">
-                              <img src="{{ asset('storage/' . $item->image) }}" 
-                              alt="{{ $item->getTranslation('name', app()->getLocale()) }}"
-                              style="width: 100%; height: 100%; object-fit: cover; transform: scale(1); transition: transform 0.3s ease;"
-                              onmouseover="this.style.transform='scale(1.1)'" 
-                              onmouseout="this.style.transform='scale(1)'" />
-                          </a>
-                      </div>
-                      <!-- End .entry-img-->
-                      <div class="entry-content" style="padding: 20px; display: flex; flex-direction: column; height: calc(100% - 220px);">
-                          <div class="entry-meta">
-                              <div class="entry-category">
-                                  <a href="{{ route('frontpage.news.category', [
+            <div>
+              <div class="blog-entry" data-hover="">
+                <div class="entry-img">
+                  <div class="entry-date">
+                    <div class="entry-content">
+                      <span class="day">{{ $item->created_at->format('d') }}</span>
+                      <span class="month">{{ $item->created_at->format('M') }}</span>
+                      <span class="year">{{ $item->created_at->format('Y') }}</span>
+                    </div>
+                  </div>
+                  <!-- End .entry-date--><a href="{{ route('frontpage.news.show', [
+                                'lang' => app()->getLocale(),
+                                'category_slug' => $item->category->getTranslation('slug', app()->getLocale()),
+                                'news_slug' => $item->getTranslation('slug', app()->getLocale())
+                            ]) }}" style="display: block; width: 500px; height: 200px; overflow: hidden;">
+                                <img src="{{ asset('storage/' . $item->image) }}" 
+                                     alt="{{ $item->getTranslation('name', app()->getLocale()) }}"
+                                     style="width: 100%; height: 100%; object-fit: cover; transform: scale(1); transition: transform 0.3s ease;"
+                                     onmouseover="this.style.transform='scale(1.1)'" 
+                                     onmouseout="this.style.transform='scale(1)'" />
+                        </a>
+                </div>
+                <!-- End .entry-img-->
+                <div class="entry-content">
+                  <div class="entry-meta">
+                    <div class="entry-category">
+                      <a href="{{ route('frontpage.news.category', [
                                       'lang' => app()->getLocale(),
                                       'slug' => $item->category->getTranslation('slug', app()->getLocale())
                                   ]) }}">{{ $item->category->getTranslation('name', app()->getLocale()) }}</a>
-                              </div>
-                              <div class="divider"></div>
-                              <div class="entry-author"> 
-                                  <p>Meiji Indonesia</p>
-                              </div>
-                          </div>
-                          <div class="entry-title">
-                              <h4><a href="{{ route('frontpage.news.show', [
-                                  'lang' => app()->getLocale(),
-                                  'category_slug' => $item->category->getTranslation('slug', app()->getLocale()),
-                                  'news_slug' => $item->getTranslation('slug', app()->getLocale())
-                              ]) }}">{!! Illuminate\Support\Str::limit(strip_tags($item->getTranslation('name', app()->getLocale())), 20) !!}</a></h4>
-                          </div>
-                          <div class="entry-bio">
-                              <p>{!! Illuminate\Support\Str::limit(strip_tags($item->getTranslation('content', app()->getLocale())), 80) !!}</p>
-                          </div>
-                          <div class="entry-more" style="margin-top: auto; padding-top: 15px;"> 
-                              <a class="btn btn--white btn-line btn-line-before btn-line-inversed" href="{{ route('frontpage.news.show', [
-                                  'lang' => app()->getLocale(),
-                                  'category_slug' => $item->category->getTranslation('slug', app()->getLocale()),
-                                  'news_slug' => $item->getTranslation('slug', app()->getLocale())
-                              ]) }}"> 
-                                  <div class="line"><span></span></div>
-                                  <span>{{ translate('Read More') }}</span>
-                              </a>
-                          </div>
-                      </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="entry-author"> 
+                      <p>Meiji Indonesia</p>
+                    </div>
                   </div>
-                  <!-- End .entry-content-->
+                  <div class="entry-title">
+                    <h4><a href="{{ route('frontpage.news.category', [
+                      'lang' => app()->getLocale(),
+                      'slug' => $item->category->getTranslation('slug', app()->getLocale())
+                  ]) }}">{!! Illuminate\Support\Str::limit(strip_tags($item->getTranslation('name', app()->getLocale())), 20) !!}</a></h4>
+                  </div>
+                  <div class="entry-bio">
+                    <p>{!! Illuminate\Support\Str::limit(strip_tags($item->getTranslation('content', app()->getLocale())), 80) !!}</p>
+                  </div>
+                  <div class="entry-more"> <a class="btn btn--white btn-line btn-line-before btn-line-inversed" href="{{ route('frontpage.news.show', [
+                    'lang' => app()->getLocale(),
+                    'category_slug' => $item->category->getTranslation('slug', app()->getLocale()),
+                    'news_slug' => $item->getTranslation('slug', app()->getLocale())
+                ]) }}"> 
+                      <div class="line"> <span> </span></div><span>{{ translate('Read More') }}</span></a></div>
+                </div>
               </div>
+              <!-- End .entry-content-->
+            </div>
           @endforeach
         </div>
         <!-- End .carousel-->

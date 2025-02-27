@@ -154,21 +154,15 @@
 @push('js')
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-      // Tampilkan modal saat halaman dimuat
       var disclaimerModal = new bootstrap.Modal(document.getElementById('disclaimerModal'), {
-          backdrop: 'static' // This prevents closing modal when clicking outside
+          backdrop: 'static'
       });
       
-      // Apply blur class to the relevant section
       document.getElementById('single-product').classList.add('bg-blur');
       
-      // Tampilkan modal saat halaman dimuat
       disclaimerModal.show();
             
-      // Ketika tombol agree diklik, simpan status di localStorage dan hapus blur
       document.getElementById('agreeButton').addEventListener('click', function() {
-          localStorage.setItem('disclaimerAgreed', 'true');
-          // Remove blur effect when agree is clicked
           document.getElementById('single-product').classList.remove('bg-blur');
       });
   });

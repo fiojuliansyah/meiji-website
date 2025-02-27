@@ -18,6 +18,7 @@
     -->
     <link href="/front/assets/css/vendor.min.css" rel="stylesheet"/>
     <link href="/front/assets/css/style.css" rel="stylesheet"/>
+    @stack('css')
   </head>
   <body>
     <div class="preloader">

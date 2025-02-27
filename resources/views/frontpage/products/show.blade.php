@@ -4,7 +4,33 @@
   {{ $product->getTranslation('name', app()->getLocale()) ?? 'News Detail' }}
 @endsection
 
+@push('css')
+<style>
+  /* Style untuk overlay blur */
+  .content-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6); /* semi-transparent white */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1040; /* Di bawah modal (1050) tapi di atas konten lain */
+    display: none; /* Tersembunyi secara default */
+  }
+  
+  /* Tambahkan animasi fade untuk overlay */
+  .fade-overlay {
+    transition: opacity 0.3s ease;
+  }
+</style>
+@endpush
+
 @section('content')
+<!-- Overlay untuk efek blur -->
+<div id="contentOverlay" class="content-overlay fade-overlay"></div>
+
 <section class="page-title page-title-blank bg-white" id="page-title">
     <div class="container">
         <div class="row">
@@ -48,6 +74,38 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+  <section class="shop shop-2"> 
+    <div class="container"> 
+      <div class="row"> 
+        <div class="col-12"> 
+          <h5>{{ translate('related products') }}</h5>
+        </div>
+      </div>
+      <div class="row"> 
+        @foreach ($related_products as $related)    
+            <div class="col-12 col-md-6 col-lg-3">
+            <div class="product-item" data-hover="">
+                <div class="product-img"><img src="{{ asset('storage/' . $related->image) }}" alt="Product" style="width: 200px; height: 200px; object-fit: cover;"/><a class="add-to-cart" href="{{ route('frontpage.products.show', [
+                    'lang' => app()->getLocale(),
+                    'category_slug' => $related->category->getTranslation('slug', app()->getLocale()),
+                    'products_slug' => $related->getTranslation('slug', app()->getLocale())
+                ]) }}">{{ translate('read more') }}</a>
+                <div class="badge"></div>
+                </div>
+                <div class="product-content">
+                <div class="product-title"><a href="{{ route('frontpage.products.show', [
+                    'lang' => app()->getLocale(),
+                    'category_slug' => $related->category->getTranslation('slug', app()->getLocale()),
+                    'products_slug' => $related->getTranslation('slug', app()->getLocale())
+                ]) }}">{{ $related->getTranslation('name', app()->getLocale()) ?? 'Product Name' }}</a></div>
+                </div>
+            </div>
+            <!-- .product end-->
+            </div>
+        @endforeach
       </div>
     </div>
   </section>
@@ -107,20 +165,45 @@
 @push('js')
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-      // Tampilkan modal saat halaman dimuat
-      var disclaimerModal = new bootstrap.Modal(document.getElementById('disclaimerModal'));
-      disclaimerModal.show();
-      
-      // Cek apakah sudah pernah setuju sebelumnya (opsional)
+      var overlay = document.getElementById('contentOverlay');
       var hasAgreed = localStorage.getItem('disclaimerAgreed');
-      if (hasAgreed) {
-          // Jika sudah pernah setuju, tidak perlu menampilkan modal
-          disclaimerModal.hide();
+      
+      // Fungsi untuk menampilkan overlay blur
+      function showOverlay() {
+          overlay.style.display = 'block';
+          // Trigger reflow
+          overlay.offsetHeight;
+          overlay.style.opacity = '1';
       }
       
-      // Ketika tombol agree diklik, simpan status di localStorage (opsional)
-      document.getElementById('agreeButton').addEventListener('click', function() {
-          localStorage.setItem('disclaimerAgreed', 'true');
+      // Fungsi untuk menyembunyikan overlay blur
+      function hideOverlay() {
+          overlay.style.opacity = '0';
+          setTimeout(function() {
+              overlay.style.display = 'none';
+          }, 300); // Waktu sama dengan transisi CSS
+      }
+      
+      // Tampilkan overlay dan modal saat halaman dimuat
+      if (!hasAgreed) {
+          showOverlay();
+          var disclaimerModal = new bootstrap.Modal(document.getElementById('disclaimerModal'));
+          disclaimerModal.show();
+          
+          // Tambahkan event listener untuk tombol agree
+          document.getElementById('agreeButton').addEventListener('click', function() {
+              localStorage.setItem('disclaimerAgreed', 'true');
+              hideOverlay();
+          });
+      }
+      
+      // Event listener untuk modal
+      var modalElement = document.getElementById('disclaimerModal');
+      modalElement.addEventListener('hidden.bs.modal', function() {
+          // Jika modal ditutup (melalui tombol Agree), sembunyikan overlay
+          if (localStorage.getItem('disclaimerAgreed') === 'true') {
+              hideOverlay();
+          }
       });
   });
 </script>

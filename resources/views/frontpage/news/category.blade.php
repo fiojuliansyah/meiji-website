@@ -19,7 +19,7 @@
                                 'lang' => app()->getLocale(),
                                 'category_slug' => $category->getTranslation('slug', app()->getLocale()),
                                 'news_slug' => $item->getTranslation('slug', app()->getLocale())
-                            ]) }}"><img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->getTranslation('name', app()->getLocale()) }}"/></a>
+                            ]) }}"><img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->getTranslation('name', app()->getLocale()) }}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;"/></a>
                 </div>
                 <!-- End .entry-img-->
                 <div class="entry-content">

@@ -118,7 +118,7 @@
                         </div>
                         <a href="{{ route('frontpage.news.show', [
                                 'lang' => app()->getLocale(),
-                                'category_slug' => $category->getTranslation('slug', app()->getLocale()),
+                                'category_slug' => $item->category->getTranslation('slug', app()->getLocale()),
                                 'news_slug' => $item->getTranslation('slug', app()->getLocale())
                             ]) }}" style="display: block; width: 500px; height: 200px; overflow: hidden;">
                                 <img src="{{ asset('storage/' . $item->image) }}" 
@@ -133,9 +133,9 @@
                         <div class="entry-meta">
                             <div class="entry-category"><a href="{{ route('frontpage.news.show', [
                                 'lang' => app()->getLocale(),
-                                'category_slug' => $category->getTranslation('slug', app()->getLocale()),
+                                'category_slug' => $item->category->getTranslation('slug', app()->getLocale()),
                                 'news_slug' => $item->getTranslation('slug', app()->getLocale())
-                            ]) }}">{{ $category->getTranslation('name', app()->getLocale()) }}</a>
+                            ]) }}">{{ $item->category->getTranslation('name', app()->getLocale()) }}</a>
                             </div>
                             <div class="divider"></div>
                             <div class="entry-author"> 
@@ -146,7 +146,7 @@
                             <h4>
                                 <a href="{{ route('frontpage.news.show', [
                                     'lang' => app()->getLocale(),
-                                    'category_slug' => $category->getTranslation('slug', app()->getLocale()),
+                                    'category_slug' => $item->category->getTranslation('slug', app()->getLocale()),
                                     'news_slug' => $item->getTranslation('slug', app()->getLocale())
                                 ]) }}">
                                     {!! Illuminate\Support\Str::limit(strip_tags($item->getTranslation('name', app()->getLocale())), 20) !!}
@@ -159,7 +159,7 @@
                         <div class="entry-more"> <a class="btn btn--white btn-line btn-line-before btn-line-inversed"
                                 href="{{ route('frontpage.news.show', [
                                     'lang' => app()->getLocale(),
-                                    'category_slug' => $category->getTranslation('slug', app()->getLocale()),
+                                    'category_slug' => $item->category->getTranslation('slug', app()->getLocale()),
                                     'news_slug' => $item->getTranslation('slug', app()->getLocale())
                                 ]) }}">
                                 <div class="line"><span></span></div>

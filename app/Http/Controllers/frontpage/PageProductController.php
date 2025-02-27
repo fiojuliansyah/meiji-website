@@ -38,7 +38,7 @@ class PageProductController extends Controller
         $products = Product::where('is_published', true)
                     ->where(function($q) use ($query, $lang) {
                         $q->whereRaw("LOWER(JSON_EXTRACT(name, '$.\"{$lang}\"')) LIKE ?", ['%' . strtolower($query) . '%'])
-                        ->orWhereRaw("LOWER(JSON_EXTRACT(description, '$.\"{$lang}\"')) LIKE ?", ['%' . strtolower($query) . '%']);
+                        ->orWhereRaw("LOWER(JSON_EXTRACT(content, '$.\"{$lang}\"')) LIKE ?", ['%' . strtolower($query) . '%']);
                     })
                     ->latest()
                     ->paginate(9);

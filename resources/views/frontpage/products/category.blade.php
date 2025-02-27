@@ -124,34 +124,6 @@
                     </form>
                   </div>
                 </div>
-                <!-- End .widget-search-->
-                <!-- Featured Products-->
-                <div class="widget widget-recent-products">
-                  <div class="widget-title">
-                    <h5>{{ translate('Featured Products') }}</h5>
-                  </div>
-                  <div class="widget-content">
-                    @foreach($featured_products as $featured)
-                      <!-- Start .product-->
-                      <div class="product">
-                        <div class="product-img">
-                          <img src="{{ asset('storage/' . $featured->image) }}" alt="{{ $featured->getTranslation('name', app()->getLocale()) }}"/>
-                        </div>
-                        <div class="product-desc">
-                          <div class="product-title">
-                            <a href="{{ route('frontpage.products.show', [
-                                'lang' => app()->getLocale(),
-                                'category_slug' => $featured->category->getTranslation('slug', app()->getLocale()),
-                                'products_slug' => $featured->getTranslation('slug', app()->getLocale())
-                            ]) }}">{{ $featured->getTranslation('name', app()->getLocale()) }}</a>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- End .product -->
-                    @endforeach
-                  </div>
-                </div>
-                <!-- End .widget-recent-products -->
               </div>
               <!-- End .sidebar-->
             </div>

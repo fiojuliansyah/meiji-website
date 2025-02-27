@@ -21,14 +21,8 @@ class PageProductController extends Controller
     
         $categories = Category::all();
         
-        // Mengambil featured products
-        $featured_products = Product::where('is_published', true)
-                            ->where('is_featured', true)
-                            ->take(3)
-                            ->latest()
-                            ->get();
     
-        return view('frontpage.products.category', compact('products', 'category', 'categories', 'featured_products'));
+        return view('frontpage.products.category', compact('products', 'category', 'categories'));
     }
     
     public function search($lang, Request $request)

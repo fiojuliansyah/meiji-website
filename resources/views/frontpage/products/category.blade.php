@@ -13,15 +13,6 @@
                     <div class="products-show"> 
                       <h4>{{ $category->getTranslation('name', app()->getLocale()) }}</h4>
                     </div>
-                    <div class="products-sort">
-                      <div class="select-holder">
-                        <select>
-                          <option selected="" value="Default">Product Name</option>
-                          <option value="Larger">Newest Items</option>
-                          <option value="Larger">Oldest Items</option>
-                        </select>
-                      </div>
-                    </div>
                   </div>
                   <!-- .shop-options end-->
                 </div>

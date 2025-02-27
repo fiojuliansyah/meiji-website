@@ -91,7 +91,7 @@ Route::prefix('{lang}')
         Route::get('/products/category/{slug}', [PageProductController::class, 'category'])->name('frontpage.products.category');
         Route::get('/category/validate/{slug}', [PageProductController::class, 'validateCategory'])->name('frontpage.category.validate');
         Route::get('/products/{category_slug}/{products_slug}', [PageProductController::class, 'show'])->name('frontpage.products.show');
-        Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
+        Route::get('/products/search', [ProductController::class, 'search'])->name('frontpage.products.search');
 
         Route::get('/r&d/{slug}', [PageRanddController::class, 'show'])->name('frontpage.randd.show');
 

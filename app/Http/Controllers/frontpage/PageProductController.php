@@ -23,19 +23,28 @@ class PageProductController extends Controller
         return view('frontpage.products.category', compact('products', 'category', 'categories'));
     }
     
-    public function search(Request $request)
+    public function search($lang, Request $request)
     {
-        $query = $request->input('query');
+        $query = $request->input('q');
         
-        $products = Product::where('is_published', true)->where('name', 'like', '%' . $query . '%')
-                        ->orWhere('description', 'like', '%' . $query . '%')
-                        ->latest()
-                        ->paginate(9);
-    
+        // Jika query kosong, redirect kembali
+        if (empty($query)) {
+            return redirect()->back();
+        }
+        
+        // Cari produk berdasarkan nama atau deskripsi
+        $products = Product::where('is_published', true)
+                    ->where(function($q) use ($query, $lang) {
+                        $q->whereRaw("LOWER(JSON_EXTRACT(name, '$.\"{$lang}\"')) LIKE ?", ['%' . strtolower($query) . '%'])
+                        ->orWhereRaw("LOWER(JSON_EXTRACT(description, '$.\"{$lang}\"')) LIKE ?", ['%' . strtolower($query) . '%']);
+                    })
+                    ->latest()
+                    ->paginate(9);
+        
         $categories = Category::all();
-    
+        
         return view('frontpage.products.search', compact('products', 'categories', 'query'));
-    }   
+    } 
 
     public function validateCategory($lang, $slug)
     {

@@ -11,17 +11,14 @@
                 <div class="col-12">
                   <div class="shop-options">
                     <div class="products-show"> 
-                      <p>showing 1:9 of 45 products</p>
+                      <h4>{{ $category->getTranslation('name', app()->getLocale()) }}</h4>
                     </div>
                     <div class="products-sort">
                       <div class="select-holder">
                         <select>
                           <option selected="" value="Default">Product Name</option>
                           <option value="Larger">Newest Items</option>
-                          <option value="Larger">oldest Items</option>
-                          <option value="Larger">Hot Items</option>
-                          <option value="Small">Highest Price</option>
-                          <option value="Medium">Lowest Price</option>
+                          <option value="Larger">Oldest Items</option>
                         </select>
                       </div>
                     </div>
@@ -32,33 +29,51 @@
               </div>
               <div class="row">
                 @forelse ($products as $item)
-                    <div class="col-12 col-md-6 col-lg-4">
-                    <div class="product-item" data-hover="">
-                        <div class="product-img"><img src="{{ asset('storage/' . $item->image) }}" alt="Product" style="width: 200px; height: 200px; object-fit: cover;" /><a class="add-to-cart" href="{{ route('frontpage.products.show', [
-                            'lang' => app()->getLocale(),
-                            'category_slug' => $category->getTranslation('slug', app()->getLocale()),
-                            'products_slug' => $item->getTranslation('slug', app()->getLocale())
-                        ]) }}"><i class="fas fa-shopping-cart"></i> Detail</a>
-                        <div class="badge"></div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                      <div class="product-item" data-hover="" style="height: 100%; box-shadow: 0 2px 10px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden;">
+                        <div class="product-img">
+                          <a href="{{ route('frontpage.products.show', [
+                              'lang' => app()->getLocale(),
+                              'category_slug' => $category->getTranslation('slug', app()->getLocale()),
+                              'products_slug' => $item->getTranslation('slug', app()->getLocale())
+                          ]) }}" style="display: block; width: 100%; height: 250px; overflow: hidden;">
+                            <img src="{{ asset('storage/' . $item->image) }}" 
+                                 alt="{{ $item->getTranslation('name', app()->getLocale()) }}" 
+                                 style="width: 100%; height: 100%; object-fit: contain; transition: transform 0.3s ease;"
+                                 onmouseover="this.style.transform='scale(1.05)'" 
+                                 onmouseout="this.style.transform='scale(1)'"/>
+                          </a>
                         </div>
                         <!-- .product-img end-->
-                        <div class="product-content">
-                        <div class="product-title"><a href="{{ route('frontpage.products.show', [
-                            'lang' => app()->getLocale(),
-                            'category_slug' => $category->getTranslation('slug', app()->getLocale()),
-                            'products_slug' => $item->getTranslation('slug', app()->getLocale())
-                        ]) }}">green tea</a></div>
-                        <!-- .product-title end-->
-                        <div class="product-price"><span>$15.00</span></div>
-                        <!-- .product-price end-->
+                        <div class="product-content" style="padding: 15px; text-align: center;">
+                          <div class="product-title">
+                            <h5><a href="{{ route('frontpage.products.show', [
+                                'lang' => app()->getLocale(),
+                                'category_slug' => $category->getTranslation('slug', app()->getLocale()),
+                                'products_slug' => $item->getTranslation('slug', app()->getLocale())
+                            ]) }}">{{ $item->getTranslation('name', app()->getLocale()) }}</a></h5>
+                          </div>
+                          <!-- .product-title end-->
+                          <div class="product-desc" style="margin-top: 10px;">
+                            <p>{!! Illuminate\Support\Str::limit(strip_tags($item->getTranslation('description', app()->getLocale())), 80) !!}</p>
+                          </div>
+                          <div class="product-action" style="margin-top: 15px;">
+                            <a class="btn btn--primary" href="{{ route('frontpage.products.show', [
+                                'lang' => app()->getLocale(),
+                                'category_slug' => $category->getTranslation('slug', app()->getLocale()),
+                                'products_slug' => $item->getTranslation('slug', app()->getLocale())
+                            ]) }}">
+                              {{ translate('View Details') }}
+                            </a>
+                          </div>
                         </div>
                         <!-- .product-content end-->
-                    </div>
-                    <!-- .product end-->
+                      </div>
+                      <!-- .product end-->
                     </div>  
                 @empty
                     <div class="col-12 text-center">
-                        <p>{{ translate('No news found in this category.') }}</p>
+                        <p>{{ translate('No products found in this category.') }}</p>
                     </div>
                 @endforelse
               </div>
@@ -75,15 +90,19 @@
                 <!-- Categories-->
                 <div class="widget widget-categories">
                   <div class="widget-title">
-                    <h5>categories</h5>
+                    <h5>{{ translate('Categories') }}</h5>
                   </div>
                   <div class="widget-content">
                     <ul class="list-unstyled">
-                      <li><a href="javascript:void(0)">neurology</a><span>9</span></li>
-                      <li><a href="javascript:void(0)">cardiology</a><span>2</span></li>
-                      <li><a href="javascript:void(0)">pathology</a><span>5</span></li>
-                      <li><a href="javascript:void(0)">labotatory</a><span>1</span></li>
-                      <li><a href="javascript:void(0)">pediatric</a><span>7</span></li>
+                      @foreach($categories as $cat)
+                        <li>
+                          <a href="{{ route('frontpage.products.category', [
+                              'lang' => app()->getLocale(),
+                              'slug' => $cat->getTranslation('slug', app()->getLocale())
+                          ]) }}">{{ $cat->getTranslation('name', app()->getLocale()) }}</a>
+                          <span>{{ $cat->products_count }}</span>
+                        </li>
+                      @endforeach
                     </ul>
                   </div>
                 </div>
@@ -91,78 +110,48 @@
                 <!-- Search-->
                 <div class="widget widget-search">
                   <div class="widget-title"> 
-                    <h5>search</h5>
+                    <h5>{{ translate('Search') }}</h5>
                   </div>
                   <div class="widget-content">
-                    <form class="form-search">
+                    <form class="form-search" action="{{ route('frontpage.products.search', ['lang' => app()->getLocale()]) }}" method="GET">
                       <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Search ..."/><span class="input-group-btn">
-                          <button class="btn" type="button"><i class="icon-search"></i></button></span>
+                        <input class="form-control" type="text" name="q" placeholder="{{ translate('Search products...') }}"/>
+                        <span class="input-group-btn">
+                          <button class="btn" type="submit"><i class="icon-search"></i></button>
+                        </span>
                       </div>
                       <!-- /input-group-->
                     </form>
                   </div>
                 </div>
                 <!-- End .widget-search-->
-                <!-- Recent Products-->
+                <!-- Featured Products-->
                 <div class="widget widget-recent-products">
                   <div class="widget-title">
-                    <h5>products</h5>
+                    <h5>{{ translate('Featured Products') }}</h5>
                   </div>
                   <div class="widget-content">
-                    <!-- Start .product-->
-                    <div class="product">
-                      <div class="product-img"><img src="assets/images/shop/thumb/1.jpg" alt="product"/></div>
-                      <div class="product-desc">
-                        <div class="product-title"><a href="shop-single.html">calming herps</a></div>
-                        <div class="product-meta"><span>$10.00</span></div>
+                    @foreach($featured_products as $featured)
+                      <!-- Start .product-->
+                      <div class="product">
+                        <div class="product-img">
+                          <img src="{{ asset('storage/' . $featured->image) }}" alt="{{ $featured->getTranslation('name', app()->getLocale()) }}"/>
+                        </div>
+                        <div class="product-desc">
+                          <div class="product-title">
+                            <a href="{{ route('frontpage.products.show', [
+                                'lang' => app()->getLocale(),
+                                'category_slug' => $featured->category->getTranslation('slug', app()->getLocale()),
+                                'products_slug' => $featured->getTranslation('slug', app()->getLocale())
+                            ]) }}">{{ $featured->getTranslation('name', app()->getLocale()) }}</a>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <!-- End .product -->
-                    <!-- Start .product-->
-                    <div class="product">
-                      <div class="product-img"><img src="assets/images/shop/thumb/2.jpg" alt="product"/></div>
-                      <div class="product-desc">
-                        <div class="product-title"><a href="shop-single.html">goji powder</a></div>
-                        <div class="product-meta"><span>$19.00</span></div>
-                      </div>
-                    </div>
-                    <!-- End .product -->
-                    <!-- Start .product-->
-                    <div class="product">
-                      <div class="product-img"><img src="assets/images/shop/thumb/3.jpg" alt="product"/></div>
-                      <div class="product-desc">
-                        <div class="product-title"><a href="shop-single.html">biotin complex</a></div>
-                        <div class="product-meta"><span>$25.00</span></div>
-                      </div>
-                    </div>
-                    <!-- End .product -->
+                      <!-- End .product -->
+                    @endforeach
                   </div>
                 </div>
                 <!-- End .widget-recent-products -->
-                <!-- Widget Filter-->
-                <div class="widget widget-filter">
-                  <div class="widget-title">
-                    <h5>filter by price</h5>
-                  </div>
-                  <div class="widget-content clearfix">
-                    <div id="slider-range"></div>
-                    <p class="slider-mount">
-                      <label for="amount">Price:  </label>
-                      <input id="amount" type="text" readonly=""/><a class="btn-filter" href="#">Filter</a>
-                    </p>
-                  </div>
-                </div>
-                <!-- End .widget-filter-->
-                <!-- Tags-->
-                <div class="widget widget-tags">
-                  <div class="widget-title">
-                    <h5>Tags</h5>
-                  </div>
-                  <div class="widget-content"><a href="javascript:void(0)">life style</a><a href="javascript:void(0)">nutrition</a><a href="javascript:void(0)">infectious</a><a href="javascript:void(0)">disease</a><a href="javascript:void(0)">insights</a><a href="javascript:void(0)">urinary</a><a href="javascript:void(0)">tips</a>
-                  </div>
-                </div>
-                <!-- End .widget-tags -->
               </div>
               <!-- End .sidebar-->
             </div>
@@ -170,7 +159,9 @@
           </div>
           <!-- End .row-->
           <div class="row">
-            {{ $products->links() }}
+            <div class="col-12">
+              {{ $products->links() }}
+            </div>
           </div>
           <!-- End .row-->
         </div>

@@ -6,7 +6,7 @@
 
 @push('css')
 <style>
-.bg-blur {
+.blur-section {
   /* Add the blur effect */
   filter: blur(8px);
   -webkit-filter: blur(8px);
@@ -101,7 +101,7 @@
 @endsection
 
 @section('modal')
-<div class="modal fade modalblur" id="disclaimerModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="disclaimerModalLabel" aria-hidden="true">
+<div class="modal fade" id="disclaimerModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="disclaimerModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
           <div class="modal-header">
@@ -160,7 +160,7 @@
       });
       
       // Apply blur class to the relevant section
-      document.getElementById('single-product').classList.add('bg-blur');
+      document.getElementById('single-product').classList.add('blur-section');
       
       // Tampilkan modal saat halaman dimuat
       disclaimerModal.show();
@@ -171,14 +171,14 @@
           // Jika sudah pernah setuju, tidak perlu menampilkan modal
           disclaimerModal.hide();
           // Remove blur effect
-          document.getElementById('single-product').classList.remove('bg-blur');
+          document.getElementById('single-product').classList.remove('blur-section');
       }
       
       // Ketika tombol agree diklik, simpan status di localStorage dan hapus blur
       document.getElementById('agreeButton').addEventListener('click', function() {
           localStorage.setItem('disclaimerAgreed', 'true');
           // Remove blur effect when agree is clicked
-          document.getElementById('single-product').classList.remove('bg-blur');
+          document.getElementById('single-product').classList.remove('blur-section');
       });
   });
 </script>

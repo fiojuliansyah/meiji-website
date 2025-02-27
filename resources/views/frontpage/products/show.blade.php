@@ -43,7 +43,7 @@
         </div>
     </div>
 </section>
-<section class="single-product blur-section" id="single-product">
+<section class="single-product" id="single-product">
     <div class="container">
       <div class="row">
         <div class="col-12 col-lg-6">
@@ -160,7 +160,7 @@
       });
       
       // Apply blur class to the relevant section
-      document.getElementById('single-product').classList.add('blur-section');
+      document.getElementById('single-product').classList.add('bg-blur');
       
       // Tampilkan modal saat halaman dimuat
       disclaimerModal.show();
@@ -171,14 +171,14 @@
           // Jika sudah pernah setuju, tidak perlu menampilkan modal
           disclaimerModal.hide();
           // Remove blur effect
-          document.getElementById('single-product').classList.remove('blur-section');
+          document.getElementById('single-product').classList.remove('bg-blur');
       }
       
       // Ketika tombol agree diklik, simpan status di localStorage dan hapus blur
       document.getElementById('agreeButton').addEventListener('click', function() {
           localStorage.setItem('disclaimerAgreed', 'true');
           // Remove blur effect when agree is clicked
-          document.getElementById('single-product').classList.remove('blur-section');
+          document.getElementById('single-product').classList.remove('bg-blur');
       });
   });
 </script>

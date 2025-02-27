@@ -9,12 +9,14 @@
             <div class="card border-0 shadow-sm">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="{{ asset('assets/images/disclaimer-image.jpg') }}" alt="Disclaimer Image"
+                        <img src="https://static.vecteezy.com/system/resources/previews/005/316/380/non_2x/red-disclaimer-sign-illustration-vector.jpg" alt="Disclaimer Image"
                             class="img-fluid rounded-start h-100" style="object-fit: cover;">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body p-4">
-                            <h4 class="card-title text-primary mb-3">{{ translate('Important Information') }}</h4>
+                            @if ($general && $general->logo)
+                                <img class="logo logo-dark" src="{{ asset('storage/' . $general->logo) }}" alt="Meiji Logo" width="50%" />
+                            @endif
                             <div class="card-text">
                                 <p>{{ translate('The products shown are intended for medical professionals only. These prescription medicines require a prescription from a qualified healthcare provider.') }}
                                 </p>

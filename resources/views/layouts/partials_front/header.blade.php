@@ -146,22 +146,22 @@
                         data-toggle="dropdown"><span>{{ translate('Products') }}</span></a>
                         <ul class="dropdown-menu">
                             @foreach($categories as $category)
-                            @if ($category->is_validate == 1)
-                                <li class="nav-item">
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#validateModal{{ $category->id }}">
-                                        <span>{{ $category->getTranslation('name', app()->getLocale()) }}</span>
-                                    </a>
-                                </li>
-                            @else   
-                                <li class="nav-item">
-                                    <a href="{{ route('frontpage.products.category', [
-                                        'lang' => app()->getLocale(),
-                                        'slug' => $category->getTranslation('slug', app()->getLocale())
-                                    ]) }}">
-                                        <span>{{ $category->getTranslation('name', app()->getLocale()) }}</span>
-                                    </a>
-                                </li>
-                            @endif
+                                @if ($category->is_validate == 1)
+                                    <li class="nav-item">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#validateModal{{ $category->id }}">
+                                            <span>{{ $category->getTranslation('name', app()->getLocale()) }}</span>
+                                        </a>
+                                    </li>
+                                @else   
+                                    <li class="nav-item">
+                                        <a href="{{ route('frontpage.products.category', [
+                                            'lang' => app()->getLocale(),
+                                            'slug' => $category->getTranslation('slug', app()->getLocale())
+                                        ]) }}">
+                                            <span>{{ $category->getTranslation('name', app()->getLocale()) }}</span>
+                                        </a>
+                                    </li>
+                                @endif
                             @endforeach
                         </ul>
                     </li>

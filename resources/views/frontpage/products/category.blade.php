@@ -94,14 +94,23 @@
                   </div>
                   <div class="widget-content">
                     <ul class="list-unstyled">
-                      @foreach($categories as $cat)
-                        <li>
-                          <a href="{{ route('frontpage.products.category', [
-                              'lang' => app()->getLocale(),
-                              'slug' => $cat->getTranslation('slug', app()->getLocale())
-                          ]) }}">{{ $cat->getTranslation('name', app()->getLocale()) }}</a>
-                          <span>{{ $cat->products_count }}</span>
-                        </li>
+                      @foreach($categories as $category)
+                        @if ($category->is_validate == 1)
+                            <li class="nav-item">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#validateModal{{ $category->id }}">
+                                    <span>{{ $category->getTranslation('name', app()->getLocale()) }}</span>
+                                </a>
+                            </li>
+                        @else   
+                            <li class="nav-item">
+                                <a href="{{ route('frontpage.products.category', [
+                                    'lang' => app()->getLocale(),
+                                    'slug' => $category->getTranslation('slug', app()->getLocale())
+                                ]) }}">
+                                    <span>{{ $category->getTranslation('name', app()->getLocale()) }}</span>
+                                </a>
+                            </li>
+                        @endif
                       @endforeach
                     </ul>
                   </div>

@@ -12,15 +12,15 @@
             <div class="col-12 col-md-6 col-lg-4">
             <div class="blog-entry" data-hover="">
                 <div class="entry-img">
-                <div class="entry-date">
-                    <div class="entry-content"><span class="day">{{ $item->created_at->format('d') }}</span><span class="month">{{ $item->created_at->format('M') }}</span><span class="year">{{ $item->created_at->format('Y') }}</span></div>
-                </div>
-                <a href="{{ route('frontpage.news.show', [
-                        'lang' => app()->getLocale(),
-                        'category_slug' => $category->getTranslation('slug', app()->getLocale()),
-                        'news_slug' => $item->getTranslation('slug', app()->getLocale())
-                    ]) }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block;">
-                        <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->getTranslation('name', app()->getLocale()) }}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;"/>
+                    <div class="entry-date">
+                        <div class="entry-content"><span class="day">{{ $item->created_at->format('d') }}</span><span class="month">{{ $item->created_at->format('M') }}</span><span class="year">{{ $item->created_at->format('Y') }}</span></div>
+                    </div>
+                    <a href="{{ route('frontpage.news.show', [
+                            'lang' => app()->getLocale(),
+                            'category_slug' => $category->getTranslation('slug', app()->getLocale()),
+                            'news_slug' => $item->getTranslation('slug', app()->getLocale())
+                        ]) }}">
+                            <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->getTranslation('name', app()->getLocale()) }}"/>
                     </a>
                 </div>
                 <!-- End .entry-img-->

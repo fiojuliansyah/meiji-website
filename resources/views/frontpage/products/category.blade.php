@@ -15,7 +15,7 @@
                     <div class="col-md-8">
                         <div class="card-body p-4">
                             @if ($general && $general->logo)
-                                <img class="logo logo-dark" src="{{ asset('storage/' . $general->logo) }}" alt="Meiji Logo" width="50%" />
+                                <img class="logo logo-dark" src="{{ asset('storage/' . $general->logo) }}" alt="Meiji Logo" width="50px" />
                             @endif
                             <div class="card-text">
                                 <p>{{ translate('The products shown are intended for medical professionals only. These prescription medicines require a prescription from a qualified healthcare provider.') }}

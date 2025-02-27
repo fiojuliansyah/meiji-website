@@ -23,10 +23,12 @@
                                 'lang' => app()->getLocale(),
                                 'category_slug' => $category->getTranslation('slug', app()->getLocale()),
                                 'news_slug' => $item->getTranslation('slug', app()->getLocale())
-                            ]) }}">
+                            ]) }}" style="display: block; width: 600px; height: 400px; overflow: hidden;">
                                 <img src="{{ asset('storage/' . $item->image) }}" 
                                      alt="{{ $item->getTranslation('name', app()->getLocale()) }}"
-                                     style="width: 600px; height: auto; object-fit: cover;" />
+                                     style="width: 100%; height: 100%; object-fit: cover; transform: scale(1); transition: transform 0.3s ease;"
+                                     onmouseover="this.style.transform='scale(1.1)'" 
+                                     onmouseout="this.style.transform='scale(1)'" />
                         </a>
                     </div>
                     <!-- End .entry-img-->

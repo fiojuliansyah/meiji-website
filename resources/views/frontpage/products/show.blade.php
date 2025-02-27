@@ -5,40 +5,25 @@
 @endsection
 
 @push('css')
-<style>
-  /* Blur overlay untuk seluruh halaman */
-  .overlay-blur {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    z-index: 1040;
-    display: none;
-  }
-  
-  /* Style untuk modal */
-  .modal-dialog.modal-blur {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  /* Memastikan modal tetap terpusat */
-  .modal.show {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-  }
-</style>
+    <style>
+      body.modal-open>div.bg,
+      .modal-backdrop.fade.show {
+          z-index: 1;
+          -webkit-filter: blur(5px);
+          filter: blur(5px);
+            background-color: #e8e8e8d9;
+      }
+      .modalblur {
+          margin: 20px;
+          border-radius: 4px;
+          background-color: rgba(255, 255, 255, 0.5);
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          box-shadow: 2px 2px 0px 2px rgba(255, 255, 255, 0.6);
+      }
+    </style>
 @endpush
 
 @section('content')
-<!-- Overlay untuk blur seluruh halaman -->
-<div id="blurOverlay" class="overlay-blur"></div>
-
 <section class="page-title page-title-blank bg-white" id="page-title">
     <div class="container">
         <div class="row">
@@ -58,7 +43,6 @@
         </div>
     </div>
 </section>
-
 <section class="single-product" id="single-product">
     <div class="container">
       <div class="row">
@@ -85,9 +69,8 @@
         </div>
       </div>
     </div>
-</section>
-
-<section class="shop shop-2"> 
+  </section>
+  <section class="shop shop-2"> 
     <div class="container"> 
       <div class="row"> 
         <div class="col-12"> 
@@ -106,11 +89,7 @@
                 <div class="badge"></div>
                 </div>
                 <div class="product-content">
-                <div class="product-title"><a href="{{ route('frontpage.products.show', [
-                    'lang' => app()->getLocale(),
-                    'category_slug' => $related->category->getTranslation('slug', app()->getLocale()),
-                    'products_slug' => $related->getTranslation('slug', app()->getLocale())
-                ]) }}">{{ $related->getTranslation('name', app()->getLocale()) ?? 'Product Name' }}</a></div>
+                <div class="product-title"><a href="shop-single.html">{{ $related->getTranslation('name', app()->getLocale()) ?? 'Product Name' }}</a></div>
                 </div>
             </div>
             <!-- .product end-->
@@ -118,15 +97,16 @@
         @endforeach
       </div>
     </div>
-</section>
+  </section>
 @endsection
 
 @section('modal')
-<div class="modal fade" id="disclaimerModal" tabindex="-1" aria-labelledby="disclaimerModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered modal-blur">
+<div class="modal fade" id="disclaimerModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="disclaimerModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modalblur">
       <div class="modal-content">
           <div class="modal-header">
               <h5 class="modal-title" id="disclaimerModalLabel">{{ translate('Important Disclaimer') }}</h5>
+              <!-- Tombol close dihapus karena tidak boleh menutup modal tanpa pilihan -->
           </div>
           <div class="modal-body p-0">
               <div class="card border-0 m-0">
@@ -159,7 +139,7 @@
               </div>
           </div>
           <div class="modal-footer justify-content-center">
-              <button type="button" class="btn btn--primary me-2" id="agreeButton">
+              <button type="button" class="btn btn--primary me-2" id="agreeButton" data-bs-dismiss="modal">
                   {{ translate('Agree') }}
               </button>
               <a href="{{ route('frontpage.products.category', ['lang' => app()->getLocale(), 'slug' => $product->category->getTranslation('slug', app()->getLocale())]) }}" class="btn btn-secondary">
@@ -173,49 +153,22 @@
 
 @push('js')
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Elemen-elemen yang dibutuhkan
-    var overlay = document.getElementById('blurOverlay');
-    var disclaimerModal = new bootstrap.Modal(document.getElementById('disclaimerModal'), {
-        backdrop: false, // Penting: kita menangani backdrop sendiri
-        keyboard: false
-    });
-    
-    // Cek apakah sudah pernah setuju sebelumnya
-    var hasAgreed = localStorage.getItem('disclaimerAgreed');
-    
-    // Fungsi untuk menampilkan overlay dan modal
-    function showDisclaimerWithBlur() {
-        // Tampilkan overlay blur
-        overlay.style.display = 'block';
-        
-        // Tampilkan modal
-        disclaimerModal.show();
-    }
-    
-    // Fungsi untuk menyembunyikan overlay dan modal
-    function hideDisclaimerAndBlur() {
-        // Sembunyikan overlay blur
-        overlay.style.display = 'none';
-        
-        // Sembunyikan modal
-        disclaimerModal.hide();
-    }
-    
-    // Jika belum pernah setuju, tampilkan disclaimer
-    if (!hasAgreed) {
-        // Gunakan setTimeout untuk memastikan elemen sudah di-render
-        setTimeout(showDisclaimerWithBlur, 300);
-    }
-    
-    // Event listener untuk tombol Agree
-    document.getElementById('agreeButton').addEventListener('click', function() {
-        // Simpan status persetujuan
-        localStorage.setItem('disclaimerAgreed', 'true');
-        
-        // Sembunyikan disclaimer dan blur
-        hideDisclaimerAndBlur();
-    });
-});
+  document.addEventListener('DOMContentLoaded', function() {
+      // Tampilkan modal saat halaman dimuat
+      var disclaimerModal = new bootstrap.Modal(document.getElementById('disclaimerModal'));
+      disclaimerModal.show();
+      
+      // Cek apakah sudah pernah setuju sebelumnya (opsional)
+      var hasAgreed = localStorage.getItem('disclaimerAgreed');
+      if (hasAgreed) {
+          // Jika sudah pernah setuju, tidak perlu menampilkan modal
+          disclaimerModal.hide();
+      }
+      
+      // Ketika tombol agree diklik, simpan status di localStorage (opsional)
+      document.getElementById('agreeButton').addEventListener('click', function() {
+          localStorage.setItem('disclaimerAgreed', 'true');
+      });
+  });
 </script>
 @endpush

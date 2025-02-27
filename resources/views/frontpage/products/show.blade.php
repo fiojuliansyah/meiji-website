@@ -7,19 +7,30 @@
 @push('css')
 <style>
 .blur-section {
-  /* Add the blur effect */
   filter: blur(8px);
   -webkit-filter: blur(8px);
-
-  /* Full height */
-  height: 100%;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  
+  /* Make sure the filter applies to all content inside the section */
+  pointer-events: none; /* Prevents interaction with blurred content */
+  user-select: none; /* Prevents text selection while blurred */
 }
 
+/* Optional: you can add a semi-transparent overlay for better visual effect */
+.blur-overlay {
+  position: relative;
+}
+
+.blur-overlay::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: 1;
+  pointer-events: none;
+}
 </style>
 @endpush
 
@@ -43,7 +54,9 @@
         </div>
     </div>
 </section>
-<section class="single-product" id="single-product">
+
+<!-- Product detail section that will be blurred -->
+<section class="single-product blur-overlay" id="single-product">
     <div class="container">
       <div class="row">
         <div class="col-12 col-lg-6">
@@ -69,8 +82,10 @@
         </div>
       </div>
     </div>
-  </section>
-  <section class="shop shop-2"> 
+</section>
+
+<!-- Related products section that will also be blurred -->
+<section class="shop shop-2 blur-overlay" id="related-products"> 
     <div class="container"> 
       <div class="row"> 
         <div class="col-12"> 
@@ -97,7 +112,7 @@
         @endforeach
       </div>
     </div>
-  </section>
+</section>
 @endsection
 
 @section('modal')
@@ -154,31 +169,49 @@
 @push('js')
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-      // Tampilkan modal saat halaman dimuat
-      var disclaimerModal = new bootstrap.Modal(document.getElementById('disclaimerModal'), {
-          backdrop: 'static' // This prevents closing modal when clicking outside
-      });
+      // Get sections that need to be blurred
+      const singleProductSection = document.getElementById('single-product');
+      const relatedProductsSection = document.getElementById('related-products');
       
-      // Apply blur class to the relevant section
-      document.getElementById('single-product').classList.add('bg-blur');
-      
-      // Tampilkan modal saat halaman dimuat
-      disclaimerModal.show();
-      
-      // Cek apakah sudah pernah setuju sebelumnya (opsional)
-      var hasAgreed = localStorage.getItem('disclaimerAgreed');
-      if (hasAgreed) {
-          // Jika sudah pernah setuju, tidak perlu menampilkan modal
-          disclaimerModal.hide();
-          // Remove blur effect
-          document.getElementById('single-product').classList.remove('bg-blur');
+      // Function to apply blur
+      function applyBlur() {
+          singleProductSection.classList.add('blur-section');
+          relatedProductsSection.classList.add('blur-section');
       }
       
-      // Ketika tombol agree diklik, simpan status di localStorage dan hapus blur
+      // Function to remove blur
+      function removeBlur() {
+          singleProductSection.classList.remove('blur-section');
+          relatedProductsSection.classList.remove('blur-section');
+      }
+      
+      // Immediately apply blur when page loads
+      applyBlur();
+      
+      // Initialize modal
+      var disclaimerModal = new bootstrap.Modal(document.getElementById('disclaimerModal'), {
+          backdrop: 'static', // This prevents closing modal when clicking outside
+          keyboard: false // Prevents closing with Esc key
+      });
+      
+      // Check if user has already agreed (using localStorage)
+      var hasAgreed = localStorage.getItem('disclaimerAgreed');
+      
+      if (hasAgreed) {
+          // If user already agreed before, remove blur and don't show modal
+          removeBlur();
+      } else {
+          // Show modal for new users
+          disclaimerModal.show();
+      }
+      
+      // When agree button is clicked
       document.getElementById('agreeButton').addEventListener('click', function() {
+          // Save agreement to localStorage
           localStorage.setItem('disclaimerAgreed', 'true');
-          // Remove blur effect when agree is clicked
-          document.getElementById('single-product').classList.remove('bg-blur');
+          
+          // Remove blur effect
+          removeBlur();
       });
   });
 </script>

@@ -6,31 +6,26 @@
 
 @push('css')
 <style>
-  /* Style untuk overlay blur */
-  .content-overlay {
+  body.blurred .container:not(.modal *) {
+    filter: blur(5px);
+    pointer-events: none; /* Mencegah interaksi saat blur */
+    user-select: none;
+  }
+
+  body.blurred::before {
+    content: '';
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.6); /* semi-transparent white */
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    z-index: 1040; /* Di bawah modal (1050) tapi di atas konten lain */
-    display: none; /* Tersembunyi secara default */
-  }
-  
-  /* Tambahkan animasi fade untuk overlay */
-  .fade-overlay {
-    transition: opacity 0.3s ease;
+    background: rgba(255, 255, 255, 0.5);
+    z-index: 1000;
   }
 </style>
 @endpush
 
 @section('content')
-<!-- Overlay untuk efek blur -->
-<div id="contentOverlay" class="content-overlay fade-overlay"></div>
-
 <section class="page-title page-title-blank bg-white" id="page-title">
     <div class="container">
         <div class="row">
@@ -50,6 +45,7 @@
         </div>
     </div>
 </section>
+
 <section class="single-product" id="single-product">
     <div class="container">
       <div class="row">
@@ -76,8 +72,9 @@
         </div>
       </div>
     </div>
-  </section>
-  <section class="shop shop-2"> 
+</section>
+
+<section class="shop shop-2"> 
     <div class="container"> 
       <div class="row"> 
         <div class="col-12"> 
@@ -103,21 +100,20 @@
                 ]) }}">{{ $related->getTranslation('name', app()->getLocale()) ?? 'Product Name' }}</a></div>
                 </div>
             </div>
-            <!-- .product end-->
             </div>
         @endforeach
       </div>
     </div>
-  </section>
+</section>
 @endsection
 
+<!-- Modal Disclaimer -->
 @section('modal')
-<div class="modal fade" id="disclaimerModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="disclaimerModalLabel" aria-hidden="true">
+<div class="modal fade" id="disclaimerModal" tabindex="-1" aria-labelledby="disclaimerModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
           <div class="modal-header">
               <h5 class="modal-title" id="disclaimerModalLabel">{{ translate('Important Disclaimer') }}</h5>
-              <!-- Tombol close dihapus karena tidak boleh menutup modal tanpa pilihan -->
           </div>
           <div class="modal-body p-0">
               <div class="card border-0 m-0">
@@ -164,47 +160,40 @@
 
 @push('js')
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-      var overlay = document.getElementById('contentOverlay');
-      var hasAgreed = localStorage.getItem('disclaimerAgreed');
-      
-      // Fungsi untuk menampilkan overlay blur
-      function showOverlay() {
-          overlay.style.display = 'block';
-          // Trigger reflow
-          overlay.offsetHeight;
-          overlay.style.opacity = '1';
-      }
-      
-      // Fungsi untuk menyembunyikan overlay blur
-      function hideOverlay() {
-          overlay.style.opacity = '0';
-          setTimeout(function() {
-              overlay.style.display = 'none';
-          }, 300); // Waktu sama dengan transisi CSS
-      }
-      
-      // Tampilkan overlay dan modal saat halaman dimuat
-      if (!hasAgreed) {
-          showOverlay();
-          var disclaimerModal = new bootstrap.Modal(document.getElementById('disclaimerModal'));
-          disclaimerModal.show();
-          
-          // Tambahkan event listener untuk tombol agree
-          document.getElementById('agreeButton').addEventListener('click', function() {
-              localStorage.setItem('disclaimerAgreed', 'true');
-              hideOverlay();
-          });
-      }
-      
-      // Event listener untuk modal
-      var modalElement = document.getElementById('disclaimerModal');
-      modalElement.addEventListener('hidden.bs.modal', function() {
-          // Jika modal ditutup (melalui tombol Agree), sembunyikan overlay
-          if (localStorage.getItem('disclaimerAgreed') === 'true') {
-              hideOverlay();
-          }
-      });
-  });
+document.addEventListener('DOMContentLoaded', function() {
+    // Tambahkan class blur ke body
+    document.body.classList.add('blurred');
+    
+    // Cek apakah sudah pernah setuju sebelumnya
+    var hasAgreed = localStorage.getItem('disclaimerAgreed');
+    
+    // Fungsi untuk inisialisasi modal
+    function initModal() {
+        var myModal = new bootstrap.Modal(document.getElementById('disclaimerModal'), {
+            backdrop: 'static',
+            keyboard: false
+        });
+        
+        // Tampilkan modal
+        myModal.show();
+        
+        // Event listener untuk tombol agree
+        document.getElementById('agreeButton').addEventListener('click', function() {
+            // Simpan status setuju
+            localStorage.setItem('disclaimerAgreed', 'true');
+            // Hapus blur
+            document.body.classList.remove('blurred');
+        });
+    }
+    
+    // Jika belum pernah setuju, tampilkan modal
+    if (!hasAgreed) {
+        // Gunakan setTimeout untuk memastikan DOM sudah siap
+        setTimeout(initModal, 300);
+    } else {
+        // Jika sudah pernah setuju, hapus blur
+        document.body.classList.remove('blurred');
+    }
+});
 </script>
 @endpush

@@ -57,7 +57,7 @@
                           <div class="product-desc" style="margin-top: 10px;">
                             <p>{!! Illuminate\Support\Str::limit(strip_tags($item->getTranslation('description', app()->getLocale())), 80) !!}</p>
                           </div>
-                          <div class="product-action" style="margin-top: 15px;">
+                          <div class="product-action" style="margin-top: 15px; display: flex; justify-content: center;">
                             <a class="btn btn--primary" href="{{ route('frontpage.products.show', [
                                 'lang' => app()->getLocale(),
                                 'category_slug' => $category->getTranslation('slug', app()->getLocale()),
@@ -65,7 +65,7 @@
                             ]) }}">
                               {{ translate('View Details') }}
                             </a>
-                          </div>
+                        </div>
                         </div>
                         <!-- .product-content end-->
                       </div>

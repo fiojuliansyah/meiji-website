@@ -13,14 +13,20 @@
                 <div class="blog-entry" data-hover="">
                     <div class="entry-img">
                         <div class="entry-date">
-                            <div class="entry-content"><span class="day">{{ $item->created_at->format('d') }}</span><span class="month">{{ $item->created_at->format('M') }}</span><span class="year">{{ $item->created_at->format('Y') }}</span></div>
+                            <div class="entry-content">
+                                <span class="day">{{ $item->created_at->format('d') }}</span>
+                                <span class="month">{{ $item->created_at->format('M') }}</span>
+                                <span class="year">{{ $item->created_at->format('Y') }}</span>
+                            </div>
                         </div>
                         <a href="{{ route('frontpage.news.show', [
                                 'lang' => app()->getLocale(),
                                 'category_slug' => $category->getTranslation('slug', app()->getLocale()),
                                 'news_slug' => $item->getTranslation('slug', app()->getLocale())
                             ]) }}">
-                                <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->getTranslation('name', app()->getLocale()) }}"/>
+                                <img src="{{ asset('storage/' . $item->image) }}" 
+                                     alt="{{ $item->getTranslation('name', app()->getLocale()) }}"
+                                     style="width: 300px; height: 200px; object-fit: cover;" />
                         </a>
                     </div>
                     <!-- End .entry-img-->

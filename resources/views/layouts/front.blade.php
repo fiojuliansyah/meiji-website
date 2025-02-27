@@ -78,6 +78,7 @@
             </div>
         </div>
       @endforeach
+      @yield('modal')
     <!--  Footer Scripts==
     -->
     <script src="/front/assets/js/vendor/jquery-3.6.0.min.js"></script>

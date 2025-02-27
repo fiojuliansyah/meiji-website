@@ -3,38 +3,6 @@
 @section('title', 'Prescription Product - Meiji Indonesia')
 
 @section('content')
-    <!-- Tambahkan kode ini di atas atau di bawah section produk utama -->
-    <section class="disclaimer-section py-4" style="background-color: #f8f9fa;">
-        <div class="container">
-            <div class="card border-0 shadow-sm">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="https://static.vecteezy.com/system/resources/previews/005/316/380/non_2x/red-disclaimer-sign-illustration-vector.jpg" alt="Disclaimer Image"
-                            class="img-fluid rounded-start h-100" style="object-fit: cover;">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body p-4">
-                            @if ($general && $general->logo)
-                                <img class="logo logo-dark" src="{{ asset('storage/' . $general->logo) }}" alt="Meiji Logo" width="50px" />
-                            @endif
-                            <div class="card-text">
-                                <p>{{ translate('The products shown are intended for medical professionals only. These prescription medicines require a prescription from a qualified healthcare provider.') }}
-                                </p>
-                                <p>{{ translate('The information provided is not intended to substitute professional medical advice. Always consult with a healthcare professional before using any of these products.') }}
-                                </p>
-                            </div>
-                            <div class="mt-3">
-                                <a href="{{ route('frontpage.contact', ['lang' => app()->getLocale()]) }}"
-                                    class="btn btn--primary">
-                                    {{ translate('Contact Healthcare Professional') }}
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <section class="shop" id="shop">
         <div class="container">
             <div class="row">

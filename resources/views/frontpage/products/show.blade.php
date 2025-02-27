@@ -7,9 +7,6 @@
 @push('css')
 <style>
 .bg-blur {
-  /* The image used */
-  background-image: url("photographer.jpg");
-
   /* Add the blur effect */
   filter: blur(8px);
   -webkit-filter: blur(8px);
@@ -46,7 +43,7 @@
         </div>
     </div>
 </section>
-<section class="single-product bg-blur" id="single-product">
+<section class="single-product blur-section" id="single-product">
     <div class="container">
       <div class="row">
         <div class="col-12 col-lg-6">
@@ -73,7 +70,7 @@
       </div>
     </div>
   </section>
-  <section class="shop shop-2 bg-blur"> 
+  <section class="shop shop-2"> 
     <div class="container"> 
       <div class="row"> 
         <div class="col-12"> 
@@ -158,7 +155,14 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
       // Tampilkan modal saat halaman dimuat
-      var disclaimerModal = new bootstrap.Modal(document.getElementById('disclaimerModal'));
+      var disclaimerModal = new bootstrap.Modal(document.getElementById('disclaimerModal'), {
+          backdrop: 'static' // This prevents closing modal when clicking outside
+      });
+      
+      // Apply blur class to the relevant section
+      document.getElementById('single-product').classList.add('bg-blur');
+      
+      // Tampilkan modal saat halaman dimuat
       disclaimerModal.show();
       
       // Cek apakah sudah pernah setuju sebelumnya (opsional)
@@ -166,11 +170,15 @@
       if (hasAgreed) {
           // Jika sudah pernah setuju, tidak perlu menampilkan modal
           disclaimerModal.hide();
+          // Remove blur effect
+          document.getElementById('single-product').classList.remove('bg-blur');
       }
       
-      // Ketika tombol agree diklik, simpan status di localStorage (opsional)
+      // Ketika tombol agree diklik, simpan status di localStorage dan hapus blur
       document.getElementById('agreeButton').addEventListener('click', function() {
           localStorage.setItem('disclaimerAgreed', 'true');
+          // Remove blur effect when agree is clicked
+          document.getElementById('single-product').classList.remove('bg-blur');
       });
   });
 </script>

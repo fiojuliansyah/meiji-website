@@ -6,10 +6,21 @@
 
 @push('css')
 <style>
-  /* Kelas untuk efek blur */
-.modal-blur-background {
-    filter: blur(5px); /* Sesuaikan tingkat blur sesuai kebutuhan */
-    transition: filter 0.3s ease;
+.bg-blur {
+  /* The image used */
+  background-image: url("photographer.jpg");
+
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 </style>
@@ -35,7 +46,7 @@
         </div>
     </div>
 </section>
-<section class="single-product" id="single-product">
+<section class="single-product bg-blur" id="single-product">
     <div class="container">
       <div class="row">
         <div class="col-12 col-lg-6">

@@ -14,13 +14,21 @@ class PageProductController extends Controller
     {
         $category = Category::where('slug->'.$lang, $slug)->firstOrFail();
     
-        $products = Product::where('is_published', true)->where('category_id', $category->id)
+        $products = Product::where('is_published', true)
+                        ->where('category_id', $category->id)
                         ->latest()
                         ->paginate(9);
     
         $categories = Category::all();
+        
+        // Mengambil featured products
+        $featured_products = Product::where('is_published', true)
+                            ->where('is_featured', true)
+                            ->take(3)
+                            ->latest()
+                            ->get();
     
-        return view('frontpage.products.category', compact('products', 'category', 'categories'));
+        return view('frontpage.products.category', compact('products', 'category', 'categories', 'featured_products'));
     }
     
     public function search($lang, Request $request)

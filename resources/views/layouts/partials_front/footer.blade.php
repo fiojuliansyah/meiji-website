@@ -5,7 +5,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-3">
                     <div class="footer-widget widget-contact">
                         <div class="footer-widget-title">
-                            <img class="logo logo-mobile" src="{{ asset('storage/' . $general->logo_white) }}"
+                            <img class="logo logo-mobile" src="{{ asset('storage/' . $general->logo) }}"
                                 alt="Meiji Logo" />
                         </div>
                         <div class="widget-content">

@@ -13,8 +13,8 @@
               <div class="row">
                 <div class="col-12 col-lg-7">
                   <div class="slide-content">
-                    <h1 class="slide-headline" style="color: #FF0000">{{ $slider->getTranslation('title', app()->getLocale()) }}</h1>
-                    <p class="slide-desc">{{ $slider->getTranslation('content', app()->getLocale()) }}</p>
+                    <h1 class="slide-headline" style="color: black">{{ $slider->getTranslation('title', app()->getLocale()) }}</h1>
+                    <p class="slide-desc" style="color: #FF0000">{{ $slider->getTranslation('content', app()->getLocale()) }}</p>
                   </div>
                   <!-- End .slide-content -->
                 </div>

@@ -98,7 +98,7 @@
           <!-- Services-->
           <div class="widget widget-services">
             <div class="widget-title">
-              <h5>medical services</h5>
+              <h5>Other Activities</h5>
             </div>
             <div class="widget-content">
               <ul class="list-unstyled">

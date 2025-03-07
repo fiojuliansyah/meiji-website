@@ -27,9 +27,7 @@
                                             <div class="team-cat"><a href="javascript:void(0)">PT. Meiji Indonesian
                                                     Pharmaceutical Industries</a></div>
                                             <div class="team-desc">
-                                                <p>Muldoone obtained his undergraduate degree in Biomedical Engineering at
-                                                    Tulane University prior to attending St George University School of
-                                                    Medicine.</p>
+                                                {!! $general->getTranslation('bio', app()->getLocale()) !!}
                                             </div>
                                         </div>
                                         <!-- End .team-content-->

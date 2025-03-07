@@ -51,7 +51,7 @@
                                   @foreach ($abouts as $otherAbout)
                                     @if ($otherAbout->id != $about->id)   
                                       <li>
-                                        <a href="{{ route('frontpage.about.show', ['lang' => app()->getLocale(), 'slug' => $about->getTranslation('slug', app()->getLocale())]) }}">
+                                        <a href="{{ route('frontpage.about.show', ['lang' => app()->getLocale(), 'slug' => $otherAbout->getTranslation('slug', app()->getLocale())]) }}">
                                           <span>{{ $otherAbout->getTranslation('title', app()->getLocale()) }}</span>
                                         </a>
                                       </li>

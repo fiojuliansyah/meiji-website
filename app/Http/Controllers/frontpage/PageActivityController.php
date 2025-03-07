@@ -11,6 +11,8 @@ class PageActivityController extends Controller
     public function show($lang, $slug)
     {
         $activity = Activity::whereJsonContains('slug->' . app()->getLocale(), $slug)->firstOrFail();
-        return view('frontpage.activities.show', compact('activity'));
+
+        $activities = Activity::all();
+        return view('frontpage.activities.show', compact('activity', 'activities'));
     }
 }

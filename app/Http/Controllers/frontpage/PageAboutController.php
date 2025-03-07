@@ -12,8 +12,11 @@ class PageAboutController extends Controller
     public function show($lang, $slug)
     {
         $about = About::whereJsonContains('slug->' . app()->getLocale(), $slug)->firstOrFail();
-        return view('frontpage.about.show', compact('about'));
-    }
+    
+        $abouts = About::all();
+    
+        return view('frontpage.about.show', compact('about', 'abouts'));
+    }    
 
     public function timeline($lang)
     {

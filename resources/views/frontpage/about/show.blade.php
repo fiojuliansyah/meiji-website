@@ -1,42 +1,79 @@
 @extends('layouts.front')
 
 @section('title')
-{{ $about->getTranslation('title', app()->getLocale()) }} - Meiji Indonesia
+    {{ $about->getTranslation('title', app()->getLocale()) }} - Meiji Indonesia
 @endsection
 
 @section('content')
-<section class="page-title bg-overlay bg-overlay-dark bg-parallax" id="page-title">
-  <div class="bg-section"><img src="{{ asset('storage/' . $general->breadcrumb) }}" alt="Background"/></div>
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-lg-6 offset-lg-3">
-        <div class="title">
-          <div class="title-heading">
-            <h1>{{ $about->getTranslation('title', app()->getLocale()) }}</h1>
-          </div>
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">{{ translate('Home') }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ $about->getTranslation('title', app()->getLocale()) }}</li>
-          </ol>
+    <section class="hero hero-4 bg-overlay bg-overlay-theme">
+        <div class="bg-section"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="row">
+                    <div class="col-12 col-lg-4">
+                        <div class="team-modern team-modern-2">
+                            <div class="team-member">
+                                <div class="team-member-holder">
+                                    <div class="team-img"><a class="link" href="javascript:void(0)"></a><img
+                                            src="{{ asset('storage/' . $general->breadcrumb) }}" alt="team member" /></div>
+                                    <!-- End .team-img-->
+                                    <div class="team-content-holder">
+                                        <div class="team-content">
+                                            <div class="team-title">
+                                                <h4><a
+                                                        href="javascript:void(0)">{{ $about->getTranslation('title', app()->getLocale()) }}</a>
+                                                </h4>
+                                            </div>
+                                            <div class="team-cat"><a href="javascript:void(0)">PT. Meiji Indonesian
+                                                    Pharmaceutical Industries</a></div>
+                                            <div class="team-desc">
+                                                <p>Muldoone obtained his undergraduate degree in Biomedical Engineering at
+                                                    Tulane University prior to attending St George University School of
+                                                    Medicine.</p>
+                                            </div>
+                                        </div>
+                                        <!-- End .team-content-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- End .title -->
-      </div>
-      <!-- End .col-lg-6-->
-    </div>
-    <!-- End .row-->
-  </div>
-  <!-- End .container-->
-</section>
-<br>
-<br>
-<br>
-<div class="about-section">
-    <div class="container">
-        <div class="about-content">
-            {!! $about->getTranslation('content', app()->getLocale()) !!}
+    </section>
+    <section class="team-single team-single-modern">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-4">
+                    <div class="sidebar sidebar-doctors">
+                        <div class="widget widget-download">
+                            <div class="widget-content">
+                              <ul class="list-unstyled">
+                                  @foreach ($abouts as $otherAbout)
+                                    @if ($otherAbout->id != $about->id)   
+                                      <li>
+                                        <a href="{{ route('frontpage.about.show', ['lang' => app()->getLocale(), 'slug' => $about->getTranslation('slug', app()->getLocale())]) }}">
+                                          <span>{{ $otherAbout->getTranslation('title', app()->getLocale()) }}</span>
+                                        </a>
+                                      </li>
+                                    @endif   
+                                  @endforeach
+                              </ul>
+                            </div>
+                        </div>
+                        <!-- End .widget-download-->
+                    </div>
+                    <!-- End .sidebar-->
+                </div>
+                <div class="col-12 col-lg-8">
+                    <div class="entry-bio">
+                        {!! $about->getTranslation('content', app()->getLocale()) !!}
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-<br>
-<br>
+    </section>
+    <br>
+    <br>
 @endsection

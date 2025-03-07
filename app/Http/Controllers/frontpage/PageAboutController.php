@@ -21,10 +21,11 @@ class PageAboutController extends Controller
     public function timeline($lang)
     {
         $timelines = Timeline::where('is_published', true)
-                        ->orderBy('created_at', 'desc')
+                        ->orderBy('year', 'desc')
                         ->get();
     
         return view('frontpage.about.timeline', compact('timelines'));
     }
+    
     
 }

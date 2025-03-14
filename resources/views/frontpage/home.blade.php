@@ -3,243 +3,137 @@
 @section('title', 'Home - Meiji Indonesia')
 
 @section('content')
-<section class="innovative-slider" style="
-    position: relative; 
-    width: 100%; 
-    height: 100vh; 
-    overflow: hidden; 
-    background-color: #0f0f0f;">
-    
-    <div class="slider-wrapper" style="
-        position: relative; 
-        width: 100%; 
-        height: 100%; 
-        display: flex; 
-        align-items: center; 
-        justify-content: center;">
-        
-        @foreach ($sliders as $slider)
-        <div class="slide" style="
-            position: absolute; 
-            width: 100%; 
-            height: 100%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            opacity: 0;
-            transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            background: linear-gradient(135deg, 
-                rgba(0,0,0,0.9) 0%, 
-                rgba(0,0,0,0.7) 100%), 
-                url('{{ asset('storage/' . $slider->image) }}');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            z-index: 1;
-            clip-path: circle(0% at center);">
-            
-            <!-- Interactive Wave Background -->
-            <div class="wave-background" style="
-                position: absolute; 
-                top: 0; 
-                left: 0; 
-                width: 100%; 
-                height: 100%; 
-                z-index: -1;
-                overflow: hidden;">
-                <svg viewBox="0 0 1440 320" preserveAspectRatio="none" style="
-                    position: absolute; 
-                    bottom: 0; 
-                    width: 100%; 
-                    height: 200px;">
-                    <path fill="#4ecdc4" fill-opacity="0.3" d="
-                        M0,160 
-                        C220,210 440,260 660,224 
-                        C880,188 1100,84 1320,52 
-                        L1440,32 
-                        L1440,320 
-                        L0,320 
-                        Z">
-                    </path>
-                </svg>
-            </div>
-            
-            <div class="slide-content" style="
-                max-width: 1000px; 
-                padding: 40px; 
-                text-align: center; 
-                background: rgba(0,0,0,0.4); 
-                border-radius: 30px; 
-                backdrop-filter: blur(15px);
-                transform: perspective(1000px) translateZ(-100px);
-                transition: all 1s ease;
-                position: relative;
-                overflow: hidden;">
-                
-                <!-- Glitch Effect Overlay -->
-                <div class="glitch-overlay" style="
-                    position: absolute; 
-                    top: 0; 
-                    left: 0; 
-                    width: 100%; 
-                    height: 100%; 
-                    background: rgba(0,0,0,0.2);
-                    pointer-events: none;
-                    z-index: 2;
-                    mix-blend-mode: overlay;"></div>
-                
-                <h1 style="
-                    font-size: 4.5rem; 
-                    font-weight: 900; 
+<section class="slider" id="slider-1" style="position: relative; width: 100%; overflow: hidden;">
+  <div class="container-fluid" style="padding: 0;">
+    <div class="slider-carousel owl-carousel carousel-navs carousel-dots" 
+         style="position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center;"
+         data-slide="1" data-slide-rs="1" data-autoplay="true" data-nav="true" data-dots="true" data-space="0" data-loop="false" data-speed="800">
+      @foreach ($sliders as $slider)
+        <div class="slide bg-overlay" style="
+          position: relative; 
+          width: 100%; 
+          height: 100vh; 
+          background-size: cover; 
+          background-position: center; 
+          display: flex; 
+          align-items: center; 
+          color: white; 
+          background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ asset('storage/' . $slider->image) }}');">
+          <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 15px;">
+            <div class="row" style="align-items: center;">
+              <div class="col-12 col-lg-7" style="
+                background: rgba(0,0,0,0.6); 
+                padding: 30px; 
+                border-radius: 10px; 
+                transition: all 0.3s ease;">
+                <div class="slide-content" style="text-align: left;">
+                  <h1 class="slide-headline" style="
+                    font-size: 3.5rem; 
+                    font-weight: bold; 
                     margin-bottom: 20px; 
-                    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
-                    text-transform: uppercase;
-                    letter-spacing: 5px;
-                    line-height: 1.2;
-                    position: relative;
-                    z-index: 3;">
+                    color: #fff; 
+                    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); 
+                    animation: fadeInUp 1s ease;">
                     {{ $slider->getTranslation('title', app()->getLocale()) }}
-                </h1>
-                
-                <p style="
-                    font-size: 1.6rem; 
-                    margin-bottom: 30px; 
-                    color: rgba(255,255,255,0.9); 
-                    line-height: 1.6;
-                    max-width: 800px;
-                    margin-left: auto;
-                    margin-right: auto;
-                    position: relative;
-                    z-index: 3;">
+                  </h1>
+                  <p class="slide-desc" style="
+                    font-size: 1.2rem; 
+                    line-height: 1.6; 
+                    color: #e0e0e0; 
+                    margin-bottom: 25px; 
+                    animation: fadeInUp 1s ease 0.5s; 
+                    animation-fill-mode: backwards;">
                     {{ $slider->getTranslation('content', app()->getLocale()) }}
-                </p>
-                
-                <a href="#" style="
-                    display: inline-block;
-                    padding: 15px 50px;
-                    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-                    color: white;
-                    text-decoration: none;
-                    border-radius: 60px;
-                    font-weight: bold;
-                    text-transform: uppercase;
-                    letter-spacing: 3px;
-                    transition: all 0.4s ease;
-                    position: relative;
-                    z-index: 3;
-                    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-                    transform: perspective(500px) translateZ(20px);
-                    will-change: transform;">
-                    Discover More
-                </a>
+                  </p>
+                  <a href="#" class="btn btn--primary btn-line btn-line-after">
+                    Learn More
+                  </a>
+                </div>
+              </div>
             </div>
-        </div>
-        @endforeach
-    </div>
-
-    <!-- Futuristic Navigation -->
-    <div class="slider-navigation" style="
-        position: absolute; 
-        bottom: 30px; 
-        left: 0; 
-        width: 100%; 
-        display: flex; 
-        justify-content: center; 
-        z-index: 10;">
-        @foreach ($sliders as $index => $slider)
-        <button class="nav-dot" data-slide="{{ $index }}" style="
-            width: 20px; 
-            height: 20px; 
-            background: rgba(255,255,255,0.3); 
-            border: 2px solid #4ecdc4; 
-            border-radius: 50%; 
-            margin: 0 15px; 
-            cursor: pointer;
-            transition: all 0.3s ease;
-            transform: perspective(500px) translateZ(10px);
-            will-change: transform, background;">
-        </button>
-        @endforeach
+          </div>
+        </div>    
+      @endforeach
     </div>
     
-    <style>
-        @keyframes glitchAnimation {
-            0% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
-            5% { clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 90%); }
-            10% { clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%); }
-            15% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
-        }
-        
-        @keyframes waveAnimation {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-    </style>
-    
-    <script>
+    <!-- Custom Navigation Arrows -->
+    <div style="
+      position: absolute; 
+      top: 50%; 
+      width: 100%; 
+      display: flex; 
+      justify-content: space-between; 
+      transform: translateY(-50%); 
+      z-index: 10;">
+      <button style="
+        background: rgba(0,0,0,0.5); 
+        color: white; 
+        border: none; 
+        padding: 10px 15px; 
+        margin-left: 20px; 
+        cursor: pointer; 
+        border-radius: 50%; 
+        transition: all 0.3s ease;"
+        onclick="prevSlide()">
+        &#10094;
+      </button>
+      <button style="
+        background: rgba(0,0,0,0.5); 
+        color: white; 
+        border: none; 
+        padding: 10px 15px; 
+        margin-right: 20px; 
+        cursor: pointer; 
+        border-radius: 50%; 
+        transition: all 0.3s ease;"
+        onclick="nextSlide()">
+        &#10095;
+      </button>
+    </div>
+  </div>
+  
+  <!-- Embedded Styles and Scripts -->
+  <style>
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+  <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.nav-dot');
-        let currentSlide = 0;
-
-        // Advanced Slide Navigation
-        function showSlide(index) {
-            // Reset all slides
-            slides.forEach((slide, i) => {
-                slide.style.opacity = '0';
-                slide.style.clipPath = 'circle(0% at center)';
-                dots[i].style.background = 'rgba(255,255,255,0.3)';
-                slide.style.zIndex = '1';
-            });
-
-            // Show current slide with advanced animation
-            slides[index].style.opacity = '1';
-            slides[index].style.clipPath = 'circle(150% at center)';
-            slides[index].style.zIndex = '10';
-            dots[index].style.background = 'linear-gradient(45deg, #ff6b6b, #4ecdc4)';
-        }
-
-        // Dot Navigation
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                currentSlide = index;
-                showSlide(currentSlide);
-            });
-        });
-
-        // Glitch Effect
-        function applyGlitchEffect(slide) {
-            const glitchOverlay = slide.querySelector('.glitch-overlay');
-            glitchOverlay.style.animation = 'glitchAnimation 0.3s linear infinite';
-        }
-
-        // Auto Slide with Advanced Transitions
-        function autoSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-            applyGlitchEffect(slides[currentSlide]);
-        }
-
-        // Initial Setup
-        showSlide(0);
-        applyGlitchEffect(slides[0]);
-
-        // Auto slide every 6 seconds
-        setInterval(autoSlide, 6000);
-
-        // Interactive Hover Effects
-        dots.forEach(dot => {
-            dot.addEventListener('mouseenter', () => {
-                dot.style.transform = 'scale(1.2) perspective(500px) translateZ(20px)';
-            });
-            dot.addEventListener('mouseleave', () => {
-                dot.style.transform = 'perspective(500px) translateZ(10px)';
-            });
-        });
+      const carousel = document.querySelector('.slider-carousel');
+      let currentSlide = 0;
+      const slides = carousel.querySelectorAll('.slide');
+      
+      function showSlide(index) {
+        // Hide all slides
+        slides.forEach(slide => slide.style.display = 'none');
+        
+        // Wrap around if index is out of bounds
+        currentSlide = (index + slides.length) % slides.length;
+        
+        // Show current slide
+        slides[currentSlide].style.display = 'flex';
+      }
+      
+      window.nextSlide = function() {
+        showSlide(currentSlide + 1);
+      }
+      
+      window.prevSlide = function() {
+        showSlide(currentSlide - 1);
+      }
+      
+      // Initialize first slide
+      showSlide(0);
     });
-    </script>
+  </script>
 </section>
 
   <section class="cta cta-3" id="cta-3">

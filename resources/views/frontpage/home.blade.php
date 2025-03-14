@@ -45,17 +45,7 @@
                     animation-fill-mode: backwards;">
                     {{ $slider->getTranslation('content', app()->getLocale()) }}
                   </p>
-                  <a href="#" style="
-                    display: inline-block; 
-                    padding: 12px 30px; 
-                    background-color: #FF0000; 
-                    color: white; 
-                    text-decoration: none; 
-                    border-radius: 5px; 
-                    transition: all 0.3s ease; 
-                    animation: fadeInUp 1s ease 1s;
-                    animation-fill-mode: backwards;
-                    hover: background-color: #0056b3;">
+                  <a href="#" class="btn btn--primary btn-line btn-line-after">
                     Learn More
                   </a>
                 </div>

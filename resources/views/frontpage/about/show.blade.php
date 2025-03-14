@@ -33,23 +33,20 @@
                     </div>
                   </div>
                 </div>
-                <div class="sidebar sidebar-doctors">
-                    <div class="widget widget-download">
-                        <div class="widget-content">
-                          <ul class="list-unstyled">
-                              @foreach ($abouts as $otherAbout)
-                                @if ($otherAbout->id != $about->id)   
-                                  <li>
-                                    <a href="{{ route('frontpage.about.show', ['lang' => app()->getLocale(), 'slug' => $otherAbout->getTranslation('slug', app()->getLocale())]) }}">
-                                      <span>{{ $otherAbout->getTranslation('title', app()->getLocale()) }}</span>
-                                    </a>
-                                  </li>
-                                @endif   
-                              @endforeach
-                          </ul>
-                        </div>
+                <div class="widget widget-download">
+                    <div class="widget-content">
+                      <ul class="list-unstyled">
+                          @foreach ($abouts as $otherAbout)
+                            @if ($otherAbout->id != $about->id)   
+                              <li>
+                                <a href="{{ route('frontpage.about.show', ['lang' => app()->getLocale(), 'slug' => $otherAbout->getTranslation('slug', app()->getLocale())]) }}">
+                                  <span>{{ $otherAbout->getTranslation('title', app()->getLocale()) }}</span>
+                                </a>
+                              </li>
+                            @endif   
+                          @endforeach
+                      </ul>
                     </div>
-                    <!-- End .widget-download-->
                 </div>
               </div>
             <!-- End .sidebar-->

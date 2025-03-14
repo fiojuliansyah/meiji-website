@@ -3,74 +3,36 @@
 @section('title', 'Home - Meiji Indonesia')
 
 @section('content')
-<section class="slider" id="slider-1" style="position: relative; width: 100%; overflow: hidden;">
-  <div class="container-fluid pr-0 pl-0">
-      <div class="slider-carousel owl-carousel carousel-navs carousel-dots" 
-           data-slide="1" data-slide-rs="1" data-autoplay="true" data-nav="true" 
-           data-dots="true" data-space="0" data-loop="true" data-speed="800">
-
-          @foreach ($sliders as $slider)
-          <div class="slide bg-overlay bg-overlay-dark-slider" 
-               style="position: relative; width: 100vw; height: 80vh; display: flex; align-items: center; justify-content: center;">
-
-              <!-- Background Image -->
-              <div class="bg-section" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden;">
-                  <img src="{{ asset('storage/' . $slider->image) }}" alt="Background" 
-                       style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); transition: transform 5s ease;">
-              </div>
-
-              <!-- Content -->
-              <div class="container" style="position: relative; z-index: 2; text-align: center; color: white;">
-                  <div class="row justify-content-center">
-                      <div class="col-12 col-lg-8">
-                          <div class="slide-content" style="animation: fadeInUp 1s ease-in-out;">
-                              <h1 class="slide-headline" 
-                                  style="font-size: 3rem; font-weight: bold; text-shadow: 2px 2px 10px rgba(0,0,0,0.3);">
-                                  {{ $slider->getTranslation('title', app()->getLocale()) }}
-                              </h1>
-                              <p class="slide-desc" 
-                                 style="font-size: 1.2rem; line-height: 1.5; max-width: 700px; margin: 20px auto; text-shadow: 1px 1px 5px rgba(0,0,0,0.3);">
-                                  {{ $slider->getTranslation('content', app()->getLocale()) }}
-                              </p>
-                          </div>
-                      </div>
+<section class="slider" id="slider-1">
+    <div class="container-fluid pr-0 pl-0">
+      <div class="slider-carousel owl-carousel carousel-navs carousel-dots" data-slide="1" data-slide-rs="1" data-autoplay="true" data-nav="true" data-dots="true" data-space="0" data-loop="false" data-speed="800">
+        @foreach ($sliders as $slider)
+          <div class="slide bg-overlay bg-overlay-dark-slider">
+            <div class="bg-section" style="position: relative; width: 100%; height: 100%;">
+              <img src="{{ asset('storage/' . $slider->image) }}" alt="Background"
+                   style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6);">
+              
+              <!-- Overlay -->
+              <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3);"></div>
+          </div>          
+            <div class="container">
+              <div class="row">
+                <div class="col-12 col-lg-7">
+                  <div class="slide-content">
+                    <h1 class="slide-headline">{{ $slider->getTranslation('title', app()->getLocale()) }}</h1>
+                    <p class="slide-desc">{{ $slider->getTranslation('content', app()->getLocale()) }}</p>
                   </div>
+                  <!-- End .slide-content -->
+                </div>
               </div>
-          </div>
-          @endforeach
+              <!--  End .row-->
+            </div>
+            <!-- End .container-->
+          </div>    
+        @endforeach
       </div>
-  </div>
+    </div>
 </section>
-
-<!-- Animasi CSS -->
-<style>
-@keyframes fadeInUp {
-  from {
-      opacity: 0;
-      transform: translateY(50px);
-  }
-  to {
-      opacity: 1;
-      transform: translateY(0);
-  }
-}
-
-/* Efek Hover untuk Background */
-.slide:hover .bg-section img {
-  transform: scale(1.1);
-}
-
-/* Responsiveness */
-@media (max-width: 768px) {
-  .slide-headline {
-      font-size: 2rem !important;
-  }
-  .slide-desc {
-      font-size: 1rem !important;
-  }
-}
-</style>
-
 
   <section class="cta cta-3" id="cta-3">
     <div class="container">

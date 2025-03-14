@@ -1,54 +1,40 @@
 <header class="header header-light header-topbar header-topbar6" id="navbar-spy">
         <div class="top-bar" style="display: flex; justify-content: space-between; align-items: center;">
-            <div class="block-left" 
-            style="margin-left: 250px; display: flex; flex-direction: column; align-items: flex-start; text-align: left;">
-       
-         <p class="headline" style="font-size: 1.5rem; font-weight: bold;">
-           &nbsp; {{ $general->name }} &nbsp; 
-         </p>
-       
-         <div class="carousel owl-carousel" 
-              data-slide="1" data-slide-rs="1" data-autoplay="true" data-nav="false" 
-              data-dots="false" data-space="0" data-loop="true" data-speed="800">
-           
-           @foreach ($categories as $category)  
-               <a href="{{ route('frontpage.products.category', [
-                   'lang' => app()->getLocale(),
-                   'slug' => $category->getTranslation('slug', app()->getLocale())
-               ]) }}" 
-               style="color: red; display: flex; align-items: center; justify-content: center;">
-               
-               {!! Illuminate\Support\Str::limit(strip_tags($category->getTranslation('name', app()->getLocale())), 24) !!}
-       
-               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 8" width="11" height="8" 
-                    style="color: red; margin-left: 5px;">
-                   <g>
-                       <g>
-                           <g>
-                               <path class="shp1" d="M11 4L7.01 0L7.01 3L0 3L0 5L7.01 5L7.01 8L11 4Z" fill="red"></path>
-                           </g>
-                       </g>
-                   </g>
-               </svg>
-               </a>
-           @endforeach
-         </div>
-       </div>
-       
-       <!-- Tambahkan CSS Responsif -->
-       <style>
-       @media (max-width: 768px) {
-           .block-left {
-               margin-left: auto !important;
-               margin-right: auto !important;
-               text-align: center !important;
-               display: flex !important;
-               align-items: center !important;
-               justify-content: center !important;
-               flex-direction: column !important;
-           }
-       }
-       </style>       
+            <div class="block-left" style="margin-left: 250px;">
+                <p class="headline">
+                    &nbsp; {{ $general->name }} &nbsp;
+                </p>
+                <div class="carousel owl-carousel" data-slide="1" data-slide-rs="1" data-autoplay="true" data-nav="false"
+                     data-dots="false" data-space="0" data-loop="true" data-speed="800">
+            
+                    @foreach ($categories as $category)
+                        <a href="{{ route('frontpage.products.category', [
+                            'lang' => app()->getLocale(),
+                            'slug' => $category->getTranslation('slug', app()->getLocale())
+                        ]) }}" style="color: red; display: flex; align-items: center;">
+                            {!! Illuminate\Support\Str::limit(strip_tags($category->getTranslation('name', app()->getLocale())), 24) !!}
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 8" width="11" height="8" style="color: red; margin-left: 5px;">
+                                <g>
+                                    <g>
+                                        <g>
+                                            <path class="shp1" d="M11 4L7.01 0L7.01 3L0 3L0 5L7.01 5L7.01 8L11 4Z" fill="red"></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+            
+            <!-- Tambahkan CSS agar elemen ini hidden saat mobile -->
+            <style>
+            @media (max-width: 768px) {
+                .block-left {
+                    display: none !important;
+                }
+            }
+            </style>            
             <div class="block-right" style="margin-left: 300px;"> 
               <div class="top-contact">
                 <div class="contact-infos"><i class="fas fa-phone-alt"></i>

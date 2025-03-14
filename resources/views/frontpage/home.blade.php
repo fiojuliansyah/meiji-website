@@ -48,7 +48,7 @@
                   <a href="#" style="
                     display: inline-block; 
                     padding: 12px 30px; 
-                    background-color: #007bff; 
+                    background-color: #FF0000; 
                     color: white; 
                     text-decoration: none; 
                     border-radius: 5px; 

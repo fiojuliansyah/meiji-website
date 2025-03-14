@@ -3,13 +3,14 @@
 @section('title', 'Home - Meiji Indonesia')
 
 @section('content')
-<section class="slider" id="slider-1" style="
+<section class="innovative-slider" style="
     position: relative; 
     width: 100%; 
     height: 100vh; 
     overflow: hidden; 
-    perspective: 1000px;">
-    <div class="slider-container" style="
+    background-color: #0f0f0f;">
+    
+    <div class="slider-wrapper" style="
         position: relative; 
         width: 100%; 
         height: 100%; 
@@ -25,87 +26,121 @@
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            opacity: 0; 
+            opacity: 0;
             transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            transform: scale(0.8) rotateY(45deg);
             background: linear-gradient(135deg, 
-                rgba(0,0,0,0.8) 0%, 
-                rgba(0,0,0,0.5) 100%), 
+                rgba(0,0,0,0.9) 0%, 
+                rgba(0,0,0,0.7) 100%), 
                 url('{{ asset('storage/' . $slider->image) }}');
             background-size: cover;
             background-position: center;
             color: white;
-            z-index: 1;">
+            z-index: 1;
+            clip-path: circle(0% at center);">
             
-            <!-- Particle Background Effect -->
-            <div class="particle-bg" style="
+            <!-- Interactive Wave Background -->
+            <div class="wave-background" style="
                 position: absolute; 
                 top: 0; 
                 left: 0; 
                 width: 100%; 
                 height: 100%; 
                 z-index: -1;
-                opacity: 0.6;
-                pointer-events: none;"></div>
+                overflow: hidden;">
+                <svg viewBox="0 0 1440 320" preserveAspectRatio="none" style="
+                    position: absolute; 
+                    bottom: 0; 
+                    width: 100%; 
+                    height: 200px;">
+                    <path fill="#4ecdc4" fill-opacity="0.3" d="
+                        M0,160 
+                        C220,210 440,260 660,224 
+                        C880,188 1100,84 1320,52 
+                        L1440,32 
+                        L1440,320 
+                        L0,320 
+                        Z">
+                    </path>
+                </svg>
+            </div>
             
             <div class="slide-content" style="
-                max-width: 1200px; 
+                max-width: 1000px; 
                 padding: 40px; 
                 text-align: center; 
                 background: rgba(0,0,0,0.4); 
-                border-radius: 20px; 
-                backdrop-filter: blur(10px);
-                box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-                transform: translateZ(50px);
-                transition: all 1s ease;">
+                border-radius: 30px; 
+                backdrop-filter: blur(15px);
+                transform: perspective(1000px) translateZ(-100px);
+                transition: all 1s ease;
+                position: relative;
+                overflow: hidden;">
+                
+                <!-- Glitch Effect Overlay -->
+                <div class="glitch-overlay" style="
+                    position: absolute; 
+                    top: 0; 
+                    left: 0; 
+                    width: 100%; 
+                    height: 100%; 
+                    background: rgba(0,0,0,0.2);
+                    pointer-events: none;
+                    z-index: 2;
+                    mix-blend-mode: overlay;"></div>
                 
                 <h1 style="
-                    font-size: 4rem; 
+                    font-size: 4.5rem; 
                     font-weight: 900; 
                     margin-bottom: 20px; 
-                    background: linear-gradient(45deg, #ff0000, #fff);
+                    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
                     text-transform: uppercase;
-                    letter-spacing: 3px;
-                    line-height: 1.2;">
+                    letter-spacing: 5px;
+                    line-height: 1.2;
+                    position: relative;
+                    z-index: 3;">
                     {{ $slider->getTranslation('title', app()->getLocale()) }}
                 </h1>
                 
                 <p style="
-                    font-size: 1.5rem; 
+                    font-size: 1.6rem; 
                     margin-bottom: 30px; 
-                    color: rgba(255,255,255,0.8); 
+                    color: rgba(255,255,255,0.9); 
                     line-height: 1.6;
                     max-width: 800px;
                     margin-left: auto;
-                    margin-right: auto;">
+                    margin-right: auto;
+                    position: relative;
+                    z-index: 3;">
                     {{ $slider->getTranslation('content', app()->getLocale()) }}
                 </p>
                 
                 <a href="#" style="
                     display: inline-block;
-                    padding: 15px 40px;
-                    background: linear-gradient(45deg, #ff0000, #fff);
+                    padding: 15px 50px;
+                    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
                     color: white;
                     text-decoration: none;
-                    border-radius: 50px;
+                    border-radius: 60px;
                     font-weight: bold;
                     text-transform: uppercase;
-                    letter-spacing: 2px;
-                    transition: all 0.3s ease;
-                    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-                    transform: perspective(1000px) translateZ(30px);
-                    hover:transform: scale(1.05);">
-                    Explore Now
+                    letter-spacing: 3px;
+                    transition: all 0.4s ease;
+                    position: relative;
+                    z-index: 3;
+                    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+                    transform: perspective(500px) translateZ(20px);
+                    will-change: transform;">
+                    Discover More
                 </a>
             </div>
         </div>
         @endforeach
     </div>
 
-    <!-- Navigation -->
-    <div style="
+    <!-- Futuristic Navigation -->
+    <div class="slider-navigation" style="
         position: absolute; 
         bottom: 30px; 
         left: 0; 
@@ -114,71 +149,59 @@
         justify-content: center; 
         z-index: 10;">
         @foreach ($sliders as $index => $slider)
-        <button class="slide-dot" data-slide="{{ $index }}" style="
-            width: 15px; 
-            height: 15px; 
-            background: rgba(255,255,255,0.5); 
-            border: none; 
+        <button class="nav-dot" data-slide="{{ $index }}" style="
+            width: 20px; 
+            height: 20px; 
+            background: rgba(255,255,255,0.3); 
+            border: 2px solid #4ecdc4; 
             border-radius: 50%; 
-            margin: 0 10px; 
+            margin: 0 15px; 
             cursor: pointer;
             transition: all 0.3s ease;
-            transform: perspective(500px) translateZ(10px);">
+            transform: perspective(500px) translateZ(10px);
+            will-change: transform, background;">
         </button>
         @endforeach
     </div>
     
-    <!-- Embedded Styles and Scripts -->
     <style>
-        @keyframes particleAnimation {
-            0% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-50px) rotate(180deg); }
-            100% { transform: translateY(0) rotate(360deg); }
+        @keyframes glitchAnimation {
+            0% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
+            5% { clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 90%); }
+            10% { clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%); }
+            15% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
+        }
+        
+        @keyframes waveAnimation {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
     </style>
+    
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.slide-dot');
+        const dots = document.querySelectorAll('.nav-dot');
         let currentSlide = 0;
 
-        // Particle Background Effect
-        function createParticles(particleBg) {
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.style.position = 'absolute';
-                particle.style.width = `${Math.random() * 5 + 2}px`;
-                particle.style.height = particle.style.width;
-                particle.style.background = 'rgba(255,255,255,0.3)';
-                particle.style.borderRadius = '50%';
-                particle.style.top = `${Math.random() * 100}%`;
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.animation = `particleAnimation ${Math.random() * 5 + 3}s infinite`;
-                particleBg.appendChild(particle);
-            }
-        }
-
-        // Initialize particles for each slide
-        document.querySelectorAll('.particle-bg').forEach(createParticles);
-
-        // Slide navigation function
+        // Advanced Slide Navigation
         function showSlide(index) {
             // Reset all slides
             slides.forEach((slide, i) => {
                 slide.style.opacity = '0';
-                slide.style.transform = 'scale(0.8) rotateY(45deg)';
-                dots[i].style.background = 'rgba(255,255,255,0.5)';
+                slide.style.clipPath = 'circle(0% at center)';
+                dots[i].style.background = 'rgba(255,255,255,0.3)';
                 slide.style.zIndex = '1';
             });
 
-            // Show current slide
+            // Show current slide with advanced animation
             slides[index].style.opacity = '1';
-            slides[index].style.transform = 'scale(1) rotateY(0)';
+            slides[index].style.clipPath = 'circle(150% at center)';
             slides[index].style.zIndex = '10';
-            dots[index].style.background = 'linear-gradient(45deg, #ff0000, #fff)';
+            dots[index].style.background = 'linear-gradient(45deg, #ff6b6b, #4ecdc4)';
         }
 
-        // Dot navigation
+        // Dot Navigation
         dots.forEach((dot, index) => {
             dot.addEventListener('click', () => {
                 currentSlide = index;
@@ -186,17 +209,35 @@
             });
         });
 
-        // Auto slide
+        // Glitch Effect
+        function applyGlitchEffect(slide) {
+            const glitchOverlay = slide.querySelector('.glitch-overlay');
+            glitchOverlay.style.animation = 'glitchAnimation 0.3s linear infinite';
+        }
+
+        // Auto Slide with Advanced Transitions
         function autoSlide() {
             currentSlide = (currentSlide + 1) % slides.length;
             showSlide(currentSlide);
+            applyGlitchEffect(slides[currentSlide]);
         }
 
-        // Initial slide
+        // Initial Setup
         showSlide(0);
+        applyGlitchEffect(slides[0]);
 
-        // Auto slide every 5 seconds
-        setInterval(autoSlide, 5000);
+        // Auto slide every 6 seconds
+        setInterval(autoSlide, 6000);
+
+        // Interactive Hover Effects
+        dots.forEach(dot => {
+            dot.addEventListener('mouseenter', () => {
+                dot.style.transform = 'scale(1.2) perspective(500px) translateZ(20px)';
+            });
+            dot.addEventListener('mouseleave', () => {
+                dot.style.transform = 'perspective(500px) translateZ(10px)';
+            });
+        });
     });
     </script>
 </section>

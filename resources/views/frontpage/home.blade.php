@@ -63,7 +63,7 @@
                     font-size: 4rem; 
                     font-weight: 900; 
                     margin-bottom: 20px; 
-                    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+                    background: linear-gradient(45deg, #ff0000, #fff);
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
                     text-transform: uppercase;
@@ -86,7 +86,7 @@
                 <a href="#" style="
                     display: inline-block;
                     padding: 15px 40px;
-                    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+                    background: linear-gradient(45deg, #ff0000, #fff);
                     color: white;
                     text-decoration: none;
                     border-radius: 50px;
@@ -175,7 +175,7 @@
             slides[index].style.opacity = '1';
             slides[index].style.transform = 'scale(1) rotateY(0)';
             slides[index].style.zIndex = '10';
-            dots[index].style.background = 'linear-gradient(45deg, #ff6b6b, #4ecdc4)';
+            dots[index].style.background = 'linear-gradient(45deg, #ff0000, #fff)';
         }
 
         // Dot navigation

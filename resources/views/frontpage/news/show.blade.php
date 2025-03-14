@@ -68,7 +68,10 @@
                         <div class="widget-content">
                             @foreach($recent_posts as $post)
                             <div class="post">
-                                <div class="post-img"><img src="{{ asset('storage/' . $post->image) }}" alt="post img"/></div>
+                                <div class="post-img">
+                                    <img src="{{ asset('storage/' . $post->image) }}" alt="post img"
+                                         style="width: 150px; height: 150px; object-fit: cover; border-radius: 5px;">
+                                </div>
                                 <div class="post-content">
                                     <div class="post-date">
                                         <span class="date">{{ $post->created_at->format('M d') }}</span>
@@ -79,13 +82,13 @@
                                             'category_slug' => $post->category->getTranslation('slug', app()->getLocale()),
                                             'news_slug' => $post->getTranslation('slug', app()->getLocale())
                                         ]) }}">
-                                            {{ $post->getTranslation('name', app()->getLocale()) }}
+                                            {{ \Illuminate\Support\Str::limit($post->getTranslation('name', app()->getLocale()), 10, '...') }}
                                         </a>
                                     </div>
                                 </div>
                             </div>
                             @endforeach
-                        </div>
+                        </div>                        
                     </div>
 
                     <!-- Categories-->

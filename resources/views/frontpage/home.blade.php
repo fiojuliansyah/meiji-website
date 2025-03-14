@@ -3,137 +3,202 @@
 @section('title', 'Home - Meiji Indonesia')
 
 @section('content')
-<section class="slider" id="slider-1" style="position: relative; width: 100%; overflow: hidden;">
-  <div class="container-fluid" style="padding: 0;">
-    <div class="slider-carousel owl-carousel carousel-navs carousel-dots" 
-         style="position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center;"
-         data-slide="1" data-slide-rs="1" data-autoplay="true" data-nav="true" data-dots="true" data-space="0" data-loop="false" data-speed="800">
-      @foreach ($sliders as $slider)
-        <div class="slide bg-overlay" style="
-          position: relative; 
-          width: 100%; 
-          height: 100vh; 
-          background-size: cover; 
-          background-position: center; 
-          display: flex; 
-          align-items: center; 
-          color: white; 
-          background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ asset('storage/' . $slider->image) }}');">
-          <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 15px;">
-            <div class="row" style="align-items: center;">
-              <div class="col-12 col-lg-7" style="
-                background: rgba(0,0,0,0.6); 
-                padding: 30px; 
-                border-radius: 10px; 
-                transition: all 0.3s ease;">
-                <div class="slide-content" style="text-align: left;">
-                  <h1 class="slide-headline" style="
-                    font-size: 3.5rem; 
-                    font-weight: bold; 
+<section class="slider" id="slider-1" style="
+    position: relative; 
+    width: 100%; 
+    height: 100vh; 
+    overflow: hidden; 
+    perspective: 1000px;">
+    <div class="slider-container" style="
+        position: relative; 
+        width: 100%; 
+        height: 100%; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center;">
+        
+        @foreach ($sliders as $slider)
+        <div class="slide" style="
+            position: absolute; 
+            width: 100%; 
+            height: 100%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            opacity: 0; 
+            transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: scale(0.8) rotateY(45deg);
+            background: linear-gradient(135deg, 
+                rgba(0,0,0,0.8) 0%, 
+                rgba(0,0,0,0.5) 100%), 
+                url('{{ asset('storage/' . $slider->image) }}');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            z-index: 1;">
+            
+            <!-- Particle Background Effect -->
+            <div class="particle-bg" style="
+                position: absolute; 
+                top: 0; 
+                left: 0; 
+                width: 100%; 
+                height: 100%; 
+                z-index: -1;
+                opacity: 0.6;
+                pointer-events: none;"></div>
+            
+            <div class="slide-content" style="
+                max-width: 1200px; 
+                padding: 40px; 
+                text-align: center; 
+                background: rgba(0,0,0,0.4); 
+                border-radius: 20px; 
+                backdrop-filter: blur(10px);
+                box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+                transform: translateZ(50px);
+                transition: all 1s ease;">
+                
+                <h1 style="
+                    font-size: 4rem; 
+                    font-weight: 900; 
                     margin-bottom: 20px; 
-                    color: #fff; 
-                    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); 
-                    animation: fadeInUp 1s ease;">
+                    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    text-transform: uppercase;
+                    letter-spacing: 3px;
+                    line-height: 1.2;">
                     {{ $slider->getTranslation('title', app()->getLocale()) }}
-                  </h1>
-                  <p class="slide-desc" style="
-                    font-size: 1.2rem; 
-                    line-height: 1.6; 
-                    color: #e0e0e0; 
-                    margin-bottom: 25px; 
-                    animation: fadeInUp 1s ease 0.5s; 
-                    animation-fill-mode: backwards;">
+                </h1>
+                
+                <p style="
+                    font-size: 1.5rem; 
+                    margin-bottom: 30px; 
+                    color: rgba(255,255,255,0.8); 
+                    line-height: 1.6;
+                    max-width: 800px;
+                    margin-left: auto;
+                    margin-right: auto;">
                     {{ $slider->getTranslation('content', app()->getLocale()) }}
-                  </p>
-                  <a href="#" class="btn btn--primary btn-line btn-line-after">
-                    Learn More
-                  </a>
-                </div>
-              </div>
+                </p>
+                
+                <a href="#" style="
+                    display: inline-block;
+                    padding: 15px 40px;
+                    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+                    color: white;
+                    text-decoration: none;
+                    border-radius: 50px;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    letter-spacing: 2px;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+                    transform: perspective(1000px) translateZ(30px);
+                    hover:transform: scale(1.05);">
+                    Explore Now
+                </a>
             </div>
-          </div>
-        </div>    
-      @endforeach
+        </div>
+        @endforeach
+    </div>
+
+    <!-- Navigation -->
+    <div style="
+        position: absolute; 
+        bottom: 30px; 
+        left: 0; 
+        width: 100%; 
+        display: flex; 
+        justify-content: center; 
+        z-index: 10;">
+        @foreach ($sliders as $index => $slider)
+        <button class="slide-dot" data-slide="{{ $index }}" style="
+            width: 15px; 
+            height: 15px; 
+            background: rgba(255,255,255,0.5); 
+            border: none; 
+            border-radius: 50%; 
+            margin: 0 10px; 
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform: perspective(500px) translateZ(10px);">
+        </button>
+        @endforeach
     </div>
     
-    <!-- Custom Navigation Arrows -->
-    <div style="
-      position: absolute; 
-      top: 50%; 
-      width: 100%; 
-      display: flex; 
-      justify-content: space-between; 
-      transform: translateY(-50%); 
-      z-index: 10;">
-      <button style="
-        background: rgba(0,0,0,0.5); 
-        color: white; 
-        border: none; 
-        padding: 10px 15px; 
-        margin-left: 20px; 
-        cursor: pointer; 
-        border-radius: 50%; 
-        transition: all 0.3s ease;"
-        onclick="prevSlide()">
-        &#10094;
-      </button>
-      <button style="
-        background: rgba(0,0,0,0.5); 
-        color: white; 
-        border: none; 
-        padding: 10px 15px; 
-        margin-right: 20px; 
-        cursor: pointer; 
-        border-radius: 50%; 
-        transition: all 0.3s ease;"
-        onclick="nextSlide()">
-        &#10095;
-      </button>
-    </div>
-  </div>
-  
-  <!-- Embedded Styles and Scripts -->
-  <style>
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
-  <script>
+    <!-- Embedded Styles and Scripts -->
+    <style>
+        @keyframes particleAnimation {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-50px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+    </style>
+    <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const carousel = document.querySelector('.slider-carousel');
-      let currentSlide = 0;
-      const slides = carousel.querySelectorAll('.slide');
-      
-      function showSlide(index) {
-        // Hide all slides
-        slides.forEach(slide => slide.style.display = 'none');
-        
-        // Wrap around if index is out of bounds
-        currentSlide = (index + slides.length) % slides.length;
-        
-        // Show current slide
-        slides[currentSlide].style.display = 'flex';
-      }
-      
-      window.nextSlide = function() {
-        showSlide(currentSlide + 1);
-      }
-      
-      window.prevSlide = function() {
-        showSlide(currentSlide - 1);
-      }
-      
-      // Initialize first slide
-      showSlide(0);
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.slide-dot');
+        let currentSlide = 0;
+
+        // Particle Background Effect
+        function createParticles(particleBg) {
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = `${Math.random() * 5 + 2}px`;
+                particle.style.height = particle.style.width;
+                particle.style.background = 'rgba(255,255,255,0.3)';
+                particle.style.borderRadius = '50%';
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animation = `particleAnimation ${Math.random() * 5 + 3}s infinite`;
+                particleBg.appendChild(particle);
+            }
+        }
+
+        // Initialize particles for each slide
+        document.querySelectorAll('.particle-bg').forEach(createParticles);
+
+        // Slide navigation function
+        function showSlide(index) {
+            // Reset all slides
+            slides.forEach((slide, i) => {
+                slide.style.opacity = '0';
+                slide.style.transform = 'scale(0.8) rotateY(45deg)';
+                dots[i].style.background = 'rgba(255,255,255,0.5)';
+                slide.style.zIndex = '1';
+            });
+
+            // Show current slide
+            slides[index].style.opacity = '1';
+            slides[index].style.transform = 'scale(1) rotateY(0)';
+            slides[index].style.zIndex = '10';
+            dots[index].style.background = 'linear-gradient(45deg, #ff6b6b, #4ecdc4)';
+        }
+
+        // Dot navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlide = index;
+                showSlide(currentSlide);
+            });
+        });
+
+        // Auto slide
+        function autoSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Initial slide
+        showSlide(0);
+
+        // Auto slide every 5 seconds
+        setInterval(autoSlide, 5000);
     });
-  </script>
+    </script>
 </section>
 
   <section class="cta cta-3" id="cta-3">

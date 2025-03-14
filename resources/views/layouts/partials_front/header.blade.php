@@ -1,81 +1,87 @@
 <header class="header header-light header-topbar header-topbar6" id="navbar-spy">
-        <div class="top-bar" style="display: flex; justify-content: space-between; align-items: center;">
-            <div class="block-left" style="margin-left: 250px;">
-                <p class="headline">
-                    &nbsp; {{ $general->name }} &nbsp;
-                </p>
-                <div class="carousel owl-carousel" data-slide="1" data-slide-rs="1" data-autoplay="true" data-nav="false"
-                     data-dots="false" data-space="0" data-loop="true" data-speed="800">
-            
-                    @foreach ($categories as $category)
-                        <a href="{{ route('frontpage.products.category', [
-                            'lang' => app()->getLocale(),
-                            'slug' => $category->getTranslation('slug', app()->getLocale())
-                        ]) }}" style="color: red; display: flex; align-items: center;">
-                            {!! Illuminate\Support\Str::limit(strip_tags($category->getTranslation('name', app()->getLocale())), 24) !!}
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 8" width="11" height="8" style="color: red; margin-left: 5px;">
+    <div class="top-bar" 
+     style="display: flex; justify-content: space-between; align-items: center;">
+
+        <!-- Block Left -->
+        <div class="block-left" style="margin-left: 250px;"> 
+            <p class="headline">&nbsp; {{ $general->name }} &nbsp;</p>
+            <div class="carousel owl-carousel" data-slide="1" data-slide-rs="1" data-autoplay="true" data-nav="false"
+                data-dots="false" data-space="0" data-loop="true" data-speed="800">
+                @foreach ($categories as $category)  
+                    <a href="{{ route('frontpage.products.category', [
+                        'lang' => app()->getLocale(),
+                        'slug' => $category->getTranslation('slug', app()->getLocale())
+                    ]) }}" 
+                    style="color: red; display: flex; align-items: center;">
+                        {!! Illuminate\Support\Str::limit(strip_tags($category->getTranslation('name', app()->getLocale())), 24) !!}
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 8" width="11" height="8" style="color: red; margin-left: 5px;">
+                            <g>
                                 <g>
                                     <g>
-                                        <g>
-                                            <path class="shp1" d="M11 4L7.01 0L7.01 3L0 3L0 5L7.01 5L7.01 8L11 4Z" fill="red"></path>
-                                        </g>
+                                        <path class="shp1" d="M11 4L7.01 0L7.01 3L0 3L0 5L7.01 5L7.01 8L11 4Z" fill="red"></path>
                                     </g>
                                 </g>
-                            </svg>
-                        </a>
-                    @endforeach
-                </div>
-            </div>
-            
-            <!-- Tambahkan CSS agar elemen ini hidden saat mobile -->
-            <style>
-            @media (max-width: 768px) {
-                .block-left {
-                    display: none !important;
-                }
-            }
-            </style>            
-            <div class="block-right" style="margin-left: 300px;"> 
-              <div class="top-contact">
-                <div class="contact-infos"><i class="fas fa-phone-alt"></i>
-                    <div class="contact-body"> <a href="tel:123-456-7890">{{ translate('Phone') }}: {{ $general->phone_1 }}</a></div>
-                </div>
-                <div class="contact-infos"><i class="fas fa-map-marker-alt"></i>
-                    <div class="contact-body"> <a href="#">{{ translate('Location') }}: {{ $general->short_address }} </a></div>
-                </div>
-                <!-- Start .module-language-->
-                  <div class="module module-language">
-                      @php
-                          $currentLanguage = App\Models\Language::where('code', app()->getLocale())->first();
-                      @endphp
-                      <div class="selected">
-                          <img src="/front/assets/images/module-language/{{ app()->getLocale() }}.png" alt="{{ $currentLanguage->name }}" />
-                          <span style="color: #283b6a">{{ $currentLanguage->name }}</span>
-                          <i class="fas fa-chevron-down" style="color: #283b6a"></i>
-                      </div>
-                      <div class="lang-list">
-                          <ul>
-                          <form method="POST" action="{{ route('change-language', ['lang' => app()->getLocale()]) }}">
-                              @csrf
-                              <input type="hidden" name="route" value="{{ $currentRoute }}">
-                              <input type="hidden" name="parameters" value="{{ $routeParameters }}">
-                              @foreach(App\Models\Language::all() as $language)
-                              <li>
-                                  <img src="/front/assets/images/module-language/{{ $language->code }}.png" alt="{{ $language->name }}" />
-                                  <button type="submit" name="lang" value="{{ $language->code }}">{{ $language->name }}</button>
-                              </li>
-                              <br>
-                              @endforeach
-                          </form>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
+                            </g>
+                        </svg>
+                    </a>
+                @endforeach
             </div>
         </div>
-        <!-- End .top-bar-->
-        <!-- Rest of the header code remains unchanged -->
-    <!-- End .top-bar-->
+
+        <!-- Block Right -->
+        <div class="block-right" style="margin-left: 300px;"> 
+            <div class="top-contact">
+                <div class="contact-infos"><i class="fas fa-phone-alt"></i>
+                    <div class="contact-body">
+                        <a href="tel:123-456-7890">{{ translate('Phone') }}: {{ $general->phone_1 }}</a>
+                    </div>
+                </div>
+                <div class="contact-infos"><i class="fas fa-map-marker-alt"></i>
+                    <div class="contact-body">
+                        <a href="#">{{ translate('Location') }}: {{ $general->short_address }} </a>
+                    </div>
+                </div>
+
+                <!-- Language Selector -->
+                <div class="module module-language">
+                    @php
+                        $currentLanguage = App\Models\Language::where('code', app()->getLocale())->first();
+                    @endphp
+                    <div class="selected">
+                        <img src="/front/assets/images/module-language/{{ app()->getLocale() }}.png" alt="{{ $currentLanguage->name }}" />
+                        <span style="color: #283b6a">{{ $currentLanguage->name }}</span>
+                        <i class="fas fa-chevron-down" style="color: #283b6a"></i>
+                    </div>
+                    <div class="lang-list">
+                        <ul>
+                            <form method="POST" action="{{ route('change-language', ['lang' => app()->getLocale()]) }}">
+                                @csrf
+                                <input type="hidden" name="route" value="{{ $currentRoute }}">
+                                <input type="hidden" name="parameters" value="{{ $routeParameters }}">
+                                @foreach(App\Models\Language::all() as $language)
+                                <li>
+                                    <img src="/front/assets/images/module-language/{{ $language->code }}.png" alt="{{ $language->name }}" />
+                                    <button type="submit" name="lang" value="{{ $language->code }}">{{ $language->name }}</button>
+                                </li>
+                                <br>
+                                @endforeach
+                            </form>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tambahkan CSS untuk Menyembunyikan `.top-bar` di Mobile -->
+    <style>
+    @media (max-width: 768px) {
+        .top-bar {
+            display: none !important;
+        }
+    }
+    </style>
+
     <nav class="navbar navbar-expand-xl navbar-sticky" id="primary-menu">
         <div class="container"><a class="navbar-brand" href="/">
             @if ($general && $general->logo)

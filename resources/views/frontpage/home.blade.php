@@ -226,7 +226,7 @@
                   </div>
                   <a href="{{ route('frontpage.news.show', [
                         'lang' => app()->getLocale(),
-                        'category_slug' => $category->getTranslation('slug', app()->getLocale()),
+                        'category_slug' => $item->category->getTranslation('slug', app()->getLocale()),
                         'news_slug' => $item->getTranslation('slug', app()->getLocale())
                     ]) }}" 
                     style="display: block; width: 500px; height: 200px; overflow: hidden;">

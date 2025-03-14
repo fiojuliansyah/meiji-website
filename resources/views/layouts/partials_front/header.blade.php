@@ -1,6 +1,6 @@
 <header class="header header-light header-topbar header-topbar6" id="navbar-spy">
         <div class="top-bar" style="display: flex; justify-content: space-between; align-items: center;">
-            <div class="block-left" style="margin-left: 250px;"> 
+            {{-- <div class="block-left" style="margin-left: 250px;"> 
               <p class="headline"> 
                 &nbsp; {{ $general->name }} &nbsp; 
               </p>
@@ -23,7 +23,7 @@
                     </a>
                 @endforeach
                </div>
-            </div>
+            </div> --}}
             <div class="block-right" style="margin-left: 300px;"> 
               <div class="top-contact">
                 <div class="contact-infos"><i class="fas fa-phone-alt"></i>

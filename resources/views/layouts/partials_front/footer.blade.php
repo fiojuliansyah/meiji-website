@@ -90,7 +90,7 @@
                       </div>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row mt-5">
                   <div class="col-12 text-center">
                     <div class="copyright"><span style="color: #283B6A">&copy; 2025 by  <a href="/"> {{ $general->name }}</a>. all rights reserved. </span>
                     </div>

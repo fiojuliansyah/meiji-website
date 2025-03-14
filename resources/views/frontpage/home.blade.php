@@ -3,30 +3,148 @@
 @section('title', 'Home - Meiji Indonesia')
 
 @section('content')
-<section class="slider" id="slider-1">
-    <div class="container-fluid pr-0 pl-0">
-      <div class="slider-carousel owl-carousel carousel-navs carousel-dots" data-slide="1" data-slide-rs="1" data-autoplay="true" data-nav="true" data-dots="true" data-space="0" data-loop="false" data-speed="800">
-        @foreach ($sliders as $slider)
-          <div class="slide bg-overlay bg-overlay-dark-slider">
-            <div class="bg-section"><img src="{{ asset('storage/' . $slider->image) }}" alt="Background"/></div>
-            <div class="container">
-              <div class="row">
-                <div class="col-12 col-lg-7">
-                  <div class="slide-content">
-                    <h1 class="slide-headline">{{ $slider->getTranslation('title', app()->getLocale()) }}</h1>
-                    <p class="slide-desc">{{ $slider->getTranslation('content', app()->getLocale()) }}</p>
-                  </div>
-                  <!-- End .slide-content -->
+<section class="slider" id="slider-1" style="position: relative; width: 100%; overflow: hidden;">
+  <div class="container-fluid" style="padding: 0;">
+    <div class="slider-carousel owl-carousel carousel-navs carousel-dots" 
+         style="position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center;"
+         data-slide="1" data-slide-rs="1" data-autoplay="true" data-nav="true" data-dots="true" data-space="0" data-loop="false" data-speed="800">
+      @foreach ($sliders as $slider)
+        <div class="slide bg-overlay" style="
+          position: relative; 
+          width: 100%; 
+          height: 100vh; 
+          background-size: cover; 
+          background-position: center; 
+          display: flex; 
+          align-items: center; 
+          color: white; 
+          background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ asset('storage/' . $slider->image) }}');">
+          <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 15px;">
+            <div class="row" style="align-items: center;">
+              <div class="col-12 col-lg-7" style="
+                background: rgba(0,0,0,0.6); 
+                padding: 30px; 
+                border-radius: 10px; 
+                transition: all 0.3s ease;">
+                <div class="slide-content" style="text-align: left;">
+                  <h1 class="slide-headline" style="
+                    font-size: 3.5rem; 
+                    font-weight: bold; 
+                    margin-bottom: 20px; 
+                    color: #fff; 
+                    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); 
+                    animation: fadeInUp 1s ease;">
+                    {{ $slider->getTranslation('title', app()->getLocale()) }}
+                  </h1>
+                  <p class="slide-desc" style="
+                    font-size: 1.2rem; 
+                    line-height: 1.6; 
+                    color: #e0e0e0; 
+                    margin-bottom: 25px; 
+                    animation: fadeInUp 1s ease 0.5s; 
+                    animation-fill-mode: backwards;">
+                    {{ $slider->getTranslation('content', app()->getLocale()) }}
+                  </p>
+                  <a href="#" style="
+                    display: inline-block; 
+                    padding: 12px 30px; 
+                    background-color: #007bff; 
+                    color: white; 
+                    text-decoration: none; 
+                    border-radius: 5px; 
+                    transition: all 0.3s ease; 
+                    animation: fadeInUp 1s ease 1s;
+                    animation-fill-mode: backwards;
+                    hover: background-color: #0056b3;">
+                    Learn More
+                  </a>
                 </div>
               </div>
-              <!--  End .row-->
             </div>
-            <!-- End .container-->
-          </div>    
-        @endforeach
-      </div>
+          </div>
+        </div>    
+      @endforeach
     </div>
-  </section>
+    
+    <!-- Custom Navigation Arrows -->
+    <div style="
+      position: absolute; 
+      top: 50%; 
+      width: 100%; 
+      display: flex; 
+      justify-content: space-between; 
+      transform: translateY(-50%); 
+      z-index: 10;">
+      <button style="
+        background: rgba(0,0,0,0.5); 
+        color: white; 
+        border: none; 
+        padding: 10px 15px; 
+        margin-left: 20px; 
+        cursor: pointer; 
+        border-radius: 50%; 
+        transition: all 0.3s ease;"
+        onclick="prevSlide()">
+        &#10094;
+      </button>
+      <button style="
+        background: rgba(0,0,0,0.5); 
+        color: white; 
+        border: none; 
+        padding: 10px 15px; 
+        margin-right: 20px; 
+        cursor: pointer; 
+        border-radius: 50%; 
+        transition: all 0.3s ease;"
+        onclick="nextSlide()">
+        &#10095;
+      </button>
+    </div>
+  </div>
+  
+  <!-- Embedded Styles and Scripts -->
+  <style>
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const carousel = document.querySelector('.slider-carousel');
+      let currentSlide = 0;
+      const slides = carousel.querySelectorAll('.slide');
+      
+      function showSlide(index) {
+        // Hide all slides
+        slides.forEach(slide => slide.style.display = 'none');
+        
+        // Wrap around if index is out of bounds
+        currentSlide = (index + slides.length) % slides.length;
+        
+        // Show current slide
+        slides[currentSlide].style.display = 'flex';
+      }
+      
+      window.nextSlide = function() {
+        showSlide(currentSlide + 1);
+      }
+      
+      window.prevSlide = function() {
+        showSlide(currentSlide - 1);
+      }
+      
+      // Initialize first slide
+      showSlide(0);
+    });
+  </script>
+</section>
 
   <section class="cta cta-3" id="cta-3">
     <div class="container">

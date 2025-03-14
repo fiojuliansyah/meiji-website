@@ -30,7 +30,6 @@
                                                 {!! $general->getTranslation('bio', app()->getLocale()) !!}
                                             </div>
                                         </div>
-                                        <!-- End .team-content-->
                                     </div>
                                 </div>
                             </div>

@@ -8,13 +8,7 @@
       <div class="slider-carousel owl-carousel carousel-navs carousel-dots" data-slide="1" data-slide-rs="1" data-autoplay="true" data-nav="true" data-dots="true" data-space="0" data-loop="false" data-speed="800">
         @foreach ($sliders as $slider)
           <div class="slide bg-overlay bg-overlay-dark-slider">
-            <div class="bg-section" style="position: relative; width: 100%; height: 100%;">
-              <img src="{{ asset('storage/' . $slider->image) }}" alt="Background"
-                   style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6);">
-              
-              <!-- Overlay -->
-              <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3);"></div>
-          </div>          
+            <div class="bg-section"><img src="{{ asset('storage/' . $slider->image) }}" alt="Background"/></div>
             <div class="container">
               <div class="row">
                 <div class="col-12 col-lg-7">
@@ -32,7 +26,7 @@
         @endforeach
       </div>
     </div>
-</section>
+  </section>
 
   <section class="cta cta-3" id="cta-3">
     <div class="container">

@@ -28,7 +28,7 @@
                 transition: all 0.3s ease;">
                 <div class="slide-content" style="text-align: left;">
                   <h1 class="slide-headline" style="
-                    font-size: 3.5rem; 
+                    font-size: 2.5rem; 
                     font-weight: bold; 
                     margin-bottom: 20px; 
                     color: #fff; 

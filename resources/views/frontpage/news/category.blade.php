@@ -19,7 +19,7 @@
                         </ol>
                         <div class="title-card">
                             <div class="card-icon"> <i class="flaticon-029-cardiogram-1"></i></div>
-                            <h4>{{ $category->getTranslation('name', app()->getLocale()) }}</h4>
+                            <h4 style="padding-top: 20px">{{ $category->getTranslation('name', app()->getLocale()) }}</h4>
                         </div>
                     </div>
                     <!-- End .title -->

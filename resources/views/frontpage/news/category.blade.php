@@ -8,9 +8,9 @@
     <section class="page-title page-title-4 bg-overlay bg-overlay-dark bg-parallax" id="page-title">
         <div class="bg-section"><img src="{{ asset('storage/' . $general->breadcrumb) }}" alt="Background" /></div>
         <div class="container">
-            <div class="row" style="padding-bottom: 150px; color: #FF000">
+            <div class="row" style="padding-bottom: 150px;">
                 <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-0">
-                    <div class="title">
+                    <div class="title" style="background-color: #FF0000">
                         <div class="title-card">
                             <div class="card-icon"> <i class="flaticon-029-cardiogram-1"></i></div>
                             <h4 style="padding-top: 30px">{{ $category->getTranslation('name', app()->getLocale()) }}</h4>

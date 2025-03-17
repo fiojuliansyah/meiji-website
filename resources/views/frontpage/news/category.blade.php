@@ -5,21 +5,25 @@
 @endsection
 
 @section('content')
-    <section class="page-title page-title-4 bg-overlay bg-overlay-dark bg-parallax" id="page-title">
-        <div class="bg-section"><img src="{{ asset('storage/' . $general->breadcrumb) }}" alt="Background" /></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-0">
-                    <div class="title">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/">Home</a></li>
-                            <li class="breadcrumb-item"><a href="">News</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">
+    <section class="page-title page-title-4 bg-overlay bg-overlay-dark bg-parallax" id="page-title" style="position: relative; padding: 120px 0; overflow: hidden; background-color: #0e1317;">
+        <div class="bg-section" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+            <img src="{{ asset('storage/' . $general->breadcrumb) }}" alt="Background" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.7; filter: brightness(0.6);" />
+        </div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="row" style="display: flex; justify-content: center;">
+                <div class="col-12 col-md-8 offset-md-2 col-lg-6 ofset-lg-0" style="text-align: center;">
+                    <div class="title" style="padding: 30px; background-color: rgba(0,0,0,0.5); border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+                        <ol class="breadcrumb" style="display: flex; justify-content: center; padding: 15px 0; margin-bottom: 20px; list-style: none; background-color: transparent;">
+                            <li class="breadcrumb-item" style="margin: 0 5px; font-size: 16px; font-weight: 500; color: #ffffff;"><a href="/" style="color: #ffffff; text-decoration: none; transition: color 0.3s ease;">Home</a></li>
+                            <li class="breadcrumb-item" style="margin: 0 5px; font-size: 16px; font-weight: 500; color: #ffffff;"><a href="" style="color: #ffffff; text-decoration: none; transition: color 0.3s ease;">News</a></li>
+                            <li class="breadcrumb-item active" aria-current="page" style="margin: 0 5px; font-size: 16px; font-weight: 700; color: #3498db;">
                                 {{ $category->getTranslation('name', app()->getLocale()) }}</li>
                         </ol>
-                        <div class="title-card">
-                            <div class="card-icon"> <i class="flaticon-029-cardiogram-1"></i></div>
-                            <h4 style="padding-top: 30px">{{ $category->getTranslation('name', app()->getLocale()) }}</h4>
+                        <div class="title-card" style="display: flex; flex-direction: column; align-items: center; padding: 20px 0;">
+                            <div class="card-icon" style="background-color: #3498db; width: 80px; height: 80px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(52, 152, 219, 0.5);">
+                                <i class="flaticon-029-cardiogram-1" style="font-size: 36px; color: #ffffff;"></i>
+                            </div>
+                            <h4 style="padding-top: 15px; margin: 0; color: #ffffff; font-size: 32px; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); letter-spacing: 1px;">{{ $category->getTranslation('name', app()->getLocale()) }}</h4>
                         </div>
                     </div>
                 </div>

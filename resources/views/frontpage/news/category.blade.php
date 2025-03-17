@@ -19,10 +19,10 @@
                     <div style="position: absolute; width: 120px; height: 120px; border: 2px solid rgba(255,255,255,0.2); border-radius: 50%; top: -60px; left: -40px; z-index: -1;"></div>
                     <div style="position: absolute; width: 80px; height: 80px; border: 2px solid rgba(255,255,255,0.15); border-radius: 50%; bottom: -30px; right: 20px; z-index: -1;"></div>
                     
-                    <div class="title-card" style="position: relative; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 15px; padding: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); border-left: 4px solid #3498db; animation: fadeIn 0.8s ease-out;">
+                    <div class="title-card" style="position: relative; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 15px; padding: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); border-left: 4px solid #FF0000; animation: fadeIn 0.8s ease-out;">
                         <!-- Menambahkan garis dekoratif -->
-                        <div style="position: absolute; width: 40px; height: 3px; background: #3498db; top: 20px; right: 30px;"></div>
-                        <div style="position: absolute; width: 20px; height: 3px; background: #3498db; top: 30px; right: 30px;"></div>
+                        <div style="position: absolute; width: 40px; height: 3px; background: #FF0000; top: 20px; right: 30px;"></div>
+                        <div style="position: absolute; width: 20px; height: 3px; background: #FF0000; top: 30px; right: 30px;"></div>
                         
                         <div class="card-icon" style="position: relative; margin-bottom: 15px;"> 
                             <div style="position: absolute; width: 60px; height: 60px; background: rgba(52,152,219,0.2); border-radius: 50%; left: -5px; top: -5px; transform: scale(1.2); animation: pulse 2s infinite;"></div>
@@ -31,7 +31,7 @@
                         <h4 style="position: relative; padding-top: 15px; color: #ffffff; font-size: 28px; font-weight: 700; text-shadow: 0 2px 5px rgba(0,0,0,0.3); letter-spacing: 1px; margin-bottom: 0;">{{ $category->getTranslation('name', app()->getLocale()) }}</h4>
                         
                         <!-- Menambahkan aksen garis bawah animasi -->
-                        <div style="width: 100px; height: 3px; background: linear-gradient(90deg, #3498db, transparent); margin-top: 20px; position: relative; overflow: hidden;">
+                        <div style="width: 100px; height: 3px; background: linear-gradient(90deg, #FF0000, transparent); margin-top: 20px; position: relative; overflow: hidden;">
                             <div style="position: absolute; width: 50px; height: 100%; background: rgba(255,255,255,0.3); animation: shimmer 2s infinite;"></div>
                         </div>
                     </div>

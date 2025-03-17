@@ -20,9 +20,7 @@
                         <div class="title-card">
                             <div class="card-icon"> <i class="flaticon-029-cardiogram-1"></i></div>
                             <div class="card-content">
-                                <div class="title-heading">
                                     <h1>{{ $category->getTranslation('name', app()->getLocale()) }}</h1>
-                                </div>
                             </div>
                         </div>
                     </div>

@@ -46,7 +46,7 @@
         <div class="entry-infos entry-infos-2">
           {!! $activity->getTranslation('content', app()->getLocale()) !!}
         </div>
-        <div class="entry-contact"> 
+        {{-- <div class="entry-contact"> 
           <div class="contact-panel bg-overlay bg-overlay-theme3">
             <div class="bg-section"> <img src="assets/images/sliders/1.jpg" alt="background"/></div>
             <div class="contact-card">
@@ -86,7 +86,7 @@
             </div>
           </div>
           <!-- End .contact-panel-->
-        </div>
+        </div> --}}
       </div>
       <div class="col-12 col-lg-4"> 
         <!-- 

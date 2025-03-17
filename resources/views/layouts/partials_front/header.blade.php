@@ -216,7 +216,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item" data-hover=""><a href="{{ route('frontpage.faq') }}"><span>{{ translate('FAQ') }}</span></a>
+                    <li class="nav-item" data-hover=""><a href="{{ route('frontpage.faq', ['lang' => app()->getLocale()]) }}"><span>{{ translate('FAQ') }}</span></a>
                     </li>
                     @if ($pages_header->isNotEmpty())
                         <li class="nav-item has-dropdown" data-hover="">

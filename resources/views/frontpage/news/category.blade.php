@@ -5,34 +5,37 @@
 @endsection
 
 @section('content')
-<section class="page-title page-title-4 bg-overlay bg-overlay-dark bg-parallax" id="page-title">
-    <div class="bg-section"><img src="{{ asset('storage/' . $general->breadcrumb) }}" alt="Background"/></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-0">
-          <div class="title">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/">Home</a></li>
-              <li class="breadcrumb-item"><a href="">News</a></li>
-              <li class="breadcrumb-item active" aria-current="page">{{ $category->getTranslation('name', app()->getLocale()) }}</li>
-            </ol>
-            <div class="title-card">
-              <div class="card-icon"> <i class="flaticon-029-cardiogram-1"></i></div>
-              <div class="card-content">
-                <div class="title-heading">
-                  <h1>{{ $category->getTranslation('name', app()->getLocale()) }}</h1>
+    <section class="page-title page-title-4 bg-overlay bg-overlay-dark bg-parallax" id="page-title">
+        <div class="bg-section"><img src="{{ asset('storage/' . $general->breadcrumb) }}" alt="Background" /></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-0">
+                    <div class="title">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item"><a href="">News</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                {{ $category->getTranslation('name', app()->getLocale()) }}</li>
+                        </ol>
+                        <div class="title-card">
+                            <div class="card-icon"> <i class="flaticon-029-cardiogram-1"></i></div>
+                            <div class="card-content">
+                                <div class="title-heading">
+                                    <h1>{{ $category->getTranslation('name', app()->getLocale()) }}</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End .title -->
                 </div>
-              </div>
+                <!-- End .col-lg-8 -->
             </div>
-          </div>
-          <!-- End .title -->
+            <!-- End .row-->
         </div>
-        <!-- End .col-lg-8 -->
-      </div>
-      <!-- End .row-->
-    </div>
-    <!-- End .container-->
-  </section>
+        <!-- End .container-->
+    </section>
+    <br>
+    <br>
     <section class="blog blog-grid" id="blog">
         <div class="container">
             <div class="row">

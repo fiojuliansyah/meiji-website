@@ -18,10 +18,8 @@
                                 {{ $category->getTranslation('name', app()->getLocale()) }}</li>
                         </ol>
                         <div class="title-card">
-                            <div class="card-icon"> <i class="flaticon-029-cardiogram-1"></i></div>
-                            <div class="card-content">
-                                    <h4>{{ $category->getTranslation('name', app()->getLocale()) }}</h4>
-                            </div>
+                            <i class="flaticon-029-cardiogram-1"></i>
+                            <h4>{{ $category->getTranslation('name', app()->getLocale()) }}</h4>
                         </div>
                     </div>
                     <!-- End .title -->

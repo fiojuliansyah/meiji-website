@@ -5,25 +5,21 @@
 @endsection
 
 @section('content')
-<section class="page-title page-title-4 bg-overlay bg-overlay-dark bg-parallax" id="page-title" style="position: relative; margin: 0; overflow: hidden;">
-    <div class="bg-section" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
-        <img src="{{ asset('storage/' . $general->breadcrumb) }}" alt="Background" style="width: 100%; height: 100%; object-fit: cover;" />
-    </div>
-    <div class="container" style="position: relative; z-index: 2; max-width: 1140px; margin: 0 auto; padding: 0 15px;">
-        <div class="row" style="display: flex; flex-wrap: wrap; margin-right: -15px; margin-left: -15px;">
-            <div class="col-12 col-md-8 offset-md-2 col-lg-6 ofset-lg-0" style="position: relative; width: 100%; padding-right: 15px; padding-left: 15px;">
-                <div class="title" style="margin-bottom: 0;">
-                    <div class="title-card" style="display: flex; align-items: center;">
-                        <div class="card-icon" style="margin-right: 15px;"> 
-                            <i class="flaticon-029-cardiogram-1" style="font-size: 40px; color: #ffffff;"></i>
+    <section class="page-title page-title-4 bg-overlay bg-overlay-dark bg-parallax" id="page-title">
+        <div class="bg-section"><img src="{{ asset('storage/' . $general->breadcrumb) }}" alt="Background" /></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-0">
+                    <div class="title">
+                        <div class="title-card">
+                            <div class="card-icon"> <i class="flaticon-029-cardiogram-1"></i></div>
+                            <h4 style="padding-top: 30px">{{ $category->getTranslation('name', app()->getLocale()) }}</h4>
                         </div>
-                        <h4 style="margin: 0; color: #ffffff; font-size: 24px; font-weight: 600;">{{ $category->getTranslation('name', app()->getLocale()) }}</h4>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
     <br>
     <br>
     <section class="blog blog-grid" id="blog">

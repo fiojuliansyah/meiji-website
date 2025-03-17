@@ -43,7 +43,7 @@
                     <div class="entry-content" style="padding: 20px;">
                         <div class="entry-meta" style="display: flex; align-items: center; margin-bottom: 12px;">
                             <div class="entry-category">
-                                <a href="{{ route('frontpage.news.index', [
+                                <a href="{{ route('frontpage.news.show', [
                                     'lang' => app()->getLocale(),
                                     'category_slug' => $category->getTranslation('slug', app()->getLocale()),
                                 ]) }}" 

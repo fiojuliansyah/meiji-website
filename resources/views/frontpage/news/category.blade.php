@@ -46,6 +46,7 @@
                                 <a href="{{ route('frontpage.news.show', [
                                     'lang' => app()->getLocale(),
                                     'category_slug' => $category->getTranslation('slug', app()->getLocale()),
+                                    'news_slug' => $item->getTranslation('slug', app()->getLocale())
                                 ]) }}" 
                                 style="font-size: 13px; color: #e61e25; font-weight: 600; text-decoration: none; text-transform: uppercase;">
                                     {{ $category->getTranslation('name', app()->getLocale()) }}

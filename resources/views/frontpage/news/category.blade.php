@@ -5,15 +5,36 @@
 @endsection
 
 @section('content')
+<section class="page-title page-title-4 bg-overlay bg-overlay-dark bg-parallax" id="page-title">
+    <div class="bg-section"><img src="{{ asset('storage/' . $general->breadcrumb) }}" alt="Background"/></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-0">
+          <div class="title">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item"><a href="">News</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{ $category->getTranslation('name', app()->getLocale()) }}</li>
+            </ol>
+            <div class="title-card">
+              <div class="card-icon"> <i class="flaticon-029-cardiogram-1"></i></div>
+              <div class="card-content">
+                <div class="title-heading">
+                  <h1>{{ $category->getTranslation('name', app()->getLocale()) }}</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End .title -->
+        </div>
+        <!-- End .col-lg-8 -->
+      </div>
+      <!-- End .row-->
+    </div>
+    <!-- End .container-->
+  </section>
     <section class="blog blog-grid" id="blog">
         <div class="container">
-            <div class="row" style="margin-bottom: 40px;">
-                <div class="col-12 text-center" style="margin-bottom: 30px;">
-                    <h2 style="font-size: 32px; font-weight: 700; color: #0b3b8e; margin-bottom: 15px;">
-                        {{ $category->getTranslation('name', app()->getLocale()) }}</h2>
-                    <div style="width: 80px; height: 3px; background-color: #e61e25; margin: 0 auto;"></div>
-                </div>
-            </div>
             <div class="row">
                 @forelse ($news as $item)
                     <div class="col-12 col-md-6 col-lg-4">

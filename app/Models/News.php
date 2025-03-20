@@ -85,4 +85,11 @@ class News extends Model
 
         return $requiredTypes->diff($approvedTypes)->isEmpty();
     }
+
+    protected function casts(): array
+    {
+        return [
+            'date_published' => 'date',
+        ];
+    }
 }

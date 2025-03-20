@@ -77,13 +77,7 @@
                                         </div>
                                     </div>
                                 @else
-                                    <div class="entry-date">
-                                        <div class="entry-content">
-                                            <span class="day">N/A</span>  <!-- Atau bisa ditampilkan "Tanggal tidak tersedia" -->
-                                            <span class="month">N/A</span>
-                                            <span class="year">N/A</span>
-                                        </div>
-                                    </div>
+                                    
                                 @endif
                                 <a href="{{ route('frontpage.news.show', [
                                     'lang' => app()->getLocale(),

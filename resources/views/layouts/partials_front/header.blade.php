@@ -75,16 +75,6 @@
 
     <!-- Tambahkan CSS untuk Menyembunyikan `.top-bar` di Mobile -->
     <style>
-    /* CSS untuk menambahkan jarak antar item navbar */
-    .navbar-nav .nav-item {
-        margin-right: 20px;  /* Atur sesuai kebutuhan */
-    }
-
-    /* Optional: menambahkan margin pada dropdown */
-    .navbar-nav .nav-item.has-dropdown .dropdown-menu {
-        margin-top: 10px;
-    }
-
     @media (max-width: 768px) {
         .top-bar {
             display: none !important;
@@ -92,18 +82,16 @@
     }
     </style>
 
-<!--  Modifikasi kode navbar -->
     <nav class="navbar navbar-expand-xl navbar-sticky" id="primary-menu">
-        <div class="container">
-            <a class="navbar-brand" href="/">
+        <div class="container"><a class="navbar-brand" href="/">
             @if ($general && $general->logo)
                 <img class="logo logo-dark"
-                     src="{{ asset('storage/' . $general->logo) }}" alt="Meiji Logo" />
-                <img class="logo logo-mobile"
-                     src="{{ asset('storage/' . $general->logo) }}" alt="Meiji Logo" />
-            </a>
+                        src="{{ asset('storage/' . $general->logo) }}" alt="Meiji Logo" />
+                        <img class="logo logo-mobile"
+                        src="{{ asset('storage/' . $general->logo) }}" alt="Meiji Logo" /></a>
             @endif
             <div class="module-holder module-holder-phone">
+                <!--  Start Module Search  -->
                 <div class="module module-search float-left">
                     <div class="module module-language">
                         @php
@@ -116,33 +104,31 @@
                         </div>
                         <div class="lang-list">
                             <ul>
-                                <form method="POST" action="{{ route('change-language', ['lang' => app()->getLocale()]) }}">
-                                    @csrf
-                                    <input type="hidden" name="route" value="{{ $currentRoute }}">
-                                    <input type="hidden" name="parameters" value="{{ $routeParameters }}">
-                                    @foreach(App\Models\Language::all() as $language)
-                                    <li>
-                                        <img src="/front/assets/images/module-language/{{ $language->code }}.png" alt="{{ $language->name }}" />
-                                        <button type="submit" name="lang" value="{{ $language->code }}">{{ $language->name }}</button>
-                                    </li>
-                                    <br>
-                                    @endforeach
-                                </form>
+                            <form method="POST" action="{{ route('change-language', ['lang' => app()->getLocale()]) }}">
+                                @csrf
+                                <input type="hidden" name="route" value="{{ $currentRoute }}">
+                                <input type="hidden" name="parameters" value="{{ $routeParameters }}">
+                                @foreach(App\Models\Language::all() as $language)
+                                <li>
+                                    <img src="/front/assets/images/module-language/{{ $language->code }}.png" alt="{{ $language->name }}" />
+                                    <button type="submit" name="lang" value="{{ $language->code }}">{{ $language->name }}</button>
+                                </li>
+                                <br>
+                                @endforeach
+                            </form>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <!-- Start .module-search-->
+                <!--  End .module-search-->
                 <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false"
-                        aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false"
+                    aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             </div>
-
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav ">
-                    <!-- Navbar items with margin -->
                     <li class="nav-item has-dropdown" data-hover=""><a class="dropdown-toggle" href="#"
-                        data-toggle="dropdown"><span>{{ translate('About Us') }}</span></a>
+                            data-toggle="dropdown"><span>{{ translate('About Us') }}</span></a>
                         <ul class="dropdown-menu">
                             @foreach($abouts as $about)
                                 <li class="nav-item">
@@ -159,7 +145,7 @@
                         </ul>
                     </li>
                     <li class="nav-item has-dropdown" data-hover=""><a class="dropdown-toggle" href="#"
-                        data-toggle="dropdown"><span>{{ translate('News') }}</span></a>
+                            data-toggle="dropdown"><span>{{ translate('News') }}</span></a>
                         <ul class="dropdown-menu">
                             @foreach($news_categories as $nCategory)
                                 <li class="nav-item">
@@ -173,8 +159,6 @@
                             @endforeach
                         </ul>
                     </li>
-
-                    <!-- Add margin between other items -->
                     <li class="nav-item has-dropdown" data-hover=""><a class="dropdown-toggle" href="#"
                         data-toggle="dropdown"><span>{{ translate('Products') }}</span></a>
                         <ul class="dropdown-menu">
@@ -198,8 +182,6 @@
                             @endforeach
                         </ul>
                     </li>
-
-                    <!-- Other nav items -->
                     <li class="nav-item has-dropdown" data-hover=""><a class="dropdown-toggle" href="#"
                         data-toggle="dropdown"><span>{{ translate('R&D') }}</span></a>
                         <ul class="dropdown-menu">
@@ -212,7 +194,6 @@
                             @endforeach
                         </ul>
                     </li>
-
                     <li class="nav-item has-dropdown" data-hover=""><a class="dropdown-toggle" href="#"
                         data-toggle="dropdown"><span>{{ translate('Activity') }}</span></a>
                         <ul class="dropdown-menu">
@@ -225,8 +206,6 @@
                             @endforeach
                         </ul>
                     </li>
-
-                    <!-- Career and FAQ sections -->
                     <li class="nav-item has-dropdown" data-hover=""><a class="dropdown-toggle" href="#"
                         data-toggle="dropdown"><span>{{ translate('Career') }}</span></a>
                         <ul class="dropdown-menu">
@@ -239,35 +218,34 @@
                     </li>
                     <li class="nav-item" data-hover=""><a href="{{ route('frontpage.faq', ['lang' => app()->getLocale()]) }}"><span>{{ translate('FAQ') }}</span></a>
                     </li>
-
-                    <!-- Pages header -->
                     @if ($pages_header->isNotEmpty())
-                    <li class="nav-item has-dropdown" data-hover="">
-                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                            <span>{{ translate('Pages') }}</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            @foreach ($pages_header as $page)  
-                                <li class="nav-item">
-                                    <a href="{{ route('frontpage.page.show', ['lang' => app()->getLocale(), 'slug' => $page->getTranslation('slug', app()->getLocale())]) }}">
-                                        <span>{{ $page->getTranslation('title', app()->getLocale()) }}</span>
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
+                        <li class="nav-item has-dropdown" data-hover="">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                                <span>{{ translate('Pages') }}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @foreach ($pages_header as $page)  
+                                    <li class="nav-item">
+                                        <a href="{{ route('frontpage.page.show', ['lang' => app()->getLocale(), 'slug' => $page->getTranslation('slug', app()->getLocale())]) }}">
+                                            <span>{{ $page->getTranslation('title', app()->getLocale()) }}</span>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
                     @endif
                 </ul>
-
-                <!-- Contact section -->
                 <div class="module-holder">
+                    <!-- Start .module-contact-->
                     <div class="module-contact module-contact-2 module-contact-3"><a
                             class="btn btn--primary btn-line btn-line-after" href="{{ route('frontpage.contact') }}">
                             <span>{{ translate('Contact') }}</span><span class="line"> <span></span></span></a></div>
+
                 </div>
+                <!--  End .module-holder-->
             </div>
         </div>
+        <!--  End .container-->
     </nav>
+    <!--  End .navbar-->
 </header>
-
-

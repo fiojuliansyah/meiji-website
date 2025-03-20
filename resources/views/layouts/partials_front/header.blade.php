@@ -82,14 +82,16 @@
     }
     </style>
 
-    <nav class="navbar navbar-expand-xl navbar-sticky" id="primary-menu">
-        <div class="container"><a class="navbar-brand" href="/">
-            @if ($general && $general->logo)
-                <img class="logo logo-dark"
-                        src="{{ asset('storage/' . $general->logo) }}" alt="Meiji Logo" />
-                        <img class="logo logo-mobile"
-                        src="{{ asset('storage/' . $general->logo) }}" alt="Meiji Logo" /></a>
-            @endif
+    <nav class="navbar navbar-expand-xl navbar-sticky" id="primary-menu" style="padding: 10px 0;">
+        <div class="container" style="max-width: 1300px;">
+            <a class="navbar-brand" href="/" style="margin-right: 30px;">
+                @if ($general && $general->logo)
+                    <img class="logo logo-dark"
+                            src="{{ asset('storage/' . $general->logo) }}" alt="Meiji Logo" />
+                            <img class="logo logo-mobile"
+                            src="{{ asset('storage/' . $general->logo) }}" alt="Meiji Logo" />
+                @endif
+            </a>
             <div class="module-holder module-holder-phone">
                 <!--  Start Module Search  -->
                 <div class="module module-search float-left">
@@ -125,9 +127,9 @@
                     data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false"
                     aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             </div>
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <ul class="navbar-nav ">
-                    <li class="nav-item has-dropdown" data-hover=""><a class="dropdown-toggle" href="#"
+            <div class="collapse navbar-collapse" id="navbarContent" style="justify-content: space-between;">
+                <ul class="navbar-nav" style="margin-left: 20px;">
+                    <li class="nav-item has-dropdown" data-hover="" style="margin-right: 15px;"><a class="dropdown-toggle" href="#"
                             data-toggle="dropdown"><span>{{ translate('About Us') }}</span></a>
                         <ul class="dropdown-menu">
                             @foreach($abouts as $about)
@@ -144,7 +146,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item has-dropdown" data-hover=""><a class="dropdown-toggle" href="#"
+                    <li class="nav-item has-dropdown" data-hover="" style="margin-right: 15px;"><a class="dropdown-toggle" href="#"
                             data-toggle="dropdown"><span>{{ translate('News') }}</span></a>
                         <ul class="dropdown-menu">
                             @foreach($news_categories as $nCategory)
@@ -159,7 +161,7 @@
                             @endforeach
                         </ul>
                     </li>
-                    <li class="nav-item has-dropdown" data-hover=""><a class="dropdown-toggle" href="#"
+                    <li class="nav-item has-dropdown" data-hover="" style="margin-right: 15px;"><a class="dropdown-toggle" href="#"
                         data-toggle="dropdown"><span>{{ translate('Products') }}</span></a>
                         <ul class="dropdown-menu">
                             @foreach($categories as $category)
@@ -182,7 +184,7 @@
                             @endforeach
                         </ul>
                     </li>
-                    <li class="nav-item has-dropdown" data-hover=""><a class="dropdown-toggle" href="#"
+                    <li class="nav-item has-dropdown" data-hover="" style="margin-right: 15px;"><a class="dropdown-toggle" href="#"
                         data-toggle="dropdown"><span>{{ translate('R&D') }}</span></a>
                         <ul class="dropdown-menu">
                             @foreach($randds as $randd)
@@ -194,7 +196,7 @@
                             @endforeach
                         </ul>
                     </li>
-                    <li class="nav-item has-dropdown" data-hover=""><a class="dropdown-toggle" href="#"
+                    <li class="nav-item has-dropdown" data-hover="" style="margin-right: 15px;"><a class="dropdown-toggle" href="#"
                         data-toggle="dropdown"><span>{{ translate('Activity') }}</span></a>
                         <ul class="dropdown-menu">
                             @foreach($activities as $activity)
@@ -206,7 +208,7 @@
                             @endforeach
                         </ul>
                     </li>
-                    <li class="nav-item has-dropdown" data-hover=""><a class="dropdown-toggle" href="#"
+                    <li class="nav-item has-dropdown" data-hover="" style="margin-right: 15px;"><a class="dropdown-toggle" href="#"
                         data-toggle="dropdown"><span>{{ translate('Career') }}</span></a>
                         <ul class="dropdown-menu">
                             <li class="nav-item">
@@ -216,10 +218,10 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item" data-hover=""><a href="{{ route('frontpage.faq', ['lang' => app()->getLocale()]) }}"><span>{{ translate('FAQ') }}</span></a>
+                    <li class="nav-item" data-hover="" style="margin-right: 15px;"><a href="{{ route('frontpage.faq', ['lang' => app()->getLocale()]) }}"><span>{{ translate('FAQ') }}</span></a>
                     </li>
                     @if ($pages_header->isNotEmpty())
-                        <li class="nav-item has-dropdown" data-hover="">
+                        <li class="nav-item has-dropdown" data-hover="" style="margin-right: 15px;">
                             <a class="dropdown-toggle" href="#" data-toggle="dropdown">
                                 <span>{{ translate('Pages') }}</span>
                             </a>
@@ -235,7 +237,7 @@
                         </li>
                     @endif
                 </ul>
-                <div class="module-holder">
+                <div class="module-holder" style="margin-left: auto;">
                     <!-- Start .module-contact-->
                     <div class="module-contact module-contact-2 module-contact-3"><a
                             class="btn btn--primary btn-line btn-line-after" href="{{ route('frontpage.contact') }}">
@@ -249,3 +251,28 @@
     </nav>
     <!--  End .navbar-->
 </header>
+
+<!-- Additional CSS for consistent spacing -->
+<style>
+    @media (min-width: 1200px) {
+        .navbar-nav {
+            display: flex;
+            justify-content: space-between;
+            width: auto;
+        }
+        
+        .navbar .dropdown-toggle {
+            padding: 10px 15px;
+        }
+        
+        .navbar-collapse {
+            flex-grow: 0;
+        }
+    }
+    
+    @media (max-width: 1199px) {
+        .navbar-nav .nav-item {
+            margin-bottom: 8px;
+        }
+    }
+</style>

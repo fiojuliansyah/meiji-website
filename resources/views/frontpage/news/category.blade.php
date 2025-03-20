@@ -68,13 +68,23 @@
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="blog-entry" data-hover="">
                             <div class="entry-img">
-                                <div class="entry-date">
-                                    <div class="entry-content">
-                                        <span class="day">{{ $item->date_published->format('d') }}</span>
-                                        <span class="month">{{ $item->date_published->format('M') }}</span>
-                                        <span class="year">{{ $item->date_published->format('Y') }}</span>
+                                @if ($item->date_published)
+                                    <div class="entry-date">
+                                        <div class="entry-content">
+                                            <span class="day">{{ \Carbon\Carbon::parse($item->date_published)->format('d') }}</span>
+                                            <span class="month">{{ \Carbon\Carbon::parse($item->date_published)->format('M') }}</span>
+                                            <span class="year">{{ \Carbon\Carbon::parse($item->date_published)->format('Y') }}</span>
+                                        </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="entry-date">
+                                        <div class="entry-content">
+                                            <span class="day">N/A</span>  <!-- Atau bisa ditampilkan "Tanggal tidak tersedia" -->
+                                            <span class="month">N/A</span>
+                                            <span class="year">N/A</span>
+                                        </div>
+                                    </div>
+                                @endif
                                 <a href="{{ route('frontpage.news.show', [
                                     'lang' => app()->getLocale(),
                                     'category_slug' => $category->getTranslation('slug', app()->getLocale()),

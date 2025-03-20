@@ -19,8 +19,8 @@ class PageNewsController extends Controller
     {
         $category = NewsCategory::where('slug->'.$lang, $slug)->firstOrFail();
         $news = News::where('news_category_id', $category->id)
-                    ->latest()
-                    ->paginate(9);
+                ->orderBy('date_published', 'desc')
+                ->paginate(9);
 
         return view('frontpage.news.category', compact('news', 'category'));
     }

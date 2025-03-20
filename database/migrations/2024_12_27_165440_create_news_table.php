@@ -18,10 +18,10 @@ return new class extends Migration
             $table->json('slug');
             $table->json('name');
             $table->json('content');
-            $table->date('date_pulished')->nullable();
+            $table->date('date_published')->nullable();
             $table->date('end_date')->nullable();
             $table->string('user_id')->nullable();
-            $table->string('is_published')->nullable(); // Status publikasi
+            $table->string('is_published')->nullable();
             $table->timestamps();
         });
     }

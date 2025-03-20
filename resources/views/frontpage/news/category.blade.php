@@ -70,9 +70,9 @@
                             <div class="entry-img">
                                 <div class="entry-date">
                                     <div class="entry-content">
-                                        <span class="day">{{ $item->created_at->format('d') }}</span>
-                                        <span class="month">{{ $item->created_at->format('M') }}</span>
-                                        <span class="year">{{ $item->created_at->format('Y') }}</span>
+                                        <span class="day">{{ $item->date_published->format('d') }}</span>
+                                        <span class="month">{{ $item->date_published->format('M') }}</span>
+                                        <span class="year">{{ $item->date_published->format('Y') }}</span>
                                     </div>
                                 </div>
                                 <a href="{{ route('frontpage.news.show', [

@@ -71,30 +71,6 @@
                                     </td>
                                 </tr>
 
-                                <!-- Delete Modal -->
-                                <div class="modal fade" id="deleteModal{{ $category->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="deleteModalLabel">{{ translate('Confirmation') }}</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                {{ translate('Are you sure you want to delete this category?') }}
-                                            </div>
-                                            <div class="modal-footer">
-                                                <form method="POST" action="{{ route('categories.destroy', ['lang' => app()->getLocale(), 'category' => $category->id]) }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">{{ translate('Delete') }}</button>
-                                                </form>
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                                    {{ translate('Close') }}
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             @endforeach
                         </tbody>
                     </table>
@@ -103,6 +79,35 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('modal')
+    @foreach ($categories as $category)
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deleteModal{{ $category->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">{{ translate('Confirmation') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{ translate('Are you sure you want to delete this category?') }}
+                </div>
+                <div class="modal-footer">
+                    <form method="POST" action="{{ route('categories.destroy', ['lang' => app()->getLocale(), 'category' => $category->id]) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">{{ translate('Delete') }}</button>
+                    </form>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        {{ translate('Close') }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div> 
+    @endforeach
 @endsection
 
 @push('js')

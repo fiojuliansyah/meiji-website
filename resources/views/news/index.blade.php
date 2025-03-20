@@ -103,7 +103,6 @@
 
 @section('modal')
 @foreach ($news as $item)
-<!-- Modal for Delete Confirmation -->
 <div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

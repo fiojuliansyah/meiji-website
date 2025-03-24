@@ -179,6 +179,11 @@
           <div class="col-12 col-lg-6 about-img-holder">
             <div class="about-img"><img class="img-fluid" src="{{ asset('storage/' . $general->breadcrumb) }}" alt="about Image"/></div>
           </div>
+          <div class="card-action"> 
+              <a class="btn btn--primary btn-line btn-line-after" href="{{ $page->about_link ?? '' }}">
+                <span>{{ translate('Company History') }}</span><span class="line"><span></span></span>
+              </a>
+        </div>
         </div>
       </div>
       <!-- End .video-card-->

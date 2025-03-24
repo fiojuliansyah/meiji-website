@@ -33,12 +33,12 @@
                 <div class="blog-entry">
                     <div class="entry-img">
                         <a href="#"><img src="{{ asset('storage/' . $news->image) }}" alt="entry image"/></a>
-                        @if ($item->date_published)
+                        @if ($news->date_published)
                             <div class="entry-date">
                                 <div class="entry-content">
-                                    <span class="day">{{ \Carbon\Carbon::parse($item->date_published)->format('d') }}</span>
-                                    <span class="month">{{ \Carbon\Carbon::parse($item->date_published)->format('M') }}</span>
-                                    <span class="year">{{ \Carbon\Carbon::parse($item->date_published)->format('Y') }}</span>
+                                    <span class="day">{{ \Carbon\Carbon::parse($news->date_published)->format('d') }}</span>
+                                    <span class="month">{{ \Carbon\Carbon::parse($news->date_published)->format('M') }}</span>
+                                    <span class="year">{{ \Carbon\Carbon::parse($news->date_published)->format('Y') }}</span>
                                 </div>
                             </div>
                          @else

@@ -8,7 +8,7 @@
 <section class="page-title page-title-blank bg-white" id="page-title">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-lg-6">
+            <div class="col-12">
                 <div class="title">
                     <ol class="breadcrumb breadcrumb-long">
                         <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>

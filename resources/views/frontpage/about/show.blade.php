@@ -18,9 +18,6 @@
                       <!-- End .team-img-->
                       <div class="team-content-holder">
                         <div class="team-content"> 
-                          <div class="team-title">
-                            <h4><a href="javascript:void(0)">Richard Muldoone</a></h4>
-                          </div>
                           <div class="team-cat"><a href="javascript:void(0)">PT. Meiji Indonesian
                             Pharmaceutical Industries</a></div>
                           <div class="team-desc">

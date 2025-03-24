@@ -188,8 +188,8 @@
     </div>
     <!-- End .container-->
   </section>
-
-  <section class="about about-4" id="about-4">
+  <br>
+  <section class="about about-4 mt-5" id="about-4">
     <div class="bg-section"> <img src="/front/assets/images/background/pattern.png" alt="background"/></div>
     <div class="container">
       <div class="heading heading-18">

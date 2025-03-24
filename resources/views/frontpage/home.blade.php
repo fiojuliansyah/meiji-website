@@ -204,6 +204,9 @@
           <div class="col-12 col-lg-6 offset-lg-1">
             {!! $page->getTranslation('doctor_content', app()->getLocale()) !!}
           </div>
+          <a class="btn btn--primary btn-line btn-line-after" href="{{ $page->doctor_link ?? '' }}">
+            <span>{{ translate('Doctor Link') }}</span><span class="line"><span></span></span>
+          </a>
         </div>
       </div>
       <div class="avatars-holder"> 
@@ -215,9 +218,6 @@
             <div class="col-12 col-lg-5 wow fadeIn">
               <div class="avatar avatar-2">
                 <div class="bg-section"><img src="/front/assets/images/about/avatars/2.jpg" alt="image"/></div>
-                <div class="avatar-content"> 
-                 <a class="btn btn--primary btn-line btn-line-after" href="{{ $page->doctor_link ?? '#' }}"><span class="line"> <span> </span></span><span>Doctor Site</span></a>
-                </div>
               </div>
             </div>
             <div class="col-12 col-lg-2 wow slideInDown">

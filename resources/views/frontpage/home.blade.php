@@ -173,7 +173,7 @@
             <div class="card-left"> 
               <p class="title">{{ $page->getTranslation('randd_title', app()->getLocale()) }}</p>
               <p class="desc">{!! $page->getTranslation('randd_content', app()->getLocale()) !!}</p>
-              <a class="btn btn--primary btn-line btn-line-after" href="{{ route('frontpage.randd.show', ['slug' => $randd->getTranslation('slug', app()->getLocale())]) }}">
+              <a class="btn btn--primary btn-line btn-line-after" href="#">
                 <span>{{ translate('Read More') }}</span><span class="line"><span></span></span>
               </a>
             </div>

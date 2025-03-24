@@ -25,23 +25,19 @@
 @section('content')
     <section class="page-title page-title-blank bg-white" id="page-title">
         <div class="container">
-            <div class="row">
-                <div class="col-12 col-lg-6">
-                    <div class="title">
-                        <ol class="breadcrumb breadcrumb-long">
-                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                            <li class="breadcrumb-item">
-                                <a
-                                    href="{{ route('frontpage.products.category', ['lang' => app()->getLocale(), 'slug' => $product->category->getTranslation('slug', app()->getLocale())]) }}">
-                                    {{ $product->category->getTranslation('name', app()->getLocale()) ?? 'Category' }}
-                                </a>
-                            </li>
-                            <li class="breadcrumb-item active" aria-current="page">
-                                {{ Illuminate\Support\Str::limit(strip_tags($product->getTranslation('name', app()->getLocale())), 20) }}
-                            </li>
-                        </ol>
-                    </div>
-                </div>
+            <div class="title">
+                <ol class="breadcrumb breadcrumb-long">
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                    <li class="breadcrumb-item">
+                        <a
+                            href="{{ route('frontpage.products.category', ['lang' => app()->getLocale(), 'slug' => $product->category->getTranslation('slug', app()->getLocale())]) }}">
+                            {{ $product->category->getTranslation('name', app()->getLocale()) ?? 'Category' }}
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        {{ Illuminate\Support\Str::limit(strip_tags($product->getTranslation('name', app()->getLocale())), 20) }}
+                    </li>
+                </ol>
             </div>
         </div>
     </section>

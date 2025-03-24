@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontpage;
 
 use App\Models\News;
 use App\Models\Page;
+use App\Models\Randd;
 use App\Models\Slider;
 use App\Models\General;
 use App\Models\Homepage;

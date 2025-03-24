@@ -127,9 +127,9 @@
                                     @endif
                                     <br>
                                     <br>
-                                    <div class="card-text">
+                                    <div class="card-text" style="text-align: justify;">
                                         {!! $general->getTranslation('disclaimer', app()->getLocale()) !!}
-                                    </div>
+                                    </div>                                    
                                 </div>
                             </div>
                         </div>

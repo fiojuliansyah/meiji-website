@@ -1,5 +1,5 @@
 <header class="header header-light header-topbar header-topbar6" id="navbar-spy">
-    <div class="top-bar" 
+    {{-- <div class="top-bar" 
      style="display: flex; justify-content: space-between; align-items: center;">
 
         <!-- Block Left -->
@@ -71,7 +71,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Tambahkan CSS untuk Menyembunyikan `.top-bar` di Mobile -->
     <style>
@@ -235,12 +235,38 @@
                         </li>
                     @endif
                 </ul>
-                <div class="module-holder">
+                <div class="module-holder me-3">
                     <!-- Start .module-contact-->
                     <div class="module-contact module-contact-2 module-contact-3"><a
                             class="btn btn--primary btn-line btn-line-after" href="{{ route('frontpage.contact') }}">
                             <span>{{ translate('Contact') }}</span><span class="line"> <span></span></span></a></div>
 
+                </div>
+                <div class="module module-language">
+                    @php
+                        $currentLanguage = App\Models\Language::where('code', app()->getLocale())->first();
+                    @endphp
+                    <div class="selected">
+                        <img src="/front/assets/images/module-language/{{ app()->getLocale() }}.png" alt="{{ $currentLanguage->name }}" />
+                        <span style="color: #283b6a">{{ $currentLanguage->name }}</span>
+                        <i class="fas fa-chevron-down" style="color: #283b6a"></i>
+                    </div>
+                    <div class="lang-list">
+                        <ul>
+                            <form method="POST" action="{{ route('change-language', ['lang' => app()->getLocale()]) }}">
+                                @csrf
+                                <input type="hidden" name="route" value="{{ $currentRoute }}">
+                                <input type="hidden" name="parameters" value="{{ $routeParameters }}">
+                                @foreach(App\Models\Language::all() as $language)
+                                <li>
+                                    <img src="/front/assets/images/module-language/{{ $language->code }}.png" alt="{{ $language->name }}" />
+                                    <button type="submit" name="lang" value="{{ $language->code }}">{{ $language->name }}</button>
+                                </li>
+                                <br>
+                                @endforeach
+                            </form>
+                        </ul>
+                    </div>
                 </div>
                 <!--  End .module-holder-->
             </div>

@@ -128,7 +128,7 @@
                                     <br>
                                     <br>
                                     <div class="card-text">
-                                        {!! $general->getTranslation('discalimer', app()->getLocale()) !!}
+                                        {!! $general->getTranslation('disclaimer', app()->getLocale()) !!}
                                     </div>
                                 </div>
                             </div>

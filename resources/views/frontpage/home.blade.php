@@ -174,8 +174,6 @@
             <div class="card-left"> 
               <p class="title">{{ $page->getTranslation('randd_title', app()->getLocale()) }}</p>
               <p class="desc">{!! $page->getTranslation('randd_content', app()->getLocale()) !!}</p>
-            </div>
-            <div class="card-action"> 
               <a class="btn btn--primary btn-line btn-line-after" href="{{ $page->about_link ?? '' }}">
                 <span>{{ translate('Read More') }}</span><span class="line"><span></span></span>
               </a>

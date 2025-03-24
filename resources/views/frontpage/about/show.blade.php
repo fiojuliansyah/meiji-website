@@ -23,7 +23,6 @@
                           <div class="team-desc">
                             {!! $general->getTranslation('bio', app()->getLocale()) !!}                        
                           </div>
-                          <div class="team-social"> <a href="javascript:void(0)"><i class="fab fa-facebook-f"> </i></a><a href="javascript:void(0)"><i class="fab fa-twitter"></i></a><a href="javascript:void(0)"><i class="fas fa-envelope"></i></a><a href="javascript:void(0)"><i class="fas fa-phone-alt"></i></a></div>
                         </div>
                         <!-- End .team-content-->
                       </div>

@@ -190,69 +190,50 @@
   </section>
 
   <section class="team team-grid team-grid-2" id="teamGrid-1">
-    <div class="container"> 
-      <div class="row"> 
-        <div class="col-12 col-lg-5"> 
-          <div class="heading heading-5">
-            <h2 class="heading-title">{{ $page->getTranslation('doctor_title', app()->getLocale()) }}</h2>
-            <p class="heading-desc">{!! $page->getTranslation('doctor_content', app()->getLocale()) !!}</p>
+    <div class="container">
+      <div class="heading heading-18">
+        <div class="row">
+          <div class="col-12 col-lg-5"> 
+            <p class="heading-subtitle">{{ $page->getTranslation('doctor_title', app()->getLocale()) }}</p>
+          </div>
+        </div>
+        {{ $page->getTranslation('doctor_content', app()->getLocale()) }}
+      </div>
+      <div class="avatars-holder"> 
+        <div class="block-top"> 
+          <div class="row">
+            <div class="col-12 col-lg-2 wow fadeInDown">
+              <div class="avatar avatar-1"><img src="/front/assets/images/about/avatars/avatar-1.png" alt="image"/></div>
+            </div>
+            <div class="col-12 col-lg-5 wow fadeIn">
+              <div class="avatar avatar-2 bg-overlay bg-overlay-theme">
+                <div class="bg-section"><img src="/front/assets/images/about/avatars/2.jpg" alt="image"/></div>
+                <div class="avatar-content"> 
+                  <p>With modern, busy lifestyles, it’s easy to neglect your health as you put everyone else’s needs first. So, we’re here to care for you and your entire family.</p><a class="btn btn--inversed btn--transparent btn-line btn-line-before" href="{{ $page->doctor_link ?? '#' }}"><span class="line"> <span> </span></span><span>Doctor Site</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-2 wow slideInDown">
+              <div class="avatar avatar-3"><img src="/front/assets/images/about/avatars/3.jpg" alt="image"/></div>
+            </div>
+            <div class="col-12 -col-lg-3"></div>
+          </div>
+        </div>
+        <div class="block-bottom">
+          <div class="row"> 
+            <div class="col-12 offset-lg-1 col-lg-3 wow fadeInLeft">
+              <div class="avatar avatar-5"><img src="/front/assets/images/about/avatars/5.jpg" alt="image"/></div>
+            </div>
+            <div class="col-12 col-lg-5 wow slideInUp">
+              <div class="avatar avatar-6"><img src="/front/assets/images/about/avatars/avatar-6.png" alt="image"/></div>
+            </div>
+            <div class="col-12 col-lg-3 wow slideInRight">
+              <div class="avatar avatar-4"><img src="/front/assets/images/about/avatars/4.jpg" alt="image"/></div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="row"> 
-        <div class="col-12"> 
-          <div class="carousel owl-carousel carousel-navs" data-slide="3" data-slide-rs="2" data-autoplay="true" data-nav="true" data-dots="false" data-space="30" data-loop="true" data-speed="3000">
-                        <div>
-                          <div class="team-member" data-hover="">
-                            <div class="team-member-holder">
-                              <div class="team-img"><a class="link" href="#"></a><img src="/front/assets/images/team/grid/1.jpg" alt="team member"/></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div>
-                          <div class="team-member" data-hover="">
-                            <div class="team-member-holder">
-                              <div class="team-img"><a class="link" href="#"></a><img src="/front/assets/images/team/grid/2.jpg" alt="team member"/></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div>
-                          <div class="team-member" data-hover="">
-                            <div class="team-member-holder">
-                              <div class="team-img"><a class="link" href="#"></a><img src="/front/assets/images/team/grid/3.jpg" alt="team member"/></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div>
-                          <div class="team-member" data-hover="">
-                            <div class="team-member-holder">
-                              <div class="team-img"><a class="link" href="#"></a><img src="/front/assets/images/team/grid/4.jpg" alt="team member"/></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div>
-                          <div class="team-member" data-hover="">
-                            <div class="team-member-holder">
-                              <div class="team-img"><a class="link" href="#"></a><img src="/front/assets/images/team/grid/5.jpg" alt="team member"/></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div>
-                          <div class="team-member" data-hover="">
-                            <div class="team-member-holder">
-                              <div class="team-img"><a class="link" href="#"></a><img src="/front/assets/images/team/grid/6.jpg" alt="team member"/></div>
-                            </div>
-                          </div>
-                        </div>
-          </div>
-        </div>
-        <div class="col-12"> 
-          <div class="action-bar">
-            <a class="btn btn--primary btn-line btn-line-after" href="{{ $page->doctor_link ?? '' }}"><span>Read More</span><span class="line"><span></span></span></a>
-          </div>
-        </div>
-      </div>
-      <!-- .row-->
+      <!-- End .avatars-holder-->
     </div>
     @if ($page->news_section == 1)    
       <div class="container mt-4">

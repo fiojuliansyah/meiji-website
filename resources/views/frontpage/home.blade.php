@@ -190,6 +190,7 @@
   </section>
 
   <section class="about about-4" id="about-4">
+    <div class="bg-section"> <img src="/front/assets/images/background/pattern.png" alt="background"/></div>
     <div class="container">
       <div class="heading heading-18">
         <div class="row">

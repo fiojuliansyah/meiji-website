@@ -205,42 +205,42 @@
                         <div>
                           <div class="team-member" data-hover="">
                             <div class="team-member-holder">
-                              <div class="team-img"><a class="link" href="doctors-single-modern.html"></a><img src="assets/images/team/grid/1.jpg" alt="team member"/></div>
+                              <div class="team-img"><a class="link" href="#"></a><img src="/front/assets/images/team/grid/1.jpg" alt="team member"/></div>
                             </div>
                           </div>
                         </div>
                         <div>
                           <div class="team-member" data-hover="">
                             <div class="team-member-holder">
-                              <div class="team-img"><a class="link" href="doctors-single-modern.html"></a><img src="assets/images/team/grid/2.jpg" alt="team member"/></div>
+                              <div class="team-img"><a class="link" href="#"></a><img src="/front/assets/images/team/grid/2.jpg" alt="team member"/></div>
                             </div>
                           </div>
                         </div>
                         <div>
                           <div class="team-member" data-hover="">
                             <div class="team-member-holder">
-                              <div class="team-img"><a class="link" href="doctors-single-modern.html"></a><img src="assets/images/team/grid/3.jpg" alt="team member"/></div>
+                              <div class="team-img"><a class="link" href="#"></a><img src="/front/assets/images/team/grid/3.jpg" alt="team member"/></div>
                             </div>
                           </div>
                         </div>
                         <div>
                           <div class="team-member" data-hover="">
                             <div class="team-member-holder">
-                              <div class="team-img"><a class="link" href="doctors-single-modern.html"></a><img src="assets/images/team/grid/4.jpg" alt="team member"/></div>
+                              <div class="team-img"><a class="link" href="#"></a><img src="/front/assets/images/team/grid/4.jpg" alt="team member"/></div>
                             </div>
                           </div>
                         </div>
                         <div>
                           <div class="team-member" data-hover="">
                             <div class="team-member-holder">
-                              <div class="team-img"><a class="link" href="doctors-single-modern.html"></a><img src="assets/images/team/grid/5.jpg" alt="team member"/></div>
+                              <div class="team-img"><a class="link" href="#"></a><img src="/front/assets/images/team/grid/5.jpg" alt="team member"/></div>
                             </div>
                           </div>
                         </div>
                         <div>
                           <div class="team-member" data-hover="">
                             <div class="team-member-holder">
-                              <div class="team-img"><a class="link" href="doctors-single-modern.html"></a><img src="assets/images/team/grid/6.jpg" alt="team member"/></div>
+                              <div class="team-img"><a class="link" href="#"></a><img src="/front/assets/images/team/grid/6.jpg" alt="team member"/></div>
                             </div>
                           </div>
                         </div>
@@ -248,7 +248,7 @@
         </div>
         <div class="col-12"> 
           <div class="action-bar">
-            <p class="note"><span><i class="fas fa-calendar-day"></i> on monday, </span> Doctors will be available from 8 am : 12 am , kindly call to confirm your Appointment </p><a class="btn btn--primary btn-line btn-line-after" href="{{ $page->doctor_link }}"><span>Read More</span><span class="line"><span></span></span></a>
+            <p class="note"><span>Read More</span><span class="line"><span></span></span></a>
           </div>
         </div>
       </div>

@@ -22,10 +22,12 @@ class General extends Model
         'address',
         'short_address',
         'bio',
+        'disclaimer',
     ];
 
     protected $casts = [
         'bio' => 'array',
+        'disclaimer' => 'array',
     ];
     
     public function getTranslation($attribute, $locale, $fallback = true)

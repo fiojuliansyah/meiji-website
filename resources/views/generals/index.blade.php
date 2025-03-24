@@ -129,6 +129,14 @@
                                     <textarea class="editor"  
                                               name="translations[{{ $language->code }}][bio]">{{ $general->getTranslation('bio', $language->code, false) }}</textarea>
                                 </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">
+                                        {{ translate('Disclaimer') }} ({{ $language->name }})
+                                    </label>
+                                    <textarea class="editor"  
+                                              name="translations[{{ $language->code }}][disclaimer]">{{ $general->getTranslation('disclaimer', $language->code, false) }}</textarea>
+                                </div>
                             </div>
                         @endforeach
                     </div>

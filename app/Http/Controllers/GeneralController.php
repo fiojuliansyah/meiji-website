@@ -29,7 +29,8 @@ class GeneralController extends Controller
             'fax' => '',
             'address' => '',
             'short_address' => '',
-            'bio' => []
+            'bio' => [],
+            'disclaimer' => []
         ]);
         $languages = Language::all();
         return view('generals.index', compact('general', 'languages'));
@@ -67,6 +68,10 @@ class GeneralController extends Controller
 
         foreach ($request->input('translations', []) as $locale => $data) {
             $general->setTranslation('bio', $locale, $data['bio']);
+        }
+
+        foreach ($request->input('translations', []) as $locale => $data) {
+            $general->setTranslation('disclaimer', $locale, $data['disclaimer']);
         }
         
         $general->phone_1 = $request->phone_1;

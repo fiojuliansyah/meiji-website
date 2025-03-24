@@ -128,22 +128,7 @@
                                     <br>
                                     <br>
                                     <div class="card-text">
-                                        <p>
-                                            Semua materi yang tertera di list produk PT Meiji Indonesia adalah untuk
-                                            memberikan informasi yang benar dan tepat pada pengunjung website sesuai
-                                            dengan latar belakang masing-masing.
-
-                                            Penyalahgunaan kegiatan dari materi yang tertera di Website ini merupakan
-                                            tanggung jawab pribadi masing-masing dari pengunjung. Dengan ini pengunjung
-                                            menyatakan bersedia dimintakan keterangan oleh pihak yang berwajib bila
-                                            diperlukan dan siap diproses sesuai Hukum dan Peraturan Perundang-Undangan
-                                            yang berlaku di Indonesia.
-
-                                            Apabila ada pihak yang memberikan keterangan yang tidak sesuai dengan hal
-                                            yang dimaksud diatas, maka PT Meiji Indonesia tidak bertanggungjawab atas
-                                            dampak yang ditimbulkan baik terhadap diri sendiri maupun kepada masyarakat
-                                            luas.
-                                        </p>
+                                        {!! $general->getTranslation('discalimer', app()->getLocale()) !!}
                                     </div>
                                 </div>
                             </div>

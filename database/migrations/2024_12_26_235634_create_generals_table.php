@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('short_address')->nullable();
             $table->json('bio')->nullable();
+            $table->json('disclaimer')->nullable();
             $table->timestamps();
         });
     }

@@ -15,13 +15,15 @@ use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
-     public function index($lang)
-     {
+    public function index($lang)
+    {
         $page = Homepage::first();
+        $randd = Randd::orderBy('created_at', 'ASC')->get(); 
         $news = News::where('is_published', true)->latest()->get();
         $sliders = Slider::all();
-        return view('frontpage.home',compact('sliders','news','page'));
-     }
+        return view('frontpage.home', compact('sliders', 'news', 'page', 'randd'));
+    }
+    
 
      public function show($lang, $slug)
      {

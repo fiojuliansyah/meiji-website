@@ -189,7 +189,7 @@
     <!-- End .container-->
   </section>
 
-  <section class="team team-grid team-grid-2" id="teamGrid-1">
+  <section class="about about-4" id="about-4">
     <div class="container">
       <div class="heading heading-18">
         <div class="row">
@@ -233,8 +233,9 @@
           </div>
         </div>
       </div>
-      <!-- End .avatars-holder-->
     </div>
+  </section>
+  <section class="team team-grid team-grid-2" id="teamGrid-1">
     @if ($page->news_section == 1)    
       <div class="container mt-4">
         <div class="row"> 

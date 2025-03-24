@@ -216,7 +216,7 @@
               <div class="avatar avatar-2">
                 <div class="bg-section"><img src="/front/assets/images/about/avatars/2.jpg" alt="image"/></div>
                 <div class="avatar-content"> 
-                 <a class="btn btn--inversed btn--transparent btn-line btn-line-before" href="{{ $page->doctor_link ?? '#' }}"><span class="line"> <span> </span></span><span>Doctor Site</span></a>
+                 <a class="btn btn--primary btn-line btn-line-after" href="{{ $page->doctor_link ?? '#' }}"><span class="line"> <span> </span></span><span>Doctor Site</span></a>
                 </div>
               </div>
             </div>

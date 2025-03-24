@@ -190,20 +190,69 @@
   </section>
 
   <section class="team team-grid team-grid-2" id="teamGrid-1">
-    <div class="container">
-      <div class="heading heading-9">
-        <div class="row">
-          <div class="col-12 col-lg-5">
+    <div class="container"> 
+      <div class="row"> 
+        <div class="col-12 col-lg-5"> 
+          <div class="heading heading-5">
             <h2 class="heading-title">{{ $page->getTranslation('doctor_title', app()->getLocale()) }}</h2>
             <p class="heading-desc">{!! $page->getTranslation('doctor_content', app()->getLocale()) !!}</p>
           </div>
-          <div class="col-12 col-lg-6 offset-lg-1">
-            <div class="doctor-action"><a class="btn btn--secondary btn-line btn-line-after" href="{{ $page->doctor_link }}"> <span>{{ translate('Read More') }}</span><span class="line"> <span></span></span></a>
-            </div>
+        </div>
+      </div>
+      <div class="row"> 
+        <div class="col-12"> 
+          <div class="carousel owl-carousel carousel-navs" data-slide="3" data-slide-rs="2" data-autoplay="true" data-nav="true" data-dots="false" data-space="30" data-loop="true" data-speed="3000">
+                        <div>
+                          <div class="team-member" data-hover="">
+                            <div class="team-member-holder">
+                              <div class="team-img"><a class="link" href="doctors-single-modern.html"></a><img src="assets/images/team/grid/1.jpg" alt="team member"/></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="team-member" data-hover="">
+                            <div class="team-member-holder">
+                              <div class="team-img"><a class="link" href="doctors-single-modern.html"></a><img src="assets/images/team/grid/2.jpg" alt="team member"/></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="team-member" data-hover="">
+                            <div class="team-member-holder">
+                              <div class="team-img"><a class="link" href="doctors-single-modern.html"></a><img src="assets/images/team/grid/3.jpg" alt="team member"/></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="team-member" data-hover="">
+                            <div class="team-member-holder">
+                              <div class="team-img"><a class="link" href="doctors-single-modern.html"></a><img src="assets/images/team/grid/4.jpg" alt="team member"/></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="team-member" data-hover="">
+                            <div class="team-member-holder">
+                              <div class="team-img"><a class="link" href="doctors-single-modern.html"></a><img src="assets/images/team/grid/5.jpg" alt="team member"/></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="team-member" data-hover="">
+                            <div class="team-member-holder">
+                              <div class="team-img"><a class="link" href="doctors-single-modern.html"></a><img src="assets/images/team/grid/6.jpg" alt="team member"/></div>
+                            </div>
+                          </div>
+                        </div>
+          </div>
+        </div>
+        <div class="col-12"> 
+          <div class="action-bar">
+            <p class="note"><span><i class="fas fa-calendar-day"></i> on monday, </span> Doctors will be available from 8 am : 12 am , kindly call to confirm your Appointment </p><a class="btn btn--primary btn-line btn-line-after" href="{{ $page->doctor_link }}"><span>Read More</span><span class="line"><span></span></span></a>
           </div>
         </div>
       </div>
-      <!-- End .row-->
+      <!-- .row-->
     </div>
     @if ($page->news_section == 1)    
       <div class="container">

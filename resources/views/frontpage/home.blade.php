@@ -181,7 +181,7 @@
           </div>
           <div class="card-action"> 
               <a class="btn btn--primary btn-line btn-line-after" href="{{ $page->about_link ?? '' }}">
-                <span>{{ translate('Company History') }}</span><span class="line"><span></span></span>
+                <span>{{ translate('Read More') }}</span><span class="line"><span></span></span>
               </a>
         </div>
         </div>

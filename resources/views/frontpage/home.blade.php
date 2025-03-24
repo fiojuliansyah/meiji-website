@@ -179,7 +179,7 @@
             </div>
           </div>
           <div class="col-12 col-lg-6 about-img-holder">
-            <div class="about-img"><img class="img-fluid" src="{{ asset('storage/' . $general->breadcrumb) }}" alt="about Image"/></div>
+            <div class="about-img"><img class="img-fluid" src="/front/assets/images/randd.jpg" alt="about Image"/></div>
           </div>
         </div>
       </div>

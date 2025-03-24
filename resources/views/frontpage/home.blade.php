@@ -213,8 +213,11 @@
               <div class="avatar avatar-1"><img src="/front/assets/images/about/avatars/avatar-1.png" alt="image"/></div>
             </div>
             <div class="col-12 col-lg-5 wow fadeIn">
-              <div class="avatar-content"> 
-               <a class="btn btn--inversed btn--transparent btn-line btn-line-before" href="{{ $page->doctor_link ?? '#' }}"><span class="line"> <span> </span></span><span>Doctor Site</span></a>
+              <div class="avatar avatar-2">
+                <div class="bg-section"><img src="/front/assets/images/about/avatars/2.jpg" alt="image"/></div>
+                <div class="avatar-content"> 
+                 <a class="btn btn--inversed btn--transparent btn-line btn-line-before" href="{{ $page->doctor_link ?? '#' }}"><span class="line"> <span> </span></span><span>Doctor Site</span></a>
+                </div>
               </div>
             </div>
             <div class="col-12 col-lg-2 wow slideInDown">

@@ -197,7 +197,14 @@
             <p class="heading-subtitle">{{ $page->getTranslation('doctor_title', app()->getLocale()) }}</p>
           </div>
         </div>
-        {{ $page->getTranslation('doctor_content', app()->getLocale()) }}
+        <div class="row">
+          <div class="col-12 col-lg-5"> 
+            <h2 class="heading-title">Caring For The Health And Well Being Of You And Your Family.</h2>
+          </div>
+          <div class="col-12 col-lg-6 offset-lg-1">
+            {{ $page->getTranslation('doctor_content', app()->getLocale()) }}
+          </div>
+        </div>
       </div>
       <div class="avatars-holder"> 
         <div class="block-top"> 

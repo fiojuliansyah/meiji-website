@@ -124,37 +124,30 @@
                     <div class="modal-body p-0">
                         <div class="card border-0 m-0">
                             <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img src="https://media.istockphoto.com/id/2151808258/vector/grunge-red-disclaimer-word-with-star-icon-round-rubber-seal-stamp-on-white-background.jpg?s=612x612&w=0&k=20&c=0goMJ-ZdqjS2nkHdVrhWZCraprhG0dMnMG_WhDny6Dw="
-                                        alt="Disclaimer Image" class="img-fluid rounded-start h-100"
-                                        style="object-fit: cover;">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body p-4">
-                                        @if ($general && $general->logo)
-                                            <img class="logo logo-dark" src="{{ asset('storage/' . $general->logo) }}"
-                                                alt="Meiji Logo" width="120px" />
-                                        @endif
-                                        <br>
-                                        <br>
-                                        <div class="card-text">
-                                            <p>
-                                                Semua materi yang tertera di list produk PT Meiji Indonesia adalah untuk
-                                                memberikan informasi yang benar dan tepat pada pengunjung website sesuai
-                                                dengan latar belakang masing-masing.
+                                <div class="card-body p-4">
+                                    @if ($general && $general->logo)
+                                        <img class="logo logo-dark" src="{{ asset('storage/' . $general->logo) }}"
+                                            alt="Meiji Logo" width="120px" />
+                                    @endif
+                                    <br>
+                                    <br>
+                                    <div class="card-text">
+                                        <p>
+                                            Semua materi yang tertera di list produk PT Meiji Indonesia adalah untuk
+                                            memberikan informasi yang benar dan tepat pada pengunjung website sesuai
+                                            dengan latar belakang masing-masing.
 
-                                                Penyalahgunaan kegiatan dari materi yang tertera di Website ini merupakan
-                                                tanggung jawab pribadi masing-masing dari pengunjung. Dengan ini pengunjung
-                                                menyatakan bersedia dimintakan keterangan oleh pihak yang berwajib bila
-                                                diperlukan dan siap diproses sesuai Hukum dan Peraturan Perundang-Undangan
-                                                yang berlaku di Indonesia.
+                                            Penyalahgunaan kegiatan dari materi yang tertera di Website ini merupakan
+                                            tanggung jawab pribadi masing-masing dari pengunjung. Dengan ini pengunjung
+                                            menyatakan bersedia dimintakan keterangan oleh pihak yang berwajib bila
+                                            diperlukan dan siap diproses sesuai Hukum dan Peraturan Perundang-Undangan
+                                            yang berlaku di Indonesia.
 
-                                                Apabila ada pihak yang memberikan keterangan yang tidak sesuai dengan hal
-                                                yang dimaksud diatas, maka PT Meiji Indonesia tidak bertanggungjawab atas
-                                                dampak yang ditimbulkan baik terhadap diri sendiri maupun kepada masyarakat
-                                                luas.
-                                            </p>
-                                        </div>
+                                            Apabila ada pihak yang memberikan keterangan yang tidak sesuai dengan hal
+                                            yang dimaksud diatas, maka PT Meiji Indonesia tidak bertanggungjawab atas
+                                            dampak yang ditimbulkan baik terhadap diri sendiri maupun kepada masyarakat
+                                            luas.
+                                        </p>
                                     </div>
                                 </div>
                             </div>

@@ -216,7 +216,7 @@
               <div class="avatar avatar-2 bg-overlay bg-overlay-theme">
                 <div class="bg-section"><img src="/front/assets/images/about/avatars/2.jpg" alt="image"/></div>
                 <div class="avatar-content"> 
-                  <p>With modern, busy lifestyles, it’s easy to neglect your health as you put everyone else’s needs first. So, we’re here to care for you and your entire family.</p><a class="btn btn--inversed btn--transparent btn-line btn-line-before" href="{{ $page->doctor_link ?? '#' }}"><span class="line"> <span> </span></span><span>Doctor Site</span></a>
+                 <a class="btn btn--inversed btn--transparent btn-line btn-line-before" href="{{ $page->doctor_link ?? '#' }}"><span class="line"> <span> </span></span><span>Doctor Site</span></a>
                 </div>
               </div>
             </div>

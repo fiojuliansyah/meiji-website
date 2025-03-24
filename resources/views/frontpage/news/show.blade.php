@@ -17,7 +17,7 @@
                                 {{ $news->category->getTranslation('name', app()->getLocale()) ?? 'Category' }}
                             </a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">{{ $news->getTranslation('name', app()->getLocale()) ?? 'News Title' }}</li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ Illuminate\Support\Str::limit(strip_tags($news->getTranslation('name', app()->getLocale())), 80) ?? 'News Title' }}</li>
                     </ol>
                 </div>
             </div>

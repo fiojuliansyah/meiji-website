@@ -77,7 +77,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-12 col-md-6 col-lg-3">
+                {{-- <div class="col-sm-12 col-md-6 col-lg-3">
                   <div class="footer-copyright">
                       <div class="copyright">
                           <ul class="list-unstyled social-icons">
@@ -89,7 +89,7 @@
                           </ul>
                       </div>
                   </div>
-                </div>
+                </div> --}}
                 <div class="row mt-5">
                   <div class="col-12 text-center">
                     <div class="copyright"><span style="color: #283B6A">&copy; 2025 by  <a href="/"> {{ $general->name }}</a>. all rights reserved. </span>

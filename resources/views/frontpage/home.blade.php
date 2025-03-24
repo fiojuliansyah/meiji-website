@@ -248,7 +248,7 @@
         </div>
         <div class="col-12"> 
           <div class="action-bar">
-            <p class="note"><span>Read More</span><span class="line"><span></span></span></a>
+            <a class="btn btn--primary btn-line btn-line-after" href="{{ $page->doctor_link ?? '' }}"><span>make appointment</span><span class="line"><span></span></span></a>
           </div>
         </div>
       </div>

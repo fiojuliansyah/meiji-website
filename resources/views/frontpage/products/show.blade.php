@@ -120,13 +120,12 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="disclaimerModalLabel">{{ translate('Important Disclaimer') }}</h5>
-                        <!-- Tombol close dihapus karena tidak boleh menutup modal tanpa pilihan -->
                     </div>
                     <div class="modal-body p-0">
                         <div class="card border-0 m-0">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="https://static.vecteezy.com/system/resources/previews/005/316/380/non_2x/red-disclaimer-sign-illustration-vector.jpg"
+                                    <img src="https://media.istockphoto.com/id/2151808258/vector/grunge-red-disclaimer-word-with-star-icon-round-rubber-seal-stamp-on-white-background.jpg?s=612x612&w=0&k=20&c=0goMJ-ZdqjS2nkHdVrhWZCraprhG0dMnMG_WhDny6Dw="
                                         alt="Disclaimer Image" class="img-fluid rounded-start h-100"
                                         style="object-fit: cover;">
                                 </div>

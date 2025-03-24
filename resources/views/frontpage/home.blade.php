@@ -255,7 +255,7 @@
       <!-- .row-->
     </div>
     @if ($page->news_section == 1)    
-      <div class="container">
+      <div class="container mt-4">
         <div class="row"> 
           <div class="col-12 col-lg-6 offset-lg-3">
             <div class="heading heading-7 text-center">

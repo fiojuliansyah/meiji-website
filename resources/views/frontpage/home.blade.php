@@ -189,17 +189,11 @@
   </section>
   <br>
   <section class="about about-4 mt-5" id="about-4">
-    <div class="bg-section"> <img src="/front/assets/images/background/pattern.png" alt="background"/></div>
     <div class="container">
       <div class="heading heading-18">
         <div class="row">
           <div class="col-12 col-lg-5"> 
-            <p class="heading-subtitle">{{ $page->getTranslation('doctor_title', app()->getLocale()) }}</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12 col-lg-5"> 
-            <h2 class="heading-title">Caring For The Health And Well Being Of You And Your Family.</h2>
+            <h2 class="heading-title">{{ $page->getTranslation('doctor_title', app()->getLocale()) }}</h2>
           </div>
           <div class="col-12 col-lg-6 offset-lg-1">
             {!! $page->getTranslation('doctor_content', app()->getLocale()) !!}

@@ -23,7 +23,7 @@
                             <div style="position: absolute; width: 60px; height: 60px; background: rgba(52,152,219,0.2); border-radius: 50%; left: -5px; top: -5px; transform: scale(1.2); animation: pulse 2s infinite;"></div>
                             <i class="flaticon-029-cardiogram-1" style="position: relative; font-size: 48px; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.3);"></i>
                         </div>
-                        <h4 style="position: relative; padding-top: 15px; color: #ffffff; font-size: 28px; font-weight: 700; text-shadow: 0 2px 5px rgba(0,0,0,0.3); letter-spacing: 1px; margin-bottom: 0;">{{ $category->getTranslation('name', app()->getLocale()) }}</h4>
+                        <h4 style="position: relative; padding-top: 15px; color: #FF0000; font-size: 28px; font-weight: 700; text-shadow: 0 2px 5px rgba(0,0,0,0.3); letter-spacing: 1px; margin-bottom: 0;">{{ $category->getTranslation('name', app()->getLocale()) }}</h4>
                         
                         <!-- Menambahkan aksen garis bawah animasi -->
                         <div style="width: 100px; height: 3px; background: linear-gradient(90deg, #FF0000, transparent); margin-top: 20px; position: relative; overflow: hidden;">

@@ -6,10 +6,6 @@
 
 @section('content')
 <section class="page-title page-title-4 bg-overlay bg-overlay-dark bg-parallax" id="page-title" style="position: relative; overflow: hidden;">
-    <div class="bg-section" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-        <!-- Menambahkan overlay gradient untuk efek lebih menarik -->
-        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(45,52,88,0.7) 0%, rgba(10,10,20,0.8) 100%);"></div>
-    </div>
     <div class="container" style="position: relative; z-index: 2;">
         <div class="row" style="padding-bottom: 150px;">
             <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-0">

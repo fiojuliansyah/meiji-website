@@ -33,9 +33,22 @@
                                 <tr>
                                     <td>{{ $faq->getTranslation('title', app()->getLocale()) }}</td>
                                     <td>
-                                        <div class="d-flex order-actions">
-                                            <a href="{{ route('faqs.edit', ['lang' => app()->getLocale(), 'faq' => $faq->id]) }}" class=""><i class='bx bxs-edit'></i></a>
-                                            <a href="javascript:;" class="ms-3" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $faq->id }}"><i class='bx bxs-trash'></i></a>
+                                        <div class="dropdown">
+                                            <a href="javascript:void(0)" class="btn btn-sm btn-light" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="feather feather-more-horizontal"></i> <!-- More Options Icon -->
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="{{ route('faqs.edit', ['lang' => app()->getLocale(), 'faq' => $faq->id]) }}">
+                                                        <i class="feather feather-edit-3 me-2"></i> {{ translate('Edit') }}
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $faq->id }}">
+                                                        <i class="feather feather-trash-2 me-2"></i> {{ translate('Delete') }}
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </td>
                                 </tr>

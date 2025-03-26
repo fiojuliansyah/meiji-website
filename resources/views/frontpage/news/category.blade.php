@@ -7,7 +7,6 @@
 @section('content')
 <section class="page-title page-title-4 bg-overlay bg-overlay-dark bg-parallax" id="page-title" style="position: relative; overflow: hidden;">
     <div class="bg-section" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-        <img src="{{ asset('storage/' . $general->breadcrumb) }}" alt="Background" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7) contrast(1.1);" />
         <!-- Menambahkan overlay gradient untuk efek lebih menarik -->
         <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(45,52,88,0.7) 0%, rgba(10,10,20,0.8) 100%);"></div>
     </div>

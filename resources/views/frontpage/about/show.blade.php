@@ -48,7 +48,7 @@
             <!-- End .sidebar-->
         </div>
         <div class="col-12 col-lg-8">
-            <div class="entry-bio">
+            <div class="entry-bio" style="text-align: justify;">
                 {!! $about->getTranslation('content', app()->getLocale()) !!}
             </div>
         </div>

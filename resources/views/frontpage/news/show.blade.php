@@ -56,7 +56,7 @@
                         <div class="entry-title">
                             <h4>{{ $news->getTranslation('name', app()->getLocale()) ?? 'News Title' }}</h4>
                         </div>
-                        <div class="entry-bio">
+                        <div class="entry-bio" style="text-align: justify;">
                             <p>{!! $news->getTranslation('content', app()->getLocale()) ?? 'Content not available.' !!}</p>
                         </div>
                     </div>

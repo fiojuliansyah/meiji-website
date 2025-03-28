@@ -32,7 +32,7 @@
 <br>
 <div class="randd-section">
     <div class="container">
-        <div class="randd-content">
+        <div class="randd-content" style="text-align: justify;">
             {!! $randd->getTranslation('content', app()->getLocale()) !!}
         </div>
     </div>

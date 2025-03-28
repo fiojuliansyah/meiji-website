@@ -7,7 +7,7 @@
 @section('content')
 <section class="page-title page-title-4 bg-overlay bg-overlay-dark bg-parallax" id="page-title">
     <div class="container">
-        <div class="row">
+        <div class="row" style="padding-bottom: 80px;">
             <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-0">
                 <div class="title">
                     <!-- Simple decorative element -->

@@ -150,8 +150,8 @@
           </div>
           <!--End .col-lg-5-->
           <div class="col-12 col-lg-6 offset-lg-1">
-            <div class="prief-set">
-              <p  style="text-align: justify;">{!! $page->getTranslation('about_content', app()->getLocale()) !!}</p>
+            <div class="prief-set" style="text-align: justify;">
+              <p>{!! $page->getTranslation('about_content', app()->getLocale()) !!}</p>
             </div>
             <div class="card-action"> 
                   <a class="btn btn--primary btn-line btn-line-after" href="{{ $page->about_link ?? '' }}">

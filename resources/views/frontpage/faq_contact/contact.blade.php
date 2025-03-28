@@ -14,7 +14,7 @@
               <div class="contact-body">
                 <h5 class="card-heading">{{ $contact->getTranslation('title', app()->getLocale()) }}</h5>
                 <p class="card-desc">{!! $contact->getTranslation('content', app()->getLocale()) !!}</p>
-                <form class="contactForm" method="post" action="assets/php/contact.php">
+                {{-- <form class="contactForm" method="post" action="assets/php/contact.php">
                   <div class="row">
                     <div class="col-12 col-md-12 col-lg-6">
                       <input class="form-control" type="text" name="contact-name" placeholder="Name" required=""/>
@@ -38,7 +38,7 @@
                       <div class="contact-result"></div>
                     </div>
                   </div>
-                </form>
+                </form> --}}
               </div>
               <!-- End .contact-body-->
             </div>

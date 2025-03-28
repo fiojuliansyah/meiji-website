@@ -172,7 +172,9 @@
           <div class="col-12 col-lg-6">
             <div class="card-left"> 
               <p class="title">{{ $page->getTranslation('randd_title', app()->getLocale()) }}</p>
-              <p class="desc"  style="text-align: justify;">{!! $page->getTranslation('randd_content', app()->getLocale()) !!}</p>
+              <div style="text-align: justify;">
+                <p class="desc">{!! $page->getTranslation('randd_content', app()->getLocale()) !!}</p>
+              </div>
               <a class="btn btn--primary btn-line btn-line-after" href="#">
                 <span>{{ translate('Read More') }}</span><span class="line"><span></span></span>
               </a>
@@ -207,37 +209,6 @@
           <a class="btn btn--primary btn-line btn-line-after" href="{{ $page->doctor_link ?? '' }}">
             <span>{{ translate('Doctor Link') }}</span><span class="line"><span></span></span>
           </a>
-        </div>
-      </div>
-      <div class="avatars-holder"> 
-        <div class="block-top"> 
-          <div class="row">
-            <div class="col-12 col-lg-2 wow fadeInDown">
-              <div class="avatar avatar-1"><img src="/front/assets/images/about/avatars/avatar-1.png" alt="image"/></div>
-            </div>
-            <div class="col-12 col-lg-5 wow fadeIn">
-              <div class="avatar avatar-2">
-                <div class="bg-section"><img src="/front/assets/images/about/avatars/2.jpg" alt="image"/></div>
-              </div>
-            </div>
-            <div class="col-12 col-lg-2 wow slideInDown">
-              <div class="avatar avatar-3"><img src="/front/assets/images/about/avatars/3.jpg" alt="image"/></div>
-            </div>
-            <div class="col-12 -col-lg-3"></div>
-          </div>
-        </div>
-        <div class="block-bottom">
-          <div class="row"> 
-            <div class="col-12 offset-lg-1 col-lg-3 wow fadeInLeft">
-              <div class="avatar avatar-5"><img src="/front/assets/images/about/avatars/5.jpg" alt="image"/></div>
-            </div>
-            <div class="col-12 col-lg-5 wow slideInUp">
-              <div class="avatar avatar-6"><img src="/front/assets/images/about/avatars/avatar-6.png" alt="image"/></div>
-            </div>
-            <div class="col-12 col-lg-3 wow slideInRight">
-              <div class="avatar avatar-4"><img src="/front/assets/images/about/avatars/4.jpg" alt="image"/></div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

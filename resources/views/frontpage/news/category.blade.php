@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-<section class="page-title" id="page-title">
     <div class="container">
         <div class="row" style="padding-bottom: 80px;">
             <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-0">
@@ -17,10 +16,6 @@
                         <!-- Simple decorative accent -->
                         <div class="title-accent"></div>
                         
-                        <div class="card-icon"> 
-                            <div class="icon-bg"></div>
-                            <i class="flaticon-029-cardiogram-1"></i>
-                        </div>
                         <h4 class="category-title">{{ $category->getTranslation('name', app()->getLocale()) }}</h4>
                         
                         <!-- Simple underline accent -->
@@ -131,7 +126,6 @@
             100% { left: 100%; }
         }
     </style>
-</section>
     <section class="blog blog-grid" id="blog">
         <div class="container">
             <div class="row">

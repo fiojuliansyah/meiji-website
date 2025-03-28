@@ -151,7 +151,7 @@
           <!--End .col-lg-5-->
           <div class="col-12 col-lg-6 offset-lg-1">
             <div class="prief-set">
-              <p style="justify-content: center;">{!! $page->getTranslation('about_content', app()->getLocale()) !!}</p>
+              <p  style="text-align: justify;">{!! $page->getTranslation('about_content', app()->getLocale()) !!}</p>
             </div>
             <div class="card-action"> 
                   <a class="btn btn--primary btn-line btn-line-after" href="{{ $page->about_link ?? '' }}">
@@ -172,7 +172,7 @@
           <div class="col-12 col-lg-6">
             <div class="card-left"> 
               <p class="title">{{ $page->getTranslation('randd_title', app()->getLocale()) }}</p>
-              <p class="desc" style="justify-content: center;">{!! $page->getTranslation('randd_content', app()->getLocale()) !!}</p>
+              <p class="desc"  style="text-align: justify;">{!! $page->getTranslation('randd_content', app()->getLocale()) !!}</p>
               <a class="btn btn--primary btn-line btn-line-after" href="#">
                 <span>{{ translate('Read More') }}</span><span class="line"><span></span></span>
               </a>
@@ -201,7 +201,7 @@
           <div class="col-12 col-lg-5"> 
             <h2 class="heading-title">{{ $page->getTranslation('doctor_title', app()->getLocale()) }}</h2>
           </div>
-          <div class="col-12 col-lg-6 offset-lg-1" style="justify-content: center;">
+          <div class="col-12 col-lg-6 offset-lg-1"  style="text-align: justify;">
             {!! $page->getTranslation('doctor_content', app()->getLocale()) !!}
           </div>
           <a class="btn btn--primary btn-line btn-line-after" href="{{ $page->doctor_link ?? '' }}">

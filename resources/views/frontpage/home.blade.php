@@ -36,15 +36,17 @@
                     animation: fadeInUp 1s ease;">
                     {{ $slider->getTranslation('title', app()->getLocale()) }}
                   </h1>
-                  <p class="slide-desc" style="
-                    font-size: 1.2rem; 
-                    line-height: 1.6; 
-                    color: #e0e0e0; 
-                    margin-bottom: 25px; 
-                    animation: fadeInUp 1s ease 0.5s; 
-                    animation-fill-mode: backwards;">
-                    {{ $slider->getTranslation('content', app()->getLocale()) }}
-                  </p>
+                  <div style="text-align: justify;">
+                    <p class="slide-desc" style="
+                      font-size: 1.2rem; 
+                      line-height: 1.6; 
+                      color: #e0e0e0; 
+                      margin-bottom: 25px; 
+                      animation: fadeInUp 1s ease 0.5s; 
+                      animation-fill-mode: backwards;">
+                      {{ $slider->getTranslation('content', app()->getLocale()) }}
+                    </p>
+                  </div>
                   <a href="#" class="btn btn--primary btn-line btn-line-after">
                     Learn More
                   </a>

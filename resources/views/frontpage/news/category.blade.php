@@ -5,24 +5,133 @@
 @endsection
 
 @section('content')
-<section class="page-title bg-overlay bg-overlay-dark" id="page-title">
+<section class="page-title page-title-4 bg-overlay bg-overlay-dark bg-parallax" id="page-title">
     <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-8 col-lg-6">
+        <div class="row" style="padding-bottom: 120px;">
+            <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-0">
                 <div class="title">
+                    <!-- Simple decorative element -->
+                    <div class="title-decoration"></div>
+                    
                     <div class="title-card">
-                        <div class="card-icon">
+                        <!-- Simple decorative accent -->
+                        <div class="title-accent"></div>
+                        
+                        <div class="card-icon"> 
+                            <div class="icon-bg"></div>
                             <i class="flaticon-029-cardiogram-1"></i>
                         </div>
-                        <h4>{{ $category->getTranslation('name', app()->getLocale()) }}</h4>
+                        <h4 class="category-title">{{ $category->getTranslation('name', app()->getLocale()) }}</h4>
+                        
+                        <!-- Simple underline accent -->
+                        <div class="title-underline">
+                            <div class="underline-highlight"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
+    <style>
+        /* Moving styles to a style block instead of inline */
+        .title-decoration {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            top: -50px;
+            left: -30px;
+            z-index: -1;
+        }
+        
+        .title-card {
+            position: relative;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-left: 4px solid #FF0000;
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        .title-accent {
+            position: absolute;
+            width: 30px;
+            height: 3px;
+            background: #FF0000;
+            top: 20px;
+            right: 25px;
+        }
+        
+        .card-icon {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        .icon-bg {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: rgba(52,152,219,0.2);
+            border-radius: 50%;
+            left: -5px;
+            top: -5px;
+            animation: pulse 2s infinite;
+        }
+        
+        .card-icon i {
+            position: relative;
+            font-size: 40px;
+            color: #ffffff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        .category-title {
+            padding-top: 10px;
+            color: #FF0000;
+            font-size: 26px;
+            font-weight: 700;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            margin-bottom: 0;
+        }
+        
+        .title-underline {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, #FF0000, transparent);
+            margin-top: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .underline-highlight {
+            position: absolute;
+            width: 40px;
+            height: 100%;
+            background: rgba(255,255,255,0.3);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1.1); opacity: 0.7; }
+            50% { transform: scale(1.3); opacity: 0.3; }
+            100% { transform: scale(1.1); opacity: 0.7; }
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(15px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes shimmer {
+            0% { left: -40px; }
+            100% { left: 100%; }
+        }
+    </style>
 </section>
-    <br>
-    <br>
     <section class="blog blog-grid" id="blog">
         <div class="container">
             <div class="row">

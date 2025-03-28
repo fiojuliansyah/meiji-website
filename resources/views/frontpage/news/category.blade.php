@@ -47,7 +47,6 @@
             backdrop-filter: blur(10px);
             border-radius: 15px;
             padding: 25px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             border-left: 4px solid #FF0000;
             animation: fadeIn 0.6s ease-out;
         }
